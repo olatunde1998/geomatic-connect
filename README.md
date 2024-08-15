@@ -6,8 +6,8 @@
 
 # Technologies 
 
- + [NextJs,](https://nextjs.org/)
- + [React TanStack Query,](https://tanstack.com/query/latest)  
+ + [NextJs](https://nextjs.org/)
+ + [React TanStack Query](https://tanstack.com/query/latest)  
  + [React TanStack Table](https://tanstack.com/table/v8)
  + [TailwindCss](https://tailwindcss.com/) 
  + [React Hook-form](https://react-hook-form.com/) 
