@@ -39,7 +39,7 @@ export default function CompanyHome() {
             onClick={() => setShowSendRequest(true)}
             className="cursor-pointer border border-[#33A852] p-3 w-[230px]  text-center text-[#33A852]"
           >
-            Choose Engineer For Me
+            Approved Request
           </p>
         </div>
       </div>
