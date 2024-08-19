@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-white fixed px-6  lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent ">
+      <nav className="bg-white fixed px-6 z-[1000] lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent ">
         <div className="md:flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/" className="font-bold ">
