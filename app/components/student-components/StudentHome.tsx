@@ -3,9 +3,12 @@ import { useState } from "react";
 import { Sheet } from "@/app/components/sheets/Sheet";
 import SendRequest from "./SendRequest";
 import CompanyCard from "@/app/components/cards/CompanyCard";
+import { Select } from "@/app/components/inputs/Select";
+import { filterData, stateData } from "@/utils/FilterData";
 
 export default function StudentHome() {
   const [showSendRequest, setShowSendRequest] = useState(false);
+  const [getItemName, setGetItemName] = useState();
   return (
     <>
       {/* ====== Filter & Search Goes here ====== */}
@@ -13,25 +16,26 @@ export default function StudentHome() {
       <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] lg:flex p-4  lg:my-20 xl:my-10">
         <div className="md:flex items-center mb-8 lg:mb-0">
           <p>Filter By:</p>
-          <div className="space-y-2 mt-3 md:mt-0 md:space-y-0 md:ml-3 md:space-x-3">
-            <select
-              name=""
-              id=""
-              className="border border-slate-300 p-4 w-[220px]"
-            >
-              <option value="">JavaScript</option>
-              <option value="">Go Lang</option>
-              <option value="">Python</option>
-            </select>
-            <select
-              name=""
-              id=""
-              className="border border-slate-300 p-4 w-[220px]"
-            >
-              <option value="">JavaScript</option>
-              <option value="">Go Lang</option>
-              <option value="">Python</option>
-            </select>
+          <div className="md:flex space-y-2 mt-3 md:mt-0 md:space-y-0 md:ml-3 md:space-x-3">
+            {/* === DropDown Input === */}
+            <div>
+              <Select
+                placeholder="Specialization"
+                onSelect={(item: any) => {
+                  setGetItemName(item?.name);
+                }}
+                inputData={filterData}
+              />
+            </div>
+            <div>
+              <Select
+                placeholder="Select State"
+                onSelect={(item: any) => {
+                  setGetItemName(item?.name);
+                }}
+                inputData={stateData}
+              />
+            </div>
           </div>
         </div>
         <div>
