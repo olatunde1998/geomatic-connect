@@ -4,7 +4,7 @@ import { Sheet } from "@/app/components/sheets/Sheet";
 import SendRequest from "./SendRequest";
 import CompanyCard from "@/app/components/cards/CompanyCard";
 import { Select } from "@/app/components/inputs/Select";
-import { filterData, stateData } from "@/utils/FilterData";
+import { specializationData, stateData } from "@/utils/FilterData";
 
 export default function StudentHome() {
   const [showSendRequest, setShowSendRequest] = useState(false);
@@ -24,7 +24,7 @@ export default function StudentHome() {
                 onSelect={(item: any) => {
                   setGetItemName(item?.name);
                 }}
-                inputData={filterData}
+                inputData={specializationData}
               />
             </div>
             <div>
