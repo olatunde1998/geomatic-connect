@@ -25,8 +25,7 @@ export default function LeftContainer() {
       {/* ====Content==== */}
       <section className="h-screen">
         <p className="relative h-full text-[#1F4D36] text-4xl text-center flex justify-center items-center">
-          {/* Geomatic  */}
-          Connect
+          Geomatic Connect
         </p>
       </section>
     </div>
