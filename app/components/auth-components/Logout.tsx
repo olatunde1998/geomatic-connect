@@ -1,28 +1,15 @@
 "use client";
 import { CircleAlert } from "lucide-react";
+import { signOut } from "next-auth/react";
 import { useState } from "react";
 
 interface LogoutProps {
-    setShowLogOut?: any;
-  }
+  setShowLogOut?: any;
+}
 
 export default function Logout({ setShowLogOut }: LogoutProps) {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  // Logout Logic
-  // const handleLogOut = async () => {
-  //   setIsLoggingOut(true);
-  //   try {
-  //     const response = await LogoutRequest(token, baseUrl);
-  //     console.log(JSON.stringify(response.data));
-  //     toast.success("User Deleted Successfully");
-  //     setShowLogOut(false);
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setIsLoggingOut(false);
-  //   }
-  // };
 
   return (
     <div className="bg-white p-8 rounded-[0.63rem]  mx-auto">
@@ -48,7 +35,7 @@ export default function Logout({ setShowLogOut }: LogoutProps) {
           className={
             "bg-[#D92D20] hover:bg-[#D92D20]/90 rounded-[8px] text-white px-[28px] cursor-pointer py-[12px]  text-center  w-full lg:w-[230px] whitespace-nowrap"
           }
-          //   onClick={handleLogOut}
+          onClick={() => signOut()}
           disabled={isLoggingOut}
         >
           {isLoggingOut ? "Logging out..." : "Log out"}
