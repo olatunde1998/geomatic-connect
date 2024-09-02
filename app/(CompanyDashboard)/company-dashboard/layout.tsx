@@ -9,17 +9,15 @@ export const metadata: Metadata = {
   description: "Geomatic Connect Application Dashboard",
 };
 
-export default function RootLayout({
+export default function CompanyLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        {children}
-      </body>
-    </html>
+    <div className={inter.className}>
+      <Navbar />
+      {children}
+    </div>
   );
 }

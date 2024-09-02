@@ -9,19 +9,17 @@ export const metadata: Metadata = {
   description: "Geomatic Connect Application Dashboard",
 };
 
-export default function RootLayout({
+export default function StudentLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <div className="bg-[#F8F9FC]">
-          <Navbar />
-          {children}
-        </div>
-      </body>
-    </html>
+    <div className={inter.className}>
+      <div className="bg-[#F8F9FC]">
+        <Navbar />
+        {children}
+      </div>
+    </div>
   );
 }
