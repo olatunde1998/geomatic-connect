@@ -82,7 +82,7 @@ export default function LoginHomeTwo() {
       email: params.email,
       password: params.password,
       redirect: false,
-      callbackUrl: "/login",
+      callbackUrl: "/",
     });
 
     // Error Handling
