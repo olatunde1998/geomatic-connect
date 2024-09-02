@@ -11,7 +11,7 @@ export default function LeftContainer() {
   }, []);
 
   return (
-    <div className="relative w-full hidden md:w-1/2 md:block">
+    <div className="relative w-full hidden md:w-2/3 md:block">
       {/* ===== Background Image ===== */}
       <div
         className={`absolute inset-0 bg-center bg-no-repeat bg-cover ${
