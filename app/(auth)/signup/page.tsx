@@ -1,7 +1,6 @@
-// import LeftContainer from "../login/leftContainer";
 import LeftContainer from "./leftContainer";
-import SignUpHome from "./SignupHome";
 import SignUpHomeTwo from "./SignupHomeTwo";
+// import SignUpHome from "./SignupHome";
 
 export default function SignUp() {
   return (

@@ -1,8 +1,6 @@
-// import { auth } from "@/auth";
 import LeftContainer from "./leftContainer";
-import LoginHome from "./LoginHome";
 import LoginHomeTwo from "./LoginHomeTwo";
-
+// import LoginHome from "./LoginHome";
 
 export default async function Login() {
   return (
@@ -13,7 +11,8 @@ export default async function Login() {
     // </div>
 
     // Alternative two
-    <div className="text-[#1F4D36]  h-screen overflow-y-hidden">
+    <div className="text-[#1F4D36] md:flex justify-between h-screen overflow-y-hidden">
+      <LeftContainer />
       <LoginHomeTwo />
     </div>
   );
