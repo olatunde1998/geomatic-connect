@@ -5,25 +5,63 @@ import Link from "next/link";
 import { BiHide, BiShow } from "react-icons/bi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { signIn } from "@/auth"
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RegisterUserRequest } from "@/app/services/auth.request";
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .required("Email is required")
+    .email(" Invalid Email format"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(6, "Password must be at least 6 characters")
+    .max(32, "Password must not exceed 15 characters"),
+  username: yup.string().required("username is required"),
+});
 
 export default function SignUpHomeTwo() {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("");
-  const [show, setShow] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-
-  const signUpWithEmailAndPassword = (e: any) => {
-    e.preventDefault();
-    toast.success("Sign Up Successfully");
-    console.log("sign up successful");
-  };
 
   const signUpWithGoogleAuthentication = () => {
     console.log("sign up successful");
     toast.success("Sign Up Successfully");
   };
+
+  // REACT HOOK FORM LOGIC
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  //Register User submission Logic
+  const onSubmitHandler = async (data: any) => {
+    setIsSaving(true);
+    const body = {
+      username: data?.username,
+      email: data?.email,
+      password: data?.password,
+      role: "User",
+    };
+    try {
+      const response = await RegisterUserRequest(body);
+      if (response?.success) {
+        toast.success(response?.message);
+      }
+    } catch (error: any) {
+      toast.error(error?.response?.message);
+    } finally {
+      setIsSaving(false);
+    }
+    setIsSaving(false);
+  };
+
   return (
     <>
       <div className="bg-[#F1F4EA] md:w-1/3 h-full py-20 text-[#1F4D36]">
@@ -68,34 +106,41 @@ export default function SignUpHomeTwo() {
 
             <p className="py-1 ml-4">Sign up with Github</p>
           </div>
+
           <div className="flex items-center justify-between gap-2 mt-6 mb-4 text-sm">
             <div className="w-[40%] border-[0.5px] border-slate-300" />{" "}
             <span>or</span>{" "}
             <div className="w-[40%] border-[0.5px] border-slate-300" />
           </div>
 
-          <form onSubmit={signUpWithEmailAndPassword}>
-
-             {/* =======Username ===== */}
-             <div className="mt-4">
+          <form onSubmit={handleSubmit(onSubmitHandler)}>
+            {/* =======Username ===== */}
+            <div className="mt-4">
               <input
                 type="text"
                 placeholder="Username"
-                value={username}
-                onChange={(e: any) => setUsername(e.target.value)}
-                className="px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full"
+                {...register("username")}
+                maxLength={32}
+                className={`${
+                  errors.username
+                    ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
+                    : ""
+                } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
               />
             </div>
-
 
             {/* =======Email ===== */}
             <div className="mt-4">
               <input
                 type="email"
                 placeholder="E-mail"
-                value={email}
-                onChange={(e: any) => setEmail(e.target.value)}
-                className="px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full"
+                {...register("email")}
+                maxLength={40}
+                className={`${
+                  errors.email
+                    ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
+                    : ""
+                } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
               />
             </div>
 
@@ -103,21 +148,25 @@ export default function SignUpHomeTwo() {
             <div className="mt-4 relative">
               <div>
                 <input
-                  type={`${show ? "text" : "password"}`}
+                  type={`${showPassword ? "text" : "password"}`}
                   placeholder="Password"
-                  value={password}
-                  onChange={(e: any) => setPassword(e.target.value)}
-                  className="pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full"
+                  {...register("password")}
+                  maxLength={32}
+                  className={`${
+                    errors.password
+                      ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
+                      : ""
+                  } pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
                 />
               </div>
               <span
                 className="absolute cursor-pointer bottom-3 right-2 pt-4 flex items-center mr-[0.25rem] text-[#FF8447]"
-                onClick={() => setShow(!show)}
+                onClick={() => setShowPassword(!showPassword)}
               >
                 <BiHide
                   size={18}
                   className={
-                    show === false
+                    showPassword === false
                       ? "hidden items-center cursor-pointer"
                       : "text-gray-500"
                   }
@@ -125,13 +174,14 @@ export default function SignUpHomeTwo() {
                 <BiShow
                   size={18}
                   className={
-                    show === true
+                    showPassword === true
                       ? "hidden items-center cursor-pointer"
                       : "text-gray-500"
                   }
                 />
               </span>
             </div>
+
             {/* ====Terms and service ===== */}
             <div className="text-xs mt-6 text-center">
               <p>
@@ -146,8 +196,11 @@ export default function SignUpHomeTwo() {
               </p>
             </div>
 
-            <button className="px-8 py-2 cursor-pointer  mt-4 bg-[#1F4D36] text-[16px] text-white rounded-lg w-full  transition duration-500 ease-in-out hover:shadow-[0_0_20px_rgba(31,77,54,0.7)] hover:brightness-150">
-              Sign-up with email
+            <button
+              disabled={isSaving}
+              className="px-8 py-2 cursor-pointer  mt-4 bg-[#1F4D36] text-[16px] text-white rounded-lg w-full  transition duration-500 ease-in-out hover:shadow-[0_0_20px_rgba(31,77,54,0.7)] hover:brightness-150"
+            >
+              {isSaving ? "Loading...." : "Sign-up with email"}
             </button>
           </form>
 
