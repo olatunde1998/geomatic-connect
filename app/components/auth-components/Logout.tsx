@@ -10,7 +10,6 @@ interface LogoutProps {
 export default function Logout({ setShowLogOut }: LogoutProps) {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-
   return (
     <div className="bg-white p-8 rounded-[0.63rem]  mx-auto">
       <div className="bg-[#FEF3F2] p-3 w-fit rounded-full mx-auto">
@@ -35,7 +34,9 @@ export default function Logout({ setShowLogOut }: LogoutProps) {
           className={
             "bg-[#D92D20] hover:bg-[#D92D20]/90 rounded-[8px] text-white px-[28px] cursor-pointer py-[12px]  text-center  w-full lg:w-[230px] whitespace-nowrap"
           }
-          onClick={() => signOut()}
+          onClick={() => {
+            setIsLoggingOut(true), signOut();
+          }}
           disabled={isLoggingOut}
         >
           {isLoggingOut ? "Logging out..." : "Log out"}
