@@ -1,4 +1,5 @@
 import Navbar from "@/app/components/navbar/Navbar";
+import { auth } from "@/auth";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -9,17 +10,16 @@ export const metadata: Metadata = {
   description: "Geomatic Connect Application Dashboard",
 };
 
-export default function RootLayout({
+export default async function AdminLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        {children}
-      </body>
-    </html>
+    <div className={inter.className}>
+      <Navbar session={session} />
+      {children}
+    </div>
   );
 }
