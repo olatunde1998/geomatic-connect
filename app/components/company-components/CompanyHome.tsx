@@ -6,7 +6,12 @@ import SendRequest from "./SendRequest";
 import { Select } from "@/app/components/inputs/Select";
 import { specializationData, stateData } from "@/utils/FilterData";
 
-export default function CompanyHome() {
+interface CompanyHomeProps {
+  session: any;
+}
+
+export default function CompanyHome({ session }: CompanyHomeProps) {
+  const userEmail = session?.user?.email;
   const [showSendRequest, setShowSendRequest] = useState(false);
   const [getItemName, setGetItemName] = useState();
   return (
@@ -55,7 +60,10 @@ export default function CompanyHome() {
 
       {/* ===Sheets */}
       <Sheet show={showSendRequest} onClose={() => setShowSendRequest(false)}>
-        <SendRequest setShowSendRequest={setShowSendRequest} />
+        <SendRequest
+          setShowSendRequest={setShowSendRequest}
+          userEmail={userEmail}
+        />
       </Sheet>
     </>
   );

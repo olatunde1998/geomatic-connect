@@ -6,7 +6,12 @@ import CompanyCard from "@/app/components/cards/CompanyCard";
 import { Select } from "@/app/components/inputs/Select";
 import { specializationData, stateData } from "@/utils/FilterData";
 
-export default function StudentHome() {
+interface StudentHomeProps {
+  session: any;
+}
+
+export default function StudentHome({ session }: StudentHomeProps) {
+  const userEmail = session?.user?.email;
   const [showSendRequest, setShowSendRequest] = useState(false);
   const [getItemName, setGetItemName] = useState();
   return (
@@ -55,7 +60,10 @@ export default function StudentHome() {
 
       {/* ===Sheets */}
       <Sheet show={showSendRequest} onClose={() => setShowSendRequest(false)}>
-        <SendRequest setShowSendRequest={setShowSendRequest} />
+        <SendRequest
+          setShowSendRequest={setShowSendRequest}
+          userEmail={userEmail}
+        />
       </Sheet>
     </>
   );
