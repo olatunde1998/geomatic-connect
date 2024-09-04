@@ -6,9 +6,9 @@ import { useState } from "react";
 import { Modal } from "@/app/components/modals/Modal";
 import Logout from "@/app/components/auth-components/Logout";
 
-export default function Navbar() {
+export default function Navbar({ session }: { session: any }) {
   const [showLogOut, setShowLogOut] = useState(false);
-
+  const userName = session?.user?.name;
   return (
     <>
       <nav className="bg-white fixed px-6 z-[1000] lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent ">
@@ -27,7 +27,7 @@ export default function Navbar() {
               </div>
             </Link>
             <div className="border-l-2 border-slate-300 pl-3 ml-3 space-y-3">
-              <p className="text-xs font-light">Hi Rasheed</p>
+              <p className="text-xs font-light">Hi {userName}</p>
               <p>Welcome 👋</p>
             </div>
           </div>
