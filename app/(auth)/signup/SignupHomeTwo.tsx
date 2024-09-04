@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterUserRequest } from "@/app/services/auth.request";
+import WelcomeTemplate from "@/emails";
+import { Resend } from "resend";
 
 const schema = yup.object().shape({
   email: yup
@@ -26,7 +28,7 @@ const schema = yup.object().shape({
 export default function SignUpHomeTwo() {
   const [isSaving, setIsSaving] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
+  const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
   const signUpWithGoogleAuthentication = () => {
     console.log("sign up successful");
@@ -49,17 +51,32 @@ export default function SignUpHomeTwo() {
       password: data?.password,
       role: "User",
     };
+    const firstName = data?.username;
+    const email = data?.email;
     try {
       const response = await RegisterUserRequest(body);
       if (response?.success) {
         toast.success(response?.message);
       }
+      // Send email
+      try {
+        const emailResponse = await resend.emails.send({
+          from: "Geomatic Connect <onboarding@resend.dev>",
+          to: [email],
+          subject: "Welcome to Geomatic Connect",
+          react: WelcomeTemplate({ firstName }),
+        });
+        console.log("Email sent:", emailResponse);
+        toast.success("Welcome email sent successfully!");
+      } catch (emailError: any) {
+        console.error("Error sending email:", emailError);
+        toast.error("Failed to send welcome email.");
+      }
     } catch (error: any) {
-      toast.error(error?.response?.message);
+      toast.error(error?.response?.message || "Registration failed.");
     } finally {
       setIsSaving(false);
     }
-    setIsSaving(false);
   };
 
   return (
