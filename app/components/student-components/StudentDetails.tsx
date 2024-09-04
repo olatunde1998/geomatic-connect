@@ -9,9 +9,14 @@ import SendRequest from "./SendRequest";
 
 interface StudentDetailsProps {
   studentId?: any;
+  session: any;
 }
 
-export default function StudentDetails({ studentId }: StudentDetailsProps) {
+export default function StudentDetails({
+  studentId,
+  session,
+}: StudentDetailsProps) {
+  const userEmail = session?.user?.name;
   const [selectedTab, setSelectedTab] = useState("Profile");
   const [showSendRequest, setShowSendRequest] = useState(false);
   return (
@@ -65,7 +70,10 @@ export default function StudentDetails({ studentId }: StudentDetailsProps) {
 
       {/* ===Sheets */}
       <Sheet show={showSendRequest} onClose={() => setShowSendRequest(false)}>
-        <SendRequest setShowSendRequest={setShowSendRequest} />
+        <SendRequest
+          setShowSendRequest={setShowSendRequest}
+          userEmail={userEmail}
+        />
       </Sheet>
     </>
   );
