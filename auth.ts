@@ -26,7 +26,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             }
           );
           const user = await response.json();
-          console.log(user, "this is user here ===")
           // If no error and we have user data, return it
           if (response.ok && user?.data) {
             return user.data;
