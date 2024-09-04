@@ -8,11 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { useRouter } from "next/navigation";
 import { getSession, signIn } from "next-auth/react";
-import { auth } from "@/auth";
 import { RegisterWithGoogleRequest } from "@/app/services/auth.request";
+// import { auth } from "@/auth";
 // import { signIn } from "@/auth";
 
 const schema = yup.object().shape({
@@ -36,7 +35,7 @@ export default function LoginHomeTwo() {
     // toast.success("Login Successfully");
     try {
       const response = await RegisterWithGoogleRequest();
-      console.log(response, "this is response here ====");
+      // console.log(response, "this is response here ====");
       // if (response?.success) {
       //   toast.success(response?.message);
       // }
@@ -54,15 +53,15 @@ export default function LoginHomeTwo() {
     const session = await getSession();
 
     // No Errors
-    console.log(response, "login response ==");
+    // console.log(response, "login response ==");
 
-    console.log(session?.user, "===this is the roles====");
+    // console.log(session?.user, "===this is the roles====");
     // Check if the session contains the user data
     if (session?.user) {
-      console.log(session.user, "===this is the roles====");
+      // console.log(session.user, "===this is the roles====");
       return router.push("/student-dashboard");
     } else {
-      console.log("No session found after login");
+      // console.log("No session found after login");
       return;
     }
   };
@@ -86,8 +85,8 @@ export default function LoginHomeTwo() {
     });
 
     // Error Handling
-    if (response?.error) {
-      console.log(response.error, "this is error here===");
+    if (response?.error || response?.status === 401) {
+      toast.error("Invalid Email/Password");
       setIsLoading(false);
       return;
     }
@@ -99,7 +98,6 @@ export default function LoginHomeTwo() {
     toast.success("Login Successfully");
 
     const session = await getSession();
-    console.log(session, "===this is the role====");
     // return;
     return setTimeout(() => {
       if (session?.user?.role === "User") {
