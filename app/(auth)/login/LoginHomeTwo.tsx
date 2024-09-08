@@ -35,10 +35,10 @@ export default function LoginHomeTwo() {
     // toast.success("Login Successfully");
     try {
       const response = await RegisterWithGoogleRequest();
-      // console.log(response, "this is response here ====");
-      // if (response?.success) {
-      //   toast.success(response?.message);
-      // }
+      console.log(response, "this is response here ====");
+      if (response?.success) {
+        toast.success(response?.message);
+      }
       toast.success("Login Successfully");
     } catch (error: any) {
       toast.error(error?.response?.message);
