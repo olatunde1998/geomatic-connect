@@ -48,7 +48,7 @@ export default function LoginHomeTwo() {
   // };
   const signUpWithGoogle = () => {
     console.log("this is response here ====");
-    window.location.href = `${process.env.NEXT_PUBLIC_BASEURL}/auth/google`;
+    window.location.href = "https://nodeauthv1server-r1kq2l3d.b4a.run/auth/google/redirect", "_self";
   };
 
   const signUpWithGithub = async () => {
