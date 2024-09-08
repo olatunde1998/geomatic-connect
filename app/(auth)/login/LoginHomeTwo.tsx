@@ -31,20 +31,24 @@ export default function LoginHomeTwo() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const signUpWithGoogle = async () => {
-    // toast.success("Login Successfully");
-    try {
-      const response = await RegisterWithGoogleRequest();
-      console.log(response, "this is response here ====");
-      if (response?.success) {
-        toast.success(response?.message);
-      }
-      toast.success("Login Successfully");
-    } catch (error: any) {
-      toast.error(error?.response?.message);
-    } finally {
-      setIsLoading(false);
-    }
+  // const signUpWithGoogle = async () => {
+  //   // toast.success("Login Successfully");
+  //   try {
+  //     const response = await RegisterWithGoogleRequest();
+  //     console.log(response, "this is response here ====");
+  //     if (response?.success) {
+  //       toast.success(response?.message);
+  //     }
+  //     toast.success("Login Successfully");
+  //   } catch (error: any) {
+  //     toast.error(error?.response?.message);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+  const signUpWithGoogle = () => {
+    console.log("this is response here ====");
+    window.location.href = `${process.env.NEXT_PUBLIC_BASEURL}/auth/google`;
   };
 
   const signUpWithGithub = async () => {
