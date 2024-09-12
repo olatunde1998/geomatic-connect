@@ -31,44 +31,45 @@ export default function LoginHome() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const signUpWithGoogle = async () => {
+  // const signUpWithGoogle = async () => {
     // toast.success("Login Successfully");
-    try {
-      const response = await signIn("google");
-      console.log(response, "this is response here ====");
-      if (response) {
-        toast.success(response as any);
-      }
-      toast.success("Login Successfully");
-    } catch (error: any) {
-      toast.error(error?.response?.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    // try {
+    //   const response = await signIn("google");
+    //   console.log(response, "this is response here ====");
+    //   if (response) {
+    //     toast.success(response as any);
+    //   }
+    //   toast.success("Login Successfully");
+    // } catch (error: any) {
+    //   toast.error(error?.response?.message);
+    // } finally {
+    //   setIsLoading(false);
+    // }
+  // };
+  
   // const signUpWithGoogle = () => {
   //   console.log("this is response here ====");
   //   window.location.href = "http://localhost:3000/auth/google/redirect", "_self";
   // };
 
-  const signUpWithGithub = async () => {
-    const response = await signIn("github");
+  // const signUpWithGithub = async () => {
+  //   // const response = await signIn("github");
 
-    const session = await getSession();
+  //   // const session = await getSession();
 
-    // No Errors
-    // console.log(response, "login response ==");
+  //   // No Errors
+  //   // console.log(response, "login response ==");
 
-    // console.log(session?.user, "===this is the roles====");
-    // Check if the session contains the user data
-    if (session?.user) {
-      // console.log(session.user, "===this is the roles====");
-      return router.push("/student-dashboard");
-    } else {
-      // console.log("No session found after login");
-      return;
-    }
-  };
+  //   // console.log(session?.user, "===this is the roles====");
+  //   // Check if the session contains the user data
+  //   if (session?.user) {
+  //     // console.log(session.user, "===this is the roles====");
+  //     return router.push("/student-dashboard");
+  //   } else {
+  //     // console.log("No session found after login");
+  //     return;
+  //   }
+  // };
 
   // REACT HOOK FORM LOGIC
   const {
@@ -123,7 +124,7 @@ export default function LoginHome() {
           {/* ======= Google Authentication container ====== */}
           <div
             className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
-            onClick={signUpWithGoogle}
+            // onClick={signUpWithGoogle}
           >
             <div>
               <Image
@@ -141,7 +142,7 @@ export default function LoginHome() {
           {/* ======= Github Authentication container ====== */}
           <div
             className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
-            onClick={() => signUpWithGithub()}
+            // onClick={() => signUpWithGithub()}
           >
             <div>
               <Image

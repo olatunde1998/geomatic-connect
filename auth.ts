@@ -1,10 +1,10 @@
-import Google from "next-auth/providers/google"
-// import GithubProvider from "next-auth/providers/github";
-import NextAuth from "next-auth"
 import credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google"
+import NextAuth from "next-auth"
+// import GithubProvider from "next-auth/providers/github";
+// import User from "@/models/user";
 // import { connectDB } from "@/utils/database";
-import User from "@/models/user";
-import { connectDB } from "./utils/database";
+
 
 
 
@@ -58,34 +58,34 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
   },
     async session({ session, token }) {
-      const sessionUser = await User.findOne({email: session.user.email as string})
-      console.log(sessionUser, "this is sessionUser here")
+      // const sessionUser = await User.findOne({email: session.user.email as string})
+      // console.log(sessionUser, "this is sessionUser here")
       session.user._id = token._id ,
       session.user.role = token.role;
       session.user.name = token.username;
       return session;
   },
-  async signIn({profile}: any){
-    console.log(profile)
-    try{
-      await connectDB()
-      const userExist = await User.findOne({email: profile.email as string})
-      if(!userExist){
-        const user = await User.create({
-          googleId: profile.id,
-          email: profile.email,
-          username: profile.displayName,
-          thumbnail: profile.picture,
-          password: "",
-        })
-        console.log(user, "this is user here =====")
-      }
-      return true;
-    } catch(error){
-      console.log(error)
-      return false
-    }
-  }
+  // async signIn({profile}: any){
+  //   console.log(profile)
+  //   try{
+  //     await connectDB()
+  //     const userExist = await User.findOne({email: profile.email as string})
+  //     if(!userExist){
+  //       const user = await User.create({
+  //         googleId: profile.id,
+  //         email: profile.email,
+  //         username: profile.displayName,
+  //         thumbnail: profile.picture,
+  //         password: "",
+  //       })
+  //       console.log(user, "this is user here =====")
+  //     }
+  //     return true;
+  //   } catch(error){
+  //     console.log(error)
+  //     return false
+  //   }
+  // }
   },
  
   pages: {
@@ -93,7 +93,3 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     error: '/not-found',
   },
 })
-
-export const config = {
-  runtime: "nodejs",
-};
