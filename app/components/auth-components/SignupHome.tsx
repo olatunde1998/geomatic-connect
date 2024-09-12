@@ -69,7 +69,7 @@ export default function SignUpHome() {
         toast.success(response?.message);
         setTimeout(() => {
           router.push("/verify-email");
-        }, 3000);
+        }, 5000);
       } catch (emailError: any) {
         console.error("Error sending email:", emailError);
         toast.error("Failed to send welcome email.");

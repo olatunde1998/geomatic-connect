@@ -59,10 +59,11 @@ export default function VerifyEmail() {
       e?.preventDefault();
       const verificationCode = code.join("");
       console.log(verificationCode, "this is the code");
-      
+      const body = {
+        code: verificationCode,
+      };
       try {
-        const response = await VerifyEmailRequest(verificationCode);
-        console.log(response, "this is response ====")
+        const response = await VerifyEmailRequest(body);
         toast.success(response?.message);
         setTimeout(() => {
           router.push("/login");
@@ -96,7 +97,9 @@ export default function VerifyEmail() {
               {code.map((digit, index) => (
                 <input
                   key={index}
-                  ref={(el) => {inputRefs.current[index] = el}}
+                  ref={(el) => {
+                    inputRefs.current[index] = el;
+                  }}
                   type="text"
                   maxLength={6}
                   value={digit}
