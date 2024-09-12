@@ -11,6 +11,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterUserRequest } from "@/app/services/auth.request";
 import WelcomeTemplate from "@/emails";
 import { Resend } from "resend";
+import { useRouter } from "next/navigation";
 
 const schema = yup.object().shape({
   email: yup
@@ -26,6 +27,7 @@ const schema = yup.object().shape({
 });
 
 export default function SignUpHome() {
+  const router = useRouter();
   const [isSaving, setIsSaving] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
@@ -55,9 +57,6 @@ export default function SignUpHome() {
     const email = data?.email;
     try {
       const response = await RegisterUserRequest(body);
-      if (response?.success) {
-        toast.success(response?.message);
-      }
       // Send email
       try {
         const emailResponse = await resend.emails.send({
@@ -67,7 +66,10 @@ export default function SignUpHome() {
           react: WelcomeTemplate({ firstName }),
         });
         console.log("Email sent:", emailResponse);
-        toast.success("Welcome email sent successfully!");
+        toast.success(response?.message);
+        setTimeout(() => {
+          router.push("/verify-email");
+        }, 3000);
       } catch (emailError: any) {
         console.error("Error sending email:", emailError);
         toast.error("Failed to send welcome email.");
@@ -88,7 +90,7 @@ export default function SignUpHome() {
           </p>
           <p className="text-center">Register an account</p>
 
-          {/* ======= Google Authentication container ====== */}
+          {/* ====== Google Authentication container ====== */}
           <div
             className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
             onClick={signUpWithGoogleAuthentication}

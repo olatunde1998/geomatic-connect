@@ -61,9 +61,12 @@ export default function VerifyEmail() {
       console.log(verificationCode, "this is the code");
       
       try {
-        await VerifyEmailRequest(verificationCode);
-        router.push("/");
-        toast.success("Email verified successfully");
+        const response = await VerifyEmailRequest(verificationCode);
+        console.log(response, "this is response ====")
+        toast.success(response?.message);
+        setTimeout(() => {
+          router.push("/login");
+        }, 3000);
       } catch (error) {
         console.log(error);
       }
