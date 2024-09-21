@@ -31,26 +31,28 @@ export default function LoginHome() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  // const signUpWithGoogle = async () => {
-    // toast.success("Login Successfully");
-    // try {
-    //   const response = await signIn("google");
-    //   console.log(response, "this is response here ====");
-    //   if (response) {
-    //     toast.success(response as any);
-    //   }
-    //   toast.success("Login Successfully");
-    // } catch (error: any) {
-    //   toast.error(error?.response?.message);
-    // } finally {
-    //   setIsLoading(false);
-    // }
-  // };
-  
-  // const signUpWithGoogle = () => {
-  //   console.log("this is response here ====");
-  //   window.location.href = "http://localhost:3000/auth/google/redirect", "_self";
-  // };
+  const signUpWithGoogleTwo = async () => {
+    try {
+      const response = await RegisterWithGoogleRequest();
+      console.log(response, "this is response here ====");
+      if (response) {
+        toast.success(response as any);
+      }
+      toast.success("Login Successfully");
+    } catch (error: any) {
+      toast.error(error?.response?.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const signUpWithGoogle = () => {
+    console.log("this is response here ====");
+    // window.location.href = "http://localhost:3001/auth/google/redirect", "_self";
+    (window.location.href =
+      "https://nodeauthv1server-r1kq2l3d.b4a.run/auth/google/redirect"),
+      "_self";
+  };
 
   // const signUpWithGithub = async () => {
   //   // const response = await signIn("github");
@@ -124,7 +126,24 @@ export default function LoginHome() {
           {/* ======= Google Authentication container ====== */}
           <div
             className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
-            // onClick={signUpWithGoogle}
+            onClick={signUpWithGoogle}
+          >
+            <div>
+              <Image
+                src="/images/google.png"
+                width={100}
+                height={100}
+                alt="doctor pics"
+                className="w-[24px] h-[24px]"
+              />
+            </div>
+
+            <p className="py-1 ml-4">Continue with Google</p>
+          </div>
+
+          <div
+            className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
+            onClick={() => signUpWithGoogleTwo()}
           >
             <div>
               <Image
