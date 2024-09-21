@@ -31,9 +31,24 @@ export default function LoginHome() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  // const signUpWithGoogleTwo = async () => {
+  //   try {
+  //     const response = await RegisterWithGoogleRequest();
+  //     console.log(response, "this is response here ====");
+  //     if (response) {
+  //       toast.success(response as any);
+  //     }
+  //     toast.success("Login Successfully");
+  //   } catch (error: any) {
+  //     toast.error(error?.response?.message);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   const signUpWithGoogleTwo = async () => {
     try {
-      const response = await RegisterWithGoogleRequest();
+      const response = await signIn("google");
       console.log(response, "this is response here ====");
       if (response) {
         toast.success(response as any);
