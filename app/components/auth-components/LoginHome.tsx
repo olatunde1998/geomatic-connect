@@ -28,18 +28,40 @@ export default function LoginHome() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  // const signUpWithGoogle = async () => {
+  //   try {
+  //     const response = await signIn("google");
+  //     console.log(response, "this is response here ====");
+  //     if (response) {
+  //       toast.success(response as any);
+  //     }
+  //     toast.success("Login Successfully");
+  //   } catch (error: any) {
+  //     toast.error(error?.response?.message);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   const signUpWithGoogle = async () => {
     try {
-      const response = await signIn("google");
-      console.log(response, "this is response here ====");
+      const response = await signIn("google", { redirect: false });
       if (response) {
-        toast.success(response as any);
+        const session = await getSession();
+        // Redirect based on role
+        setTimeout(() => {
+          if (session?.user?.role === "User") {
+            router.push("/student-dashboard/");
+          } else if (session?.user?.role === "Admin") {
+            router.push("/company-dashboard/");
+          }
+        }, 1000);
+        toast.success("Login Successfully");
+      } else {
+        toast.error("Login failed");
       }
-      toast.success("Login Successfully");
-    } catch (error: any) {
-      toast.error(error?.response?.message);
-    } finally {
-      setIsLoading(false);
+    } catch (error) {
+      toast.error("An error occurred during login");
     }
   };
 
