@@ -21,7 +21,8 @@ export const RegisterUserRequest = async (body: any) => {
 
   // REGISTER WITH GOOGLE (SIGN UP)
 export const RegisterWithGoogleRequest = async () => {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_BASEURL}/auth/google`, {
+    // const response = await axios.get(`${process.env.NEXT_PUBLIC_BASEURL}/auth/google`, {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BASEURL}/auth/google/redirect`, {
       maxBodyLength: Infinity,
       headers: {
         Accept: "application/vnd.connect.v1+json",
