@@ -2,11 +2,6 @@ import credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google"
 import NextAuth from "next-auth"
 // import GithubProvider from "next-auth/providers/github";
-import User from "@/models/user";
-import { connectDB } from "@/utils/database";
-
-
-
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -41,69 +36,32 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }),
   ],
   secret: process.env.AUTH_SECRET,
+
   callbacks: {
-    async jwt({ token, user, account, profile }) {
-      if (account && profile) {
-        // Connect to the database
-        await connectDB();
-        
-        // Check if user already exists in the database
-        let dbUser = await User.findOne({ email: profile.email });
+    async redirect({ url, baseUrl }) {
+      return baseUrl;
+    },
+    jwt({ token, user, trigger, session }) {
+      if (user) {
+          token._id = user._id as string;
+          token.role = user.role as string;
+          token.username = user.username as string;
 
-        if (!dbUser) {
-          // If the user doesn't exist, create a new user
-          dbUser = await User.create({
-            email: profile.email,
-            name: profile.name,
-            image: profile.picture,  // Store Google profile picture
-            // Add any other user data you want to store
-          });
-        }
-
-        // Store user info in JWT token
-        token._id = dbUser._id;
-        token.email = dbUser.email;
-        token.name = dbUser.name;
-        token.role = dbUser.role;  // Assuming role is part of your schema
       }
-
+      if (trigger === "update" && session) {
+          token = { ...token, ...session };
+      }
       return token;
-    },
-
-    async session({ session, token }) {
-      session.user._id = token._id;
-      session.user.email = token.email;
-      session.user.name = token.name;
-      session.user.role = token.role; // Pass role if necessary
-      return session;
-    },
   },
-  // callbacks: {
-  //   async redirect({ url, baseUrl }) {
-  //     return baseUrl;
-  //   },
-  //   jwt({ token, user, trigger, session }) {
-  //     if (user) {
-  //         token._id = user._id as string;
-  //         token.role = user.role as string;
-  //         token.username = user.username as string;
+    async session({ session, token }) {
+      console.log(session, "this is session here")
+      session.user._id = token._id ,
+      session.user.role = token.role;
+      session.user.name = token.username;
+      return session;
+  },
 
-  //     }
-  //     if (trigger === "update" && session) {
-  //         token = { ...token, ...session };
-  //     }
-  //     return token;
-  // },
-  //   async session({ session, token }) {
-  //     // const sessionUser = await User.findOne({email: session.user.email as string})
-  //     // console.log(sessionUser, "this is sessionUser here")
-  //     session.user._id = token._id ,
-  //     session.user.role = token.role;
-  //     session.user.name = token.username;
-  //     return session;
-  // },
-
-  // },
+  },
  
   pages: {
     signIn: "/login",
