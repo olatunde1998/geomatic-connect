@@ -33,7 +33,6 @@ export const RegisterWithGoogleRequest = async () => {
     return data;
   };
 
-
   // EMAIL VERIFICATION REQUEST
 export const VerifyEmailRequest = async (body: any) => {
   try {
@@ -56,7 +55,6 @@ export const VerifyEmailRequest = async (body: any) => {
     throw error;
   }
 };
-
 
   // FORGOT PASSWORD REQUEST
   export const ForgotPasswordRequest = async (body: any) => {
@@ -81,12 +79,11 @@ export const VerifyEmailRequest = async (body: any) => {
     }
   };
 
-
   // RESET PASSWORD REQUEST
-  export const ResetPasswordRequest = async (body: any) => {
+  export const ResetPasswordRequest = async (body: any, token: string) => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASEURL}/auth/reset-password/:token`,
+        `${process.env.NEXT_PUBLIC_BASEURL}/auth/reset-password/${token}`,
         body,
         {
           headers: {
