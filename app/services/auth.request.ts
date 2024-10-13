@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // CREATE NEW USER REQUEST (REGISTER USER)
-export const RegisterUserRequest = async (body: any) => {
+export const RegisterRequest = async (body: any) => {
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_BASEURL}/auth/register`, body, {
         headers: {
