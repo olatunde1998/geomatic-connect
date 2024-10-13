@@ -71,7 +71,7 @@ export default function VerifyEmail() {
         }, 5000);
       } catch (error: any) {
         console.log(error);
-        toast.error(error?.message);
+        toast.error(error?.response?.data?.message);
       } finally {
         setIsLoading(false);
       }
