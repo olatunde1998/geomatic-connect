@@ -9,6 +9,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { ResetPasswordRequest } from "@/app/services/auth.request";
+
+interface ResetPasswordProps {
+  token: string;
+}
 
 const schema = yup.object().shape({
   password: yup
@@ -16,12 +21,18 @@ const schema = yup.object().shape({
     .required("Password is required")
     .min(6, "Password must be at least 6 characters")
     .max(32, "Password must not exceed 15 characters"),
+  confirmPassword: yup
+    .string()
+    .required("Confirm Password is required")
+    .min(6, "Confirm Password must be at least 6 characters")
+    .max(32, "Confirm Password must not exceed 15 characters"),
 });
 
-export default function LoginHomeTwo() {
+export default function ResetPassword({ token }: ResetPasswordProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // REACT HOOK FORM LOGIC
   const {
@@ -30,12 +41,27 @@ export default function LoginHomeTwo() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  // Handle Login Form Submission LOGIC
-  const onSubmitHandler = async (params: any) => {
+  //Reset Password User submission Logic
+  const onSubmitHandler = async (data: any) => {
     setIsLoading(true);
-
-    setIsLoading(false);
-    toast.success("Login Successfully");
+    if (data?.password !== data?.confirmPassword) {
+      toast.error("Password does not match");
+      return;
+    }
+    const body = {
+      password: data?.password,
+    };
+    try {
+      const response = await ResetPasswordRequest(body, token);
+      toast.success(response?.message);
+      setTimeout(() => {
+        router.push("/login");
+      }, 5000);
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -90,12 +116,12 @@ export default function LoginHomeTwo() {
             <div className="mt-4 relative">
               <div>
                 <input
-                  type={`${showPassword ? "text" : "password"}`}
+                  type={`${showConfirmPassword ? "text" : "password"}`}
                   placeholder="Confirm Password"
-                  {...register("password")}
+                  {...register("confirmPassword")}
                   maxLength={32}
                   className={`${
-                    errors.password
+                    errors.confirmPassword
                       ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                       : ""
                   } pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
@@ -103,12 +129,12 @@ export default function LoginHomeTwo() {
               </div>
               <span
                 className="absolute cursor-pointer bottom-4 right-2 pt-4 flex items-center mr-[0.25rem] text-[#FF8447]"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
                 <BiHide
                   size={18}
                   className={
-                    showPassword === false
+                    showConfirmPassword === false
                       ? "hidden items-center cursor-pointer"
                       : "text-gray-500"
                   }
@@ -116,7 +142,7 @@ export default function LoginHomeTwo() {
                 <BiShow
                   size={18}
                   className={
-                    showPassword === true
+                    showConfirmPassword === true
                       ? "hidden items-center cursor-pointer"
                       : "text-gray-500"
                   }

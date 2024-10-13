@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Loader } from "lucide-react";
+import { ForgotPasswordRequest } from "@/app/services/auth.request";
 
 const schema = yup.object().shape({
   email: yup
@@ -27,9 +28,23 @@ export default function ForgotPassword() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  // Handle Login Form Submission LOGIC
-  const onSubmitHandler = async (params: any) => {
+  //Forgot Password User submission Logic
+  const onSubmitHandler = async (data: any) => {
     setIsLoading(true);
+    const body = {
+      email: data?.email,
+    };
+    try {
+      const response = await ForgotPasswordRequest(body);
+      toast.success(response?.message);
+      setTimeout(() => {
+        router.push("/reset-password");
+      }, 5000);
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
