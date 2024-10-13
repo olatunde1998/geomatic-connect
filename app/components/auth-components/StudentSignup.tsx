@@ -71,11 +71,12 @@ export default function StudentSignup() {
         toast.error("Failed to send welcome email.");
       }
     } catch (error: any) {
-      toast.error(error?.response?.message || "Registration failed.");
+      toast.error(error?.response?.data?.message || "Registration failed.");
     } finally {
       setIsSaving(false);
     }
   };
+
   return (
     <>
       <div>
