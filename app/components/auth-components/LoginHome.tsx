@@ -107,7 +107,7 @@ export default function LoginHome() {
       if (session?.user?.role === "User") {
         return router.push("/student-dashboard/");
       }
-      if (session?.user?.role === "Admin") {
+      if (session?.user?.role === "Company") {
         return router.push("/company-dashboard");
       }
     }, 1000);
