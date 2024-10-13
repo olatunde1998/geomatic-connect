@@ -46,6 +46,7 @@ export default function ResetPassword({ token }: ResetPasswordProps) {
     setIsLoading(true);
     if (data?.password !== data?.confirmPassword) {
       toast.error("Password does not match");
+      setIsLoading(false);
       return;
     }
     const body = {
