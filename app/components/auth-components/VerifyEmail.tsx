@@ -57,6 +57,7 @@ export default function VerifyEmail() {
   const handleSubmit = useCallback(
     async (e?: React.FormEvent<HTMLFormElement>) => {
       e?.preventDefault();
+      setIsLoading(true);
       const verificationCode = code.join("");
       console.log(verificationCode, "this is the code");
       const body = {
@@ -70,6 +71,8 @@ export default function VerifyEmail() {
         }, 3000);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     },
     [code, router]
