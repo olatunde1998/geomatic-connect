@@ -68,9 +68,10 @@ export default function VerifyEmail() {
         toast.success(response?.message);
         setTimeout(() => {
           router.push("/login");
-        }, 3000);
-      } catch (error) {
+        }, 5000);
+      } catch (error: any) {
         console.log(error);
+        toast.error(error?.message);
       } finally {
         setIsLoading(false);
       }
