@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Sheet } from "@/app/components/sheets/Sheet";
 import SendRequest from "./SendRequest";
 import CompanyCard from "@/app/components/cards/CompanyCard";
-import { Select } from "@/app/components/inputs/Select";
 import { specializationData, stateData } from "@/utils/FilterData";
+import ReactSelect from "@/app/components/inputs/ReactSelect";
 
 interface StudentHomeProps {
   session: any;
@@ -12,8 +12,8 @@ interface StudentHomeProps {
 
 export default function StudentHome({ session }: StudentHomeProps) {
   const userEmail = session?.user?.email;
-  const [showSendRequest, setShowSendRequest] = useState(false);
-  const [getItemName, setGetItemName] = useState();
+  const [showSendRequest, setShowSendRequest] = useState<boolean>(false);
+  const [optionPicked, setOptionPicked] = useState("");
   return (
     <>
       {/* ====== Filter & Search Goes here ====== */}
@@ -24,21 +24,17 @@ export default function StudentHome({ session }: StudentHomeProps) {
           <div className="md:flex space-y-2 mt-3 md:mt-0 md:space-y-0 md:ml-3 md:space-x-3">
             {/* === DropDown Input === */}
             <div>
-              <Select
-                placeholder="Specialization"
-                onSelect={(item: any) => {
-                  setGetItemName(item?.name);
-                }}
-                inputData={specializationData}
+              <ReactSelect
+                options={specializationData}
+                setOptionPicked={setOptionPicked}
+                placeholder="Specialization *"
               />
             </div>
             <div>
-              <Select
-                placeholder="Select State"
-                onSelect={(item: any) => {
-                  setGetItemName(item?.name);
-                }}
-                inputData={stateData}
+              <ReactSelect
+                options={stateData}
+                setOptionPicked={setOptionPicked}
+                placeholder="State"
               />
             </div>
           </div>

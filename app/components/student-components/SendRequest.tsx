@@ -7,6 +7,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import SuccessMessage from "./SuccessMessage";
 import { CreateStudentRequest } from "@/app/services/students.request";
+import ReactSelect from "@/app/components/inputs/ReactSelect";
+import { trackPeriodData } from "@/utils/FilterData";
 
 interface SendRequestProps {
   setShowSendRequest?: any;
@@ -44,6 +46,7 @@ export default function SendRequest({
   const [isSaving, setIsSaving] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
   const [responseData, setResponseData] = useState<any[]>([]);
+  const [optionPicked, setOptionPicked] = useState("");
 
   // REACT HOOK FORM LOGIC
   const {
@@ -134,14 +137,13 @@ export default function SendRequest({
                     errors.fastTrack
                       ? "border-[1.3px] border-red-500"
                       : "border-[1.3px] border-slate-300"
-                  } flex flex-col w-full pt-2 px-4 pb-1`}
+                  } flex flex-col w-full`}
                 >
-                  <input
-                    className="py-2 focus:outline-none placeholder:text-sm cursor-text bg-transparent text-black"
-                    type="text"
+                  <ReactSelect
+                    options={trackPeriodData}
+                    setOptionPicked={setOptionPicked}
                     placeholder="Track Period"
-                    {...register("fastTrack")}
-                    maxLength={24}
+                    width="100%"
                   />
                 </div>
               </div>
