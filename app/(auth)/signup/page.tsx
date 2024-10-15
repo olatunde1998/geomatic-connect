@@ -9,9 +9,9 @@ import Link from "next/link";
 export default function SignUp() {
   const [userTypeTab, setUserTypeTab] = useState("Student");
   return (
-    <div className="text-[#1F4D36] md:flex justify-between h-screen overflow-y-hidden">
+    <div className="text-[#1F4D36] md:flex justify-between xl:h-screen xl:overflow-y-hidden">
       <LeftContainer />
-      <div className="bg-[#F1F4EA] md:w-[40%] xl:w-1/3 h-full py-16 md:py-20 text-[#1F4D36]">
+      <div className="bg-[#F1F4EA] md:w-[40%] xl:w-1/3 h-full py-8 pb-20 xl:py-16 text-[#1F4D36]">
         <div className="px-4 w-ful max-w-[340px] mx-auto">
           <p className="text-center text-[18px] font-medium">
             Start Connecting For Free!
