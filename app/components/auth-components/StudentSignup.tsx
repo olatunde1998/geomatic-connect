@@ -9,6 +9,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { RegisterRequest } from "@/app/services/auth.request";
+import ReactSelect from "@/app/components/inputs/ReactSelect";
+import { institutionData, stateData } from "@/utils/FilterData";
 import { Resend } from "resend";
 // import WelcomeTemplate from "@/emails";
 
@@ -37,6 +39,8 @@ export default function StudentSignup() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
+    trigger,
   } = useForm({ resolver: yupResolver(schema) });
 
   //Register User submission Logic
@@ -97,30 +101,44 @@ export default function StudentSignup() {
           </div>
 
           {/* =======Institution ===== */}
-          <div className="mt-4">
-            <input
-              type="text"
+          <div
+            className={`${
+              errors.institutionName
+                ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
+                : ""
+            } mt-4 rounded-lg cursor-pointer  w-full`}
+          >
+            <ReactSelect
+              options={institutionData}
               placeholder="Your Institution"
-              {...register("institutionName")}
-              maxLength={32}
-              className={`${
-                errors.institutionName
-                  ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                  : ""
-              } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+              padding={"4px"}
+              borderRadius={"10px"}
+              border="none"
+              backgroundColor={errors.institutionName ? "#FEF3F2" : "#ffffff"}
+              onChange={(option: any) => {
+                setValue("institutionName", option?.value || "");
+                trigger("institutionName"); // Trigger validation
+              }}
             />
           </div>
 
           {/* ======= State ===== */}
-          <div className="mt-4">
-            <input
-              type="text"
-              placeholder="Location"
-              {...register("state")}
-              maxLength={32}
-              className={`${
-                errors.state ? "border-[1.3px] border-red-500 bg-[#FEF3F2]" : ""
-              } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+          <div
+            className={`${
+              errors.state ? "border-[1.3px] border-red-500 bg-[#FEF3F2]" : ""
+            } mt-4 rounded-lg cursor-pointer  w-full`}
+          >
+            <ReactSelect
+              options={stateData}
+              placeholder="Your Location"
+              padding={"4px"}
+              borderRadius={"10px"}
+              border="none"
+              backgroundColor={errors.state ? "#FEF3F2" : "#ffffff"}
+              onChange={(option: any) => {
+                setValue("state", option?.value || "");
+                trigger("state"); // Trigger validation
+              }}
             />
           </div>
 
