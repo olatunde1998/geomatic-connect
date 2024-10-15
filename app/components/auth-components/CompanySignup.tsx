@@ -27,6 +27,7 @@ const schema = yup.object().shape({
     .min(6, "Password must be at least 6 characters")
     .max(32, "Password must not exceed 32 characters"),
   state: yup.string().required("State is required"),
+  professionalId: yup.string().required("Professional ID is required"),
 });
 
 export default function CompanySignup() {
@@ -52,6 +53,7 @@ export default function CompanySignup() {
       email: data?.email,
       password: data?.password,
       state: data?.state,
+      professionalId: data?.professionalId,
       role: "Company",
     };
     // const firstName = data?.companyName;
@@ -116,6 +118,21 @@ export default function CompanySignup() {
                 setValue("state", option?.value || "");
                 trigger("state"); // Trigger validation
               }}
+            />
+          </div>
+
+          {/* ======= Professional ID (SURCON ID) ===== */}
+          <div className="mt-4">
+            <input
+              type="text"
+              placeholder="Your SURCON ID"
+              {...register("professionalId")}
+              maxLength={32}
+              className={`${
+                errors.professionalId
+                  ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
+                  : ""
+              } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
             />
           </div>
 
