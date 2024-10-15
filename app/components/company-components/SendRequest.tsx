@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import SuccessMessage from "./SuccessMessage";
 import { CreateStudentRequest } from "@/app/services/students.request";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
-import { trackPeriodData } from "@/utils/FilterData";
+import { purposeOfRequestData, trackPeriodData } from "@/utils/FilterData";
 
 interface SendRequestProps {
   setShowSendRequest?: any;
@@ -18,10 +18,10 @@ interface SendRequestProps {
 
 // Validation Schema
 const schema = yup.object().shape({
-  fastTrack: yup
+  trackPeriod: yup
     .string()
-    .required("Fast track is required")
-    .min(3, "Fast track must be greater than 3 letters"),
+    .required("Track Period is required")
+    .min(3, "Track Period must be greater than 3 letters"),
   email: yup
     .string()
     .required("Email is required")
@@ -47,20 +47,21 @@ export default function SendRequest({
   const [isSaving, setIsSaving] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
   const [responseData, setResponseData] = useState<any[]>([]);
-  const [optionPicked, setOptionPicked] = useState("");
 
   // REACT HOOK FORM LOGIC
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
+    trigger,
   } = useForm({ resolver: yupResolver(schema) });
 
   // Send Request submission Logic
   const onSubmitHandler = async (data: any) => {
     setIsSaving(true);
     const body = {
-      track: data?.fastTrack,
+      trackPeriod: data?.trackPeriod,
       email: data?.email,
       institution: data?.institution,
       training: data?.training,
@@ -135,33 +136,33 @@ export default function SendRequest({
               <div>
                 <div
                   className={`${
-                    errors.fastTrack ? "border-[1.3px] border-red-500" : ""
+                    errors.trackPeriod ? "border-[1.3px] border-red-500" : ""
                   } flex flex-col w-full`}
                 >
                   <ReactSelect
                     options={trackPeriodData}
-                    setOptionPicked={setOptionPicked}
                     placeholder="Track Period"
-                    width="100%"
+                    onChange={(option: any) => {
+                      setValue("trackPeriod", option?.value || "");
+                      trigger("trackPeriod"); // Trigger validation
+                    }}
                   />
                 </div>
-                <div></div>
               </div>
               {/* === (Purpose of Request) Training Input === */}
               <div>
                 <div
                   className={`${
-                    errors.training
-                      ? "border-[1.3px] border-red-500"
-                      : "border-[1.3px] border-slate-300"
-                  } flex flex-col w-full pt-2 px-4 pb-1`}
+                    errors.training ? "border-[1.3px] border-red-500" : ""
+                  } flex flex-col w-full`}
                 >
-                  <input
-                    className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
-                    type="text"
+                  <ReactSelect
+                    options={purposeOfRequestData}
                     placeholder="Purpose of Request"
-                    {...register("training")}
-                    maxLength={40}
+                    onChange={(option: any) => {
+                      setValue("training", option?.value || "");
+                      trigger("training"); // Trigger validation
+                    }}
                   />
                 </div>
               </div>
