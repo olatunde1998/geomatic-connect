@@ -13,7 +13,11 @@ interface CompanyHomeProps {
 export default function CompanyHome({ session }: CompanyHomeProps) {
   const userEmail = session?.user?.email;
   const [showSendRequest, setShowSendRequest] = useState<boolean>(false);
-  const [optionPicked, setOptionPicked] = useState("");
+  const [selectedSpecialization, setSelectedSpecialization] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+
+  console.log(selectedSpecialization, "this is the selectedSpecialization===");
+  console.log(selectedState, "this is the selectedState ===");
 
   return (
     <>
@@ -27,15 +31,19 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
             <div>
               <ReactSelect
                 options={specializationData}
-                setOptionPicked={setOptionPicked}
                 placeholder="Specialization *"
+                onChange={(option: any) => {
+                  setSelectedSpecialization(option?.value || "");
+                }}
               />
             </div>
             <div>
               <ReactSelect
                 options={stateData}
-                setOptionPicked={setOptionPicked}
                 placeholder="State"
+                onChange={(option: any) => {
+                  setSelectedState(option?.value || "");
+                }}
               />
             </div>
           </div>

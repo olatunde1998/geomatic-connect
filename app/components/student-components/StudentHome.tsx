@@ -13,7 +13,11 @@ interface StudentHomeProps {
 export default function StudentHome({ session }: StudentHomeProps) {
   const userEmail = session?.user?.email;
   const [showSendRequest, setShowSendRequest] = useState<boolean>(false);
-  const [optionPicked, setOptionPicked] = useState("");
+  const [selectedSpecialization, setSelectedSpecialization] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+
+  console.log(selectedSpecialization, "this is the selectedSpecialization===");
+  console.log(selectedState, "this is the selectedState ===");
   return (
     <>
       {/* ====== Filter & Search Goes here ====== */}
@@ -26,15 +30,19 @@ export default function StudentHome({ session }: StudentHomeProps) {
             <div>
               <ReactSelect
                 options={specializationData}
-                setOptionPicked={setOptionPicked}
                 placeholder="Specialization *"
+                onChange={(option: any) => {
+                  setSelectedSpecialization(option?.value || "");
+                }}
               />
             </div>
             <div>
               <ReactSelect
                 options={stateData}
-                setOptionPicked={setOptionPicked}
                 placeholder="State"
+                onChange={(option: any) => {
+                  setSelectedState(option?.value || "");
+                }}
               />
             </div>
           </div>
