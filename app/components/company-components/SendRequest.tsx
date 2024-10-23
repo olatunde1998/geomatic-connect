@@ -13,7 +13,7 @@ import { purposeOfRequestData, trackPeriodData } from "@/utils/FilterData";
 
 interface SendRequestProps {
   setShowSendRequest?: any;
-  userEmail: string;
+  userData: any;
 }
 
 // Validation Schema
@@ -42,7 +42,7 @@ const schema = yup.object().shape({
 
 export default function SendRequest({
   setShowSendRequest,
-  userEmail,
+  userData,
 }: SendRequestProps) {
   const [isSaving, setIsSaving] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
@@ -61,11 +61,14 @@ export default function SendRequest({
   const onSubmitHandler = async (data: any) => {
     setIsSaving(true);
     const body = {
-      trackPeriod: data?.trackPeriod,
-      email: data?.email,
-      institution: data?.institution,
-      training: data?.training,
+      studentId: userData?.data?._id,
+      // companyId: companyId,
       description: data?.description,
+      email: data?.email,
+      institutionName: data?.institutionName,
+      trackPeriod: data?.trackPeriod,
+      requestPurpose: data?.requestPurpose,
+      backgroundHistory: data?.backgroundHistory,
     };
     try {
       const response = await CreateStudentRequest(body);
@@ -110,7 +113,7 @@ export default function SendRequest({
                     placeholder="Email Address"
                     {...register("email")}
                     maxLength={40}
-                    value={userEmail}
+                    value={userData?.data?.email}
                   />
                 </div>
               </div>
@@ -121,7 +124,7 @@ export default function SendRequest({
                     errors.institution
                       ? "border-[1.3px] border-red-500"
                       : "border-[1.3px] border-slate-300"
-                  } flex flex-col w-full pt-2 px-4 pb-1`}
+                  } flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100`}
                 >
                   <input
                     className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
@@ -129,6 +132,7 @@ export default function SendRequest({
                     placeholder="Institution name"
                     {...register("institution")}
                     maxLength={40}
+                    value={userData?.data?.institutionName}
                   />
                 </div>
               </div>

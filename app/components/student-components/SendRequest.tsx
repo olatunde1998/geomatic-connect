@@ -6,13 +6,16 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import SuccessMessage from "./SuccessMessage";
-import { CreateStudentRequest } from "@/app/services/students.request";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
 import { purposeOfRequestData, trackPeriodData } from "@/utils/FilterData";
+import { SendRequestToAdmin } from "@/app/services/request.request";
 
 interface SendRequestProps {
   setShowSendRequest?: any;
-  userEmail: string;
+  userData: any;
+  companyId?: any;
+  token?: any;
+  selectedCompanyId?: any
 }
 
 // Validation Schema
@@ -25,15 +28,15 @@ const schema = yup.object().shape({
     .string()
     .required("Email is required")
     .email("Invalid Email format"),
-  institution: yup
+  institutionName: yup
     .string()
     .required("Institution is required")
     .min(3, " must be greater than 10 letters"),
-  training: yup
+  requestPurpose: yup
     .string()
-    .required("Training is required")
+    .required("Request Purpose is required")
     .min(3, " must be greater than 10 letters"),
-  description: yup
+  backgroundHistory: yup
     .string()
     .required("Description is required")
     .min(3, " must be greater than 10 letters"),
@@ -41,12 +44,15 @@ const schema = yup.object().shape({
 
 export default function SendRequest({
   setShowSendRequest,
-  userEmail,
+  userData,
+  companyId,
+  token,
+  selectedCompanyId
 }: SendRequestProps) {
   const [isSaving, setIsSaving] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
   const [responseData, setResponseData] = useState<any[]>([]);
-
+  
   // REACT HOOK FORM LOGIC
   const {
     register,
@@ -60,22 +66,26 @@ export default function SendRequest({
   const onSubmitHandler = async (data: any) => {
     setIsSaving(true);
     const body = {
-      trackPeriod: data?.trackPeriod,
+      studentId: userData?.data?._id,
+      companyId: companyId ? companyId : selectedCompanyId,
       email: data?.email,
-      institution: data?.institution,
-      training: data?.training,
-      description: data?.description,
+      institutionName: data?.institutionName,
+      trackPeriod: data?.trackPeriod,
+      requestPurpose: data?.requestPurpose,
+      backgroundHistory: data?.backgroundHistory,
     };
     try {
-      const response = await CreateStudentRequest(body);
+      const response = await SendRequestToAdmin(body, token);
       setResponseData(response);
-      setShowSendRequest(false);
-      toast.success("Request Sent Successfully");
+      toast.success(response?.message);
     } catch (error: any) {
       toast.error(error?.response?.data?.message);
       toast.error(error?.response?.message);
     } finally {
       setIsSaving(false);
+      setTimeout(() => {
+        setShowSendRequest(false);
+      }, 5000);
     }
   };
 
@@ -86,7 +96,7 @@ export default function SendRequest({
           <div>
             <div className="text-primary mb-8  flex items-center justify-between border-b border-slate-300 pb-8">
               <p className="text-xl">Make a Request</p>
-              <X onClick={() => setShowSendRequest(false)} />
+              <X color="#33A852" onClick={() => setShowSendRequest(false)} />
             </div>
           </div>
 
@@ -109,7 +119,7 @@ export default function SendRequest({
                     placeholder="Email Address"
                     {...register("email")}
                     maxLength={40}
-                    value={userEmail}
+                    value={userData?.data?.email}
                   />
                 </div>
               </div>
@@ -117,17 +127,19 @@ export default function SendRequest({
               <div>
                 <div
                   className={`${
-                    errors.institution
+                    errors.institutionName
                       ? "border-[1.3px] border-red-500"
                       : "border-[1.3px] border-slate-300"
-                  } flex flex-col w-full pt-2 px-4 pb-1`}
+                  } flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100`}
                 >
                   <input
-                    className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
+                    className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black cursor-not-allowed"
                     type="text"
+                    readOnly={true}
                     placeholder="Institution name"
-                    {...register("institution")}
+                    {...register("institutionName")}
                     maxLength={40}
+                    value={userData?.data?.institutionName}
                   />
                 </div>
               </div>
@@ -154,15 +166,15 @@ export default function SendRequest({
               <div>
                 <div
                   className={`${
-                    errors.training ? "border-[1.3px] border-red-500" : ""
+                    errors.requestPurpose ? "border-[1.3px] border-red-500" : ""
                   } flex flex-col w-full`}
                 >
                   <ReactSelect
                     options={purposeOfRequestData}
                     placeholder="Purpose of Request"
                     onChange={(option: any) => {
-                      setValue("training", option?.value || "");
-                      trigger("training"); // Trigger validation
+                      setValue("requestPurpose", option?.value || "");
+                      trigger("requestPurpose"); // Trigger validation
                     }}
                   />
                 </div>
@@ -171,7 +183,7 @@ export default function SendRequest({
               <div>
                 <div
                   className={`${
-                    errors.description
+                    errors.backgroundHistory
                       ? "border-[1.3px] border-red-500"
                       : "border-[1.3px] border-slate-300"
                   } flex flex-col w-full pt-2 px-4 pb-1`}
@@ -179,7 +191,7 @@ export default function SendRequest({
                   <textarea
                     className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
                     placeholder="Description"
-                    {...register("description")}
+                    {...register("backgroundHistory")}
                     rows={4}
                     cols={40}
                   />

@@ -1,33 +1,43 @@
 "use client";
 import { useState } from "react";
-import { Sheet } from "@/app/components/sheets/Sheet";
-import SendRequest from "./SendRequest";
 import CompanyCard from "@/app/components/cards/CompanyCard";
 import { specializationData, stateData } from "@/utils/FilterData";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
+import { GetUserByIdRequest } from "@/app/services/request.request";
+import { useQuery } from "@tanstack/react-query";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface StudentHomeProps {
   session: any;
 }
 
 export default function StudentHome({ session }: StudentHomeProps) {
-  const userEmail = session?.user?.email;
+  const userId = session?.user?._id;
+  const token = session.user.token;
+
   const [showSendRequest, setShowSendRequest] = useState<boolean>(false);
   const [selectedSpecialization, setSelectedSpecialization] = useState("");
   const [selectedState, setSelectedState] = useState("");
+  const [selectedCompanyId, setSelectedCompanyId] = useState("");
 
+  const { data: userData } = useQuery({
+    queryKey: ["getUsersApi"],
+    queryFn: () => GetUserByIdRequest(userId, token),
+  });
+
+  console.log(userData, "this is the userData===");
   console.log(selectedSpecialization, "this is the selectedSpecialization===");
   console.log(selectedState, "this is the selectedState ===");
   return (
     <>
       {/* ====== Filter & Search Goes here ====== */}
-
       <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] lg:flex p-4  lg:my-20 xl:my-10">
         <div className="md:flex items-center mb-8 lg:mb-0">
           <p>Filter By:</p>
           <div className="md:flex space-y-2 mt-3 md:mt-0 md:space-y-0 md:ml-3 md:space-x-3">
             {/* === DropDown Input === */}
-            <div>
+            <div className="w-[226px]">
               <ReactSelect
                 options={specializationData}
                 placeholder="Specialization *"
@@ -36,7 +46,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
                 }}
               />
             </div>
-            <div>
+            <div className="w-[153px]">
               <ReactSelect
                 options={stateData}
                 placeholder="State"
@@ -47,10 +57,21 @@ export default function StudentHome({ session }: StudentHomeProps) {
             </div>
           </div>
         </div>
+
         <div>
           <p
-            onClick={() => setShowSendRequest(true)}
-            className="cursor-pointer border border-[#33A852] p-3 w-[230px]  text-center text-[#33A852]"
+            onClick={() => {
+              if (selectedCompanyId) {
+                setShowSendRequest(true);
+              } else {
+                toast.warning("Select a company to proceed");
+              }
+            }}
+            className={`${
+              !selectedCompanyId
+                ? "cursor-not-allowed opacity-40"
+                : "cursor-pointer"
+            } border border-[#33A852] p-3 w-[230px] text-center text-[#33A852]`}
           >
             Choose Engineer For Me
           </p>
@@ -59,16 +80,16 @@ export default function StudentHome({ session }: StudentHomeProps) {
 
       {/* ====CARD GOES HERE ===== */}
       <div>
-        <CompanyCard />
-      </div>
-
-      {/* ===Sheets */}
-      <Sheet show={showSendRequest} onClose={() => setShowSendRequest(false)}>
-        <SendRequest
+        <CompanyCard
+          token={token}
+          setSelectedCompanyId={setSelectedCompanyId}
+          selectedCompanyId={selectedCompanyId}
+          showSendRequest={showSendRequest}
           setShowSendRequest={setShowSendRequest}
-          userEmail={userEmail}
+          userData={userData}
         />
-      </Sheet>
+      </div>
+      <ToastContainer />
     </>
   );
 }

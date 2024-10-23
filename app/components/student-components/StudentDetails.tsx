@@ -6,19 +6,30 @@ import StudentProject from "./StudentProject";
 import StudentInstitution from "./StudentInstitution";
 import { Sheet } from "@/app/components/sheets/Sheet";
 import SendRequest from "./SendRequest";
+import { GetUserByIdRequest } from "@/app/services/request.request";
+import { useQuery } from "@tanstack/react-query";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface StudentDetailsProps {
-  studentId?: any;
+  companyId?: any;
   session: any;
 }
 
 export default function StudentDetails({
-  studentId,
+  companyId,
   session,
 }: StudentDetailsProps) {
-  const userEmail = session?.user?.name;
+  const userId = session?.user?._id;
+  const token = session?.user.token;
+
   const [selectedTab, setSelectedTab] = useState("Profile");
   const [showSendRequest, setShowSendRequest] = useState(false);
+
+  const { data: userData } = useQuery({
+    queryKey: ["getUsersApi"],
+    queryFn: () => GetUserByIdRequest(userId, token),
+  });
   return (
     <>
       <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] lg:flex p-4  lg:my-20 xl:my-10">
@@ -72,9 +83,12 @@ export default function StudentDetails({
       <Sheet show={showSendRequest} onClose={() => setShowSendRequest(false)}>
         <SendRequest
           setShowSendRequest={setShowSendRequest}
-          userEmail={userEmail}
+          companyId={companyId}
+          userData={userData}
+          token={token}
         />
       </Sheet>
+      <ToastContainer />
     </>
   );
 }

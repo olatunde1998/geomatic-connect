@@ -5,17 +5,27 @@ import StudentCard from "@/app/components/cards/StudentCard";
 import SendRequest from "./SendRequest";
 import { specializationData, stateData } from "@/utils/FilterData";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
+import { useQuery } from "@tanstack/react-query";
+import { GetUserByIdRequest } from "@/app/services/request.request";
 
 interface CompanyHomeProps {
   session: any;
 }
 
 export default function CompanyHome({ session }: CompanyHomeProps) {
-  const userEmail = session?.user?.email;
+  const userId = session?.user?._id;
+  const token = session.user.token;
+
   const [showSendRequest, setShowSendRequest] = useState<boolean>(false);
   const [selectedSpecialization, setSelectedSpecialization] = useState("");
   const [selectedState, setSelectedState] = useState("");
 
+  const { data: userData, isLoading } = useQuery({
+    queryKey: ["getUsersApi"],
+    queryFn: () => GetUserByIdRequest(userId, token),
+  });
+
+  console.log(userData, "this is the userData===");
   console.log(selectedSpecialization, "this is the selectedSpecialization===");
   console.log(selectedState, "this is the selectedState ===");
 
@@ -60,14 +70,14 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
 
       {/* ====CARD GOES HERE ===== */}
       <div>
-        <StudentCard />
+        <StudentCard token={token} />
       </div>
 
       {/* ===Sheets */}
       <Sheet show={showSendRequest} onClose={() => setShowSendRequest(false)}>
         <SendRequest
           setShowSendRequest={setShowSendRequest}
-          userEmail={userEmail}
+          userData={userData}
         />
       </Sheet>
     </>
