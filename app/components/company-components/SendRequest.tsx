@@ -13,7 +13,7 @@ import { purposeOfRequestData, trackPeriodData } from "@/utils/FilterData";
 
 interface SendRequestProps {
   setShowSendRequest?: any;
-  userData: any;
+  userData?: any;
 }
 
 // Validation Schema

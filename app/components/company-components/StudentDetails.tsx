@@ -65,7 +65,6 @@ export default function StudentDetails({
       <Sheet show={showSendRequest} onClose={() => setShowSendRequest(false)}>
         <SendRequest
           setShowSendRequest={setShowSendRequest}
-          userEmail={userEmail}
         />
       </Sheet>
     </>
