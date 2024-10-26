@@ -1,5 +1,7 @@
 "use client";
 import Image from "next/image";
+import ConnectService from "@/public/images/connect-service-1.png";
+import ConnectServiceTwo from "@/public/images/connect-service-2.png";
 
 export default function ConnectServices() {
   return (
@@ -7,8 +9,8 @@ export default function ConnectServices() {
       <main className="pt-10 md:pt-10 md:px-6 w-full md:flex">
         <div className="hidden md:flex items-center justify-center">
           <Image
-            src="/images/connect-service-1.png"
-            alt="Talent picture"
+            src={ConnectService}
+            alt="Connect Service picture"
             width={500}
             height={500}
             priority
@@ -26,7 +28,7 @@ export default function ConnectServices() {
         </div>
         <div className="ml-8">
           <Image
-            src="/images/connect-service-2.png"
+            src={ConnectServiceTwo}
             alt="Talent picture"
             width={500}
             height={500}

@@ -9,7 +9,7 @@ export default function HowItWorks() {
           <p className="text-xl  font-extrabold lg:text-3xl">
             How <span className="text-[#014751]">GeomaticConnect</span> Works?
           </p>
-          <p className="text-md lg:text-xl mt-4">Trusted by leading brands and companies</p>
+          <p className="text-md lg:text-xl mt-4 w-[250px] mx-auto">Trusted by leading brands and companies</p>
         </div>
       </main>
     </>
