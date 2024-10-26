@@ -1,4 +1,4 @@
-import Navbar from "@/app/components/navbar/Navbar";
+import DashboardNavBar from "@/app/components/navbar/DashboardNavBar";
 import { auth } from "@/auth";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -19,7 +19,7 @@ export default async function StudentLayout({
   return (
     <div className={inter.className}>
       <div className="bg-[#F8F9FC]">
-        <Navbar session={session} />
+        <DashboardNavBar session={session} />
         {children}
       </div>
     </div>

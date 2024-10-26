@@ -1,4 +1,4 @@
-import Navbar from "@/app/components/navbar/Navbar";
+import DashboardNavBar from "@/app/components/navbar/DashboardNavBar";
 import { auth } from "@/auth";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -18,7 +18,7 @@ export default async function CompanyLayout({
   const session = await auth();
   return (
     <div className={inter.className}>
-      <Navbar session={session}/>
+      <DashboardNavBar session={session} />
       {children}
     </div>
   );
