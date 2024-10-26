@@ -4,6 +4,9 @@ import Hero from "@/app/components/landing-page-components/Hero";
 import HowItWorks from "@/app/components/landing-page-components/HowItWorks";
 import ConnectServices from "@/app/components/landing-page-components/ConnectServices";
 import Testimonial from "@/app/components/landing-page-components/Testimonial";
+import Pricing from "@/app/components/landing-page-components/Pricing";
+import Faq from "@/app/components/landing-page-components/Faq";
+import ContactUs from "@/app/components/landing-page-components/ContactUs";
 
 export default async function Home() {
   const session = await auth();
@@ -32,10 +35,31 @@ export default async function Home() {
           </div>
         </div>
 
-          {/* === Testimonial === */}
-          <div className="w-full  flex-col items-center text-sm lg:flex">
-          <div className=" w-full max-w-7xl text-sm  md:px-6">
+        {/* === Testimonial === */}
+        <div className="w-full  flex-col items-center text-sm lg:flex">
+          <div className=" w-full max-w-7xl text-sm ">
             <Testimonial />
+          </div>
+        </div>
+
+        {/* === PRICING SECTION === */}
+        <div className="bg-[#F2F6F6] w-full flex-col items-center text-sm lg:flex">
+          <div className=" w-full max-w-7xl text-sm  md:px-6">
+            <Pricing />
+          </div>
+        </div>
+
+        {/* === FAQs === */}
+        <div className="w-full  flex-col items-center text-sm lg:flex py-20">
+          <div className=" w-full max-w-7xl text-sm ">
+            <Faq />
+          </div>
+        </div>
+
+        {/* === CONTACT US SECTION === */}
+        <div className="bg-[#F2F6F6] w-full text-sm lg:flex flex-col items-center">
+          <div className=" w-full max-w-7xl text-sm  md:px-6">
+            <ContactUs />
           </div>
         </div>
       </div>
