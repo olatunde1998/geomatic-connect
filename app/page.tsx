@@ -7,6 +7,7 @@ import Testimonial from "@/app/components/landing-page-components/Testimonial";
 import Pricing from "@/app/components/landing-page-components/Pricing";
 import Faq from "@/app/components/landing-page-components/Faq";
 import ContactUs from "@/app/components/landing-page-components/ContactUs";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default async function Home() {
   const session = await auth();
@@ -61,6 +62,18 @@ export default async function Home() {
           <div className=" w-full max-w-7xl text-sm  md:px-6">
             <ContactUs />
           </div>
+        </div>
+
+        {/* === CHAT-BOT (Whatsapp) === */}
+        <div className="fixed bottom-[40px] right-[20px] z-[1000] rounded-full">
+          <a
+            href="https://api.whatsapp.com/send/?phone=2348133642798&text=Welcome+to+Geomatic+Connect%2C+please+ask+me+any+question+regarding+our+products+and+services&type=phone_number&app_absent=0"
+            target="_blank"
+          >
+            <div className="bg-[#019734] p-2.5 rounded-full flex items-center">
+              <FaWhatsapp color="#FFFFFF" size={42} className="" />
+            </div>
+          </a>
         </div>
       </div>
     </main>
