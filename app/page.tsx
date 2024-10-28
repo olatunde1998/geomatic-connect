@@ -7,13 +7,14 @@ import Testimonial from "@/app/components/landing-page-components/Testimonial";
 import Pricing from "@/app/components/landing-page-components/Pricing";
 import Faq from "@/app/components/landing-page-components/Faq";
 import ContactUs from "@/app/components/landing-page-components/ContactUs";
+import { Footer } from "@/app/components/landing-page-components/Footer";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default async function Home() {
   const session = await auth();
   console.log(session, "this is session here ===");
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between pb-28 pt-16 bg-[#F6F8FD]">
+    <main className="flex min-h-screen flex-col items-center justify-between pt-16 bg-[#F6F8FD]">
       <div className="w-full  flex-col items-center text-sm lg:flex">
         {/* === HERO SECTION === */}
         <div className="bg-[#F2F6F6] w-full  flex-col items-center text-sm lg:flex">
@@ -74,6 +75,17 @@ export default async function Home() {
               <FaWhatsapp color="#FFFFFF" size={42} className="" />
             </div>
           </a>
+        </div>
+
+        {/* === FOOTER SECTION === */}
+        <div className="bg-[#014751] w-full text-sm lg:flex flex-col items-center relative">
+          {/* === Background Image === */}
+          <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe.png)] "></div>
+          {/* ===Overlay with color and opacity=== */}
+          <div className="absolute inset-0 bg-[#014751] opacity-80 rounded-tl-[32px] rounded-br-[32px]"></div>
+          <div className="relative w-full max-w-7xl text-sm">
+            <Footer />
+          </div>
         </div>
       </div>
     </main>
