@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe } from "lucide-react";
+import  GeomaticLogo  from "@/public/images/geomatic-logo.png";
+
 
 const routes = [
   {
@@ -77,7 +79,7 @@ export default function Navbar() {
           {/* =======Company LOGO ==== */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/geomatic-logo.png"
+              src={GeomaticLogo}
               alt="Geomatic brand logo"
               width={100}
               height={100}
