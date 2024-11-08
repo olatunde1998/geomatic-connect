@@ -5,37 +5,24 @@ import { useEffect, useRef, useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe } from "lucide-react";
-import  GeomaticLogo  from "@/public/images/geomatic-logo.png";
-
+import GeomaticLogo from "@/public/images/geomatic-logo.png";
 
 const routes = [
   {
     name: "About us",
-    // href: "/about-us",
+    href: "about-id",
   },
   {
     name: "FAQs",
-    // href: "/faq",
+    href: "faq-id",
   },
   {
     name: "Contact us",
-    // href: "/contact-us",
+    href: "contactUs-id",
   },
 ];
 
 const mobileRoutes = [
-  //   {
-  //     name: "About us",
-  //     href: "/about-us",
-  //   },
-  //   {
-  //     name: "FAQs",
-  //     href: "/faq",
-  //   },
-  //   {
-  //     name: "Contact us",
-  //     href: "/contact-us",
-  //   },
   {
     name: "Log in",
     href: "/login",
@@ -72,6 +59,13 @@ export default function Navbar() {
     };
   }, []);
 
+  const handleSmoothScroll = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <>
       <nav className="fixed w-full z-20 top-0 left-0 border-b bg-[#F6F8FD] py-2.5 backdrop-blur-10">
@@ -94,7 +88,11 @@ export default function Navbar() {
           >
             <ul className="p-2 md:p-0 mt-2 font-medium rounded-lg md:space-x-4 md:mt-0 md:border-0 hidden md:flex flex-row">
               {routes.map((route, index) => (
-                <li key={index} className="block py-1 pl-2 pr-3">
+                <li
+                  key={index}
+                  className="block py-1 pl-2 pr-3"
+                  onClick={() => handleSmoothScroll(`${route.href}`)}
+                >
                   <span className="cursor-pointer">{route.name}</span>
                 </li>
               ))}
@@ -104,7 +102,7 @@ export default function Navbar() {
               href="/signup"
               className="bg-[#014751] p-3 font-bold text-[#FFFFFF] rounded-md"
             >
-              Request Cash Offer
+              Register an account
             </Link>
           </div>
 
@@ -136,8 +134,8 @@ export default function Navbar() {
                 <div className="flex justify-between p-3 pr-6">
                   <a href="#" className="flex items-center">
                     <Image
-                      src="/images/geomatic-logo.png"
-                      alt="user avatar pics"
+                       src={GeomaticLogo}
+                      alt="Geomatic brand logo"
                       width={80}
                       height={80}
                       priority

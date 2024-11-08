@@ -58,18 +58,6 @@ export const institutionData = [
   { id: 6, label: "Nigeria Army University, Biu", value: "naub" },
   { id: 7, label: "The Bells University of Tech, Ota", value: "bells" },
   { id: 8, label: "Ajayi Crowther University", value: "acu" },
-  // { id: 9, label: "Cross River", value: "cross-river" },
-  // { id: 10, label: "Delta", value: "delta" },
-  // { id: 11, label: "Ebonyi", value: "ebonyi" },
-  // { id: 12, label: "Edo", value: "edo" },
-  // { id: 13, label: "Ekiti", value: "ekiti" },
-  // { id: 14, label: "Enugu", value: "enugu" },
-  // { id: 15, label: "FCT, Abuja", value: "FCT-Abuja" },
-  // { id: 16, label: "Gombe", value: "gombe" },
-  // { id: 17, label: "Imo", value: "imo" },
-  // { id: 18, label: "Jigawa", value: "jigawa" },
-  // { id: 19, label: "Kaduna", value: "kaduna" },
-  // { id: 20, label: "Kano", value: "kano" },
 ];
 
 // Track Period data

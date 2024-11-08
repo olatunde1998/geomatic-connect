@@ -1,10 +1,14 @@
 "use client";
-import { Minus } from "lucide-react";
+import { faqData } from "@/utils/FaqData";
+import { Minus, Plus } from "lucide-react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Faq() {
+  const [activeFaq, setActiveFaq] = useState(1);
   return (
     <>
-      <main className="relative py-8 px-6   w-full rounded-tl-[32px] rounded-br-[32px]">
+      <main className="relative py-8 px-6   w-full rounded-tl-[32px] rounded-br-[32px] pb-16">
         {/* ===== Background Image ===== */}
         <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe.png)] "></div>
         {/* =====Overlay with color and opacity==== */}
@@ -17,26 +21,40 @@ export default function Faq() {
           <p className="text-center text-md lg:text-lg mt-3 text-[#FFFFFF]">
             Frequently Asked Questions About Us!
           </p>
-          <div className="flex justify-between mt-10 text-[#014751] bg-[#FFFFFF] p-4 md:p-8 lg:p-10 rounded-tl-[32px] rounded-br-[32px] max-w-6xl mx-auto">
-            <div>
-              <p className="text-base lg:text-xl font-medium">
-                Q1-{" "}
-                <span className="ml-4">
-                  I need to sell my house quickly! How fast can HouseCashin
-                  complete the sale?
-                </span>
-              </p>
-              <p className="text-sm lg:text-base mt-4">
-                Generally, we can buy your home in 3 to 30 days. In many cases
-                we can provide you with a cash offer the same day over the
-                phone, schedule a closing ASAP and have your cash ready within
-                72 hours after you
-              </p>
+          {faqData.map((faq: any) => (
+            <div
+              key={faq.id}
+              onClick={() => setActiveFaq(activeFaq === faq.id ? null : faq.id)}
+              className={`${
+                activeFaq === faq.id
+                  ? "bg-[#FFFFFF] mt-10 text-[#014751]  p-4 md:p-8 lg:p-10 rounded-tl-[32px] rounded-br-[32px]"
+                  : "text-[#FFFFFF] mt-10  p-4 md:p-8 lg:px-10 lg:py-4 border-b-[0.5px] border-[#FFFFFF]"
+              } flex justify-between  max-w-6xl mx-auto cursor-pointer`}
+            >
+              <div>
+                <p
+                  className={`${
+                    activeFaq !== faq.id ? "font-normal" : "font-medium"
+                  } text-base lg:text-xl font-medium`}
+                >
+                  Q{faq.id}- <span className="ml-4">{faq.question}</span>
+                </p>
+                {activeFaq === faq.id && (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-sm lg:text-base mt-4"
+                  >
+                    {faq.answer}
+                  </motion.p>
+                )}
+              </div>
+              <div className="cursor-pointer">
+                {activeFaq === faq.id ? <Minus /> : <Plus />}
+              </div>
             </div>
-            <div className="cursor-pointer">
-              <Minus />
-            </div>
-          </div>
+          ))}
         </div>
       </main>
     </>

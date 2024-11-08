@@ -31,7 +31,7 @@ export default async function Home() {
         </div>
 
         {/* === CONNECT SERVICE SECTION === */}
-        <div className="w-full  flex-col items-center text-sm lg:flex bg-[#638E96]">
+        <div id="about-id" className="w-full  flex-col items-center text-sm lg:flex bg-[#638E96]">
           <div className=" w-full max-w-7xl text-sm  md:px-6">
             <ConnectServices />
           </div>
@@ -52,14 +52,14 @@ export default async function Home() {
         </div>
 
         {/* === FAQs === */}
-        <div className="w-full  flex-col items-center text-sm lg:flex py-20">
+        <div id="faq-id" className="w-full  flex-col items-center text-sm lg:flex py-20">
           <div className=" w-full max-w-7xl text-sm ">
             <Faq />
           </div>
         </div>
 
         {/* === CONTACT US SECTION === */}
-        <div className="bg-[#F2F6F6] w-full text-sm lg:flex flex-col items-center">
+        <div id="contactUs-id" className="bg-[#F2F6F6] w-full text-sm lg:flex flex-col items-center">
           <div className=" w-full max-w-7xl text-sm  md:px-6">
             <ContactUs />
           </div>

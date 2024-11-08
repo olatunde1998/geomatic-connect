@@ -8,7 +8,6 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-
 body {
   color: rgb(var(--foreground-rgb));
 }
@@ -18,7 +17,6 @@ body {
     text-wrap: balance;
   }
 }
-
 
 /* Testimonial styling */
 @keyframes marquee {
@@ -37,4 +35,9 @@ body {
 }
 .animate:hover {
   animation-play-state: paused;
+}
+
+#about-id,
+#contactUs-id {
+  scroll-margin-top: 100px;
 }
