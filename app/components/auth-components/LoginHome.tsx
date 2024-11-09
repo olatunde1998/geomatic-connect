@@ -104,6 +104,9 @@ export default function LoginHome() {
     const session = await getSession();
     // return;
     return setTimeout(() => {
+      if (session?.user?.role === "Admin") {
+        return router.push("/admin-dashboard");
+      }
       if (session?.user?.role === "User") {
         return router.push("/student-dashboard/");
       }
