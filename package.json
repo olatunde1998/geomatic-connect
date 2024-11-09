@@ -32,6 +32,7 @@
     "react-select": "^5.8.1",
     "react-toastify": "^10.0.5",
     "resend": "^4.0.0",
+    "tailwind-merge": "^2.5.4",
     "tailwindcss-debug-screens": "^2.2.1",
     "yup": "^1.4.0"
   },
