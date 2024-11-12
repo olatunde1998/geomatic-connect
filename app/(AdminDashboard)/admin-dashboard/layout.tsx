@@ -22,11 +22,13 @@ export default async function AdminLayout({
       <div className={inter.className}>
         <DashboardNavBar session={session} />
         <div className="flex flex-col space-y-6">
-          <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] ">
-            <aside className="hidden w-[200px] flex-col md:flex border-r border-accent ml-10 pt-32 pr-2">
+          <div className="grid flex-1 gap-12">
+            <div className="hidden w-[200px] fixed flex-col md:block border-r border-accent ml-10 pt-32 pr-2 min-h-screen">
               <AdminSidebar />
-            </aside>
-            <main>{children}</main>
+            </div>
+            <main className="px-6 md:pl-72 md:pr-12">
+              {children}
+            </main>
           </div>
         </div>
       </div>

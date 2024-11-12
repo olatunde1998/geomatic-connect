@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
-import { Sheet } from "@/app/components/sheets/Sheet";
 import StudentCard from "@/app/components/cards/StudentCard";
-import SendRequest from "./SendRequest";
 import { specializationData, stateData } from "@/utils/FilterData";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
 import { useQuery } from "@tanstack/react-query";
 import { GetUserByIdRequest } from "@/app/services/request.request";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface CompanyHomeProps {
   session: any;
@@ -15,8 +15,6 @@ interface CompanyHomeProps {
 export default function CompanyHome({ session }: CompanyHomeProps) {
   const userId = session?.user?._id;
   const token = session.user.token;
-
-  const [showSendRequest, setShowSendRequest] = useState<boolean>(false);
   const [selectedSpecialization, setSelectedSpecialization] = useState("");
   const [selectedState, setSelectedState] = useState("");
 
@@ -25,14 +23,9 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
     queryFn: () => GetUserByIdRequest(userId, token),
   });
 
-  console.log(userData, "this is the userData===");
-  console.log(selectedSpecialization, "this is the selectedSpecialization===");
-  console.log(selectedState, "this is the selectedState ===");
-
   return (
     <>
       {/* ====== Filter & Search Goes here ====== */}
-
       <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] lg:flex p-4  lg:my-20 xl:my-10">
         <div className="md:flex items-center mb-8 lg:mb-0">
           <p>Filter By:</p>
@@ -59,10 +52,7 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
           </div>
         </div>
         <div>
-          <p
-            onClick={() => setShowSendRequest(true)}
-            className="cursor-pointer border border-[#33A852] p-3 w-[230px]  text-center text-[#33A852]"
-          >
+          <p className="cursor-pointer border border-[#33A852] p-3 w-[230px]  text-center text-[#33A852]">
             Approved Request
           </p>
         </div>
@@ -70,16 +60,9 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
 
       {/* ====CARD GOES HERE ===== */}
       <div>
-        <StudentCard token={token} />
+        <StudentCard token={token} companyId={userData?.data?._id} />
       </div>
-
-      {/* ===Sheets */}
-      <Sheet show={showSendRequest} onClose={() => setShowSendRequest(false)}>
-        <SendRequest
-          setShowSendRequest={setShowSendRequest}
-          userData={userData}
-        />
-      </Sheet>
+      <ToastContainer />
     </>
   );
 }

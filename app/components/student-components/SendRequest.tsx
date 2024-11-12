@@ -8,14 +8,14 @@ import { toast } from "react-toastify";
 import SuccessMessage from "./SuccessMessage";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
 import { purposeOfRequestData, trackPeriodData } from "@/utils/FilterData";
-import { SendRequestToAdmin } from "@/app/services/request.request";
+import { StudentSendRequestToAdmin } from "@/app/services/request.request";
 
 interface SendRequestProps {
   setShowSendRequest?: any;
   userData: any;
   companyId?: any;
   token?: any;
-  selectedCompanyId?: any
+  selectedCompanyId?: any;
 }
 
 // Validation Schema
@@ -47,12 +47,12 @@ export default function SendRequest({
   userData,
   companyId,
   token,
-  selectedCompanyId
+  selectedCompanyId,
 }: SendRequestProps) {
   const [isSaving, setIsSaving] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
   const [responseData, setResponseData] = useState<any[]>([]);
-  
+
   // REACT HOOK FORM LOGIC
   const {
     register,
@@ -75,7 +75,7 @@ export default function SendRequest({
       backgroundHistory: data?.backgroundHistory,
     };
     try {
-      const response = await SendRequestToAdmin(body, token);
+      const response = await StudentSendRequestToAdmin(body, token);
       setResponseData(response);
       toast.success(response?.message);
     } catch (error: any) {

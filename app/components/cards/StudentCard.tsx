@@ -1,20 +1,47 @@
-import { GetStudentsRequest } from "@/app/services/request.request";
+import {
+  CompanyApproveStudentRequest,
+  GetStudentsByCompanyRequest,
+} from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
 import { GraduationCap, MapPin } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { Modal } from "@/app/components/modals/Modal";
+import ApproveMessage from "@/app/components/company-components/ApproveMessage";
 
 interface StudentCardProps {
   token: any;
+  companyId: any;
 }
 
-export default function StudentCard({ token }: StudentCardProps) {
+export default function StudentCard({ token, companyId }: StudentCardProps) {
+  const [isApproving, setIsApproving] = useState(false);
+  const [selectedRequestId, setSelectedRequestId] = useState();
+  const [showConfirmApprove, setShowConfirmApprove] = useState(false);
   const { data: studentsData, isLoading } = useQuery({
     queryKey: ["getStudentsApi"],
-    queryFn: () => GetStudentsRequest(token),
+    queryFn: () => GetStudentsByCompanyRequest(companyId, token),
   });
 
   console.log(studentsData, "this is the userData===");
+
+  // Send Approved Request to Admin Logic
+  const handleApprovedRequest = async (requestId: any) => {
+    setIsApproving(true);
+    const body = {
+      requestId: requestId,
+    };
+    try {
+      const response = await CompanyApproveStudentRequest(body, token);
+      toast.success("Request Approved Successfully");
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.message);
+    } finally {
+      setIsApproving(false);
+    }
+  };
   return (
     <>
       <div className="space-y-8 md:gap-2 md:grid md:grid-cols-2 lg:grid-cols-3 md:space-y-0">
@@ -33,9 +60,11 @@ export default function StudentCard({ token }: StudentCardProps) {
                   />
                 </div>
                 <p className="text-xl font-medium">
-                  <span>{item?.fullName} </span>
+                  <span>{item?.studentId?.fullName}</span>
                 </p>
-                <p className="font-light text-sm">Java Developer</p>
+                <p className="font-light text-sm">
+                  {item?.studentId?.institutionName}
+                </p>
               </div>
 
               <p className="font-medium my-3">About</p>
@@ -47,11 +76,13 @@ export default function StudentCard({ token }: StudentCardProps) {
               <div className="space-y-2 my-3 font-light text-sm">
                 <div className="flex items-center gap-2">
                   <GraduationCap size={24} />
-                  <span>Graduate/Student of {item?.institutionName}</span>
+                  <span>
+                    Graduate/Student of {item?.studentId?.institutionName}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin size={24} />
-                  <span>Resides in {item?.state}</span>
+                  <span>Resides in {item?.studentId?.state}</span>
                 </div>
               </div>
               <p className="font-medium">Framework</p>
@@ -64,15 +95,31 @@ export default function StudentCard({ token }: StudentCardProps) {
                 <p className="bg-[#E6E9EB] p-2">MySQL</p>
               </div>
               {/* === PROFILE BUTTON === */}
-              <Link href={`/company-dashboard/${item?._id}`}>
+              <div
+                onClick={() => {
+                  setShowConfirmApprove(true);
+                  setSelectedRequestId(item?._id);
+                }}
+              >
                 <p className="bg-[#33A852] w-[150px] lg:w-[210px] text-center text-white p-2 mt-12 mx-auto cursor-pointer">
                   Approve Request
                 </p>
-              </Link>
+              </div>
             </div>
           </div>
         ))}
       </div>
+
+      <Modal
+        show={showConfirmApprove}
+        onClose={() => setShowConfirmApprove(false)}
+      >
+        <ApproveMessage
+          setShowConfirmApprove={setShowConfirmApprove}
+          handleApprovedRequest={handleApprovedRequest}
+          requestId={selectedRequestId}
+        />
+      </Modal>
     </>
   );
 }
