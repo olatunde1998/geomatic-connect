@@ -97,13 +97,19 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-            <Globe color="#014751" className="cursor-pointer mx-6" />
+            <Link
+              href="/login"
+              className="p-3 font-medium rounded-md mx-4 hover:text-[#014751]"
+            >
+              Login
+            </Link>
             <Link
               href="/signup"
               className="bg-[#014751] p-3 font-bold text-[#FFFFFF] rounded-md"
             >
-              Register an account
+              Create free account
             </Link>
+            <Globe color="#014751" className="cursor-pointer mx-6" />
           </div>
 
           {/* ======= Menu button ======*/}
@@ -134,7 +140,7 @@ export default function Navbar() {
                 <div className="flex justify-between p-3 pr-6">
                   <a href="#" className="flex items-center">
                     <Image
-                       src={GeomaticLogo}
+                      src={GeomaticLogo}
                       alt="Geomatic brand logo"
                       width={80}
                       height={80}
