@@ -21,7 +21,7 @@ export default function ApproveMessage({ setShowConfirmApprove,  handleApprovedR
       </div>
       <h2 className="text-xl mb-4 text-center mt-6 ">Approve Request</h2>
       <p className="text-md  text-center text-[#6C748B]">
-        Are you sure you want to accept Marine Request?
+        Are you sure you want to accept this Request?
       </p>
       {/*======= Cancel Button and Delete Button ====== */}
       <div className="mt-12 flex space-x-4">
