@@ -59,16 +59,15 @@ export default function RequestDetails({
   return (
     <div>
       {showSuccessMessage === false ? (
-        <div className="w-full pt-1 md:pt-10 md:pb-20">
+        <div className="bg-[#FFFFFF] w-full  md:pt-10 md:pb-20 p-10">
           <div>
-            <div className="text-primary mb-8  flex items-center justify-between border-b border-slate-300 pb-8">
+            <div className="mb-8 flex items-center justify-between border-b border-slate-300 pb-8">
               <p className="text-xl">Forward a Request</p>
               <X onClick={() => setShowSendRequest(false)} />
             </div>
           </div>
 
           {/* ===FORM SECTION === */}
-
           <section className="items-start space-y-6">
             {/* === Full Name === */}
             <div>
@@ -128,7 +127,7 @@ export default function RequestDetails({
           </section>
 
           {/* === Submit Button === */}
-          <div>
+          <div className="flex justify-between gap-6">
             <button
               disabled={isForwarding}
               onClick={() => handleForwardRequest()}
@@ -143,15 +142,15 @@ export default function RequestDetails({
               className="w-full mt-10  px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
             >
               <span className="text-base">
-                {isSaving ? "Declining...." : "Decline Request"}
+                {isSaving ? "Approving...." : "Approve Request"}
               </span>
             </button>
             <button
               disabled={isSaving}
-              className="w-full mt-10  px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+              className="w-full mt-10  px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316]"
             >
               <span className="text-base">
-                {isSaving ? "Approving...." : "Approve Request"}
+                {isSaving ? "Declining...." : "Decline Request"}
               </span>
             </button>
           </div>
