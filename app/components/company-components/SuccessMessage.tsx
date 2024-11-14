@@ -11,7 +11,7 @@ export default function SuccessMessage({
   responseData,
 }: SuccessMessageProps) {
   return (
-    <div>
+    <div className="bg-[#FFFFFF]">
       <div className="border-[1.3px] border-gray-200 py-10 mt-10">
         <div className="bg-[#ECFDF3] p-3 w-fit rounded-full mx-auto ">
           <div className="bg-[#D1FADF] p-3 rounded-full">
