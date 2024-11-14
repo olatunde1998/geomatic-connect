@@ -95,11 +95,6 @@ TableProps) => {
                   <td
                     key={key}
                     className="p-5 relative group hover:opacity-100"
-                    // style={{
-                    //   width: cell.column.columnDef.fixedWidth
-                    //     ? `${cell.column.columnDef.fixedWidth}px`
-                    //     : "auto",
-                    // }}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
