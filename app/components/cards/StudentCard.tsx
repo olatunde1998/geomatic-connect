@@ -1,5 +1,6 @@
 import {
   CompanyApproveStudentRequest,
+  CompanyDeclineStudentRequest,
   GetStudentsByCompanyRequest,
 } from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
@@ -9,6 +10,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { Modal } from "@/app/components/modals/Modal";
 import ApproveMessage from "@/app/components/company-components/ApproveMessage";
+import DeclineMessage from "@/app/components/company-components/DeclineMessage";
 
 interface StudentCardProps {
   token: any;
@@ -17,8 +19,11 @@ interface StudentCardProps {
 
 export default function StudentCard({ token, companyId }: StudentCardProps) {
   const [isApproving, setIsApproving] = useState(false);
+  const [isDeclining, setIsDeclining] = useState(false);
   const [selectedRequestId, setSelectedRequestId] = useState();
   const [showConfirmApprove, setShowConfirmApprove] = useState(false);
+  const [showConfirmDecline, setShowConfirmDecline] = useState(false);
+
   const { data: studentsData, isLoading } = useQuery({
     queryKey: ["getStudentsApi"],
     queryFn: () => GetStudentsByCompanyRequest(companyId, token),
@@ -40,6 +45,23 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
       toast.error(error?.response?.message);
     } finally {
       setIsApproving(false);
+    }
+  };
+
+  // Send Decline Request to Admin Logic
+  const handleDeclinedRequest = async (requestId: any) => {
+    setIsDeclining(true);
+    const body = {
+      requestId: requestId,
+    };
+    try {
+      const response = await CompanyDeclineStudentRequest(body, token);
+      toast.success(response.message);
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.message);
+    } finally {
+      setIsDeclining(false);
     }
   };
   return (
@@ -95,14 +117,25 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
                 <p className="bg-[#E6E9EB] p-2">MySQL</p>
               </div>
               {/* === PROFILE BUTTON === */}
-              <div
-                onClick={() => {
-                  setShowConfirmApprove(true);
-                  setSelectedRequestId(item?._id);
-                }}
-              >
-                <p className="bg-[#33A852] w-[150px] lg:w-[210px] text-center text-white p-2 mt-12 mx-auto cursor-pointer">
+              <div className="flex gap-3 justify-between">
+                <p
+                  onClick={() => {
+                    setShowConfirmApprove(true);
+                    setSelectedRequestId(item?._id);
+                  }}
+                  className="bg-[#33A852] text-xs md:text-md w-[120px] md:w-[150px] text-center text-white p-2 mt-12 mx-auto cursor-pointer flex items-center justify-center"
+                >
                   Approve Request
+                </p>
+
+                <p
+                  onClick={() => {
+                    setShowConfirmDecline(true);
+                    setSelectedRequestId(item?._id);
+                  }}
+                  className="bg-[#D92D20] text-xs md:text-md  w-[120px] md:w-[150px] text-center text-white p-3 mt-12 mx-auto cursor-pointer flex items-center justify-center"
+                >
+                  Decline Request
                 </p>
               </div>
             </div>
@@ -117,6 +150,17 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
         <ApproveMessage
           setShowConfirmApprove={setShowConfirmApprove}
           handleApprovedRequest={handleApprovedRequest}
+          requestId={selectedRequestId}
+        />
+      </Modal>
+
+      <Modal
+        show={showConfirmDecline}
+        onClose={() => setShowConfirmDecline(false)}
+      >
+        <DeclineMessage
+          setShowConfirmDecline={setShowConfirmDecline}
+          handleDeclinedRequest={handleDeclinedRequest}
           requestId={selectedRequestId}
         />
       </Modal>

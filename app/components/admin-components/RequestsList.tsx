@@ -8,6 +8,7 @@ import { Skeleton } from "@/app/components/skeletons/Skeleton";
 import { ArrowDown, CloudDownload, File } from "lucide-react";
 import {
   AdminApproveStudentRequest,
+  AdminDeclineStudentRequest,
   GetAllNotifications,
 } from "@/app/services/request.request";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,6 +16,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Sheet } from "@/app/components/sheets/Sheet";
 import SendRequest from "./RequestDetails";
 import ApproveMessage from "@/app/components/company-components/ApproveMessage";
+import DeclineMessage from "@/app/components/company-components/DeclineMessage";
+
 import { Modal } from "@/app/components/modals/Modal";
 
 interface notificationsData {
@@ -66,6 +69,7 @@ export default function RequestsList({ token }: RequestsListProps) {
   const [pageSize] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
   const [showConfirmApprove, setShowConfirmApprove] = useState(false);
+  const [showConfirmDecline, setShowConfirmDecline] = useState(false);
   const [selectedRequestId, setSelectedRequestId] = useState<
     string | undefined
   >();
@@ -156,6 +160,25 @@ export default function RequestsList({ token }: RequestsListProps) {
     };
     try {
       const response = await AdminApproveStudentRequest(body, token);
+      toast.success(response?.message);
+      await queryClient.invalidateQueries({
+        queryKey: ["getNotificationsApi"],
+      });
+    } catch (error: any) {
+      console.log(error?.response?.data);
+      toast.error(error?.response?.data);
+    } finally {
+      setShowActions(false);
+    }
+  };
+
+  // Decline Handler
+  const declineHandler = async (requestId: any) => {
+    const body = {
+      requestId,
+    };
+    try {
+      const response = await AdminDeclineStudentRequest(body, token);
       toast.success(response?.message);
       await queryClient.invalidateQueries({
         queryKey: ["getNotificationsApi"],
@@ -297,7 +320,13 @@ export default function RequestsList({ token }: RequestsListProps) {
                 <span>Approved </span>
                 <BookCheck size={16} className="ml-4" />
               </div>
-              <div className="flex items-center justify-center cursor-pointer text-[#f3392f] hover:bg-[#F9FAFB] p-2 w-full ">
+              <div
+                onClick={() => {
+                  setShowConfirmDecline(true);
+                  setSelectedRequestId(row?.original?._id);
+                }}
+                className="flex items-center justify-center cursor-pointer text-[#f3392f] hover:bg-[#F9FAFB] p-2 w-full "
+              >
                 <span>Declined</span>
                 <CircleOff size={16} className="ml-4" />
               </div>
@@ -357,7 +386,7 @@ export default function RequestsList({ token }: RequestsListProps) {
             No Existing User, Please check back later.
           </div>
         ) : (
-          <div className="mt-3 pt-6 h-auto border-t-[1.3px] border-slate-200 rounded-tl-[8p rounded-tr-[8px] bg-white">
+          <div className="mt-3 pt-6 h-auto border-t-[1.3px]  border-slate-200 overflow-scroll rounded-tl-[8p rounded-tr-[8px] max-w-[760px] md:max-w-none">
             <Table
               data={notificationsData ? notificationsData?.data : []}
               columns={columns}
@@ -373,15 +402,20 @@ export default function RequestsList({ token }: RequestsListProps) {
           </div>
         )}
       </div>
-      {/* ===Sheets */}
-      <Sheet show={showSendRequest} onClose={() => setShowSendRequest(false)}>
+         {/* === MODALS === */}
+      <Modal
+        show={showSendRequest}
+        onClose={() => setShowSendRequest(false)}
+      >
         <SendRequest
           token={token}
           setShowSendRequest={setShowSendRequest}
           notificationsData={notificationsData?.data}
           notificationID={selectedRow ? selectedRow._id : null}
         />
-      </Sheet>
+      </Modal>
+
+
       <Modal
         show={showConfirmApprove}
         onClose={() => setShowConfirmApprove(false)}
@@ -389,6 +423,17 @@ export default function RequestsList({ token }: RequestsListProps) {
         <ApproveMessage
           setShowConfirmApprove={setShowConfirmApprove}
           handleApprovedRequest={approveHandler}
+          requestId={selectedRequestId}
+        />
+      </Modal>
+
+      <Modal
+        show={showConfirmDecline}
+        onClose={() => setShowConfirmDecline(false)}
+      >
+        <DeclineMessage
+          setShowConfirmDecline={setShowConfirmDecline}
+          handleDeclinedRequest={declineHandler}
           requestId={selectedRequestId}
         />
       </Modal>
