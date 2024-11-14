@@ -160,6 +160,56 @@ export const AdminApproveStudentRequest = async (body: any, token: any) => {
   }
 };
 
+//DECLINED REQUEST BY COMPANY (Company declined a student request)
+export const CompanyDeclineStudentRequest = async (body: any, token: any) => {
+  try {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/requests/company-interest/decline`,
+      body,
+      {
+        headers: {
+          Accept: "application/vnd.connect.v1+json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = response.data;
+    console.log(data, "data is here");
+    if (!data) return;
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+
+//DECLINED REQUEST BY ADMIN (Admin declined a student request)
+export const AdminDeclineStudentRequest = async (body: any, token: any) => {
+  try {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/requests/admin/decline`,
+      body,
+      {
+        headers: {
+          Accept: "application/vnd.connect.v1+json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = response.data;
+    console.log(data, "data is here");
+    if (!data) return;
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+
 // GET STUDENTS BY COMPANY ID REQUEST
 export const GetStudentsByCompanyRequest = async (
   companyId: any,
