@@ -50,14 +50,14 @@ export const stateData = [
 
 // State data
 export const institutionData = [
-  { id: 1, label: "Federal School of Surveying, Oyo", value: "fss-oyo" },
-  { id: 2, label: "Federal University of Tech, Minna", value: "futminna" },
-  { id: 3, label: "Federal University of Tech, Akure", value: "futa" },
-  { id: 4, label: "Ahmadu Bello University, Zaria", value: "abu-zaria" },
-  { id: 5, label: "Lead City University, Ibadan", value: "leadcity" },
-  { id: 6, label: "Nigeria Army University, Biu", value: "naub" },
-  { id: 7, label: "The Bells University of Tech, Ota", value: "bells" },
-  { id: 8, label: "Ajayi Crowther University", value: "acu" },
+  { id: 1, label: "Federal School of Surveying, Oyo", value: "FSS-Oyo" },
+  { id: 2, label: "Federal University of Tech, Minna", value: "FUTMINNA" },
+  { id: 3, label: "Federal University of Tech, Akure", value: "FUTA" },
+  { id: 4, label: "Ahmadu Bello University, Zaria", value: "ABU-Zaria" },
+  { id: 5, label: "Lead City University, Ibadan", value: "Lead City University" },
+  { id: 6, label: "Nigeria Army University, Biu", value: "NAUB" },
+  { id: 7, label: "The Bells University of Tech, Ota", value: "The bells University" },
+  { id: 8, label: "Ajayi Crowther University", value: "ACU" },
 ];
 
 // Track Period data
