@@ -277,7 +277,7 @@ export default function UsersList({ token }: UsersListProps) {
             No Existing User, Please check back later.
           </div>
         ) : (
-          <div className="mt-3 pt-6 h-auto border-t-[1.3px] border-slate-200 rounded-tl-[8p rounded-tr-[8px] bg-white">
+          <div className="mt-3 pt-6 h-auto border-t-[1.3px] border-slate-200 rounded-tl-[8p rounded-tr-[8px] bg-white max-w-[760px] md:max-w-none">
             <Table
               data={userData ? userData?.data : []}
               columns={columns}
