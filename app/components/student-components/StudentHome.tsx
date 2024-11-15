@@ -7,6 +7,7 @@ import { GetUserByIdRequest } from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AcceptPaymentRequest } from "@/app/services/payment.request";
 
 interface StudentHomeProps {
   session: any;
@@ -15,20 +16,41 @@ interface StudentHomeProps {
 export default function StudentHome({ session }: StudentHomeProps) {
   const userId = session?.user?._id;
   const token = session.user.token;
-
   const [showSendRequest, setShowSendRequest] = useState<boolean>(false);
   const [selectedSpecialization, setSelectedSpecialization] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [selectedCompanyId, setSelectedCompanyId] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const { data: userData } = useQuery({
     queryKey: ["getUsersApi"],
     queryFn: () => GetUserByIdRequest(userId, token),
   });
 
-  console.log(userData, "this is the userData===");
-  console.log(selectedSpecialization, "this is the selectedSpecialization===");
-  console.log(selectedState, "this is the selectedState ===");
+  // Send Approved Request to Admin Logic
+  const handleAcceptPayment = async () => {
+    setIsProcessing(true);
+    const body = {
+      email: userData?.data?.email,
+      amount: 500000,
+    };
+
+    try {
+      const response = await AcceptPaymentRequest(body);
+      if (response?.data?.authorization_url) {
+        window.location.href = response?.data?.authorization_url;
+      } else {
+        toast.error("Failed to initialize payment. Try again.");
+      }
+    } catch (error: any) {
+      toast.error(
+        error?.response?.data?.message || "Payment initialization failed."
+      );
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   return (
     <>
       {/* ====== Filter & Search Goes here ====== */}
@@ -57,6 +79,13 @@ export default function StudentHome({ session }: StudentHomeProps) {
             </div>
           </div>
         </div>
+
+        <p
+          onClick={() => handleAcceptPayment()}
+          className={`opacity-40 border border-[#33A852] p-3 w-[230px] text-center text-[#33A852] cursor-pointer`}
+        >
+          {isProcessing ? "Processing.." : "Subscribe"}
+        </p>
 
         <div>
           <p
