@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CompanyCard from "@/app/components/cards/CompanyCard";
 import { specializationData, stateData } from "@/utils/FilterData";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
@@ -7,7 +7,10 @@ import { GetUserByIdRequest } from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AcceptPaymentRequest } from "@/app/services/payment.request";
+import {
+  AcceptPaymentRequest,
+  VerifyPaymentRequest,
+} from "@/app/services/payment.request";
 
 interface StudentHomeProps {
   session: any;
@@ -22,6 +25,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
   const [selectedCompanyId, setSelectedCompanyId] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
 
+  
   const { data: userData } = useQuery({
     queryKey: ["getUsersApi"],
     queryFn: () => GetUserByIdRequest(userId, token),
@@ -32,24 +36,52 @@ export default function StudentHome({ session }: StudentHomeProps) {
     setIsProcessing(true);
     const body = {
       email: userData?.data?.email,
-      amount: 500000,
+      amount: 300000,
+      metadata: { subscriptionPlan: "Freemium" },
     };
 
     try {
       const response = await AcceptPaymentRequest(body);
       if (response?.data?.authorization_url) {
+        localStorage.setItem("paymentReference", response.data.reference);
+        localStorage.setItem("subscriptionPlan", "Freemium");
         window.location.href = response?.data?.authorization_url;
       } else {
-        toast.error("Failed to initialize payment. Try again.");
+        return;
       }
     } catch (error: any) {
-      toast.error(
-        error?.response?.data?.message || "Payment initialization failed."
-      );
+      toast.error(error?.response?.data?.message);
     } finally {
       setIsProcessing(false);
     }
   };
+
+  // verifyPaymentAfterRedirect when page reloads or on mount
+  const verifyPaymentAfterRedirect = async () => {
+    const storedReference = localStorage.getItem("paymentReference");
+    const subscriptionPlan = localStorage.getItem("subscriptionPlan");
+
+    if (storedReference && subscriptionPlan) {
+      try {
+        const verifyResponse = await VerifyPaymentRequest(
+          storedReference,
+          subscriptionPlan
+        );
+        toast.success(verifyResponse.message);
+
+        // Clear stored data
+        localStorage.removeItem("paymentReference");
+        localStorage.removeItem("subscriptionPlan");
+      } catch (error: any) {
+        toast.error(error?.data?.message);
+      }
+    }
+  };
+
+  // verifyPaymentAfterRedirect when page reloads or on mount
+  useEffect(() => {
+    verifyPaymentAfterRedirect();
+  }, []);
 
   return (
     <>
