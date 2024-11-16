@@ -22,3 +22,22 @@ export const AcceptPaymentRequest = async (body: any) => {
     throw error;
   }
 };
+
+// VERIFY PAYMENT
+export const VerifyPaymentRequest = async (
+  reference: any,
+  subscriptionPlan: any
+) => {
+  const response = await axios.get(
+    `${process.env.NEXT_PUBLIC_BASEURL}/api/verifypayment/${reference}?subscriptionPlan=${subscriptionPlan}`,
+    {
+      maxBodyLength: Infinity,
+      headers: {
+        Accept: "application/vnd.connect.v1+json",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await response.data;
+  return data;
+};
