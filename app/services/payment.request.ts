@@ -41,3 +41,20 @@ export const VerifyPaymentRequest = async (
   const data = await response.data;
   return data;
 };
+
+
+// GET ALL SUBSCRIPTIONS
+export const GetAllSubscriptions = async () => {
+  const response = await axios.get(
+    `${process.env.NEXT_PUBLIC_BASEURL}/api/subscription`,
+    {
+      maxBodyLength: Infinity,
+      headers: {
+        Accept: "application/vnd.connect.v1+json",
+        // Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  const data = await response.data;
+  return data;
+};
