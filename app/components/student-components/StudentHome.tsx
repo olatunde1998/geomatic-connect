@@ -25,7 +25,6 @@ export default function StudentHome({ session }: StudentHomeProps) {
   const [selectedCompanyId, setSelectedCompanyId] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
 
-  
   const { data: userData } = useQuery({
     queryKey: ["getUsersApi"],
     queryFn: () => GetUserByIdRequest(userId, token),
@@ -67,7 +66,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
           storedReference,
           subscriptionPlan
         );
-        toast.success(verifyResponse.message);
+        console.log(verifyResponse.message, "this is verify response");
 
         // Clear stored data
         localStorage.removeItem("paymentReference");
