@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { Modal } from "@/app/components/modals/Modal";
+import { CardSkeleton } from "@/app/components/skeletons/CardSkeleton";
 import ApproveMessage from "@/app/components/company-components/ApproveMessage";
 import DeclineMessage from "@/app/components/company-components/DeclineMessage";
 
@@ -28,8 +29,6 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
     queryKey: ["getStudentsApi"],
     queryFn: () => GetStudentsByCompanyRequest(companyId, token),
   });
-
-  console.log(studentsData, "this is the userData===");
 
   // Send Approved Request to Admin Logic
   const handleApprovedRequest = async (requestId: any) => {
@@ -66,82 +65,88 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
   };
   return (
     <>
-      <div className="space-y-8 md:gap-2 md:grid md:grid-cols-2 lg:grid-cols-3 md:space-y-0">
-        {studentsData?.data?.map((item: any) => (
-          <div key={item._id}>
-            <div className="max-w-[400px] p-6 border border-slate-300 bg-white">
-              <div className="p-6 border-b-[1.3px] border-slate-200 text-black flex flex-col items-center">
-                <div>
-                  <Image
-                    src="/images/profile-pic.png"
-                    alt="profile image"
-                    width={100}
-                    height={100}
-                    priority
-                    className="w-[100px] h-[100px] object-cover"
-                  />
+      {isLoading ? (
+        <div>
+          <CardSkeleton />
+        </div>
+      ) : (
+        <div className="space-y-8 md:gap-2 md:grid md:grid-cols-2 lg:grid-cols-3 md:space-y-0">
+          {studentsData?.data?.map((item: any) => (
+            <div key={item._id}>
+              <div className="max-w-[400px] p-6 border border-slate-300 bg-white">
+                <div className="p-6 border-b-[1.3px] border-slate-200 text-black flex flex-col items-center">
+                  <div>
+                    <Image
+                      src="/images/profile-pic.png"
+                      alt="profile image"
+                      width={100}
+                      height={100}
+                      priority
+                      className="w-[100px] h-[100px] object-cover"
+                    />
+                  </div>
+                  <p className="text-xl font-medium">
+                    <span>{item?.studentId?.fullName}</span>
+                  </p>
+                  <p className="font-light text-sm">
+                    {item?.studentId?.institutionName}
+                  </p>
                 </div>
-                <p className="text-xl font-medium">
-                  <span>{item?.studentId?.fullName}</span>
-                </p>
+
+                <p className="font-medium my-3">About</p>
                 <p className="font-light text-sm">
-                  {item?.studentId?.institutionName}
+                  My name is Gbarayege Kalenebari Gloria, and I am a Java
+                  developer. I graduated from the Department of Pure and
+                  Industri...
                 </p>
-              </div>
-
-              <p className="font-medium my-3">About</p>
-              <p className="font-light text-sm">
-                My name is Gbarayege Kalenebari Gloria, and I am a Java
-                developer. I graduated from the Department of Pure and
-                Industri...
-              </p>
-              <div className="space-y-2 my-3 font-light text-sm">
-                <div className="flex items-center gap-2">
-                  <GraduationCap size={24} />
-                  <span>
-                    Graduate/Student of {item?.studentId?.institutionName}
-                  </span>
+                <div className="space-y-2 my-3 font-light text-sm">
+                  <div className="flex items-center gap-2">
+                    <GraduationCap size={24} />
+                    <span>
+                      Graduate/Student of {item?.studentId?.institutionName}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin size={24} />
+                    <span>Resides in {item?.studentId?.state}</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <MapPin size={24} />
-                  <span>Resides in {item?.studentId?.state}</span>
+                <p className="font-medium">Framework</p>
+                <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+                  <p className="bg-[#E6E9EB] p-2">Foundation CSS</p>
+                  <p className="bg-[#E6E9EB] p-2">Hibernate</p>
+                  <p className="bg-[#E6E9EB] p-2">Jakarta</p>
+                  <p className="bg-[#E6E9EB] p-2">JDBC</p>
+                  <p className="bg-[#E6E9EB] p-2">JPA</p>
+                  <p className="bg-[#E6E9EB] p-2">MySQL</p>
                 </div>
-              </div>
-              <p className="font-medium">Framework</p>
-              <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
-                <p className="bg-[#E6E9EB] p-2">Foundation CSS</p>
-                <p className="bg-[#E6E9EB] p-2">Hibernate</p>
-                <p className="bg-[#E6E9EB] p-2">Jakarta</p>
-                <p className="bg-[#E6E9EB] p-2">JDBC</p>
-                <p className="bg-[#E6E9EB] p-2">JPA</p>
-                <p className="bg-[#E6E9EB] p-2">MySQL</p>
-              </div>
-              {/* === PROFILE BUTTON === */}
-              <div className="flex gap-3 justify-between">
-                <p
-                  onClick={() => {
-                    setShowConfirmApprove(true);
-                    setSelectedRequestId(item?._id);
-                  }}
-                  className="bg-[#33A852] text-xs md:text-md w-[120px] md:w-[150px] text-center text-white p-2 mt-12 mx-auto cursor-pointer flex items-center justify-center"
-                >
-                  Approve Request
-                </p>
+                {/* === PROFILE BUTTON === */}
+                <div className="flex gap-3 justify-between">
+                  <p
+                    onClick={() => {
+                      setShowConfirmApprove(true);
+                      setSelectedRequestId(item?._id);
+                    }}
+                    className="bg-[#33A852] text-xs md:text-md w-[120px] md:w-[150px] text-center text-white p-2 mt-12 mx-auto cursor-pointer flex items-center justify-center"
+                  >
+                    Approve Request
+                  </p>
 
-                <p
-                  onClick={() => {
-                    setShowConfirmDecline(true);
-                    setSelectedRequestId(item?._id);
-                  }}
-                  className="bg-[#D92D20] text-xs md:text-md  w-[120px] md:w-[150px] text-center text-white p-3 mt-12 mx-auto cursor-pointer flex items-center justify-center"
-                >
-                  Decline Request
-                </p>
+                  <p
+                    onClick={() => {
+                      setShowConfirmDecline(true);
+                      setSelectedRequestId(item?._id);
+                    }}
+                    className="bg-[#D92D20] text-xs md:text-md  w-[120px] md:w-[150px] text-center text-white p-3 mt-12 mx-auto cursor-pointer flex items-center justify-center"
+                  >
+                    Decline Request
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       <Modal
         show={showConfirmApprove}
