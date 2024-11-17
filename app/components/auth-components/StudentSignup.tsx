@@ -142,8 +142,21 @@ export default function StudentSignup() {
             />
           </div>
 
-          {/* =======Email ===== */}
-          <div className="mt-4">
+          {/* =======Mobile Number ===== */}
+          {/* <div className="mt-4">
+            <input
+              type="text"
+              placeholder="(+234) 8133903409"
+              {...register("mobileNumber")}
+              maxLength={40}
+              className={`${
+                errors.mobileNumber ? "border-[1.3px] border-red-500 bg-[#FEF3F2]" : ""
+              } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+            />
+          </div> */}
+
+           {/* =======Email ===== */}
+           <div className="mt-4">
             <input
               type="email"
               placeholder="E-mail"
