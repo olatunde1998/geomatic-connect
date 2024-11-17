@@ -10,7 +10,7 @@ export default async function HomePage() {
       <div className="w-full">
         <p className="text-gray-600 text-lg font-semibold">Manage Users</p>
         <p className="text-sm text-gray-500 font-normal">
-        Administer user accounts and privileges within the platform.
+          Administer user accounts and privileges within the platform.
         </p>
       </div>
       <div className="my-8 grid space-y-6 lg:space-y-0 lg:grid-cols-3 lg:gap-3 xl:grid-cols-4 xl:gap-6">

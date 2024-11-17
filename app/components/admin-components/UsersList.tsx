@@ -253,7 +253,7 @@ export default function UsersList({ token }: UsersListProps) {
           <div className="md:flex items-center md:space-x-4">
             <div className="w-full">
               <p className="text-gray-600 text-lg font-semibold">
-                Transaction History
+                Existing Users
               </p>
               <p className="text-sm text-[#6C748B] font-light">
                 Pick an account plan that fits your workflow.

@@ -16,10 +16,10 @@ export default async function BillingPage() {
         </p>
       </div>
       <div className="my-8 grid space-y-6 lg:space-y-0 lg:grid-cols-3 lg:gap-3 xl:grid-cols-4 xl:gap-6">
-        <StatisticsCard title={"Total Users"} value={10} />
-        <StatisticsCard title={"Total Requests"} value={20} />
-        <StatisticsCard title={"Response Rate (%)"} value={40} />
-        <StatisticsCard title={"Average Completion Time"} value={3} />
+        <StatisticsCard title={"Total Transaction"} value={30} />
+        <StatisticsCard title={"Success Transaction"} value={20} />
+        <StatisticsCard title={"Failed Transaction"} value={6} />
+        <StatisticsCard title={"Abandoned Transaction"} value={4} />
       </div>
 
       <TransactionList token={token} />
