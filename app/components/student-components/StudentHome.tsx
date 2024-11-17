@@ -133,7 +133,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
                 : "cursor-pointer"
             } border border-[#33A852] p-3 w-[230px] text-center text-[#33A852]`}
           >
-            Choose Engineer For Me
+            Make a Request
           </p>
         </div>
       </div>
