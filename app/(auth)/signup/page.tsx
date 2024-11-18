@@ -18,7 +18,7 @@ export default function SignUp() {
           </p>
           <p className="text-center">Register an account</p>
           {/* ======user tab ==== */}
-          <div className="mt-6 mb-10 border-[1.3px] border-slate-300 flex justify-between items-center  rounded-lg">
+          {/* <div className="mt-6 mb-10 border-[1.3px] border-slate-300 flex justify-between items-center  rounded-lg">
             <p
               onClick={() => setUserTypeTab("Student")}
               className={`${
@@ -39,7 +39,7 @@ export default function SignUp() {
             >
               Company
             </p>
-          </div>
+          </div> */}
 
           <div>
             {userTypeTab === "Student" ? <StudentSignup /> : <CompanySignup />}
