@@ -27,10 +27,10 @@ const schema = yup.object().shape({
     .string()
     .required("Email is required")
     .email("Invalid Email format"),
-  //   mobileNumber: yup
-  //     .number()
-  //     .required("Mobile is required")
-  //     .min(3, " must be greater than 8 letters"),
+  mobileNumber: yup
+    .number()
+    .required("Mobile is required")
+    .min(3, " must be greater than 8 letters"),
 });
 
 export default function Settings({ token, userId }: SettingsProps) {
@@ -59,6 +59,7 @@ export default function Settings({ token, userId }: SettingsProps) {
     if (userProfileData) {
       setValue("companyName", userProfileData.data.companyName);
       setValue("email", userProfileData.data.email);
+      setValue("mobileNumber", userProfileData.data.phoneNumber);
     }
   }, [userProfileData, setValue]);
 
@@ -109,6 +110,7 @@ export default function Settings({ token, userId }: SettingsProps) {
     const body = {
       companyName: data?.companyName,
       email: data?.email,
+      phoneNumber: data?.mobileNumber
     };
     try {
       const response = await UpdateUserProfileRequest(userId, token, body);
@@ -162,6 +164,7 @@ export default function Settings({ token, userId }: SettingsProps) {
             <input
               type="number"
               placeholder="(+234) 81 3364 ****"
+              {...register("mobileNumber")}
               className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-2 text-sm"
             />
           </label>
