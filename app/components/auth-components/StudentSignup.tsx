@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,8 +11,9 @@ import { useRouter } from "next/navigation";
 import { RegisterRequest } from "@/app/services/auth.request";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
 import { institutionData, stateData } from "@/utils/FilterData";
-import { Resend } from "resend";
-// import WelcomeTemplate from "@/emails";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Full Name is required"),
@@ -27,19 +28,23 @@ const schema = yup.object().shape({
     .min(6, "Password must be at least 6 characters")
     .max(32, "Password must not exceed 32 characters"),
   state: yup.string().required("State is required"),
+  mobileNumber: yup.number().required("Mobile number is required"),
 });
 
 export default function StudentSignup() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+  const [phoneNumberValue, setPhoneNumberValue] = useState<string | undefined>(
+    undefined
+  );
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
+    control,
     trigger,
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -52,19 +57,11 @@ export default function StudentSignup() {
       email: data?.email,
       password: data?.password,
       state: data?.state,
+      phoneNumber: data?.mobileNumber,
       role: "User",
     };
-    // const firstName = data?.fullName;
-    // const email = data?.email;
     try {
       try {
-        // const emailResponse = await resend.emails.send({
-        //   from: "Geomatic Connect <onboarding@resend.dev>",
-        //   to: [email],
-        //   subject: "Welcome to Geomatic Connect",
-        //   react: WelcomeTemplate({ firstName }),
-        // });
-        // console.log("Email sent:", emailResponse);
         const response = await RegisterRequest(body);
         toast.success(response?.message);
         setTimeout(() => {
@@ -137,26 +134,34 @@ export default function StudentSignup() {
               backgroundColor={errors.state ? "#FEF3F2" : "#ffffff"}
               onChange={(option: any) => {
                 setValue("state", option?.value || "");
-                trigger("state"); // Trigger validation
+                trigger("state");
               }}
             />
           </div>
 
           {/* =======Mobile Number ===== */}
-          {/* <div className="mt-4">
-            <input
-              type="text"
-              placeholder="(+234) 8133903409"
-              {...register("mobileNumber")}
-              maxLength={40}
+          <div className="mt-4">
+            <PhoneInput
+              placeholder="Enter phone number"
+              international={true}
+              countryCallingCodeEditable={false}
+              defaultCountry="NG"
+              onChange={(value: any) => {
+                setValue("mobileNumber", value || "");
+                setPhoneNumberValue(value), trigger("mobileNumber");
+              }}
+              // control={control}
+              rules={{ required: true }}
               className={`${
-                errors.mobileNumber ? "border-[1.3px] border-red-500 bg-[#FEF3F2]" : ""
-              } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+                errors.mobileNumber
+                  ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
+                  : ""
+              } phone-input bg-[#FFFFFF] border border-[#FFFFFF]`}
             />
-          </div> */}
+          </div>
 
-           {/* =======Email ===== */}
-           <div className="mt-4">
+          {/* =======Email ===== */}
+          <div className="mt-4">
             <input
               type="email"
               placeholder="E-mail"
