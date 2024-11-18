@@ -41,3 +41,31 @@ body {
 #contactUs-id {
   scroll-margin-top: 100px;
 }
+
+/* ====== React Phone number input ======*/
+
+/* PhoneInput container styling */
+.phone-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+/* PhoneInput styling */
+.phone-input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Country select dropdown styling */
+.phone-input-country {
+  font-size: 1rem;
+  background-color: #f3f4f6;
+  border-radius: 4px 0 0 4px;
+  padding: 8px;
+  color: #4b5563;
+}
