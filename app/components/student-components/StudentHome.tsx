@@ -26,7 +26,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const { data: userData } = useQuery({
-    queryKey: ["getUsersApi"],
+    queryKey: ["getUserByIdApi"],
     queryFn: () => GetUserByIdRequest(userId, token),
   });
 

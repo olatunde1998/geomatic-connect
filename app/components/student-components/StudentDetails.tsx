@@ -27,7 +27,7 @@ export default function StudentDetails({
   const [showSendRequest, setShowSendRequest] = useState(false);
 
   const { data: userData } = useQuery({
-    queryKey: ["getUsersApi"],
+    queryKey: ["getUserByIdApi"],
     queryFn: () => GetUserByIdRequest(userId, token),
   });
   return (

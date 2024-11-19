@@ -39,7 +39,7 @@ export default function DashboardNavBar({ session }: { session: any }) {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const { data: userData } = useQuery({
-    queryKey: ["getUsersApi"],
+    queryKey: ["getUserByIdApi"],
     queryFn: () => GetUserByIdRequest(userId, token),
   });
 

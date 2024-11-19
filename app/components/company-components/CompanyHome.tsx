@@ -19,7 +19,7 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
   const [selectedState, setSelectedState] = useState("");
 
   const { data: userData, isLoading } = useQuery({
-    queryKey: ["getUsersApi"],
+    queryKey: ["getUserByIdApi"],
     queryFn: () => GetUserByIdRequest(userId, token),
   });
 
