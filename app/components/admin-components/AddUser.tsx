@@ -68,6 +68,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
       console.log(response?.message, "this is message");
       toast.success(response?.message);
       await queryClient.invalidateQueries({ queryKey: ["getUsersApi"] });
+      setShowAddUser(false);
     } catch (error: any) {
       console.log(error.response.message, "this is the error here===");
     } finally {
@@ -138,7 +139,6 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                   type="text"
                   placeholder="Company Address *"
                   {...register("companyAddress")}
-                  maxLength={24}
                 />
               </div>
             </div>
