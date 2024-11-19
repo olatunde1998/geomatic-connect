@@ -14,7 +14,6 @@ import { institutionData, stateData } from "@/utils/FilterData";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 
-
 const schema = yup.object().shape({
   fullName: yup.string().required("Full Name is required"),
   institutionName: yup.string().required("Institution is required"),
@@ -35,16 +34,12 @@ export default function StudentSignup() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const [phoneNumberValue, setPhoneNumberValue] = useState<string | undefined>(
-    undefined
-  );
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
-    control,
     trigger,
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -148,7 +143,7 @@ export default function StudentSignup() {
               defaultCountry="NG"
               onChange={(value: any) => {
                 setValue("mobileNumber", value || "");
-                setPhoneNumberValue(value), trigger("mobileNumber");
+                trigger("mobileNumber");
               }}
               // control={control}
               rules={{ required: true }}
