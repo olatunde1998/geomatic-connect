@@ -117,27 +117,31 @@ export default function Settings({ token, userId }: SettingsProps) {
     setIsUpdating(true);
     console.log(selectedFile, "this is the file selected===");
     console.log(selectedDocument, "this is the document selected===");
-    if (selectedFile && selectedDocument) {
+    
+    try {
       const formData = new FormData();
       formData.append("fullName", data?.fullName);
       formData.append("email", data?.email);
       formData.append("phoneNumber", data?.mobileNumber);
-      formData.append("avatarImage", selectedFile);
-      formData.append("documentFile", selectedDocument);
 
-      const body = formData;
-      try {
-        const response = await UpdateUserProfileRequest(userId, token, body);
-        console.log(response, "this is response here====");
-        toast.success(response?.message);
-        queryClient.invalidateQueries({ queryKey: ["getUserProfileApi"] });
-        queryClient.invalidateQueries({ queryKey: ["getUsersApi"] });
-      } catch (error: any) {
-        console.log(error?.response?.data?.message);
-        toast.error(error?.response?.message);
-      } finally {
-        setIsUpdating(false);
+      // Only append files if they are selected
+      if (selectedFile) {
+        formData.append("avatarImage", selectedFile);
       }
+      if (selectedDocument) {
+        formData.append("documentFile", selectedDocument);
+      }
+
+      const response = await UpdateUserProfileRequest(userId, token, formData);
+      console.log(response, "this is response here====");
+      toast.success(response?.message);
+      queryClient.invalidateQueries({ queryKey: ["getUserProfileApi"] });
+      queryClient.invalidateQueries({ queryKey: ["getUsersApi"] });
+    } catch (error: any) {
+      console.log(error?.response?.data?.message);
+      toast.error(error?.response?.message);
+    } finally {
+      setIsUpdating(false);
     }
   };
   return (
@@ -146,14 +150,14 @@ export default function Settings({ token, userId }: SettingsProps) {
         {/* ====Full Name === */}
         <div>
           <label htmlFor="name">
-            <span>Full Name</span>
+            <span className="text-sm font-medium">Full Name</span>
             <input
               type="text"
               placeholder="Full name"
               {...register("fullName")}
               className={`${
                 errors.fullName && "border-[1.3px] border-red-500"
-              } w-full border border-slate rounded-sm p-3 focus:outline-none mt-2 text-sm`}
+              } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm`}
             />
           </label>
         </div>
@@ -161,7 +165,7 @@ export default function Settings({ token, userId }: SettingsProps) {
         {/* ====Email === */}
         <div className="mt-3">
           <label htmlFor="email">
-            <span>Email</span>
+            <span className="text-sm font-medium">Email</span>
             <input
               type="email"
               placeholder="Email"
@@ -169,19 +173,19 @@ export default function Settings({ token, userId }: SettingsProps) {
               disabled
               className={`${
                 errors.email && "border-[1.3px] border-red-500"
-              } w-full border border-slate rounded-sm p-3 focus:outline-none mt-2 text-sm text-muted-foreground cursor-not-allowed`}
+              } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm text-muted-foreground cursor-not-allowed`}
             />
           </label>
         </div>
         {/* ====Phon Number === */}
         <div className="mt-3">
           <label htmlFor="mobileNumber">
-            <span>Mobile Number</span>
+            <span className="text-sm font-medium">Mobile Number</span>
             <input
               type="number"
               {...register("mobileNumber")}
               placeholder="(+234) 81 3364 ****"
-              className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-2 text-sm"
+              className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm"
             />
           </label>
         </div>
@@ -189,7 +193,7 @@ export default function Settings({ token, userId }: SettingsProps) {
         {/* =====Profile Picture ===== */}
         <section>
           <div className="border-[0.5px] border-slate-300 px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
-            <p className="">Profile picture</p>
+            <p className="text-sm font-medium">Profile picture</p>
             <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[0.6px] border-slate-300 mt-4 cursor-pointer">
               <label
                 htmlFor="avatarInput"
@@ -236,7 +240,9 @@ export default function Settings({ token, userId }: SettingsProps) {
         {/* =====Documents  ===== */}
         <section>
           <div className="border-[0.5px] border-slate-300 px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
-            <p className="">User Document</p>
+            <p className="text-sm font-medium">
+              Documents(CV / SIWES Letter /IT Letter/ Professional Letter)
+            </p>
             <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[0.6px] border-slate-300 mt-4 cursor-pointer">
               <label
                 htmlFor="documentInput"
