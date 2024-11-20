@@ -95,10 +95,8 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
                 </div>
 
                 <p className="font-medium my-3">About</p>
-                <p className="font-light text-sm">
-                  My name is Gbarayege Kalenebari Gloria, and I am a Java
-                  developer. I graduated from the Department of Pure and
-                  Industri...
+                <p className="font-light text-sm text-ellipsis  line-clamp-2">
+                {item?.studentId?.aboutMe}
                 </p>
                 <div className="space-y-2 my-3 font-light text-sm">
                   <div className="flex items-center gap-2">
