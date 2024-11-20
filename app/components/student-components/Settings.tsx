@@ -23,6 +23,10 @@ const schema = yup.object().shape({
     .string()
     .required("Full Name is required")
     .min(3, "Full Name must be greater than 3 letters"),
+  aboutMe: yup
+    .string()
+    .required("About is required")
+    .min(3, "About must be greater than 50 words"),
   email: yup
     .string()
     .required("Email is required")
@@ -61,6 +65,7 @@ export default function Settings({ token, userId }: SettingsProps) {
   useEffect(() => {
     if (userProfileData) {
       setValue("fullName", userProfileData.data.fullName);
+      setValue("aboutMe", userProfileData.data.aboutMe);
       setValue("email", userProfileData.data.email);
       setValue("mobileNumber", userProfileData.data.phoneNumber);
     }
@@ -117,10 +122,11 @@ export default function Settings({ token, userId }: SettingsProps) {
     setIsUpdating(true);
     console.log(selectedFile, "this is the file selected===");
     console.log(selectedDocument, "this is the document selected===");
-    
+
     try {
       const formData = new FormData();
       formData.append("fullName", data?.fullName);
+      formData.append("aboutMe", data.aboutMe);
       formData.append("email", data?.email);
       formData.append("phoneNumber", data?.mobileNumber);
 
@@ -190,8 +196,8 @@ export default function Settings({ token, userId }: SettingsProps) {
           </label>
         </div>
 
-        {/* =====Profile Picture ===== */}
-        <section>
+       {/* =====Profile Picture ===== */}
+       <section className="lg:grid grid-cols-2">
           <div className="border-[0.5px] border-slate-300 px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
             <p className="text-sm font-medium">Profile picture</p>
             <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[0.6px] border-slate-300 mt-4 cursor-pointer">
@@ -233,6 +239,19 @@ export default function Settings({ token, userId }: SettingsProps) {
                   )}
                 </div>
               </label>
+            </div>
+          </div>
+
+          <div className="mt-3">
+            <span className="text-sm font-medium">About Me</span>
+            <div className="flex flex-col w-full pt-2 px-4 pb-1 border border-slate mt-1">
+              <textarea
+                className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
+                placeholder="Description"
+                rows={8}
+                cols={60}
+                {...register("aboutMe")}
+              />
             </div>
           </div>
         </section>
