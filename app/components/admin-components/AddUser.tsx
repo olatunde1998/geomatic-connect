@@ -189,8 +189,8 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                   options={stateData}
                   placeholder="Your Location"
                   padding={"4px"}
-                  borderRadius={"10px"}
-                  border="border-[1.3px] border-[#6C748B]"
+                  borderRadius={"5px"}
+                  border="1px solid #6C748B"
                   backgroundColor={errors.state ? "#FEF3F2" : "#ffffff"}
                   onChange={(option: any) => {
                     setValue("state", option?.value || "");
@@ -222,7 +222,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
             </div>
 
             {/* ======= Company Mobile Number ===== */}
-            <div className="mt-4">
+            <div className="mt-4 ">
               <label
                 htmlFor="mobileNumber"
                 className="text-sm text-gray-500 font-normal"
@@ -243,7 +243,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                   errors.mobileNumber
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                     : "border-[1.3px] border-[#6C748B] rounded-md"
-                } mt-2 phone-input bg-[#FFFFFF] border border-[#FFFFFF]`}
+                } mt-2 phone-input bg-[#FFFFFF]`}
               />
             </div>
 
