@@ -46,9 +46,8 @@ export const UpdateUserProfileRequest = async (
       {
         headers: {
           Accept: "application/vnd.connect.v1+json",
-          "Content-Type": "application/json",
+          'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
-          // 'Content-Type': 'multipart/form-data',
         },
       }
     );
