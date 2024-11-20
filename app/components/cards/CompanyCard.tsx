@@ -59,7 +59,8 @@ export default function CompanyCard({
                 <div className="p-6 border-b-[1.3px] border-slate-200 text-black flex flex-col items-center">
                   <div>
                     <Image
-                      src="/images/fss-logo.png"
+                      // src="/images/fss-logo.png"
+                      src={item?.avatarImage}
                       alt="profile image"
                       width={100}
                       height={100}

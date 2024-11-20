@@ -77,7 +77,8 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
                 <div className="p-6 border-b-[1.3px] border-slate-200 text-black flex flex-col items-center">
                   <div>
                     <Image
-                      src="/images/profile-pic.png"
+                      // src="/images/profile-pic.png"
+                      src={item?.studentId?.avatarImage}
                       alt="profile image"
                       width={100}
                       height={100}
@@ -111,13 +112,13 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
                     <span>Resides in {item?.studentId?.state}</span>
                   </div>
                 </div>
-                <p className="font-medium">Framework</p>
+                <p className="font-medium">Expertise</p>
                 <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
-                  <p className="bg-[#E6E9EB] p-2">Foundation CSS</p>
-                  <p className="bg-[#E6E9EB] p-2">Hibernate</p>
-                  <p className="bg-[#E6E9EB] p-2">Jakarta</p>
-                  <p className="bg-[#E6E9EB] p-2">JDBC</p>
-                  <p className="bg-[#E6E9EB] p-2">JPA</p>
+                  <p className="bg-[#E6E9EB] p-2">Engineering</p>
+                  <p className="bg-[#E6E9EB] p-2">Cadastral</p>
+                  <p className="bg-[#E6E9EB] p-2">GIS/Remote & S.</p>
+                  <p className="bg-[#E6E9EB] p-2">Drone Piloting</p>
+                  <p className="bg-[#E6E9EB] p-2">Topographical</p>
                   <p className="bg-[#E6E9EB] p-2">MySQL</p>
                 </div>
                 {/* === PROFILE BUTTON === */}
