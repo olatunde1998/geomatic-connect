@@ -20,16 +20,20 @@ interface AddUserProps {
 const schema = yup.object().shape({
   companyName: yup.string().required("Company Name is required"),
   companyAddress: yup.string().required("Company Address is required"),
+  aboutMe: yup
+    .string()
+    .required("About is required")
+    .min(3, "About must be greater than 50 words"),
   email: yup
     .string()
     .required("Email is required")
     .email("Invalid Email format"),
-  password: yup
-    .string()
-    .required("Password is required")
-    .min(6, "Password must be at least 6 characters")
-    .max(32, "Password must not exceed 32 characters"),
-  state: yup.string().required("State is required"),
+  // password: yup
+  //   .string()
+  //   .required("Password is required")
+  //   .min(6, "Password must be at least 6 characters")
+  //   .max(32, "Password must not exceed 32 characters"),
+  // state: yup.string().required("State is required"),
   professionalId: yup.string().required("Professional ID is required"),
   mobileNumber: yup.number().required("Mobile number is required"),
 });
@@ -57,10 +61,11 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
       companyName: data?.companyName,
       companyAddress: data?.companyAddress,
       email: data?.email,
-      password: data?.password,
+      aboutMe: data?.aboutMe,
       state: data?.state,
       professionalId: data?.professionalId,
       phoneNumber: data?.mobileNumber,
+      password: "987654321",
       role: "Company",
     };
     try {
@@ -247,8 +252,29 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
               />
             </div>
 
+            <div className="mt-3">
+              <span className="text-sm text-gray-500 font-normal">
+                About Company
+              </span>
+              <div
+                className={`${
+                  errors.aboutMe
+                    ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
+                    : "border-[1.3px] border-[#6C748B] rounded-md"
+                }  flex flex-col w-full pt-2 px-4 pb-1 mt-1`}
+              >
+                <textarea
+                  className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
+                  placeholder="Description"
+                  rows={8}
+                  cols={60}
+                  {...register("aboutMe")}
+                />
+              </div>
+            </div>
+
             {/* =======  Password ======== */}
-            <div className="mt-4 relative">
+            {/* <div className="mt-4 relative">
               <label
                 htmlFor="password"
                 className="text-sm text-gray-500 font-normal"
@@ -289,7 +315,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                   }
                 />
               </span>
-            </div>
+            </div> */}
           </section>
 
           {/* === Submit Button === */}
