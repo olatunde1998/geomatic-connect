@@ -33,7 +33,7 @@ const schema = yup.object().shape({
   //   .required("Password is required")
   //   .min(6, "Password must be at least 6 characters")
   //   .max(32, "Password must not exceed 32 characters"),
-  // state: yup.string().required("State is required"),
+  state: yup.string().required("State is required"),
   professionalId: yup.string().required("Professional ID is required"),
   mobileNumber: yup.number().required("Mobile number is required"),
 });
