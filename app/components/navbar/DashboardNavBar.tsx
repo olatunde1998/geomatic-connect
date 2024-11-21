@@ -11,6 +11,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { Bell, Mail, LogOut, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import GeomaticLogo from "@/public/images/geomatic-logo.svg";
+import { useRouter } from "next/navigation";
 
 const basePath =
   typeof window !== "undefined" ? window.location.pathname.split("/")[1] : "";
@@ -37,6 +38,7 @@ export default function DashboardNavBar({ session }: { session: any }) {
   const [showActions, setShowActions] = useState(false);
   const [showLogOut, setShowLogOut] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter()
 
   const { data: userData } = useQuery({
     queryKey: ["getUserByIdApi"],
@@ -65,7 +67,7 @@ export default function DashboardNavBar({ session }: { session: any }) {
         <div className="flex justify-between items-center lg:block ">
           <div className="lg:flex justify-between items-center">
             <div className="flex items-center">
-              <Link href="/" className="font-bold">
+              <span  onClick={()=> router.back()} className="font-bold">
                 <div className="flex items-center">
                   <Image
                     src={GeomaticLogo}
@@ -76,7 +78,7 @@ export default function DashboardNavBar({ session }: { session: any }) {
                     className="w-[80px] h-[40px] md:w-[150px] md:h-[50px] object-contain md:object-cover"
                   />
                 </div>
-              </Link>
+              </span>
               <div className="border-l border-slate-300 pl-3 ml-3 space-y-3 hidden md:inline-block">
                 <p className="text-xs font-light">
                   Hi{" "}
