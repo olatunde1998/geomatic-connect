@@ -12,7 +12,7 @@ export default async function SettingsPage() {
         <p className="text-2xl font-bold mb-2">Settings</p>
         <p className="text-gray-500">Manage the settings of your account</p>
       </div>
-      <section className="h-fit border border-accent-primary mt-8 p-6 rounded-md">
+      <section className="h-fit border mt-8 p-6 rounded-md">
         <Settings token={token} userId={userId} />
       </section>
     </main>
