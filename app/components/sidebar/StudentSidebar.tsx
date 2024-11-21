@@ -1,16 +1,16 @@
 "use client";
-import { adminNavItems } from "@/utils/sidebarLinks";
+import { studentNavItems } from "@/utils/sidebarLinks";
 import { cn } from "@/utils/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export function AdminSidebar() {
+export function StudentSidebar() {
   const pathname = usePathname();
   console.log(pathname);
 
   return (
     <nav className="grid items-start gap-2">
-      {adminNavItems.map((item, index) => (
+      {studentNavItems.map((item, index) => (
         <Link key={index} href={item.href}>
           <span
             className={cn(
