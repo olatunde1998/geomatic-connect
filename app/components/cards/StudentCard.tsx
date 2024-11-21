@@ -70,7 +70,7 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
           <CardSkeleton />
         </div>
       ) : (
-        <div className="space-y-8 md:gap-2 md:grid md:grid-cols-2 lg:grid-cols-3 md:space-y-0">
+        <div className="space-y-8 md:gap-6 md:grid md:grid-cols-2 xl:grid-cols-3 md:space-y-0">
           {studentsData?.data?.map((item: any) => (
             <div key={item._id}>
               <div className="max-w-[400px] p-6 border border-slate-300 bg-white">

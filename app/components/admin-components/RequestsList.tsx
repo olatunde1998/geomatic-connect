@@ -222,7 +222,7 @@ export default function RequestsList({ token }: RequestsListProps) {
     }),
     columnHelper.accessor("studentId", {
       cell: (info) => (
-        <span className="flex items-center gap-2 text-[#101828]">
+        <span className="flex items-center gap-2">
           <span className="w-fit h-fit p-2 rounded-full bg-slate-200 flex items-center justify-center">
             <File size={14} />
           </span>
@@ -235,7 +235,7 @@ export default function RequestsList({ token }: RequestsListProps) {
     }),
     columnHelper.accessor("companyId", {
       cell: (info) => (
-        <span className="flex items-center gap-2 text-[#101828]">
+        <span className="flex items-center gap-2">
           <span className="whitespace-normal break-words overflow-hidden text-ellipsis">
             {info?.row?.original?.companyId?.companyName}
           </span>

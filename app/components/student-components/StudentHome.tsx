@@ -86,7 +86,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
     <>
       {/* ====== Filter & Search Goes here ====== */}
       <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] lg:flex p-4  lg:my-20 xl:my-10">
-        <div className="md:flex items-center mb-8 lg:mb-0">
+        <div className="md:flex items-center">
           <p>Filter By:</p>
           <div className="md:flex space-y-2 mt-3 md:mt-0 md:space-y-0 md:ml-3 md:space-x-3">
             {/* === DropDown Input === */}
@@ -111,14 +111,14 @@ export default function StudentHome({ session }: StudentHomeProps) {
           </div>
         </div>
 
-        <p
+        {/* <p
           onClick={() => handleAcceptPayment()}
           className={`opacity-40 border border-[#33A852] p-3 w-[230px] text-center text-[#33A852] cursor-pointer`}
         >
           {isProcessing ? "Processing.." : "Subscribe"}
-        </p>
+        </p> */}
 
-        <div>
+        {/* <div>
           <p
             onClick={() => {
               if (selectedCompanyId) {
@@ -135,7 +135,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
           >
             Make a Request
           </p>
-        </div>
+        </div> */}
       </div>
 
       {/* ====CARD GOES HERE ===== */}

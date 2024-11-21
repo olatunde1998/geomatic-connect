@@ -143,13 +143,13 @@ export default function UsersList({ token }: UsersListProps) {
         </div>
       ),
     }),
-    columnHelper.accessor("_id", {
+    columnHelper.accessor("fullName", {
       cell: (info) => (
-        <span className="flex items-center gap-2 text-[#101828]">
+        <span className="flex items-center gap-2">
           <span className="w-fit h-fit p-2 rounded-full bg-slate-200 flex items-center justify-center">
             <File size={14} />
           </span>
-          <span className="whitespace-normal break-words overflow-hidden text-ellipsis  line-clamp-1 max-w-[130px]">
+          <span className="whitespace-normal break-words overflow-hidden text-ellipsis  max-w-[130px]">
             {info?.row?.original?.fullName ?? info?.row?.original?.companyName}
           </span>
         </span>

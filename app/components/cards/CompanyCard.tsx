@@ -37,7 +37,7 @@ export default function CompanyCard({
           <CardSkeleton />
         </div>
       ) : (
-        <div className="space-y-8 md:gap-2 md:grid md:grid-cols-2 lg:grid-cols-3 md:space-y-0">
+        <div className="space-y-8 md:gap-6 md:grid md:grid-cols-2 xl:grid-cols-3 md:space-y-0">
           {companiesData?.data?.map((item: any) => (
             <div key={item._id}>
               <div className="max-w-[400px] p-6 border border-slate-300 bg-white">
@@ -90,7 +90,7 @@ export default function CompanyCard({
                 <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
                   <p className="bg-[#E6E9EB] p-2">Engineering</p>
                   <p className="bg-[#E6E9EB] p-2">Cadastral</p>
-                  <p className="bg-[#E6E9EB] p-2">GIS/Remote & S.</p>
+                  <p className="bg-[#E6E9EB] p-2">GIS/Remote</p>
                   <p className="bg-[#E6E9EB] p-2">Drone Piloting</p>
                   <p className="bg-[#E6E9EB] p-2">Topographical</p>
                   <p className="bg-[#E6E9EB] p-2">MySQL</p>
