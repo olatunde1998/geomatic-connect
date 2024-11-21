@@ -153,158 +153,162 @@ export default function Settings({ token, userId }: SettingsProps) {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
-        {/* ====Full Name === */}
+        <div className="lg:grid grid-cols-2 md:gap-16 xl:gap-24 max-w-[1400px]">
+          <div>
+            {/* ====Full Name === */}
+            <div>
+              <label htmlFor="name">
+                <span className="text-sm font-medium">Full Name</span>
+                <input
+                  type="text"
+                  placeholder="Full name"
+                  {...register("fullName")}
+                  className={`${
+                    errors.fullName && "border-[1.3px] border-red-500"
+                  } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm`}
+                />
+              </label>
+            </div>
+            {/* ====Email === */}
+            <div className="mt-3">
+              <label htmlFor="email">
+                <span className="text-sm font-medium">Email</span>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  {...register("email")}
+                  disabled
+                  className={`${
+                    errors.email && "border-[1.3px] border-red-500"
+                  } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm text-muted-foreground cursor-not-allowed`}
+                />
+              </label>
+            </div>
+            {/* ====Phone Number === */}
+            <div className="mt-3">
+              <label htmlFor="mobileNumber">
+                <span className="text-sm font-medium">Mobile Number</span>
+                <input
+                  type="number"
+                  {...register("mobileNumber")}
+                  placeholder="(+234) 81 3364 ****"
+                  className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm"
+                />
+              </label>
+            </div>
+            {/* ====About Me === */}
+            <div className="mt-3">
+              <span className="text-sm font-medium">About Me</span>
+              <div className="flex flex-col w-full pt-2 px-4 pb-1 border border-slate mt-1">
+                <textarea
+                  className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-sm leading-8"
+                  placeholder="Description"
+                  rows={8}
+                  cols={60}
+                  {...register("aboutMe")}
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            {/* =====Profile Picture ===== */}
+            <section>
+              <div className="border-[0.5px] border-slate-300 px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
+                <p className="text-sm font-medium">Profile picture</p>
+                <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[0.6px] border-slate-300 mt-4 cursor-pointer">
+                  <label
+                    htmlFor="avatarInput"
+                    className="w-full p-3 flex  justify-between tracking-wide cursor-pointer"
+                  >
+                    <div className="flex w-full items-center justify-between gap-2">
+                      <p className="w-full text-center">Upload image</p>
+                      <input
+                        type="file"
+                        name="user_Image"
+                        id="avatarInput"
+                        accept=".png,  .jpg, .jpeg"
+                        className="hidden input-field"
+                        onChange={handleFileChange}
+                      />
+
+                      {userImage ? (
+                        <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
+                          <Image
+                            src={userImage}
+                            alt="user avatar"
+                            width={100}
+                            height={100}
+                            className="rounded-full w-[45px] h-[35px]"
+                          />
+                        </div>
+                      ) : (
+                        <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
+                          <Image
+                            src={userProfileData?.data?.avatarImage}
+                            alt="user avatar"
+                            width={100}
+                            height={100}
+                            className="rounded-full w-[45px] h-[35px]"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            {/* =====Documents  ===== */}
+            <section>
+              <div className="border-[0.5px] border-slate-300 px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
+                <p className="text-sm font-medium">
+                  Documents(CV / SIWES Letter /IT Letter/ Professional Letter)
+                </p>
+                <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[0.6px] border-slate-300 mt-4 cursor-pointer">
+                  <label
+                    htmlFor="documentInput"
+                    className="w-full p-3 flex  justify-between tracking-wide cursor-pointer"
+                  >
+                    <div className="flex w-full items-center justify-between gap-2">
+                      <p className="w-full text-center">Upload docs</p>
+                      <input
+                        type="file"
+                        name="document_Image"
+                        id="documentInput"
+                        accept=".png, .jpg, .jpeg, .pdf, .doc, .docx"
+                        className="hidden input-field"
+                        onChange={handleDocumentChange}
+                      />
+
+                      {userDocument && (
+                        <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
+                          <Image
+                            src={userDocument}
+                            alt="user document"
+                            width={100}
+                            height={100}
+                            className="rounded-full w-[45px] h-[35px]"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </label>
+                </div>
+
+                <a
+                  href={`${userProfileData?.data?.documentFile}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="font-semibold mt-2 w-full text-right inline-block text-[#33A852] underline"
+                >
+                  View Document
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+
         <div>
-          <label htmlFor="name">
-            <span className="text-sm font-medium">Full Name</span>
-            <input
-              type="text"
-              placeholder="Full name"
-              {...register("fullName")}
-              className={`${
-                errors.fullName && "border-[1.3px] border-red-500"
-              } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm`}
-            />
-          </label>
-        </div>
-
-        {/* ====Email === */}
-        <div className="mt-3">
-          <label htmlFor="email">
-            <span className="text-sm font-medium">Email</span>
-            <input
-              type="email"
-              placeholder="Email"
-              {...register("email")}
-              disabled
-              className={`${
-                errors.email && "border-[1.3px] border-red-500"
-              } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm text-muted-foreground cursor-not-allowed`}
-            />
-          </label>
-        </div>
-        {/* ====Phon Number === */}
-        <div className="mt-3">
-          <label htmlFor="mobileNumber">
-            <span className="text-sm font-medium">Mobile Number</span>
-            <input
-              type="number"
-              {...register("mobileNumber")}
-              placeholder="(+234) 81 3364 ****"
-              className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm"
-            />
-          </label>
-        </div>
-
-       {/* =====Profile Picture ===== */}
-       <section className="lg:grid grid-cols-2">
-          <div className="border-[0.5px] border-slate-300 px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
-            <p className="text-sm font-medium">Profile picture</p>
-            <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[0.6px] border-slate-300 mt-4 cursor-pointer">
-              <label
-                htmlFor="avatarInput"
-                className="w-full p-3 flex  justify-between tracking-wide cursor-pointer"
-              >
-                <div className="flex w-full items-center justify-between gap-2">
-                  <p className="w-full text-center">Upload image</p>
-                  <input
-                    type="file"
-                    name="user_Image"
-                    id="avatarInput"
-                    accept=".png,  .jpg, .jpeg"
-                    className="hidden input-field"
-                    onChange={handleFileChange}
-                  />
-
-                  {userImage ? (
-                    <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
-                      <Image
-                        src={userImage}
-                        alt="user avatar"
-                        width={100}
-                        height={100}
-                        className="rounded-full w-[45px] h-[35px]"
-                      />
-                    </div>
-                  ) : (
-                    <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
-                      <Image
-                        src={userProfileData?.data?.avatarImage}
-                        alt="user avatar"
-                        width={100}
-                        height={100}
-                        className="rounded-full w-[45px] h-[35px]"
-                      />
-                    </div>
-                  )}
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <div className="mt-3">
-            <span className="text-sm font-medium">About Me</span>
-            <div className="flex flex-col w-full pt-2 px-4 pb-1 border border-slate mt-1">
-              <textarea
-                className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
-                placeholder="Description"
-                rows={8}
-                cols={60}
-                {...register("aboutMe")}
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* =====Documents  ===== */}
-        <section>
-          <div className="border-[0.5px] border-slate-300 px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
-            <p className="text-sm font-medium">
-              Documents(CV / SIWES Letter /IT Letter/ Professional Letter)
-            </p>
-            <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[0.6px] border-slate-300 mt-4 cursor-pointer">
-              <label
-                htmlFor="documentInput"
-                className="w-full p-3 flex  justify-between tracking-wide cursor-pointer"
-              >
-                <div className="flex w-full items-center justify-between gap-2">
-                  <p className="w-full text-center">Upload docs</p>
-                  <input
-                    type="file"
-                    name="document_Image"
-                    id="documentInput"
-                    accept=".png, .jpg, .jpeg, .pdf, .doc, .docx"
-                    className="hidden input-field"
-                    onChange={handleDocumentChange}
-                  />
-
-                  {userDocument && (
-                    <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
-                      <Image
-                        src={userDocument}
-                        alt="user document"
-                        width={100}
-                        height={100}
-                        className="rounded-full w-[45px] h-[35px]"
-                      />
-                    </div>
-                  )}
-                </div>
-              </label>
-            </div>
-
-            <a
-              href={`${userProfileData?.data?.documentFile}`}
-              rel="noopener noreferrer"
-              target="_blank"
-              className="font-semibold mt-2 w-full text-right inline-block text-[#33A852] underline"
-            >
-              View Document
-            </a>
-          </div>
-        </section>
-
-        <div className="">
           <button
             disabled={isUpdating}
             className=" mt-6 rounded-md  px-3.5 py-2 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer"
