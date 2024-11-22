@@ -105,6 +105,12 @@ export default function SendRequest({
             <section className="items-start space-y-6">
               {/* === Email Input === */}
               <div>
+                <label
+                  htmlFor="email"
+                  className="text-sm text-gray-500 font-normal"
+                >
+                  Email Address
+                </label>
                 <div
                   className={`${
                     errors.email
@@ -125,6 +131,12 @@ export default function SendRequest({
               </div>
               {/* === Institution Input === */}
               <div>
+                <label
+                  htmlFor="institutionName"
+                  className="text-sm text-gray-500 font-normal"
+                >
+                  Institution
+                </label>
                 <div
                   className={`${
                     errors.institutionName
@@ -145,11 +157,15 @@ export default function SendRequest({
               </div>
               {/* === Request Track (time) === */}
               <div>
+                <label
+                  htmlFor="trackPeriod"
+                  className="text-sm text-gray-500 font-normal"
+                >
+                  Tracking Period
+                </label>
                 <div
                   className={`${
-                    errors.trackPeriod
-                      ? "border-[1.3px] border-red-500"
-                      : "border-[1.3px] border-slate-300"
+                    errors.trackPeriod ? "border-[1.3px] border-red-500" : ""
                   } flex flex-col w-full`}
                 >
                   <ReactSelect
@@ -164,6 +180,12 @@ export default function SendRequest({
               </div>
               {/* === (Purpose of Request) Training Input === */}
               <div>
+                <label
+                  htmlFor="requestPurpose"
+                  className="text-sm text-gray-500 font-normal"
+                >
+                  Purpose of Request
+                </label>
                 <div
                   className={`${
                     errors.requestPurpose ? "border-[1.3px] border-red-500" : ""
@@ -181,6 +203,12 @@ export default function SendRequest({
               </div>
               {/* === Description Input === */}
               <div>
+                <label
+                  htmlFor="backgroundHistory"
+                  className="text-sm text-gray-500 font-normal"
+                >
+                 Background history
+                </label>
                 <div
                   className={`${
                     errors.backgroundHistory
@@ -190,7 +218,7 @@ export default function SendRequest({
                 >
                   <textarea
                     className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
-                    placeholder="Description"
+                    placeholder="Description...."
                     {...register("backgroundHistory")}
                     rows={4}
                     cols={40}
