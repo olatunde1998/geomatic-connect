@@ -83,6 +83,10 @@ export const companyMobileRoutes = [
     name: "Settings",
     href: "/company-dashboard/settings",
   },
+  {
+    name: "Pricing",
+    href: "/company-dashboard/pricing",
+  },
 ];
 
 export const studentMobileRoutes = [
@@ -97,5 +101,9 @@ export const studentMobileRoutes = [
   {
     name: "Settings",
     href: "/student-dashboard/settings",
+  },
+  {
+    name: "Pricing",
+    href: "/student-dashboard/pricing",
   },
 ];
