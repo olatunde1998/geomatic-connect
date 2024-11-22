@@ -2,6 +2,7 @@
 
 import { MapPin, Search } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -29,9 +30,9 @@ export default function Hero() {
               </div>
             </div>
 
-            <p className="bg-[#1A5962] p-2.5 rounded-xl text-[#FFFFFF] w-20 text-center cursor-pointer">
+            <Link href="/login" className="bg-[#1A5962] p-2.5 rounded-xl text-[#FFFFFF] w-20 text-center cursor-pointer">
               Search
-            </p>
+            </Link>
           </div>
         </div>
 
