@@ -3,29 +3,29 @@ export const faqData = [
   {
     id: 1,
     question:
-      "I need to sell my house quickly! How fast can HouseCashin complete the sale?",
+      "Do you offer a free trial?",
     answer:
-      "Generally, we can buy your home in 3 to 30 days. In many cases we can provide you with a cash offer the same day over the phone, schedule a closing ASAP and have your cash ready within 72 hours after you",
+      "Yes. In fact, we go one step further. You may use our freemium plan without payment for personal or commercial purposes but only on the condition that you include a link to Icons& in your work. Please note that freemium plan do come with limitations such as smaller sizes, select file types, and variety.",
   },
   {
     id: 2,
     question:
-      "I need to sell my house quickly! How fast can HouseCashin complete the sale?",
+      "How does Geomatics Connect work?",
     answer:
-      "Generally, we can buy your home in 3 to 30 days. In many cases we can provide you with a cash offer the same day over the phone, schedule a closing ASAP and have your cash ready within 72 hours after you",
+      "Geomatics Connect offers personalized one-on-one coaching, structured job application guidance, detailed feedback mechanisms, and access to a supportive community. Mentees receive tailored advice and resources to enhance their job search strategy and improve their chances of securing a job offer",
   },
   {
     id: 3,
     question:
-      "I need to sell my house quickly! How fast can HouseCashin complete the sale?",
+      "Which plan do I need?",
     answer:
-      "Generally, we can buy your home in 3 to 30 days. In many cases we can provide you with a cash offer the same day over the phone, schedule a closing ASAP and have your cash ready within 72 hours after you",
+      "Purchasing each asset's specific plan (Basic, Growth or Scale) unlocks all options and removes the attribution requirement. Alternatively, you can purchase the Full Set plan to receive all assets and use them without crediting us. Please make sure you've read our Licensing Agreement before purchasing.",
   },
   {
     id: 4,
     question:
-      "I need to sell my house quickly! How fast can HouseCashin complete the sale?",
+      "Do you offer student or company discounts?" ,
     answer:
-      "Generally, we can buy your home in 3 to 30 days. In many cases we can provide you with a cash offer the same day over the phone, schedule a closing ASAP and have your cash ready within 72 hours after you",
+      "Yes. We are happy to help companies and students. Chat with us to get started.",
   },
 ];
