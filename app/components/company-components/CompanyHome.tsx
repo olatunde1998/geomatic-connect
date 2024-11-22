@@ -31,7 +31,7 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
           <p>Filter By:</p>
           <div className="md:flex space-y-2 mt-3 md:mt-0 md:space-y-0 md:ml-3 md:space-x-3">
             {/* === DropDown Input === */}
-            <div>
+            <div className="w-[226px]">
               <ReactSelect
                 options={specializationData}
                 placeholder="Specialization *"
@@ -40,7 +40,7 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
                 }}
               />
             </div>
-            <div>
+            <div className="w-[153px]">
               <ReactSelect
                 options={stateData}
                 placeholder="State"
