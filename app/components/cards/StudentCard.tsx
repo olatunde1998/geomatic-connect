@@ -114,7 +114,7 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
                 <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
                   <p className="bg-[#E6E9EB] p-2">Engineering</p>
                   <p className="bg-[#E6E9EB] p-2">Cadastral</p>
-                  <p className="bg-[#E6E9EB] p-2">GIS/Remote & S.</p>
+                  <p className="bg-[#E6E9EB] p-2">GIS/Remote</p>
                   <p className="bg-[#E6E9EB] p-2">Drone Piloting</p>
                   <p className="bg-[#E6E9EB] p-2">Topographical</p>
                   <p className="bg-[#E6E9EB] p-2">MySQL</p>
