@@ -16,7 +16,7 @@
 
 
 # Prototype
-![Minion](public/images/prototype.png)
+![Minion](public/images/prototype-2.png)
  
 # How to Contribute
 
