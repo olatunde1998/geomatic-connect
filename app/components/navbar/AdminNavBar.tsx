@@ -73,7 +73,7 @@ export default function AdminNavBar({ session }: { session: any }) {
               </div>
             </div>
             <div className="hidden lg:flex items-center gap-x-2 text-sm md:text-base cursor-pointer font-light w-fit">
-              <Link href={`/admin-dashboard/requests`} className="text-[#33A852]">
+              <Link href={`/admin-dashboard/billing`} className="text-[#33A852]">
                 Pricing
               </Link>
               <Link href={`/admin-dashboard/requests`} className="text-[#33A852] ml-4">
