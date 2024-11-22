@@ -75,12 +75,6 @@ export default function CompanyNavBar({ session }: { session: any }) {
             <div className="hidden lg:flex items-center gap-x-2 text-sm md:text-base cursor-pointer font-light w-fit">
               <Link
                 href={`/company-dashboard/requests`}
-                className="text-[#33A852]"
-              >
-                Pricing
-              </Link>
-              <Link
-                href={`/company-dashboard/requests`}
                 className="text-[#33A852] ml-4"
               >
                 Notifications
