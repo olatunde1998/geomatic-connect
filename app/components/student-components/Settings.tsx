@@ -12,7 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LoaderCircle } from "lucide-react";
-import { Modal } from "../modals/Modal";
+import { Modal } from "@/app/components/modals/Modal";
 import SubscribeModal from "./SubscribeModal";
 
 interface SettingsProps {
@@ -153,6 +153,10 @@ export default function Settings({ token, userId }: SettingsProps) {
       setIsUpdating(false);
     }
   };
+
+  useEffect(() => {
+    setShowSubscribe(true);
+  }, []);
   return (
     <>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
@@ -326,12 +330,6 @@ export default function Settings({ token, userId }: SettingsProps) {
           </button>
         </div>
       </form>
-      <p
-        onClick={() => setShowSubscribe(true)}
-        className=" mt-6 rounded-md  px-3.5 py-2 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer w-fit"
-      >
-        subscribe
-      </p>
       <ToastContainer />
 
       <Modal show={showSubscribe} onClose={() => setShowSubscribe(false)}>
