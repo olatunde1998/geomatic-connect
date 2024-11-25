@@ -6,9 +6,16 @@ import SessionProviderPage from "./providers/session-providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  manifest: "/manifest.json",
   title: "Geomatic Connect",
-  description: "Geomatic Connect Application Dashboard",
+  description: "Geomatics Connect Application Dashboard",
+  viewport: {
+    width: "device-width",
+    height: "device-height",
+    initialScale: 1,
+  },
 };
+
 
 export default function RootLayout({
   children,
@@ -17,6 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#F2F6F6" />
+      </head>
       <body
         className={`${inter.className} ${
           process.env.NODE_ENV == "development" ? "debug-screens" : ""
