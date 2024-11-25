@@ -22,7 +22,7 @@ export default function PricingCard({
   return (
     <>
       <div>
-        <div className={`${popular ? "bg-[#155464] text-white" : "bg-[#FFFFFF]" } w-[300px] xl:w-[360px] px-6 py-8 md:py-8 md:pb-4 md:px-8 border border-slate-300 rounded-xl text-[#1C3C41]`}>
+        <div className={`${popular ? "bg-[#155464] text-white" : "bg-[#FFFFFF]" } md:w-[300px] xl:w-[360px] px-6 py-8 md:py-8 md:pb-4 md:px-8 border border-slate-300 rounded-xl text-[#1C3C41]`}>
           <div>
             <p className={`${popular ? "text-[#FFFFFF]" : "text-[#1C3C41]"} font-bold text-2xl `}>{headings}</p>
             <p className={`${popular ? "text-[#FFFFFF]" : "text-[#1E1E1E]"}  mt-4 font-light`}>{subHeadings}</p>
