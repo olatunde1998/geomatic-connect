@@ -1,10 +1,13 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
-import { AcceptPaymentRequest } from "@/app/services/payment.request";
+import {
+  AcceptPaymentRequest,
+  VerifyPaymentRequest,
+} from "@/app/services/payment.request";
 import { GetUserByIdRequest } from "@/app/services/request.request";
 
 interface PricingProps {
@@ -15,13 +18,12 @@ interface PricingProps {
 }
 
 export default function Pricing({ token, userId }: PricingProps) {
-  const [isSubscribing, setIsSubscribing] = useState<boolean>(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [selectedBillingCycleTab, setSelectedBillingCycleTab] =
     useState("Monthly");
-  const [isLoading, setIsLoading] = useState(null);
+  const [isSubscribing, setIsSubscribing] = useState(null);
   const handleButtonClick = (planMethod: any) => {
-    setIsLoading(planMethod);
+    setIsSubscribing(planMethod);
   };
 
   const { data: userData } = useQuery({
@@ -102,6 +104,33 @@ export default function Pricing({ token, userId }: PricingProps) {
     }
   };
 
+  // verifyPaymentAfterRedirect when page reloads or on mount
+  const verifyPaymentAfterRedirect = async () => {
+    const storedReference = localStorage.getItem("paymentReference");
+    const subscriptionPlan = localStorage.getItem("subscriptionPlan");
+
+    if (storedReference && subscriptionPlan) {
+      try {
+        const verifyResponse = await VerifyPaymentRequest(
+          storedReference,
+          subscriptionPlan
+        );
+        console.log(verifyResponse.message, "this is verify response");
+
+        // Clear stored data
+        localStorage.removeItem("paymentReference");
+        localStorage.removeItem("subscriptionPlan");
+      } catch (error: any) {
+        toast.error(error?.data?.message);
+      }
+    }
+  };
+
+  // verifyPaymentAfterRedirect when page reloads or on mount
+  useEffect(() => {
+    verifyPaymentAfterRedirect();
+  }, []);
+
   return (
     <>
       <section>
@@ -175,8 +204,8 @@ export default function Pricing({ token, userId }: PricingProps) {
                       }}
                       className="text-[#FFFFFF] p-3 rounded-md text-center cursor-pointer bg-green-500"
                     >
-                      {isLoading === planMethod ? (
-                        "Loading..."
+                      {isSubscribing === planMethod ? (
+                        "Subscribing..."
                       ) : (
                         <div>Subscribe</div>
                       )}
