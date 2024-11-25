@@ -5,12 +5,10 @@ import { specializationData, stateData } from "@/utils/FilterData";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
 import { GetUserByIdRequest } from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  AcceptPaymentRequest,
-  VerifyPaymentRequest,
-} from "@/app/services/payment.request";
+import { Modal } from "@/app/components/modals/Modal";
+import SubscribeModal from "./SubscribeModal";
 
 interface StudentHomeProps {
   session: any;
@@ -23,65 +21,16 @@ export default function StudentHome({ session }: StudentHomeProps) {
   const [selectedSpecialization, setSelectedSpecialization] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [selectedCompanyId, setSelectedCompanyId] = useState("");
-  const [isProcessing, setIsProcessing] = useState(false);
+  const [showSubscribe, setShowSubscribe] = useState<boolean>(false);
 
   const { data: userData } = useQuery({
     queryKey: ["getUserByIdApi"],
     queryFn: () => GetUserByIdRequest(userId, token),
   });
 
-  // Send Approved Request to Admin Logic
-  const handleAcceptPayment = async () => {
-    setIsProcessing(true);
-    const body = {
-      email: userData?.data?.email,
-      amount: 300000,
-      metadata: { subscriptionPlan: "Freemium" },
-    };
-
-    try {
-      const response = await AcceptPaymentRequest(body);
-      if (response?.data?.authorization_url) {
-        localStorage.setItem("paymentReference", response.data.reference);
-        localStorage.setItem("subscriptionPlan", "Freemium");
-        window.location.href = response?.data?.authorization_url;
-      } else {
-        return;
-      }
-    } catch (error: any) {
-      toast.error(error?.response?.data?.message);
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  // verifyPaymentAfterRedirect when page reloads or on mount
-  const verifyPaymentAfterRedirect = async () => {
-    const storedReference = localStorage.getItem("paymentReference");
-    const subscriptionPlan = localStorage.getItem("subscriptionPlan");
-
-    if (storedReference && subscriptionPlan) {
-      try {
-        const verifyResponse = await VerifyPaymentRequest(
-          storedReference,
-          subscriptionPlan
-        );
-        console.log(verifyResponse.message, "this is verify response");
-
-        // Clear stored data
-        localStorage.removeItem("paymentReference");
-        localStorage.removeItem("subscriptionPlan");
-      } catch (error: any) {
-        toast.error(error?.data?.message);
-      }
-    }
-  };
-
-  // verifyPaymentAfterRedirect when page reloads or on mount
   useEffect(() => {
-    verifyPaymentAfterRedirect();
+    setShowSubscribe(true);
   }, []);
-
   return (
     <>
       {/* ====== Filter & Search Goes here ====== */}
@@ -110,32 +59,6 @@ export default function StudentHome({ session }: StudentHomeProps) {
             </div>
           </div>
         </div>
-
-        {/* <p
-          onClick={() => handleAcceptPayment()}
-          className={`opacity-40 border border-[#33A852] p-3 w-[230px] text-center text-[#33A852] cursor-pointer`}
-        >
-          {isProcessing ? "Processing.." : "Subscribe"}
-        </p> */}
-
-        {/* <div>
-          <p
-            onClick={() => {
-              if (selectedCompanyId) {
-                setShowSendRequest(true);
-              } else {
-                toast.warning("Select a company to proceed");
-              }
-            }}
-            className={`${
-              !selectedCompanyId
-                ? "cursor-not-allowed opacity-40"
-                : "cursor-pointer"
-            } border border-[#33A852] p-3 w-[230px] text-center text-[#33A852]`}
-          >
-            Make a Request
-          </p>
-        </div> */}
       </div>
 
       {/* ====CARD GOES HERE ===== */}
@@ -149,6 +72,9 @@ export default function StudentHome({ session }: StudentHomeProps) {
           userData={userData}
         />
       </div>
+      <Modal show={showSubscribe} onClose={() => setShowSubscribe(false)}>
+        <SubscribeModal setShowSubscribe={setShowSubscribe} />
+      </Modal>
       <ToastContainer />
     </>
   );
