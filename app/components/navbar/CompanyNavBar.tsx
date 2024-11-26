@@ -20,6 +20,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
   const [dropNav, setDropNav] = useState(false);
   const [showActions, setShowActions] = useState(false);
   const [showLogOut, setShowLogOut] = useState(false);
+  const [showSubscribe, setShowSubscribe] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
 
@@ -44,6 +45,23 @@ export default function CompanyNavBar({ session }: { session: any }) {
     };
   }, []);
 
+  // Trigger subscription modal
+  useEffect(() => {
+    const MAX_COUNT = 3;
+    const INTERVAL = 60000;
+    let count = 0;
+
+    const showModal = () => {
+      if (count < MAX_COUNT) {
+        setShowSubscribe(true);
+        count += 1;
+        setTimeout(showModal, INTERVAL);
+      }
+    };
+    const timeoutId = setTimeout(showModal, INTERVAL);
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <>
       <nav className="bg-white fixed px-6 z-[1000] lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent ">
@@ -64,10 +82,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
               </span>
               <div className="border-l border-slate-300 pl-3 ml-3 space-y-3 hidden md:inline-block">
                 <p className="text-xs font-light">
-                  Hi{" "}
-                  {userData?.data?.fullName ??
-                    userData?.data?.companyName ??
-                    "Admin"}
+                  Hi {userData?.data?.companyName ?? "Geomatician"}
                 </p>
                 <p>Welcome 👋</p>
               </div>
