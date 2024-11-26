@@ -1,17 +1,26 @@
 "use client";
 import { studentNavItems } from "@/utils/sidebarLinks";
 import { cn } from "@/utils/utils";
+import { useQuery } from "@tanstack/react-query";
 import { ChevronRight, LogOut, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { GetUserByIdRequest } from "@/app/services/request.request";
 
-export function StudentSidebar() {
+export function StudentSidebar({ session }: { session: any }) {
+  const userId = session?.user?._id;
+  const token = session?.user?.token;
   const [showSignOutProfile, setShowSignOutProfile] = useState(false);
   const [showLogOut, setShowLogOut] = useState(false);
   const pathname = usePathname();
   const addSignOutProfileRef = useRef(null);
   console.log(pathname);
+
+  const { data: userData } = useQuery({
+    queryKey: ["getUserByIdApi"],
+    queryFn: () => GetUserByIdRequest(userId, token),
+  });
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -64,7 +73,7 @@ export function StudentSidebar() {
                 <div className="text-sm space-y-2">
                   <p>Student</p>
                   <p className="whitespace-normal break-words overflow-hidden text-ellipsis  line-clamp-1">
-                    Geomatics Connect
+                    {userData?.data?.fullName ?? "Geomatician"}
                   </p>
                 </div>
                 <ChevronRight size={32} />
