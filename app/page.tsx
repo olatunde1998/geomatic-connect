@@ -1,4 +1,3 @@
-import { auth } from "@/auth";
 import Navbar from "@/app/components/navbar/Navbar";
 import Hero from "@/app/components/landing-page-components/Hero";
 import HowItWorks from "@/app/components/landing-page-components/HowItWorks";
@@ -11,8 +10,6 @@ import { Footer } from "@/app/components/landing-page-components/Footer";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default async function Home() {
-  const session = await auth();
-  console.log(session, "this is session here ===");
   return (
     <main className="flex min-h-screen flex-col items-center justify-between pt-16 bg-[#F6F8FD]">
       <div className="w-full  flex-col items-center text-sm lg:flex">
