@@ -16,7 +16,7 @@ import { companyMobileRoutes } from "@/utils/sidebarLinks";
 
 export default function CompanyNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
-  const token = session.user.token;
+  const token = session?.user?.token;
   const [dropNav, setDropNav] = useState(false);
   const [showActions, setShowActions] = useState(false);
   const [showLogOut, setShowLogOut] = useState(false);
