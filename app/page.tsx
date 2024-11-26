@@ -1,3 +1,5 @@
+"use client";
+import { useEffect } from "react";
 import Navbar from "@/app/components/navbar/Navbar";
 import Hero from "@/app/components/landing-page-components/Hero";
 import HowItWorks from "@/app/components/landing-page-components/HowItWorks";
@@ -9,7 +11,28 @@ import ContactUs from "@/app/components/landing-page-components/ContactUs";
 import { Footer } from "@/app/components/landing-page-components/Footer";
 import { FaWhatsapp } from "react-icons/fa";
 
-export default async function Home() {
+export default function Home() {
+  useEffect(() => {
+    const triggerLoginEndpoint = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASEURL}/api/subscription`,
+          {
+            method: "GET",
+          }
+        );
+        if (!response.ok) {
+          console.error("Failed to wake up the server:", response.statusText);
+        } else {
+          console.log("Server woke up successfully!");
+        }
+      } catch (error) {
+        console.error("Error waking up the server:", error);
+      }
+    };
+
+    triggerLoginEndpoint();
+  }, []);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between pt-16 bg-[#F6F8FD]">
       <div className="w-full  flex-col items-center text-sm lg:flex">
@@ -28,7 +51,10 @@ export default async function Home() {
         </div>
 
         {/* === CONNECT SERVICE SECTION === */}
-        <div id="about-id" className="w-full  flex-col items-center text-sm lg:flex bg-[#638E96]">
+        <div
+          id="about-id"
+          className="w-full  flex-col items-center text-sm lg:flex bg-[#638E96]"
+        >
           <div className=" w-full max-w-7xl text-sm  md:px-6">
             <ConnectServices />
           </div>
@@ -49,14 +75,20 @@ export default async function Home() {
         </div>
 
         {/* === FAQs === */}
-        <div id="faq-id" className="w-full  flex-col items-center text-sm lg:flex py-20">
+        <div
+          id="faq-id"
+          className="w-full  flex-col items-center text-sm lg:flex py-20"
+        >
           <div className=" w-full max-w-7xl text-sm ">
             <Faq />
           </div>
         </div>
 
         {/* === CONTACT US SECTION === */}
-        <div id="contactUs-id" className="bg-[#F2F6F6] w-full text-sm lg:flex flex-col items-center">
+        <div
+          id="contactUs-id"
+          className="bg-[#F2F6F6] w-full text-sm lg:flex flex-col items-center"
+        >
           <div className=" w-full max-w-7xl text-sm  md:px-6">
             <ContactUs />
           </div>
