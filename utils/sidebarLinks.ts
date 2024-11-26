@@ -25,13 +25,13 @@ export const companyNavItems = [
     icon: Home,
   },
   {
-    name: "Requests",
+    name: "Notifications",
     href: "/company-dashboard/requests",
     icon: BellRing,
   },
   {
     name: "Billing",
-    href: "/company-dashboard/billing",
+    href: "/company-dashboard/pricing",
     icon: CreditCard,
   },
 ];
@@ -43,13 +43,13 @@ export const studentNavItems = [
     icon: Home,
   },
   {
-    name: "Requests",
+    name: "Notifications",
     href: "/student-dashboard/requests",
     icon: BellRing,
   },
   {
     name: "Billing",
-    href: "/student-dashboard/billing",
+    href: "/student-dashboard/pricing",
     icon: CreditCard,
   },
 ];
