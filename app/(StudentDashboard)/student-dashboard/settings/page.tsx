@@ -1,10 +1,12 @@
 import { auth } from "@/auth";
 import Settings from "@/app/components/student-components/Settings";
+import { redirect } from "next/navigation";
 
 export default async function SettingsPage() {
   const session = await auth();
   const token = session?.user?.token;
   const userId = session?.user?._id;
+  if (!session?.user) redirect("/login");
 
   return (
     <main className="min-h-screen  p-6 pt-32  lg:p-12 xl:p-20 lg:pt-32 xl:pt-32 font-sans text-md">

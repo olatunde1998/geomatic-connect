@@ -1,10 +1,12 @@
 import TransactionList from "@/app/components/admin-components/TransactionList";
 import StatisticsCard from "@/app/components/cards/StatisticsCard";
 import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default async function BillingPage() {
   const session = await auth();
   const token = session?.user?.token;
+  if (!session?.user) redirect("/login");
   return (
     <main className="flex min-h-screen flex-col pt-32">
       <div className="w-full">
