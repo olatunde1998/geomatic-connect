@@ -1,5 +1,6 @@
 import { CircleCheckBig, Rocket, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface SubscribeModalProps {
   setShowSubscribe: React.Dispatch<React.SetStateAction<boolean>>;
@@ -47,9 +48,13 @@ export default function SubscribeModal({
             placeholder="Enter your email address"
             className="p-3 w-[80%] rounded-lg mx-10 placeholder:text-sm text-gray-500 text-sm"
           />
-          <button className="text-green-400 w-[80%] rounded-lg font-semibold bg-[#FFFFFF] p-3 text-center">
+          <Link
+            onClick={() => setShowSubscribe(false)}
+            href="/student-dashboard/pricing"
+            className="text-green-400 w-[80%] rounded-lg font-semibold bg-[#FFFFFF] p-3 text-center"
+          >
             Claim My 40% Off
-          </button>
+          </Link>
         </div>
       </div>
     </div>
