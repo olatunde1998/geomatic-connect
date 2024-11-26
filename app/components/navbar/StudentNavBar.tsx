@@ -13,6 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import { useRouter } from "next/navigation";
 import { studentMobileRoutes } from "@/utils/sidebarLinks";
+import SubscribeModal from "@/app/components/student-components/SubscribeModal";
 
 export default function StudentNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -20,6 +21,7 @@ export default function StudentNavBar({ session }: { session: any }) {
   const [dropNav, setDropNav] = useState(false);
   const [showActions, setShowActions] = useState(false);
   const [showLogOut, setShowLogOut] = useState(false);
+  const [showSubscribe, setShowSubscribe] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
 
@@ -44,6 +46,23 @@ export default function StudentNavBar({ session }: { session: any }) {
     };
   }, []);
 
+  // Trigger subscription modal
+  useEffect(() => {
+    const MAX_COUNT = 3;
+    const INTERVAL = 60000;
+    let count = 0;
+
+    const showModal = () => {
+      if (count < MAX_COUNT) {
+        setShowSubscribe(true);
+        count += 1;
+        setTimeout(showModal, INTERVAL);
+      }
+    };
+    const timeoutId = setTimeout(showModal, INTERVAL);
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <>
       <nav className="bg-white fixed px-6 z-[1000] lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent ">
@@ -64,10 +83,7 @@ export default function StudentNavBar({ session }: { session: any }) {
               </span>
               <div className="border-l border-slate-300 pl-3 ml-3 space-y-3 hidden md:inline-block">
                 <p className="text-xs font-light">
-                  Hi{" "}
-                  {userData?.data?.fullName ??
-                    userData?.data?.companyName ??
-                    "Admin"}
+                  Hi {userData?.data?.fullName ?? "Geomatician"}
                 </p>
                 <p>Welcome 👋</p>
               </div>
@@ -85,7 +101,14 @@ export default function StudentNavBar({ session }: { session: any }) {
               >
                 Notifications
               </Link>
-              <p className="text-[#33A852] underline ml-3">See more Profiles</p>
+              <p
+                onClick={() => {
+                  setShowSubscribe(true);
+                }}
+                className="text-[#33A852] underline ml-3"
+              >
+                See more Profiles
+              </p>
 
               <div className="flex items-center space-x-3 ml-4">
                 <div className="bg-slate-300 p-2 rounded-lg flex items-center justify-center">
@@ -231,6 +254,10 @@ export default function StudentNavBar({ session }: { session: any }) {
 
       <Modal show={showLogOut} onClose={() => setShowLogOut(false)}>
         <Logout setShowLogOut={setShowLogOut} />
+      </Modal>
+
+      <Modal show={showSubscribe} onClose={() => setShowSubscribe(false)}>
+        <SubscribeModal setShowSubscribe={setShowSubscribe} />
       </Modal>
     </>
   );

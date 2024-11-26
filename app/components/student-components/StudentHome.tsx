@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Modal } from "@/app/components/modals/Modal";
-import SubscribeModal from "./SubscribeModal";
+import SubscribeModal from "@/app/components/student-components/SubscribeModal";
 
 interface StudentHomeProps {
   session: any;
@@ -28,9 +28,23 @@ export default function StudentHome({ session }: StudentHomeProps) {
     queryFn: () => GetUserByIdRequest(userId, token),
   });
 
+  // Trigger subscription modal
   useEffect(() => {
-    setShowSubscribe(true);
+    const MAX_COUNT = 3;
+    const INTERVAL = 60000;
+    let count = 0;
+
+    const showModal = () => {
+      if (count < MAX_COUNT) {
+        setShowSubscribe(true);
+        count += 1;
+        setTimeout(showModal, INTERVAL);
+      }
+    };
+    const timeoutId = setTimeout(showModal, INTERVAL);
+    return () => clearTimeout(timeoutId);
   }, []);
+
   return (
     <>
       {/* ====== Filter & Search Goes here ====== */}
