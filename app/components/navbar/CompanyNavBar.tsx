@@ -13,6 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import { useRouter } from "next/navigation";
 import { companyMobileRoutes } from "@/utils/sidebarLinks";
+import { GetUserProfileRequest } from "@/app/services/users.request";
 
 export default function CompanyNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -25,8 +26,8 @@ export default function CompanyNavBar({ session }: { session: any }) {
   const router = useRouter();
 
   const { data: userData } = useQuery({
-    queryKey: ["getUserByIdApi"],
-    queryFn: () => GetUserByIdRequest(userId, token),
+    queryKey: ["getUserProfileApi"],
+    queryFn: () => GetUserProfileRequest(userId, token),
   });
 
   // Handle click outside of dropdown to close it

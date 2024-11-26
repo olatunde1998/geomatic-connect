@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Modal } from "@/app/components/modals/Modal";
 import Logout from "@/app/components/auth-components/Logout";
-import { GetUserByIdRequest } from "@/app/services/request.request";
+import { GetUserProfileRequest } from "@/app/services/users.request";
 import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Bell, Mail, LogOut, Settings } from "lucide-react";
@@ -24,8 +24,8 @@ export default function AdminNavBar({ session }: { session: any }) {
   const router = useRouter();
 
   const { data: userData } = useQuery({
-    queryKey: ["getUserByIdApi"],
-    queryFn: () => GetUserByIdRequest(userId, token),
+    queryKey: ["getUserProfileApi"],
+    queryFn: () => GetUserProfileRequest(userId, token),
   });
 
   // Handle click outside of dropdown to close it
