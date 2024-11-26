@@ -23,7 +23,7 @@ export default async function CompanyLayout({
       <div className="flex flex-col space-y-6">
         <div className="grid flex-1 gap-12 ">
           <div className="hidden w-[200px] md:w-[160px] lg:w-[160px] xl:w-[200px] fixed flex-col lg:block border-r ml-6 pr-2 lg:ml-10 pt-32 min-h-screen">
-            <CompanySidebar />
+            <CompanySidebar session={session} />
           </div>
           <main className="lg:pl-48 xl:pl-52 xl:pr-6 overflow-x-auto">
             {children}
