@@ -42,9 +42,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   secret: process.env.AUTH_SECRET,
 
   callbacks: {
-    async redirect({ baseUrl }) {
-      return baseUrl;
+    async redirect({ url, baseUrl }) {
+      // Redirect to the login page if unauthenticated
+      if (url.startsWith(baseUrl)) return url;
+      return baseUrl; // Ensure all redirects go to the base URL if unauthenticated
     },
+  
     jwt({ token, user }) {
       if (user) {
         token._id = user._id as string;
@@ -59,7 +62,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       session.user.token = token.token;
       session.user._id = token._id;
       session.user.role = token.role;
-      session.user.token = token.token;
       return session;
     },
   },
