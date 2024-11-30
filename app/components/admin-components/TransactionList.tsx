@@ -1,12 +1,11 @@
 "use client";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { createColumnHelper } from "@tanstack/react-table";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Table } from "@/app/components/tables/Table";
 import { Skeleton } from "@/app/components/skeletons/Skeleton";
 import { ArrowDown, CloudDownload, File } from "lucide-react";
 import { formatDate } from "@/utils/utils";
-import { GetAllSubscriptions } from "@/app/services/payment.request";
 
 interface transactionData {
   _id: string;
@@ -20,7 +19,11 @@ interface transactionData {
 }
 
 interface TransactionListProps {
-  token: any;
+  subscriptionData?: any;
+  isLoading?: boolean;
+  setCurrentPage?: React.Dispatch<React.SetStateAction<number>>;
+  currentPage?: number;
+  limit?: number;
 }
 
 interface IndeterminateCheckboxProps {
@@ -46,19 +49,15 @@ interface TableType {
   getPreSelectedRowModel: () => { rows: RowType[] };
 }
 
-export default function TransactionList({ token }: TransactionListProps) {
-  const [selectedRow, setSelectedRow] = useState(null);
+export default function TransactionList({
+  subscriptionData,
+  isLoading,
+  setCurrentPage,
+  currentPage,
+  limit,
+}: TransactionListProps) {
   const [selectedRows, setSelectedRows] = useState<RowType[]>([]);
   const [resetCheckboxes, setResetCheckboxes] = useState(false);
-  const [pageSize] = useState(6);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const { data: subscriptionData, isLoading } = useQuery({
-    queryKey: ["getSubscriptionsApi"],
-    queryFn: () => GetAllSubscriptions(),
-  });
-
-  console.log(subscriptionData, "this is the subscriptionData here====");
 
   // React TanStank Query Invalidate Logic
   const queryClient = useQueryClient();
@@ -206,18 +205,18 @@ export default function TransactionList({ token }: TransactionListProps) {
   ];
 
   // Pagination Logic Implementation
-  const totalItems = subscriptionData?.meta?.totalItems;
-  const endCursor = subscriptionData?.meta?.endCursor;
-  const hasNextPage = subscriptionData?.meta?.hasNextPage;
-
   const handleNextPage = () => {
-    if (hasNextPage === true && endCursor !== null) {
+    if (
+      setCurrentPage &&
+      currentPage !== undefined &&
+      subscriptionData?.meta?.hasNextPage
+    ) {
       setCurrentPage((prev) => prev + 1);
     }
   };
 
   const handlePreviousPage = () => {
-    if (currentPage > 1) {
+    if (setCurrentPage && currentPage !== undefined && currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
     }
   };
@@ -257,14 +256,12 @@ export default function TransactionList({ token }: TransactionListProps) {
             <Table
               data={subscriptionData ? subscriptionData?.data : []}
               columns={columns}
-              //   resetCheckboxes={resetCheckboxes}
-              //   setResetCheckboxes={setResetCheckboxes}
-              //   pageSize={pageSize}
-              //   currentPage={currentPage}
-              //   totalItems={totalItems}
-              //   handleNextPage={handleNextPage}
-              //   handlePreviousPage={handlePreviousPage}
-              //   endCursor={endCursor}
+              limit={limit}
+              currentPage={currentPage}
+              totalItems={subscriptionData?.meta?.totalItems}
+              handleNextPage={handleNextPage}
+              handlePreviousPage={handlePreviousPage}
+              endCursor={subscriptionData?.meta?.endCursor}
             />
           </div>
         )}
