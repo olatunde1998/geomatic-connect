@@ -83,7 +83,7 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
                       width={100}
                       height={100}
                       priority
-                      className="w-[100px] h-[100px] object-cover"
+                      className="w-[100px] h-[100px] rounded-full object-cover"
                     />
                   </div>
                   <p className="text-xl font-medium">
