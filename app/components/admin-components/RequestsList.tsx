@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { BookCheck, CircleOff, Ellipsis, EllipsisVertical } from "lucide-react";
 import { createColumnHelper } from "@tanstack/react-table";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Table } from "@/app/components/tables/Table";
 import { Skeleton } from "@/app/components/skeletons/Skeleton";
 import { ArrowDown, CloudDownload, File } from "lucide-react";
@@ -13,7 +13,6 @@ import {
 } from "@/app/services/request.request";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Sheet } from "@/app/components/sheets/Sheet";
 import SendRequest from "./RequestDetails";
 import ApproveMessage from "@/app/components/company-components/ApproveMessage";
 import DeclineMessage from "@/app/components/company-components/DeclineMessage";
@@ -31,7 +30,12 @@ interface notificationsData {
 }
 
 interface RequestsListProps {
-  token: any;
+  token?: any;
+  notificationsData?: any;
+  isLoading?: boolean;
+  setCurrentPage?: React.Dispatch<React.SetStateAction<number>>;
+  currentPage?: number;
+  limit?: number;
 }
 
 interface IndeterminateCheckboxProps {
@@ -57,7 +61,14 @@ interface TableType {
   getPreSelectedRowModel: () => { rows: RowType[] };
 }
 
-export default function RequestsList({ token }: RequestsListProps) {
+export default function RequestsList({
+  token,
+  notificationsData,
+  isLoading,
+  setCurrentPage,
+  currentPage,
+  limit,
+}: RequestsListProps) {
   const [selectedRow, setSelectedRow] = useState<notificationsData | null>(
     null
   );
@@ -66,18 +77,11 @@ export default function RequestsList({ token }: RequestsListProps) {
   const actionDropDownRef = useRef<HTMLDivElement>(null);
   const [showActions, setShowActions] = useState(false);
   const [showSendRequest, setShowSendRequest] = useState<boolean>(false);
-  const [pageSize] = useState(6);
-  const [currentPage, setCurrentPage] = useState(1);
   const [showConfirmApprove, setShowConfirmApprove] = useState(false);
   const [showConfirmDecline, setShowConfirmDecline] = useState(false);
   const [selectedRequestId, setSelectedRequestId] = useState<
     string | undefined
   >();
-
-  const { data: notificationsData, isLoading } = useQuery({
-    queryKey: ["getNotificationsApi"],
-    queryFn: () => GetAllNotifications(token),
-  });
 
   // React TanStank Query Invalidate Logic
   const queryClient = useQueryClient();
@@ -339,18 +343,18 @@ export default function RequestsList({ token }: RequestsListProps) {
   ];
 
   // Pagination Logic Implementation
-  const totalItems = notificationsData?.meta?.totalItems;
-  const endCursor = notificationsData?.meta?.endCursor;
-  const hasNextPage = notificationsData?.meta?.hasNextPage;
-
   const handleNextPage = () => {
-    if (hasNextPage === true && endCursor !== null) {
+    if (
+      setCurrentPage &&
+      currentPage !== undefined &&
+      notificationsData?.meta?.hasNextPage
+    ) {
       setCurrentPage((prev) => prev + 1);
     }
   };
 
   const handlePreviousPage = () => {
-    if (currentPage > 1) {
+    if (setCurrentPage && currentPage !== undefined && currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
     }
   };
@@ -375,7 +379,7 @@ export default function RequestsList({ token }: RequestsListProps) {
           </div>
         </div>
 
-        {/* ===== TRANSACTION (INVOICE TABLE) AND SKELETON GOES HERE === */}
+        {/* ===== NOTIFICATIONS AND SKELETON GOES HERE === */}
         {isLoading ? (
           <div className="mt-6 ">
             <Skeleton />
@@ -390,23 +394,18 @@ export default function RequestsList({ token }: RequestsListProps) {
             <Table
               data={notificationsData ? notificationsData?.data : []}
               columns={columns}
-              //   resetCheckboxes={resetCheckboxes}
-              //   setResetCheckboxes={setResetCheckboxes}
-              //   pageSize={pageSize}
-              //   currentPage={currentPage}
-              //   totalItems={totalItems}
-              //   handleNextPage={handleNextPage}
-              //   handlePreviousPage={handlePreviousPage}
-              //   endCursor={endCursor}
+              limit={limit}
+              currentPage={currentPage}
+              totalItems={notificationsData?.meta?.totalItems}
+              handleNextPage={handleNextPage}
+              handlePreviousPage={handlePreviousPage}
+              endCursor={notificationsData?.meta?.endCursor}
             />
           </div>
         )}
       </div>
-         {/* === MODALS === */}
-      <Modal
-        show={showSendRequest}
-        onClose={() => setShowSendRequest(false)}
-      >
+      {/* === MODALS === */}
+      <Modal show={showSendRequest} onClose={() => setShowSendRequest(false)}>
         <SendRequest
           token={token}
           setShowSendRequest={setShowSendRequest}
@@ -414,7 +413,6 @@ export default function RequestsList({ token }: RequestsListProps) {
           notificationID={selectedRow ? selectedRow._id : null}
         />
       </Modal>
-
 
       <Modal
         show={showConfirmApprove}
