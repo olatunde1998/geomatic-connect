@@ -1,9 +1,13 @@
 import axios from "axios";
 
 // GET(READ) REQUEST
-export const GetAllNotifications = async (token: any) => {
+export const GetAllNotifications = async (
+  token: any,
+  pageParam = 1,
+  limit: number
+) => {
   const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/requests`,
+    `${process.env.NEXT_PUBLIC_BASEURL}/api/requests?pageNumber=${pageParam}&limit=${limit}`,
     {
       maxBodyLength: Infinity,
       headers: {
@@ -184,7 +188,6 @@ export const CompanyDeclineStudentRequest = async (body: any, token: any) => {
   }
 };
 
-
 //DECLINED REQUEST BY ADMIN (Admin declined a student request)
 export const AdminDeclineStudentRequest = async (body: any, token: any) => {
   try {
@@ -208,7 +211,6 @@ export const AdminDeclineStudentRequest = async (body: any, token: any) => {
     throw error;
   }
 };
-
 
 // GET STUDENTS BY COMPANY ID REQUEST
 export const GetStudentsByCompanyRequest = async (
@@ -247,4 +249,3 @@ export const GetCompaniesByStudentRequest = async (
   const data = await response.data;
   return data;
 };
-
