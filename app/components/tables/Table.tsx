@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -11,27 +11,28 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 interface TableProps {
   data: any;
   columns: any;
+  handlePreviousPage: any;
+  handleNextPage: any;
+  currentPage: any;
+  limit: any;
+  totalItems: any;
+  endCursor: any;
 }
 
 export const Table = ({
   data,
   columns = [],
-}: // filters,
-// rowHoveringBgColor,
-// resetCheckboxes,
-// setResetCheckboxes,
-// handlePreviousPage,
-// handleNextPage,
-// currentPage,
-// pageSize,
-// totalItems,
-// endCursor,
-TableProps) => {
+  handlePreviousPage,
+  handleNextPage,
+  currentPage,
+  limit,
+  totalItems,
+  endCursor,
+}: TableProps) => {
   const [rowSelection, setRowSelection] = useState({});
   const table = useReactTable({
     data,
     columns,
-    // Pipeline
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -41,9 +42,7 @@ TableProps) => {
     },
     onRowSelectionChange: setRowSelection,
     enableRowSelection: true,
-    //
     debugTable: true,
-    // filters,
   });
 
   // useEffect(() => {
@@ -53,11 +52,11 @@ TableProps) => {
   //   }
   // }, [resetCheckboxes, setResetCheckboxes]);
 
-  // const entriesPerPage = pageSize;
-  // const totalEntries = totalItems || 0;
-  // const startSerial = (currentPage - 1) * entriesPerPage + 1;
-  // const endSerial = currentPage * entriesPerPage;
-  // const paginationText = `${startSerial} - ${endSerial} of ${totalEntries}`;
+  const entriesPerPage = limit;
+  const totalEntries = totalItems || 0;
+  const startSerial = (currentPage - 1) * entriesPerPage + 1;
+  const endSerial = currentPage * entriesPerPage;
+  const paginationText = `${startSerial} - ${endSerial} of ${totalEntries}`;
 
   return (
     <div>
@@ -106,7 +105,7 @@ TableProps) => {
       </div>
 
       {/* Pagination only when table has content*/}
-      {/* <div className="flex items-center gap-x-8 justify-end px-4 py-3  rounded-b-[0.5rem] mb-6">
+      <div className="flex items-center gap-x-8 justify-end px-4 py-3  rounded-b-[0.5rem] mb-6">
         <span className="flex items-center gap-1  text-small">
           {paginationText}
         </span>
@@ -117,7 +116,7 @@ TableProps) => {
             } p-1`}
             onClick={handlePreviousPage}
           >
-            <ChevronLeft color={currentPage === 1 ? "#213f7d66" : "#213F7D"} />
+            <ChevronLeft color={currentPage === 1 ? "#213f7d66" : "#079455"} />
           </button>
           <button
             className={`${
@@ -126,11 +125,11 @@ TableProps) => {
             onClick={handleNextPage}
           >
             <ChevronRight
-              color={endCursor === null ? "#213f7d66" : "#213F7D"}
+              color={endCursor === null ? "#213f7d66" : "#079455"}
             />
           </button>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
