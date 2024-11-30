@@ -1,12 +1,10 @@
 "use client";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { createColumnHelper } from "@tanstack/react-table";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Table } from "@/app/components/tables/Table";
 import { Skeleton } from "@/app/components/skeletons/Skeleton";
 import { ArrowDown, Check, CloudDownload, File } from "lucide-react";
 import { formatDate } from "@/utils/utils";
-import { GetUsersRequest } from "@/app/services/users.request";
 
 interface UsersData {
   _id: string;
@@ -18,10 +16,15 @@ interface UsersData {
   role?: string;
   files?: string[];
   active: string;
+  meta?: string[];
 }
 
 interface UsersListProps {
-  token: any;
+  userData?: any;
+  isLoading?: boolean;
+  setCurrentPage?: React.Dispatch<React.SetStateAction<number>>;
+  currentPage?: number;
+  limit?: number;
 }
 
 interface IndeterminateCheckboxProps {
@@ -47,30 +50,14 @@ interface TableType {
   getPreSelectedRowModel: () => { rows: RowType[] };
 }
 
-export default function UsersList({ token }: UsersListProps) {
-  const [selectedRow, setSelectedRow] = useState(null);
+export default function UsersList({
+  userData,
+  isLoading,
+  setCurrentPage,
+  currentPage,
+  limit,
+}: UsersListProps) {
   const [selectedRows, setSelectedRows] = useState<RowType[]>([]);
-  const [resetCheckboxes, setResetCheckboxes] = useState(false);
-  const [pageSize] = useState(6);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const { data: userData, isLoading } = useQuery({
-    queryKey: ["getUsersApi"],
-    queryFn: () => GetUsersRequest(token),
-  });
-  console.log(userData, "this is userData ====");
-
-  // React TanStank Query Invalidate Logic
-  const queryClient = useQueryClient();
-
-  // Revalidation of checkbox
-  const handleDeleteInvoiceRevalidate = async () => {
-    const selectedRowsIds = selectedRows.map((row) => row.id);
-    const idsString = JSON.stringify(selectedRowsIds);
-    await queryClient.invalidateQueries({ queryKey: ["getUsersApi"] });
-    setSelectedRows([]);
-    setResetCheckboxes((prev) => !prev);
-  };
 
   // handle check box
   function IndeterminateCheckbox({
@@ -108,7 +95,9 @@ export default function UsersList({ token }: UsersListProps) {
       if (table.getIsAllRowsSelected()) {
         setSelectedRows([]);
       } else {
-        setSelectedRows(table.getPreSelectedRowModel().rows.map((row) => row.original));
+        setSelectedRows(
+          table.getPreSelectedRowModel().rows.map((row) => row.original)
+        );
       }
     },
     []
@@ -230,18 +219,18 @@ export default function UsersList({ token }: UsersListProps) {
   ];
 
   // Pagination Logic Implementation
-  const totalItems = userData?.meta?.totalItems;
-  const endCursor = userData?.meta?.endCursor;
-  const hasNextPage = userData?.meta?.hasNextPage;
-
   const handleNextPage = () => {
-    if (hasNextPage === true && endCursor !== null) {
+    if (
+      setCurrentPage &&
+      currentPage !== undefined &&
+      userData?.meta?.hasNextPage
+    ) {
       setCurrentPage((prev) => prev + 1);
     }
   };
 
   const handlePreviousPage = () => {
-    if (currentPage > 1) {
+    if (setCurrentPage && currentPage !== undefined && currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
     }
   };
@@ -266,7 +255,7 @@ export default function UsersList({ token }: UsersListProps) {
           </div>
         </div>
 
-        {/* ===== TRANSACTION (INVOICE TABLE) AND SKELETON GOES HERE === */}
+        {/* ===== USER LIST AND SKELETON GOES HERE === */}
         {isLoading ? (
           <div className="mt-6 ">
             <Skeleton />
@@ -281,14 +270,12 @@ export default function UsersList({ token }: UsersListProps) {
             <Table
               data={userData ? userData?.data : []}
               columns={columns}
-              //   resetCheckboxes={resetCheckboxes}
-              //   setResetCheckboxes={setResetCheckboxes}
-              //   pageSize={pageSize}
-              //   currentPage={currentPage}
-              //   totalItems={totalItems}
-              //   handleNextPage={handleNextPage}
-              //   handlePreviousPage={handlePreviousPage}
-              //   endCursor={endCursor}
+              limit={limit}
+              currentPage={currentPage}
+              totalItems={userData?.meta?.totalItems}
+              handleNextPage={handleNextPage}
+              handlePreviousPage={handlePreviousPage}
+              endCursor={userData?.meta?.endCursor}
             />
           </div>
         )}

@@ -7,12 +7,22 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 import { Sheet } from "@/app/components/sheets/Sheet";
 import AddUser from "./AddUser";
+import { GetUsersRequest } from "@/app/services/users.request";
+import { useQuery } from "@tanstack/react-query";
 
 interface AdminHomeProps {
   token: any;
 }
 export default function AdminHome({ token }: AdminHomeProps) {
   const [showAddUser, setShowAddUser] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [limit] = useState(6);
+
+  const { data: userData, isLoading } = useQuery({
+    queryKey: ["getUsersApi", currentPage],
+    queryFn: () => GetUsersRequest(token, currentPage, limit),
+  });
+
   return (
     <>
       <main className="flex min-h-screen flex-col pt-32">
@@ -33,13 +43,13 @@ export default function AdminHome({ token }: AdminHomeProps) {
         </div>
 
         <div className="my-8 grid space-y-6 lg:space-y-0 lg:grid-cols-3 lg:gap-3 xl:grid-cols-4 xl:gap-6">
-          <StatisticsCard title={"Total Users"} value={50} />
-          <StatisticsCard title={"Total Companies"} value={10} />
-          <StatisticsCard title={"Total Students"} value={30} />
-          <StatisticsCard title={"Average Completion Time"} value={3} />
+          <StatisticsCard title={"Total Users"} value={userData?.meta?.totalUsers} />
+          <StatisticsCard title={"Total Companies"} value={userData?.meta?.totalCompanies} />
+          <StatisticsCard title={"Total Students"} value={userData?.meta?.totalStudents} />
+          <StatisticsCard title={"Total Admins"} value={userData?.meta?.totalAdmins} />
         </div>
 
-        <UsersList token={token} />
+        <UsersList userData={userData} isLoading={isLoading} setCurrentPage={setCurrentPage} currentPage={currentPage} limit={limit} />
       </main>
 
       {/*============ SHEETS ============ */}
