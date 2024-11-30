@@ -44,9 +44,12 @@ export const VerifyPaymentRequest = async (
 
 
 // GET ALL SUBSCRIPTIONS
-export const GetAllSubscriptions = async () => {
+export const GetAllSubscriptions = async (
+  pageParam = 1,
+  limit: number
+) => {
   const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/subscription`,
+    `${process.env.NEXT_PUBLIC_BASEURL}/api/subscription?pageNumber=${pageParam}&limit=${limit}`,
     {
       maxBodyLength: Infinity,
       headers: {
