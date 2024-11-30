@@ -1,9 +1,13 @@
 import axios from "axios";
 
 // GET(READ) ALL USERS REQUEST
-export const GetUsersRequest = async (token: any) => {
+export const GetUsersRequest = async (
+  token: any,
+  pageParam = 1,
+  limit: number
+) => {
   const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/users`,
+    `${process.env.NEXT_PUBLIC_BASEURL}/api/users?pageNumber=${pageParam}&limit=${limit}`,
     {
       maxBodyLength: Infinity,
       headers: {
@@ -46,7 +50,7 @@ export const UpdateUserProfileRequest = async (
       {
         headers: {
           Accept: "application/vnd.connect.v1+json",
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       }
