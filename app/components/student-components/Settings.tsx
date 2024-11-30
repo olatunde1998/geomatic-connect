@@ -156,7 +156,7 @@ export default function Settings({ token, userId }: SettingsProps) {
 
   // Trigger subscription modal
   useEffect(() => {
-    const MAX_COUNT = 3;
+    const MAX_COUNT = 2;
     const INTERVAL = 60000;
     let count = 0;
 
@@ -219,7 +219,11 @@ export default function Settings({ token, userId }: SettingsProps) {
             {/* ====About Me === */}
             <div className="mt-3">
               <span className="text-sm font-medium">About Me</span>
-              <div className="flex flex-col w-full pt-2 px-4 pb-1 border border-slate mt-1">
+              <div className={`${
+                    errors.aboutMe
+                      ? "border-[1.3px] border-red-500"
+                      : ""
+                  } flex flex-col w-full pt-2 px-4 pb-1 border border-slate mt-1`}>
                 <textarea
                   className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-sm leading-8"
                   placeholder="Description"
