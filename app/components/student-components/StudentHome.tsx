@@ -30,7 +30,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
 
   // Trigger subscription modal
   useEffect(() => {
-    const MAX_COUNT = 3;
+    const MAX_COUNT = 2;
     const INTERVAL = 60000;
     let count = 0;
 
