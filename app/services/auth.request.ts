@@ -109,16 +109,3 @@ export const ResetPasswordRequest = async (body: any, token: string) => {
   }
 };
 
-// SOCIAL AUTH
-export const RegisterWithGoogle = async () => {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/auth/google`, // Match your backend route
-    {
-      maxBodyLength: Infinity,
-      headers: {
-        Accept: "application/vnd.connect.v1+json",
-      },
-    }
-  );
-  return response.data;
-};
