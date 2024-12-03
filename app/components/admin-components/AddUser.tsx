@@ -12,6 +12,7 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
 import { stateData } from "@/utils/FilterData";
+import Image from "next/image";
 
 interface AddUserProps {
   setShowAddUser?: any;
@@ -41,6 +42,8 @@ const schema = yup.object().shape({
 export default function AddUser({ setShowAddUser }: AddUserProps) {
   const [isSaving, setIsSaving] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [userImage, setUserImage] = useState<string | undefined>(undefined);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   // refetch users
   const queryClient = useQueryClient();
@@ -53,6 +56,27 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
     setValue,
     trigger,
   } = useForm({ resolver: yupResolver(schema) });
+
+  // Uploading avatar(profile image) logic
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files[0]) {
+      const file = files[0];
+      console.log(files[0].type, "this is the file type");
+
+      const fileType = files[0].type;
+      if (
+        fileType === "image/jpg" ||
+        fileType === "image/png" ||
+        fileType === "image/jpeg"
+      ) {
+        setUserImage(URL.createObjectURL(files[0]));
+        setSelectedFile(file);
+      } else {
+        toast.error("Unsupported file type. Please upload a JPG, PNG, or JPEG");
+      }
+    }
+  };
 
   //Create Company submission Logic
   const onSubmitHandler = async (data: any) => {
@@ -272,50 +296,53 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                 />
               </div>
             </div>
+            {/* =======  Company Logo ======== */}
+            <div>
+              <div className="border-[1.3px] border-[#6C748B] px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
+                <p className="text-sm font-medium">Company Logo</p>
+                <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[1.3px] border-dashed border-[#6C748B] mt-4 cursor-pointer">
+                  <label
+                    htmlFor="avatarInput"
+                    className="w-full p-3 flex  justify-between tracking-wide cursor-pointer"
+                  >
+                    <div className="flex w-full items-center justify-between gap-2">
+                      <p className="w-full text-center">Upload image</p>
+                      <input
+                        type="file"
+                        name="user_Image"
+                        id="avatarInput"
+                        accept=".png,  .jpg, .jpeg"
+                        className="hidden input-field"
+                        onChange={handleFileChange}
+                      />
 
-            {/* =======  Password ======== */}
-            {/* <div className="mt-4 relative">
-              <label
-                htmlFor="password"
-                className="text-sm text-gray-500 font-normal"
-              >
-                Password
-              </label>
-              <div>
-                <input
-                  type={`${showPassword ? "text" : "password"}`}
-                  placeholder="Password"
-                  {...register("password")}
-                  maxLength={32}
-                  className={`${
-                    errors.password
-                      ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                      : "border-[1.3px] border-[#6C748B] rounded-md"
-                  } mt-2 pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
-                />
+                      {userImage ? (
+                        <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
+                          <Image
+                            src={userImage}
+                            alt="user avatar"
+                            width={100}
+                            height={100}
+                            className="rounded-full w-[45px] h-[35px]"
+                          />
+                        </div>
+                      ) : (
+                        <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
+                          <Image
+                            // src={userProfileData?.data?.avatarImage}
+                            src=""
+                            alt="user avatar"
+                            width={100}
+                            height={100}
+                            className="rounded-full w-[45px] h-[35px]"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </label>
+                </div>
               </div>
-              <span
-                className="absolute cursor-pointer bottom-3 right-2 pt-4 flex items-center mr-[0.25rem] text-[#FF8447]"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                <BiHide
-                  size={18}
-                  className={
-                    showPassword === false
-                      ? "hidden items-center cursor-pointer"
-                      : "text-gray-500"
-                  }
-                />
-                <BiShow
-                  size={18}
-                  className={
-                    showPassword === true
-                      ? "hidden items-center cursor-pointer"
-                      : "text-gray-500"
-                  }
-                />
-              </span>
-            </div> */}
+            </div>
           </section>
 
           {/* === Submit Button === */}
