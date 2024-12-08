@@ -35,7 +35,7 @@ export function AdminSidebar() {
   return (
     <>
       <div className="flex flex-col justify-between min-h-screen">
-        <nav className="grid items-start gap-2">
+        <nav className="grid items-start gap-2 ">
           {adminNavItems.map((item, index) => (
             <Link key={index} href={item.href}>
               <span
