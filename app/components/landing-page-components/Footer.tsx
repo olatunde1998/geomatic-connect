@@ -24,7 +24,7 @@ export const Footer = () => {
         <div className="text-[20px] md:flex md:justify-end md:gap-32 md:w-2/3 lg:w-1/2">
           <div>
             <p className="font-bold mb-8"> Quick Links</p>
-            <ul className="cursor-pointer space-y-4 font-light">
+            <ul className="cursor-pointer space-y-4 font-light text-base lg:text-lg">
               <li>About </li>
               <li>Contact Us </li>
               <li>Blogs </li>
@@ -34,7 +34,7 @@ export const Footer = () => {
           </div>
           <div className="my-10 md:my-0">
             <p className="font-bold mb-8"> Services</p>
-            <ul className="cursor-pointer space-y-4 font-light">
+            <ul className="cursor-pointer space-y-4 font-light text-base lg:text-lg">
               <li>Faq </li>
               <li>Our Services</li>
               <li>Pricing </li>
