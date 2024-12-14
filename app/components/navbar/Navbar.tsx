@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe } from "lucide-react";
-import GeomaticLogo from "@/public/images/geomatic-logo.png";
+import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
 
 const routes = [
   {
@@ -75,9 +75,10 @@ export default function Navbar() {
             <Image
               src={GeomaticLogo}
               alt="Geomatic brand logo"
-              width={100}
+              width={200}
               height={100}
               priority
+              className="w-[109px] h-[46px] object-cover"
             />
           </Link>
 

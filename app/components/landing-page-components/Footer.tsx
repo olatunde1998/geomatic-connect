@@ -4,7 +4,7 @@ import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { BsYoutube } from "react-icons/bs";
 import Image from "next/image";
-import GeomaticLogo from "@/public/images/geomatic-logo-2.png";
+import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
 
 export const Footer = () => {
   const today: Date = new Date();
@@ -12,13 +12,14 @@ export const Footer = () => {
   return (
     <div className="px-6 text-white py-10">
       <section className="mb-2 md:flex justify-between pb-10 md:mb-20">
-        <div className="w-[120px] md:w-[150px] h-[100px]">
+        <div className="hidden md:block w-[120px] md:w-[150px] h-[100px]">
           <Image
             src={GeomaticLogo}
             alt="Geomatic brand logo"
-            width={150}
+            width={200}
             height={150}
             priority
+            className="object-cover"
           />
         </div>
         <div className="text-[20px] md:flex md:justify-end md:gap-32 md:w-2/3 lg:w-1/2">
