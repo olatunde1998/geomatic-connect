@@ -10,7 +10,7 @@ export default function Faq() {
     <>
       <main className="relative py-8 px-6   w-full rounded-tl-[32px] rounded-br-[32px] pb-16">
         {/* ===== Background Image ===== */}
-        <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe.png)] "></div>
+        <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe-refine.png)] "></div>
         {/* =====Overlay with color and opacity==== */}
         <div className="absolute inset-0 bg-[#014751] opacity-80 rounded-tl-[32px] rounded-br-[32px]"></div>
         {/* ====Section One (CONTENT)==== */}
