@@ -69,7 +69,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed w-full z-20 top-0 left-0 border-b bg-[#F6F8FD] py-2.5 backdrop-blur-10">
-        <div className="max-w-[1100px] xl:max-w-7xl mx-auto p-2 px-6 flex justify-between">
+        <div className="max-w-[1100px] xl:max-w-7xl mx-auto p-2 flex justify-between">
           {/* =======Company LOGO ==== */}
           <Link href="/" className="flex items-center">
             <Image
