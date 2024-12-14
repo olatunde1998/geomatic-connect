@@ -145,7 +145,6 @@ export default function StudentSignup() {
                 setValue("mobileNumber", value || "");
                 trigger("mobileNumber");
               }}
-              // control={control}
               rules={{ required: true }}
               className={`${
                 errors.mobileNumber
