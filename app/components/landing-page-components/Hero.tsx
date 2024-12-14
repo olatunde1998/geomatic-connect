@@ -23,7 +23,7 @@ export default function Hero() {
               <Search />
               <input
                 type="text"
-                placeholder="Search Companies, Institu..."
+                placeholder="Search Companies..."
                 className="text-xs ml-3 line-clamp-1 w-[19ch] lg:w-[24ch] lg:line-clamp-none bg-transparent outline-none placeholder:text-[#B3B3B3] text-[#1A5962]"
               />
             </div>
