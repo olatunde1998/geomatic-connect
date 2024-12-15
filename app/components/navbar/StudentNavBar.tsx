@@ -180,9 +180,12 @@ export default function StudentNavBar({ session }: { session: any }) {
             <div className="bg-slate-300 p-2 rounded-lg flex items-center justify-center">
               <Mail size={16} />
             </div>
-            <div className="bg-slate-300 p-2 rounded-lg flex items-center justify-center">
+            <Link
+              href={`/student-dashboard/notifications`}
+              className="bg-slate-300 p-2 rounded-lg flex items-center justify-center"
+            >
               <Bell size={14} />
-            </div>
+            </Link>
 
             <HiMenu
               className="transition"
