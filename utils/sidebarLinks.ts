@@ -26,7 +26,7 @@ export const companyNavItems = [
   },
   {
     name: "Notifications",
-    href: "/company-dashboard/requests",
+    href: "/company-dashboard/notifications",
     icon: BellRing,
   },
   {
@@ -44,7 +44,7 @@ export const studentNavItems = [
   },
   {
     name: "Notifications",
-    href: "/student-dashboard/requests",
+    href: "/student-dashboard/notifications",
     icon: BellRing,
   },
   {
@@ -62,7 +62,7 @@ export const adminMobileRoutes = [
   },
   {
     name: "Notifications",
-    href: "/admin-dashboard/requests",
+    href: "/admin-dashboard/notifications",
   },
   {
     name: "Settings",
@@ -96,7 +96,7 @@ export const studentMobileRoutes = [
   },
   {
     name: "Notifications",
-    href: "/student-dashboard/requests",
+    href: "/student-dashboard/notifications",
   },
   {
     name: "Settings",
