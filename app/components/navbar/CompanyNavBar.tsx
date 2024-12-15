@@ -90,7 +90,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
             </div>
             <div className="hidden lg:flex items-center gap-x-2 text-sm md:text-base cursor-pointer font-light w-fit">
               <Link
-                href={`/company-dashboard/requests`}
+                href={`/company-dashboard/notifications`}
                 className="text-[#33A852] ml-4"
               >
                 Notifications
@@ -102,7 +102,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
                   <Mail size={16} />
                 </div>
                 <Link
-                  href={`/company-dashboard/requests`}
+                  href={`/company-dashboard/notifications`}
                   className="bg-slate-300 p-2 rounded-lg flex items-center justify-center"
                 >
                   <Bell size={14} />

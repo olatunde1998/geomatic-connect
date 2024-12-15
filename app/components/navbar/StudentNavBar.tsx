@@ -96,7 +96,7 @@ export default function StudentNavBar({ session }: { session: any }) {
                 Pricing
               </Link>
               <Link
-                href={`/student-dashboard/requests`}
+                href={`/student-dashboard/notifications`}
                 className="text-[#33A852] ml-4"
               >
                 Notifications
@@ -115,7 +115,7 @@ export default function StudentNavBar({ session }: { session: any }) {
                   <Mail size={16} />
                 </div>
                 <Link
-                  href={`/student-dashboard/requests`}
+                  href={`/student-dashboard/notifications`}
                   className="bg-slate-300 p-2 rounded-lg flex items-center justify-center"
                 >
                   <Bell size={14} />
