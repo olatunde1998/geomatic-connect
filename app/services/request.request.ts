@@ -1,4 +1,5 @@
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 // GET(READ) REQUEST
 export const GetAllNotifications = async (
@@ -21,19 +22,24 @@ export const GetAllNotifications = async (
 };
 
 // GET(READ) ALL COMPANIES REQUEST
-export const GetCompaniesRequest = async (token: any, state: any) => {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/users/companies?state=${state}`,
-    {
-      maxBodyLength: Infinity,
-      headers: {
-        Accept: "application/vnd.connect.v1+json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  const data = await response.data;
-  return data;
+export const GetCompaniesRequest = async (token: string, state: string) => {
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/users/companies?state=${state}`,
+      {
+        maxBodyLength: Infinity,
+        headers: {
+          Accept: "application/vnd.connect.v1+json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.data;
+    return data;
+  } catch (error: any) {
+    console.log(error, "this is the error here===");
+    throw error;
+  }
 };
 
 // GET(READ) ALL STUDENTS REQUEST
