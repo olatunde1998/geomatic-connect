@@ -21,9 +21,9 @@ export const GetAllNotifications = async (
 };
 
 // GET(READ) ALL COMPANIES REQUEST
-export const GetCompaniesRequest = async (token: any) => {
+export const GetCompaniesRequest = async (token: any, state: any) => {
   const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/users/companies`,
+    `${process.env.NEXT_PUBLIC_BASEURL}/api/users/companies?state=${state}`,
     {
       maxBodyLength: Infinity,
       headers: {
