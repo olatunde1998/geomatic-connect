@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import SendRequest from "../student-components/SendRequest";
 import { CardSkeleton } from "@/app/components/skeletons/CardSkeleton";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface CompanyCardProps {
   token: any;
@@ -14,7 +16,7 @@ interface CompanyCardProps {
   showSendRequest?: any;
   setShowSendRequest?: any;
   userData?: any;
-  selectedState?: any
+  selectedState?: any;
 }
 
 export default function CompanyCard({
@@ -24,14 +26,24 @@ export default function CompanyCard({
   showSendRequest,
   setShowSendRequest,
   userData,
-  selectedState
+  selectedState,
 }: CompanyCardProps) {
-  const { data: companiesData, isLoading } = useQuery({
+  const router = useRouter();
+  const {
+    data: companiesData,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["getCompaniesApi", selectedState],
     queryFn: () => GetCompaniesRequest(token, selectedState),
   });
 
-  console.log(companiesData, "this is the userData===");
+  if (isError) {
+    // router.push("/login");
+    toast.error("Session expired, Please log in again.");
+    return null; // Prevent further rendering
+  }
+
   return (
     <>
       {isLoading ? (
@@ -77,7 +89,9 @@ export default function CompanyCard({
                 </div>
 
                 <p className="font-medium my-3">About</p>
-                <p className="font-light text-sm text-ellipsis  line-clamp-2">{item?.aboutMe}</p>
+                <p className="font-light text-sm text-ellipsis  line-clamp-2">
+                  {item?.aboutMe}
+                </p>
                 <div className="space-y-2 my-3 font-light text-sm">
                   <div className="flex items-center gap-2">
                     <GraduationCap size={24} />
