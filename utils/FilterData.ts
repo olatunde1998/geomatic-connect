@@ -9,6 +9,7 @@ export const specializationData = [
 
 // State data
 export const stateData = [
+  { id: 0, label: "All State", value: "" },
   { id: 1, label: "Abia", value: "Abia State" },
   { id: 2, label: "Adamawa", value: "Adamawa State" },
   { id: 3, label: "Akwa Ibom", value: "Akwa-ibom State" },
