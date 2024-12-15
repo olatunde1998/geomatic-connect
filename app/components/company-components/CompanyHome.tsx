@@ -51,11 +51,6 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
             </div>
           </div>
         </div>
-        {/* <div>
-          <p className="cursor-pointer border border-[#33A852] p-3 w-[230px]  text-center text-[#33A852]">
-            Approved Request
-          </p>
-        </div> */}
       </div>
 
       {/* ====CARD GOES HERE ===== */}
