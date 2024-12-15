@@ -84,6 +84,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
           showSendRequest={showSendRequest}
           setShowSendRequest={setShowSendRequest}
           userData={userData}
+          selectedState={selectedState}
         />
       </div>
       <Modal show={showSubscribe} onClose={() => setShowSubscribe(false)}>
