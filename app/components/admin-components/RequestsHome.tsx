@@ -18,7 +18,7 @@ export default function RequestsHome({ token }: RequestsHomeProps) {
   });
 
   return (
-    <main className="flex min-h-screen flex-col pt-32">
+    <main className="flex min-h-screen flex-col pt-24 lg:pt-32">
       <div className="w-full">
         <p className="text-gray-600 text-lg font-semibold">
           Manage Notifications

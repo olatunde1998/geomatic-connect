@@ -8,7 +8,7 @@ export default async function NotificationPage() {
   const userId = session?.user?._id;
   if (!session?.user) redirect("/login");
   return (
-    <main className="min-h-screen p-6 pt-32 lg:p-12 xl:p-20 lg:pt-32 xl:pt-32 font-sans text-md">
+    <main className="min-h-screen p-6 pt-24 lg:p-12 xl:p-20 lg:pt-32 xl:pt-32 font-sans text-md">
       <div className="w-full font-sans text-md ">
         <p className="text-2xl font-bold mb-2">Notification</p>
         <p className="max-w-[550px] leading-8 font-light">

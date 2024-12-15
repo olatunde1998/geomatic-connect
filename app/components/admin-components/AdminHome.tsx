@@ -25,7 +25,7 @@ export default function AdminHome({ token }: AdminHomeProps) {
 
   return (
     <>
-      <main className="flex min-h-screen flex-col pt-32">
+      <main className="flex min-h-screen flex-col pt-24 lg:pt-32">
         <div className="md:flex items-center md:space-x-4">
           <div className="w-full">
             <p className="text-gray-600 text-lg font-semibold">Manage Users</p>
