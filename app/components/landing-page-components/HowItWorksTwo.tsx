@@ -15,7 +15,7 @@ export default function HowItWorksTwo() {
       </div>
 
       {/* ==== Steps Section ==== */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 place-items-center gap-4 xl:gap-12">
+      <div className="grid grid-cols-2 lg:grid-cols-4 place-items-center gap-4 xl:gap-12 mx-4">
         <div className="bg-[#F2F6F6] border border-slate-300 p-6 rounded-lg max-w-[300px]">
           <p className="text-2xl text-[#014751] font-bold border border-[#014751] p-4 rounded-full bg-white w-10 h-10 text-center flex justify-center items-center">1</p>
           <p className="font-medium mt-10 mb-4 text-base">Create Your Free Account with us</p>
