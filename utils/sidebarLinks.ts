@@ -62,7 +62,7 @@ export const adminMobileRoutes = [
   },
   {
     name: "Notifications",
-    href: "/admin-dashboard/notifications",
+    href: "/admin-dashboard/requests",
   },
   {
     name: "Settings",
