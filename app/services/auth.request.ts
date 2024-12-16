@@ -9,7 +9,7 @@ export const RegisterRequest = async (body: any) => {
       {
         headers: {
           Accept: "application/vnd.connect.v1+json",
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
       }
     );
