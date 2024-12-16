@@ -15,7 +15,7 @@ interface UsersData {
   createdAt?: any;
   role?: string;
   files?: string[];
-  active: string;
+  isVerified: string;
   meta?: string[];
 }
 
@@ -198,20 +198,20 @@ export default function UsersList({
       cell: (info) => <span>{info?.row?.original?.email}</span>,
       header: () => <span>Email</span>,
     }),
-    columnHelper.accessor("active", {
+    columnHelper.accessor("isVerified", {
       header: () => <span>Status</span>,
       cell: (info) => (
         <div
           className={`
             ${
-              info?.row?.original?.active
+              info?.row?.original?.isVerified
                 ? "bg-[#D1FADF] text-[#079455] px-3 w-fit"
-                : "bg-[#f3392f] text-[#6C748B] px-3 w-fit"
+                : "bg-[#f3392f] text-[#FFFFFF] px-3 w-fit"
             } text-center p-1 rounded-2xl 
             `}
         >
           <p className="capitalize">
-            {info?.row?.original?.active ? "Active" : "Inactive"}
+            {info?.row?.original?.isVerified ? "Active" : "Inactive"}
           </p>
         </div>
       ),
