@@ -1,11 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import { BiHide, BiShow } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useQueryClient } from "@tanstack/react-query";
-import { X } from "lucide-react";
+import { Upload, X } from "lucide-react";
 import { RegisterRequest } from "@/app/services/auth.request";
 import { toast } from "react-toastify";
 import "react-phone-number-input/style.css";
@@ -29,19 +28,13 @@ const schema = yup.object().shape({
     .string()
     .required("Email is required")
     .email("Invalid Email format"),
-  // password: yup
-  //   .string()
-  //   .required("Password is required")
-  //   .min(6, "Password must be at least 6 characters")
-  //   .max(32, "Password must not exceed 32 characters"),
   state: yup.string().required("State is required"),
   professionalId: yup.string().required("Professional ID is required"),
-  mobileNumber: yup.number().required("Mobile number is required"),
+  mobileNumber: yup.string().required("Mobile number is required"),
 });
 
 export default function AddUser({ setShowAddUser }: AddUserProps) {
   const [isSaving, setIsSaving] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const [userImage, setUserImage] = useState<string | undefined>(undefined);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -81,25 +74,31 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
   //Create Company submission Logic
   const onSubmitHandler = async (data: any) => {
     setIsSaving(true);
-    const body = {
-      companyName: data?.companyName,
-      companyAddress: data?.companyAddress,
-      email: data?.email,
-      aboutMe: data?.aboutMe,
-      state: data?.state,
-      professionalId: data?.professionalId,
-      phoneNumber: data?.mobileNumber,
-      password: "987654321",
-      role: "Company",
-    };
     try {
-      const response = await RegisterRequest(body);
+      const formData = new FormData();
+      formData.append("companyName", data?.companyName);
+      formData.append("companyAddress", data.companyAddress);
+      formData.append("email", data?.email);
+      formData.append("aboutMe", data?.aboutMe);
+      formData.append("state", data?.state);
+      formData.append("professionalId", data?.professionalId);
+      formData.append("phoneNumber", data?.mobileNumber);
+      formData.append("password", "987654321");
+      formData.append("role", "Company");
+
+      // Only append files if they are selected
+      if (selectedFile) {
+        formData.append("avatarImage", selectedFile);
+      }
+
+      const response = await RegisterRequest(formData);
       console.log(response?.message, "this is message");
       toast.success(response?.message);
       await queryClient.invalidateQueries({ queryKey: ["getUsersApi"] });
       setShowAddUser(false);
     } catch (error: any) {
       console.log(error.response.message, "this is the error here===");
+      toast.error(error.response?.data?.message || "An error occurred");
     } finally {
       setIsSaving(false);
     }
@@ -327,14 +326,10 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                           />
                         </div>
                       ) : (
-                        <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
-                          <Image
-                            // src={userProfileData?.data?.avatarImage}
-                            src=""
-                            alt="user avatar"
-                            width={100}
-                            height={100}
-                            className="rounded-full w-[45px] h-[35px]"
+                        <div className="border-2 border-slate-800 rounded-full flex items-center justify-center mx-auto w-[45px] h-[45px]">
+                          <Upload
+                            size={24}
+                            className="rounded-full w-[45px] h-[24px]"
                           />
                         </div>
                       )}
