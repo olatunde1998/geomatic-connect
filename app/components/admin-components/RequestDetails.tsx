@@ -1,12 +1,11 @@
 import { X } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import SuccessMessage from "../company-components/SuccessMessage";
 import { AdminSendRequestToCompany } from "@/app/services/request.request";
+import Image from "next/image";
+import UserAvatar from "@/public/images/profile-pic.png";
 
 interface RequestDetailsProps {
   token?: any;
@@ -63,49 +62,117 @@ export default function RequestDetails({
           <div>
             <div className="mb-8 flex items-center justify-between border-b border-slate-300 pb-8">
               <p className="text-xl">Forward a Request</p>
-              <X onClick={() => setShowSendRequest(false)} />
+              <X
+                onClick={() => setShowSendRequest(false)}
+                className="cursor-pointer"
+              />
             </div>
           </div>
 
-          {/* ===FORM SECTION === */}
+          <div className="my-10 rounded-md md:px-6 py-6 bg-gray-100 flex justify-between">
+            <div>
+              <p className="font-bold text-center md:text-left">
+                {notification?.studentId?.fullName} Avatar
+              </p>
+              <div className="items-center flex flex-col justify-center md:flex-row md:flex md:items-center md:justify-start mt-6 max-w-[400px]">
+                {notification?.studentId?.avatarImage ? (
+                  <div className="relative rounded-full mr-10 w-[100px] h-[100px] flex items-center justify-center">
+                    <Image
+                      src={notification?.studentId?.avatarImage}
+                      fill
+                      alt="user avatar"
+                      className="rounded-full"
+                    />
+                  </div>
+                ) : (
+                  <div className="mb-4  mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[100px] md:mb-0 md:mr-6">
+                    <Image
+                      src={UserAvatar}
+                      width={100}
+                      height={100}
+                      className="w-full h-full"
+                      alt="avatar picture"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="flex flex-col justify-between">
+              <a
+                href={`${notification?.studentId?.documentFile}`}
+                rel="noopener noreferrer"
+                target="_blank"
+                className="font-semibold text-right mt-2 inline-block text-[#33A852] underline"
+              >
+                View Document
+              </a>
+              <button
+                disabled={isForwarding}
+                onClick={() => handleForwardRequest()}
+                className="w-full px-2 py-1 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer"
+              >
+                <span className="text-sm md:text-base">
+                  {isForwarding ? "Forwarding...." : "Forward Request"}
+                </span>
+              </button>
+            </div>
+          </div>
+
           <section className="items-start space-y-6">
-            {/* === Full Name === */}
-            <div>
-              <div className="flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100 border-[1.3px] border-slate-300">
-                <p className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
-                  {notification?.studentId?.fullName}
-                </p>
+            <section className="md:grid md:grid-cols-2 gap-3">
+              {/* === Full Name === */}
+              <div>
+                <span className="text-sm text-gray-500 font-normal">
+                  Full Name
+                </span>
+                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
+                  <p className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                    {notification?.studentId?.fullName}
+                  </p>
+                </div>
               </div>
-            </div>
-            {/* === Email Address === */}
-            <div>
-              <div className="flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100 border-[1.3px] border-slate-300">
-                <p className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
-                  {notification?.email}
-                </p>
+              {/* === Email Address === */}
+              <div>
+                <span className="text-sm text-gray-500 font-normal">Email</span>
+                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
+                  <p className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                    {notification?.email}
+                  </p>
+                </div>
               </div>
-            </div>
+            </section>
 
-            {/* === Institution Name === */}
-            <div>
-              <div className="flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100 border-[1.3px] border-slate-300">
-                <p className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
-                  {notification?.institutionName}
-                </p>
+            <section className="md:grid md:grid-cols-2 gap-3">
+              {/* === Institution Name === */}
+              <div>
+                <span className="text-sm text-gray-500 font-normal">
+                  Institution Attended
+                </span>
+                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
+                  <p className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                    {notification?.institutionName}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* === Request Track (time) === */}
-            <div>
-              <div className="flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100 border-[1.3px] border-slate-300">
-                <p className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
-                  {notification?.trackPeriod}
-                </p>
+              {/* === Request Track (time) === */}
+              <div>
+                <span className="text-sm text-gray-500 font-normal">
+                  Tracking Period
+                </span>
+                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
+                  <p className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                    {notification?.trackPeriod}
+                  </p>
+                </div>
               </div>
-            </div>
+            </section>
             {/* === (Purpose of Request) Training   === */}
             <div>
-              <div className="flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100 border-[1.3px] border-slate-300">
+              <span className="text-sm text-gray-500 font-normal">
+                Purpose of Request
+              </span>
+              <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
                 <p className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
                   {notification?.requestPurpose}
                 </p>
@@ -114,9 +181,12 @@ export default function RequestDetails({
 
             {/* === Description  === */}
             <div>
-              <div className="flex flex-col w-full pt-2 px-4 pb-1 border-[1.3px] border-slate-300">
+              <span className="text-sm text-gray-500 font-normal">
+                Description Info.
+              </span>
+              <div className="bg-gray-100 flex flex-col w-full pt-2 px-4 pb-1 rounded-md border-[1.3px] border-slate-300">
                 <textarea
-                  className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
+                  className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder text-black bg-gray-100"
                   placeholder="Description"
                   rows={8}
                   cols={60}
@@ -129,27 +199,18 @@ export default function RequestDetails({
           {/* === Submit Button === */}
           <div className="flex justify-between gap-6">
             <button
-              disabled={isForwarding}
-              onClick={() => handleForwardRequest()}
-              className="w-full mt-10  px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer"
-            >
-              <span className="text-base">
-                {isForwarding ? "Forwarding...." : "Forward Request"}
-              </span>
-            </button>
-            <button
               disabled={isSaving}
-              className="w-full mt-10  px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+              className="w-full mt-10 px-1 py-1.5 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
             >
-              <span className="text-base">
+              <span className="text-sm md:text-base">
                 {isSaving ? "Approving...." : "Approve Request"}
               </span>
             </button>
             <button
               disabled={isSaving}
-              className="w-full mt-10  px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316]"
+              className="w-full mt-10 px-1.5 py-1.5 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316]"
             >
-              <span className="text-base">
+              <span className="text-sm md:text-base">
                 {isSaving ? "Declining...." : "Decline Request"}
               </span>
             </button>
