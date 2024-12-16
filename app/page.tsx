@@ -40,14 +40,14 @@ export default function Home() {
       <div className="w-full  flex-col items-center text-sm lg:flex">
         {/* === HERO SECTION === */}
         <div className="bg-[#F2F6F6] lg:pt-8 w-full  flex-col items-center text-sm lg:flex">
-          <div className=" w-full max-w-7xl text-sm  md:px-6">
+          <div className="max-w-7xl text-sm md:px-6">
             <Navbar />
             <Hero />
           </div>
         </div>
         {/* === HOW IT WORKS SECTION === */}
         <div className="w-full flex-col items-center text-sm lg:flex">
-          <div className="w-full max-w-7xl text-sm  md:px-6">
+          <div className="max-w-7xl text-sm md:px-6">
             {/* <HowItWorks /> */}
             <HowItWorksTwo/>
           </div>
@@ -56,9 +56,9 @@ export default function Home() {
         {/* === CONNECT SERVICE SECTION === */}
         <div
           id="about-id"
-          className="w-full  flex-col items-center text-sm lg:flex bg-[#638E96]"
+          className="w-full flex-col items-center text-sm lg:flex bg-[#638E96]"
         >
-          <div className=" w-full max-w-7xl text-sm  md:px-6 pb-10 md:pb-0">
+          <div className="max-w-7xl mx-auto text-sm px-4 py-10">
             <ConnectServices />
           </div>
         </div>
@@ -80,9 +80,9 @@ export default function Home() {
         {/* === FAQs === */}
         <div
           id="faq-id"
-          className="w-full  flex-col items-center text-sm lg:flex py-20"
+          className="w-full flex-col items-center text-sm lg:flex pb-20 md:py-20"
         >
-          <div className=" w-full max-w-7xl text-sm ">
+          <div className="w-full max-w-7xl text-sm ">
             <Faq />
           </div>
         </div>
@@ -92,7 +92,7 @@ export default function Home() {
           id="contactUs-id"
           className="bg-[#F2F6F6] w-full text-sm lg:flex flex-col items-center"
         >
-          <div className=" w-full max-w-7xl text-sm  md:px-6">
+          <div className="max-w-7xl text-sm  md:px-6">
             <ContactUs />
           </div>
         </div>

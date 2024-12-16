@@ -1,8 +1,6 @@
 "use client";
-
 import Image from "next/image";
 import Contact from "@/public/images/contact.png";
-import { MdPhone } from "react-icons/md";
 
 export default function ContactUs() {
   return (
@@ -28,11 +26,11 @@ export default function ContactUs() {
             We&apos;ll Connect You With in 48hours.
           </div>
           <div className="lg:flex  gap-3  h-fit mt-6 xl:ml-28">
-            <p className="p-3 bg-[#014751] text-[#FFFFFF] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center cursor-pointer text-sm">
+            <p className="p-3 lg:p-4 bg-[#014751] text-[#FFFFFF] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center cursor-pointer text-sm">
               Contact Us
             </p>
-            <p className="p-3 mt-2 md:mt-3 lg:mt-0 bg-[#FFFFFF] text-xs border-[1.3px] border-[#014751] text-[#014751] rounded-xl w-[150px] md:w-[220px] text-center flex items-center justify-center font-semibold cursor-pointer">
-              <MdPhone color="#014751" className="mr-3 hidden md:block" /> (+234) 8133642798
+            <p className="p-3 lg:p-4 mt-2 md:mt-3 lg:mt-0 bg-[#FFFFFF] text-xs border-[1.3px] border-[#014751] text-[#014751] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center font-semibold cursor-pointer">
+              Register Now
             </p>
           </div>
         </section>

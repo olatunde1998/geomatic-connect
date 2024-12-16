@@ -11,10 +11,10 @@ export default function Testimonial() {
       <main className="py-14 px-6 xl:py-20 w-full">
         {/* ====Section One ==== */}
         <div className="text-center">
-          <p className="text-xl  font-extrabold lg:text-3xl text-[#014751]">
+          <p className="text-xl  font-extrabold md:text-3xl xl:text-4xl text-[#014751]">
             Testimonials
           </p>
-          <p className="text-md lg:text-lg w-[250px] lg:w-[300px] mx-auto mt-3">
+          <p className="text-md md:text-base lg:text-lg w-[250px] lg:w-[300px] mx-auto mt-3">
             What Do Happy Clients Say About Working With Us?
           </p>
         </div>
@@ -48,7 +48,7 @@ export default function Testimonial() {
               width={100}
               height={100}
               priority
-              className="w-[79px] h-[30px] md:w-[158px] md:h-[60px] object-cover"
+              className="w-[79px] h-[30px] lg:w-[158px] lg:h-[60px] object-cover"
             />
             <Image
               src={Facebook}
@@ -56,7 +56,7 @@ export default function Testimonial() {
               width={100}
               height={100}
               priority
-              className="w-[73px] h-[32px] md:w-[145px] md:h-[63px] object-cover"
+              className="w-[73px] h-[32px] lg:w-[145px] lg:h-[63px] object-cover"
             />
             <Image
               src={TrustPilot}
@@ -64,7 +64,7 @@ export default function Testimonial() {
               width={100}
               height={100}
               priority
-              className="w-[79px] h-[36px] md:w-[158px] md:h-[71px] object-cover"
+              className="w-[79px] h-[36px] lg:w-[158px] lg:h-[71px] object-cover"
             />
           </div>
         </section>

@@ -10,7 +10,7 @@ export default function TestimonialCard() {
   return (
     <>
       <div>
-        <div className="w-[280px] md:w-[430px] px-6 py-8 md:py-12 md:px-12 border border-slate-300 bg-[#F2F6F6] rounded-xl">
+        <div className="w-[280px] md:w-[400px] lg:w-[430px] px-6 py-8 md:py-12 md:px-12 border border-slate-300 bg-[#F2F6F6] rounded-xl">
           <div className="flex gap-3 ">
             <div>
               <Image

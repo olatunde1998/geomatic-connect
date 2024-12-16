@@ -57,7 +57,7 @@ export default function HowItWorks() {
               Make Payment
             </h3>
             <p className="lg:text-xs xl:text-sm text-gray-600">
-            Once you accept our fair all-cash offer, we’ll sign the contract
+            Once you accept our fair all-cash offer, we&apos;ll sign the contract
             and schedule a closing date of your choice.
             </p>
           </div>
@@ -71,7 +71,7 @@ export default function HowItWorks() {
           <div className="max-w-xs mx-auto">
             <h3 className="text-lg font-semibold mb-2">Accept The Offer</h3>
             <p className="lg:text-xs xl:text-sm text-gray-600">
-              Once you accept our fair all-cash offer, we’ll sign the contract
+              Once you accept our fair all-cash offer, we&apos;ll sign the contract
               and schedule a closing date of your choice.
             </p>
           </div>
