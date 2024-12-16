@@ -8,6 +8,7 @@ import SendRequest from "../student-components/SendRequest";
 import { CardSkeleton } from "@/app/components/skeletons/CardSkeleton";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import UserAvatar from "@/public/images/profile-pic.png";
 
 interface CompanyCardProps {
   token: any;
@@ -72,16 +73,26 @@ export default function CompanyCard({
                 </div>
                 <div className="p-6 border-b-[1.3px] border-slate-200 text-black flex flex-col items-center">
                   <div>
-                    <Image
-                      // src="/images/fss-logo.png"
-                      src={item?.avatarImage}
-                      alt="profile image"
-                      width={100}
-                      height={100}
-                      priority
-                      className="w-[100px] h-[100px] object-cover rounded-full"
-                    />
+                    {item?.avatarImage ? (
+                      <Image
+                        src={item?.avatarImage}
+                        alt="profile image"
+                        width={100}
+                        height={100}
+                        priority
+                        className="w-[100px] h-[100px] rounded-full object-cover"
+                      />
+                    ) : (
+                      <Image
+                        src={UserAvatar}
+                        width={100}
+                        height={100}
+                        className="w-[100px] h-[100px] rounded-full object-cover"
+                        alt="avatar picture"
+                      />
+                    )}
                   </div>
+
                   <p className="text-xl font-medium text-center">
                     <span>{item?.companyName} </span>
                   </p>

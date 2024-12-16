@@ -11,7 +11,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, Upload } from "lucide-react";
 
 interface SettingsProps {
   token?: String;
@@ -202,11 +202,11 @@ export default function Settings({ token, userId }: SettingsProps) {
             {/* ====About Company === */}
             <div className="mt-3">
               <span className="text-sm font-medium">About Company</span>
-              <div className={`${
-                    errors.aboutMe
-                      ? "border-[1.3px] border-red-500"
-                      : ""
-                  } flex flex-col w-full pt-2 px-4 pb-1 border border-slate mt-1`}>
+              <div
+                className={`${
+                  errors.aboutMe ? "border-[1.3px] border-red-500" : ""
+                } flex flex-col w-full pt-2 px-4 pb-1 border border-slate mt-1`}
+              >
                 <textarea
                   className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-sm leading-8"
                   placeholder="Description"
@@ -250,13 +250,10 @@ export default function Settings({ token, userId }: SettingsProps) {
                           />
                         </div>
                       ) : (
-                        <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
-                          <Image
-                            src={userProfileData?.data?.avatarImage}
-                            alt="user avatar"
-                            width={100}
-                            height={100}
-                            className="rounded-full w-[45px] h-[35px]"
+                        <div className="border-slate-800 border-[1.3px] border-dashed rounded-full relative mx-auto flex items-center justify-center w-[45px] h-[45px]">
+                          <Upload
+                            size={24}
+                            className="rounded-full w-[45px] h-[24px]"
                           />
                         </div>
                       )}

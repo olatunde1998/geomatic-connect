@@ -12,6 +12,7 @@ import { Modal } from "@/app/components/modals/Modal";
 import { CardSkeleton } from "@/app/components/skeletons/CardSkeleton";
 import ApproveMessage from "@/app/components/company-components/ApproveMessage";
 import DeclineMessage from "@/app/components/company-components/DeclineMessage";
+import UserAvatar from "@/public/images/profile-pic.png";
 
 interface StudentCardProps {
   token: any;
@@ -76,15 +77,24 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
               <div className="max-w-[400px] p-6 border border-slate-300 bg-white">
                 <div className="p-6 border-b-[1.3px] border-slate-200 text-black flex flex-col items-center">
                   <div>
-                    <Image
-                      // src="/images/profile-pic.png"
-                      src={item?.studentId?.avatarImage}
-                      alt="profile image"
-                      width={100}
-                      height={100}
-                      priority
-                      className="w-[100px] h-[100px] rounded-full object-cover"
-                    />
+                    {item?.studentId?.avatarImage ? (
+                      <Image
+                        src={item?.studentId?.avatarImage}
+                        alt="profile image"
+                        width={100}
+                        height={100}
+                        priority
+                        className="w-[100px] h-[100px] rounded-full object-cover"
+                      />
+                    ) : (
+                      <Image
+                        src={UserAvatar}
+                        width={100}
+                        height={100}
+                        className="w-[100px] h-[100px] rounded-full object-cover"
+                        alt="avatar picture"
+                      />
+                    )}
                   </div>
                   <p className="text-xl font-medium">
                     <span>{item?.studentId?.fullName}</span>
@@ -96,7 +106,7 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
 
                 <p className="font-medium my-3">About</p>
                 <p className="font-light text-sm text-ellipsis  line-clamp-2">
-                {item?.studentId?.aboutMe}
+                  {item?.studentId?.aboutMe}
                 </p>
                 <div className="space-y-2 my-3 font-light text-sm">
                   <div className="flex items-center gap-2">

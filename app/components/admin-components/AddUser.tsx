@@ -326,7 +326,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                           />
                         </div>
                       ) : (
-                        <div className="border-2 border-slate-800 rounded-full flex items-center justify-center mx-auto w-[45px] h-[45px]">
+                        <div className="border-slate-800 border-[1.3px] border-dashed rounded-full flex items-center justify-center mx-auto w-[45px] h-[45px]">
                           <Upload
                             size={24}
                             className="rounded-full w-[45px] h-[24px]"

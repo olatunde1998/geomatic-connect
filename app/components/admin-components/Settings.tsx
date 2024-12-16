@@ -11,7 +11,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, Upload } from "lucide-react";
 
 interface SettingsProps {
   token?: String;
@@ -190,8 +190,8 @@ export default function Settings({ token, userId }: SettingsProps) {
           </label>
         </div>
 
-       {/* =====Profile Picture ===== */}
-       <section>
+        {/* =====Profile Picture ===== */}
+        <section>
           <div className="border-[0.5px] border-slate-300 px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
             <p className="text-sm font-medium">Profile picture</p>
             <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[0.6px] border-slate-300 mt-4 cursor-pointer">
@@ -221,13 +221,10 @@ export default function Settings({ token, userId }: SettingsProps) {
                       />
                     </div>
                   ) : (
-                    <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
-                      <Image
-                        src={userProfileData?.data?.avatarImage}
-                        alt="user avatar"
-                        width={100}
-                        height={100}
-                        className="rounded-full w-[45px] h-[35px]"
+                    <div className="border-slate-800 border-[1.3px] border-dashed rounded-full relative mx-auto flex items-center justify-center w-[45px] h-[45px]">
+                      <Upload
+                        size={24}
+                        className="rounded-full w-[45px] h-[24px]"
                       />
                     </div>
                   )}
