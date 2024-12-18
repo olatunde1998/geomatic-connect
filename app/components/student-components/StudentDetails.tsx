@@ -9,6 +9,8 @@ import { useQuery } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GetUserProfileRequest } from "@/app/services/users.request";
+import { ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface StudentDetailsProps {
   companyId?: any;
@@ -22,9 +24,10 @@ export default function StudentDetails({
   const userId = session?.user?._id;
   const token = session?.user.token;
   const [showSendRequest, setShowSendRequest] = useState(false);
+  const router = useRouter();
 
   const { data: userData } = useQuery({
-    queryKey: ["getUserByIdApi"],
+    queryKey: ["getCompanyDetailsIdApi"],
     queryFn: () => GetUserByIdRequest(companyId, token),
   });
 
@@ -33,17 +36,26 @@ export default function StudentDetails({
     queryFn: () => GetUserProfileRequest(userId, token),
   });
 
-  console.log(userData, "this is userData==");
   return (
     <>
-      <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] lg:flex p-4  lg:my-20 xl:my-10">
-        <p className="py-2 cursor-pointer md:border-b-[1.8px] border-slate-500 text-2xl font-bold">
-          Profile
-        </p>
+      <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] flex p-2 gap-3  lg:my-20 xl:my-10">
+        <div className="flex items-center">
+          <p
+            onClick={() => router.back()}
+            className="py-2 cursor-pointer text-base md:text-xl font-bold text-gray-400"
+          >
+            Home
+          </p>
+          <ChevronRight size={24} className="mx-0.5" />
+          <p className="py-2 cursor-text text-base  md:text-xl font-bold">
+            Profile
+          </p>
+        </div>
+
         <div>
           <p
             onClick={() => setShowSendRequest(true)}
-            className="cursor-pointer rounded-md border p-3 w-[230px]  text-center text-white bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+            className="cursor-pointer rounded-md border p-3 w-[140px] md:w-[150px]  text-center text-white bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
           >
             Send Request
           </p>
@@ -55,7 +67,7 @@ export default function StudentDetails({
           <section>
             <div className="flex flex-col-reverse md:grid grid-cols-2 md:gap-4">
               <div className="w-full h-full rounded-md">
-                <Map companyAddress={userData?.data?.companyAddress}/>
+                <Map companyAddress={userData?.data?.companyAddress} />
               </div>
               <div>
                 <div className="grid grid-cols-2">
@@ -122,10 +134,10 @@ export default function StudentDetails({
                   </p>
                 </div>
 
-                <div className="mt-10">
+                <div className="mt-6 mb-10">
                   <p
                     onClick={() => setShowSendRequest(true)}
-                    className="cursor-pointer rounded-md border p-3 w-[230px]  text-center text-white bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                    className="cursor-pointer rounded-md border p-3 w-[140px] md:w-[150px]  text-center text-white bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
                   >
                     Send Request
                   </p>
