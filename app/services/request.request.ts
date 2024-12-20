@@ -6,18 +6,26 @@ export const GetAllNotifications = async (
   pageParam = 1,
   limit: number
 ) => {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/requests?pageNumber=${pageParam}&limit=${limit}`,
-    {
-      maxBodyLength: Infinity,
-      headers: {
-        Accept: "application/vnd.connect.v1+json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  const data = await response.data;
-  return data;
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/requests?pageNumber=${pageParam}&limit=${limit}`,
+      {
+        maxBodyLength: Infinity,
+        headers: {
+          Accept: "application/vnd.connect.v1+json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.data;
+    return data;
+  } catch (error: any) {
+    // Handle the error appropriately
+    console.error("Error fetching notifications:", error.message || error);
+    throw new Error(
+      error.response?.data?.message || "Failed to fetch notifications."
+    );
+  }
 };
 
 // GET(READ) ALL COMPANIES REQUEST
@@ -36,41 +44,69 @@ export const GetCompaniesRequest = async (token: string, state: string) => {
     const data = await response.data;
     return data;
   } catch (error: any) {
-    console.log(error, "this is the error here===");
-    throw error;
+    // Log detailed error information for debugging
+    console.error(
+      `Error fetching companies in state ${state}:`,
+      error.message || error
+    );
+
+    // Throw a custom error message
+    throw new Error(
+      error.response?.data?.message ||
+        `Failed to fetch companies in state ${state}.`
+    );
   }
 };
 
 // GET(READ) ALL STUDENTS REQUEST
 export const GetStudentsRequest = async (token: any) => {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/users/students`,
-    {
-      maxBodyLength: Infinity,
-      headers: {
-        Accept: "application/vnd.connect.v1+json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  const data = await response.data;
-  return data;
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/users/students`,
+      {
+        maxBodyLength: Infinity,
+        headers: {
+          Accept: "application/vnd.connect.v1+json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.data;
+    return data;
+  } catch (error: any) {
+    // Handle the error appropriately
+    console.error("Error fetching students' requests:", error.message || error);
+    throw new Error(
+      error.response?.data?.message || "Failed to fetch students' requests."
+    );
+  }
 };
 
 // GET USER BY ID REQUEST
-export const GetUserByIdRequest = async (userID: any, token: any) => {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/users/${userID}`,
-    {
-      maxBodyLength: Infinity,
-      headers: {
-        Accept: "application/vnd.connect.v1+json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  const data = await response.data;
-  return data;
+export const GetUserByIdRequest = async (userId: any, token: any) => {
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/users/${userId}`,
+      {
+        maxBodyLength: Infinity,
+        headers: {
+          Accept: "application/vnd.connect.v1+json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.data;
+    return data;
+  } catch (error: any) {
+    // Handle the error appropriately
+    console.error(
+      `Error fetching user with ID ${userId}:`,
+      error.message || error
+    );
+    throw new Error(
+      error.response?.data?.message || `Failed to fetch user with ID ${userId}.`
+    );
+  }
 };
 
 //MAKE A REQUEST (Send request to Admin)
@@ -222,18 +258,30 @@ export const GetStudentsByCompanyRequest = async (
   companyId: any,
   token: any
 ) => {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/requests/company/${companyId}`,
-    {
-      maxBodyLength: Infinity,
-      headers: {
-        Accept: "application/vnd.connect.v1+json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  const data = await response.data;
-  return data;
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/requests/company/${companyId}`,
+      {
+        maxBodyLength: Infinity,
+        headers: {
+          Accept: "application/vnd.connect.v1+json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.data;
+    return data;
+  } catch (error: any) {
+    // Handle the error appropriately
+    console.error(
+      `Error fetching students for company with ID ${companyId}:`,
+      error.message || error
+    );
+    throw new Error(
+      error.response?.data?.message ||
+        `Failed to fetch students for company with ID ${companyId}.`
+    );
+  }
 };
 
 // GET COMPANIES BY STUDENT ID REQUEST
@@ -241,16 +289,28 @@ export const GetCompaniesByStudentRequest = async (
   studentId: any,
   token: any
 ) => {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/requests/student/${studentId}`,
-    {
-      maxBodyLength: Infinity,
-      headers: {
-        Accept: "application/vnd.connect.v1+json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  const data = await response.data;
-  return data;
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/requests/student/${studentId}`,
+      {
+        maxBodyLength: Infinity,
+        headers: {
+          Accept: "application/vnd.connect.v1+json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.data;
+    return data;
+  } catch (error: any) {
+    // Handle the error appropriately
+    console.error(
+      `Error fetching companies for student with ID ${studentId}:`,
+      error.message || error
+    );
+    throw new Error(
+      error.response?.data?.message ||
+        `Failed to fetch companies for student with ID ${studentId}.`
+    );
+  }
 };
