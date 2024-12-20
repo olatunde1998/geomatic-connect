@@ -214,7 +214,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
                 </div>
                 <ul className="flex flex-col mt-4 font-light text-sm rounded-lg space-y-3">
                   {companyMobileRoutes.map((route, index) => (
-                    <li key={index} className="block py-1 pl-2 pr-3">
+                    <li key={index} className="block py-2 pl-1.5 mx-2 pr-3 border-b border-slate-200">
                       <Link
                         onClick={() => {
                           setDropNav(false);
