@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 
 import { Modal } from "@/app/components/modals/Modal";
 import Logout from "@/app/components/auth-components/Logout";
-import { GetUserByIdRequest } from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Bell, Mail, LogOut, Settings } from "lucide-react";
