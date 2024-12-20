@@ -255,10 +255,12 @@ export default function Settings({ token, userId }: SettingsProps) {
                         onChange={handleFileChange}
                       />
 
-                      {userImage ? (
+                      {userImage || userProfileData?.data?.avatarImage ? (
                         <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
                           <Image
-                            src={userImage}
+                            src={
+                              userProfileData?.data?.avatarImage || userImage
+                            }
                             alt="user avatar"
                             width={100}
                             height={100}
@@ -291,7 +293,13 @@ export default function Settings({ token, userId }: SettingsProps) {
                     className="w-full p-3 flex  justify-between tracking-wide cursor-pointer"
                   >
                     <div className="flex w-full items-center justify-between gap-2">
-                      <p className="w-full text-center">Upload docs</p>
+                      <p className="w-full text-center flex items-center gap-6 justify-center">
+                        Upload docs{" "}
+                        <Upload
+                          size={18}
+                          className="rounded-full w-[32px] h-[18px]"
+                        />
+                      </p>
                       <input
                         type="file"
                         name="document_Image"
@@ -300,24 +308,22 @@ export default function Settings({ token, userId }: SettingsProps) {
                         className="hidden input-field"
                         onChange={handleDocumentChange}
                       />
-
-                      {userDocument && (
-                        <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
-                          <Image
-                            src={userDocument}
-                            alt="user document"
-                            width={100}
-                            height={100}
-                            className="rounded-full w-[45px] h-[35px]"
-                          />
-                        </div>
-                      )}
                     </div>
                   </label>
                 </div>
-
+                <p className="text-xs text-[#33A852] truncate">
+                  {selectedDocument?.name}
+                </p>
                 <a
-                  href={`${userProfileData?.data?.documentFile}`}
+                  href={userProfileData?.data?.documentFile || "#"}
+                  onClick={(e) => {
+                    if (!userProfileData?.data?.documentFile) {
+                      e.preventDefault();
+                      toast.error(
+                        "No available document, Kindly please upload your file"
+                      );
+                    }
+                  }}
                   rel="noopener noreferrer"
                   target="_blank"
                   className="font-semibold mt-2 w-full text-right inline-block text-[#33A852] underline"

@@ -86,31 +86,6 @@ export default function Settings({ token, userId }: SettingsProps) {
     }
   };
 
-  // Uploading document logic
-  const handleDocumentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files && files[0]) {
-      const file = files[0];
-      const fileType = file.type;
-
-      console.log(fileType, "this is the file type");
-
-      if (
-        fileType === "image/jpg" ||
-        fileType === "image/png" ||
-        fileType === "image/jpeg" ||
-        fileType === "application/pdf"
-      ) {
-        setUserDocument(URL.createObjectURL(file));
-        setSelectedDocument(file);
-      } else {
-        toast.error(
-          "Unsupported file type. Please upload a JPG, PNG, JPEG, or PDF."
-        );
-      }
-    }
-  };
-
   // Submit handler for the form
   const onSubmitHandler = async (data: any) => {
     setIsUpdating(true);
@@ -210,10 +185,10 @@ export default function Settings({ token, userId }: SettingsProps) {
                     onChange={handleFileChange}
                   />
 
-                  {userImage ? (
+                  {userImage || userProfileData?.data?.avatarImage ? (
                     <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
                       <Image
-                        src={userImage}
+                        src={userProfileData?.data?.avatarImage || userImage}
                         alt="user avatar"
                         width={100}
                         height={100}

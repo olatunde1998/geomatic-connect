@@ -52,8 +52,6 @@ export default function Settings({ token, userId }: SettingsProps) {
     queryFn: () => GetUserProfileRequest(userId, token),
   });
 
-  console.log(userProfileData, "this is userProfile here===");
-
   // REACT HOOK FORM LOGIC
   const {
     register,
@@ -239,10 +237,12 @@ export default function Settings({ token, userId }: SettingsProps) {
                         onChange={handleFileChange}
                       />
 
-                      {userImage ? (
+                      {userImage || userProfileData?.data?.avatarImage ? (
                         <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
                           <Image
-                            src={userImage}
+                            src={
+                              userProfileData?.data?.avatarImage || userImage
+                            }
                             alt="user avatar"
                             width={100}
                             height={100}
