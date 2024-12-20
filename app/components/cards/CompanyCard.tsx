@@ -41,7 +41,7 @@ export default function CompanyCard({
 
   if (isError) {
     // router.push("/login");
-    toast.error("Session expired, Please log in again.");
+    toast.error("Oops! Something went wrong. Please try again.");
     return null; // Prevent further rendering
   }
 
