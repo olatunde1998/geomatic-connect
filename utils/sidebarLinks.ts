@@ -30,8 +30,8 @@ export const companyNavItems = [
     icon: BellRing,
   },
   {
-    name: "Billing",
-    href: "/company-dashboard/pricing",
+    name: "Subscribe",
+    href: "/company-dashboard/subscribe",
     icon: CreditCard,
   },
 ];
@@ -77,15 +77,15 @@ export const companyMobileRoutes = [
   },
   {
     name: "Notifications",
-    href: "/company-dashboard/requests",
+    href: "/company-dashboard/notifications",
   },
   {
     name: "Settings",
     href: "/company-dashboard/settings",
   },
   {
-    name: "Pricing",
-    href: "/company-dashboard/pricing",
+    name: "Subscribe",
+    href: "/company-dashboard/subscribe",
   },
 ];
 
