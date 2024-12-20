@@ -69,7 +69,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed w-full z-20 top-0 left-0 border-b bg-[#F6F8FD] py-2.5 backdrop-blur-10">
-        <div className="max-w-[1100px] xl:max-w-7xl mx-auto p-2 px-4 md:px-2 flex justify-between">
+        <div className="max-w-[1100px] xl:max-w-7xl mx-auto p-2 px-4 md:px-2 flex justify-between items-center">
           {/* =======Company LOGO ==== */}
           <Link href="/" className="flex items-center">
             <Image
@@ -158,7 +158,7 @@ export default function Navbar() {
                 </div>
                 <ul className="flex flex-col p-2 font-medium rounded-lg space-y-2">
                   {mobileRoutes.map((route, index) => (
-                    <li key={index} className="block py-1 pl-2 pr-3">
+                    <li key={index} className="block py-2 pl-1.5 mx-4 pr-3 border-b border-slate-200">
                       <Link href={route.href}>{route.name}</Link>
                     </li>
                   ))}
