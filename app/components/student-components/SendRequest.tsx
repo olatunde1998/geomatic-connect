@@ -207,7 +207,7 @@ export default function SendRequest({
                   htmlFor="backgroundHistory"
                   className="text-sm text-gray-500 font-normal"
                 >
-                 Background history
+                  Cover Letter
                 </label>
                 <div
                   className={`${
