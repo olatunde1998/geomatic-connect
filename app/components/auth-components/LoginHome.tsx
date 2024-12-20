@@ -28,45 +28,43 @@ export default function LoginHome() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const signUpWithGoogle = async () => {
-    try {
-      const response = await signIn("google");
-      console.log(response, "this is response here ====");
-      if (response) {
-        toast.success(response as any);
-      }
-      toast.success("Login Successfully");
-    } catch (error: any) {
-      toast.error(error?.response?.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // const signUpWithGoogle = () => {
-  //   console.log("this is response here ====");
-  //   // window.location.href = "http://localhost:3001/auth/google/redirect", "_self";
-  //   (window.location.href =
-  //     "https://nodeauthv1server-r1kq2l3d.b4a.run/auth/google/redirect"),
-  //     "_self";
+  // const signUpWithGoogle = async () => {
+  //   try {
+  //     // Redirect to the Google OAuth endpoint
+  //     window.location.href = `${process.env.NEXT_PUBLIC_BASEURL}/auth/google`;
+  //     console.log(window.location.href, "this is here ====");
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error("Google Login Failed");
+  //   }
   // };
 
-  // const signUpWithGithub = async () => {
-  //   // const response = await signIn("github");
+  // const signUpWithGoogle = async () => {
+  //   try {
+  //     const result = await signIn("google", {
+  //       redirect: false,
+  //       callbackUrl: "/"
+  //     });
 
-  //   // const session = await getSession();
+  //     if (result?.error) {
+  //       toast.error("Google Login Failed");
+  //       return;
+  //     }
 
-  //   // No Errors
-  //   // console.log(response, "login response ==");
+  //     const session = await getSession();
 
-  //   // console.log(session?.user, "===this is the roles====");
-  //   // Check if the session contains the user data
-  //   if (session?.user) {
-  //     // console.log(session.user, "===this is the roles====");
-  //     return router.push("/student-dashboard");
-  //   } else {
-  //     // console.log("No session found after login");
-  //     return;
+  //     console.log(session, "this is session here===")
+
+  //     if (session?.user?.role === "Admin") {
+  //       router.push("/admin-dashboard");
+  //     } else if (session?.user?.role === "User") {
+  //       router.push("/student-dashboard");
+  //     } else if (session?.user?.role === "Company") {
+  //       router.push("/company-dashboard");
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error("Google Login Failed");
   //   }
   // };
 
@@ -126,7 +124,7 @@ export default function LoginHome() {
           {/* ======= Google Authentication container ====== */}
           <div
             className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
-            onClick={() => signUpWithGoogle()}
+            // onClick={() => signUpWithGoogle()}
           >
             <div>
               <Image
