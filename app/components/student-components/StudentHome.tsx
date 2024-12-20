@@ -29,21 +29,21 @@ export default function StudentHome({ session }: StudentHomeProps) {
   });
 
   // Trigger subscription modal
-  useEffect(() => {
-    const MAX_COUNT = 2;
-    const INTERVAL = 60000;
-    let count = 0;
+  // useEffect(() => {
+  //   const MAX_COUNT = 2;
+  //   const INTERVAL = 60000;
+  //   let count = 0;
 
-    const showModal = () => {
-      if (count < MAX_COUNT) {
-        setShowSubscribe(true);
-        count += 1;
-        setTimeout(showModal, INTERVAL);
-      }
-    };
-    const timeoutId = setTimeout(showModal, INTERVAL);
-    return () => clearTimeout(timeoutId);
-  }, []);
+  //   const showModal = () => {
+  //     if (count < MAX_COUNT) {
+  //       setShowSubscribe(true);
+  //       count += 1;
+  //       setTimeout(showModal, INTERVAL);
+  //     }
+  //   };
+  //   const timeoutId = setTimeout(showModal, INTERVAL);
+  //   return () => clearTimeout(timeoutId);
+  // }, []);
 
   return (
     <>
