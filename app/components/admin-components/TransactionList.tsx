@@ -166,7 +166,7 @@ export default function TransactionList({
             info?.row?.original?.companyId?.companyName}
         </span>
       ),
-      header: () => <span>FullName</span>,
+      header: () => <span>Payer&apos;s Name</span>,
     }),
     columnHelper.accessor("transactionDate", {
       cell: (info) => (
