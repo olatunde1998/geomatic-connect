@@ -1,15 +1,20 @@
 "use client";
 import { useEffect, useRef, useState, useCallback } from "react";
-import { BookCheck, CircleOff, Ellipsis, EllipsisVertical } from "lucide-react";
+import {
+  BookCheck,
+  CircleOff,
+  Ellipsis,
+  EllipsisVertical,
+  Filter,
+} from "lucide-react";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useQueryClient } from "@tanstack/react-query";
 import { Table } from "@/app/components/tables/Table";
 import { Skeleton } from "@/app/components/skeletons/Skeleton";
-import { ArrowDown, CloudDownload, File } from "lucide-react";
+import { ArrowDown, File } from "lucide-react";
 import {
   AdminApproveStudentRequest,
   AdminDeclineStudentRequest,
-  GetAllNotifications,
 } from "@/app/services/request.request";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -369,12 +374,12 @@ export default function RequestsList({
                 Notification History
               </p>
               <p className="text-sm text-[#6C748B] font-light">
-                Pick an account plan that fits your workflow.
+                Current Request according to Students Interest.
               </p>
             </div>
-            <div className="my-4 flex p-2  justify-center items-center gap-[8px] rounded-[8px] md:w-[200px] lg:w-[200px] cursor-pointer border-[1.5px] border-[#D0D5DD] text-[#344054]">
-              <CloudDownload className="w-4 h-4 md:w-5 md:h-5" />
-              <p className="text-sm md:text-md ">Download all</p>
+            <div className="my-4 flex p-2 w-[150px] justify-center items-center gap-[8px] rounded-[8px] cursor-pointer border-[1.5px] border-[#D0D5DD] text-[#344054]">
+              <Filter className="w-4 h-4 md:w-5 md:h-5" />
+              <p className="text-sm md:text-md ">Filter</p>
             </div>
           </div>
         </div>

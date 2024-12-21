@@ -9,6 +9,7 @@ import { Sheet } from "@/app/components/sheets/Sheet";
 import AddUser from "./AddUser";
 import { GetUsersRequest } from "@/app/services/users.request";
 import { useQuery } from "@tanstack/react-query";
+import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
 
 interface AdminHomeProps {
   token: any;
@@ -35,21 +36,45 @@ export default function AdminHome({ token }: AdminHomeProps) {
           </div>
           <div
             onClick={() => setShowAddUser(true)}
-            className="my-4 flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white md:w-[200px] lg:w-[200px] cursor-pointer  px-3.5 py-4 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+            className="my-4 flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-full md:w-[200px] lg:w-[200px] cursor-pointer  px-3.5 py-4 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
           >
             <p className="text-[#FFFFFF] text-sm md:text-md">Create user</p>
             <Plus className="w-4 h-4 md:w-5 md:h-5" />
           </div>
         </div>
 
-        <div className="my-8 grid space-y-6 lg:space-y-0 lg:grid-cols-3 lg:gap-3 xl:grid-cols-4 xl:gap-6">
-          <StatisticsCard title={"Total Users"} value={userData?.meta?.totalUsers} />
-          <StatisticsCard title={"Total Companies"} value={userData?.meta?.totalCompanies} />
-          <StatisticsCard title={"Total Students"} value={userData?.meta?.totalStudents} />
-          <StatisticsCard title={"Total Admins"} value={userData?.meta?.totalAdmins} />
-        </div>
+        {isLoading ? (
+          <div>
+            <StatisticsSkeleton />
+          </div>
+        ) : (
+          <div className="my-8 grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-6">
+            <StatisticsCard
+              title={"Total Users"}
+              value={userData?.meta?.totalUsers}
+            />
+            <StatisticsCard
+              title={"Total Companies"}
+              value={userData?.meta?.totalCompanies}
+            />
+            <StatisticsCard
+              title={"Total Students"}
+              value={userData?.meta?.totalStudents}
+            />
+            <StatisticsCard
+              title={"Total Admins"}
+              value={userData?.meta?.totalAdmins}
+            />
+          </div>
+        )}
 
-        <UsersList userData={userData} isLoading={isLoading} setCurrentPage={setCurrentPage} currentPage={currentPage} limit={limit} />
+        <UsersList
+          userData={userData}
+          isLoading={isLoading}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+          limit={limit}
+        />
       </main>
 
       {/*============ SHEETS ============ */}

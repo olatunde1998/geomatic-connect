@@ -4,6 +4,7 @@ import TransactionList from "@/app/components/admin-components/TransactionList";
 import StatisticsCard from "@/app/components/cards/StatisticsCard";
 import { useQuery } from "@tanstack/react-query";
 import { GetAllSubscriptions } from "@/app/services/payment.request";
+import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
 
 interface BillingHomeProps {
   token: any;
@@ -28,24 +29,31 @@ export default function BillingHome({ token }: BillingHomeProps) {
           Administer transactions histories within the platform.
         </p>
       </div>
-      <div className="my-8 grid space-y-6 lg:space-y-0 lg:grid-cols-3 lg:gap-3 xl:grid-cols-4 xl:gap-6">
-        <StatisticsCard
-          title={"Total Transaction"}
-          value={subscriptionData?.meta?.totalTransactions}
-        />
-        <StatisticsCard
-          title={"Success Transaction"}
-          value={subscriptionData?.meta?.totalSuccess}
-        />
-        <StatisticsCard
-          title={"Failed Transaction"}
-          value={subscriptionData?.meta?.totalFailed}
-        />
-        <StatisticsCard
-          title={"Abandoned Transaction"}
-          value={subscriptionData?.meta?.totalAbandoned}
-        />
-      </div>
+
+      {isLoading ? (
+        <div>
+          <StatisticsSkeleton />
+        </div>
+      ) : (
+        <div className="my-8 grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-6">
+          <StatisticsCard
+            title={"Total Transaction"}
+            value={subscriptionData?.meta?.totalTransactions}
+          />
+          <StatisticsCard
+            title={"Success Transaction"}
+            value={subscriptionData?.meta?.totalSuccess}
+          />
+          <StatisticsCard
+            title={"Failed Transaction"}
+            value={subscriptionData?.meta?.totalFailed}
+          />
+          <StatisticsCard
+            title={"Abandoned Transaction"}
+            value={subscriptionData?.meta?.totalAbandoned}
+          />
+        </div>
+      )}
 
       <TransactionList
         subscriptionData={subscriptionData}

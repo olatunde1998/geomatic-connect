@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Table } from "@/app/components/tables/Table";
 import { Skeleton } from "@/app/components/skeletons/Skeleton";
-import { ArrowDown, Check, CloudDownload, File } from "lucide-react";
+import { ArrowDown, Check, File, Filter } from "lucide-react";
 import { formatDate } from "@/utils/utils";
 
 interface UsersData {
@@ -248,9 +248,9 @@ export default function UsersList({
                 Pick an account plan that fits your workflow.
               </p>
             </div>
-            <div className="my-4 flex p-2  justify-center items-center gap-[8px] rounded-[8px] md:w-[200px] lg:w-[200px] cursor-pointer border-[1.5px] border-[#D0D5DD] text-[#344054]">
-              <CloudDownload className="w-4 h-4 md:w-5 md:h-5" />
-              <p className="text-sm md:text-md ">Download all</p>
+            <div className="my-4 flex p-2 w-[150px] justify-center items-center gap-[8px] rounded-[8px] cursor-pointer border-[1.5px] border-[#D0D5DD] text-[#344054]">
+              <Filter className="w-4 h-4 md:w-5 md:h-5" />
+              <p className="text-sm md:text-md ">Filter</p>
             </div>
           </div>
         </div>

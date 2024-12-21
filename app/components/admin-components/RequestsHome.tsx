@@ -1,9 +1,11 @@
-"use client"
+"use client";
+import { useState } from "react";
 import RequestsList from "@/app/components/admin-components/RequestsList";
 import StatisticsCard from "@/app/components/cards/StatisticsCard";
 import { GetAllNotifications } from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
+
 
 interface RequestsHomeProps {
   token: any;
@@ -27,14 +29,40 @@ export default function RequestsHome({ token }: RequestsHomeProps) {
           Administer user requests and notifications within the platform.
         </p>
       </div>
-      <div className="my-8 grid space-y-6 lg:space-y-0 lg:grid-cols-3 lg:gap-3 xl:grid-cols-4 xl:gap-6">
-        <StatisticsCard title={"Total Requests"} value={notificationsData?.meta?.totalRequests} />
-        <StatisticsCard title={"Total Approved"} value={notificationsData?.meta?.totalApproved} />
-        <StatisticsCard title={"Total Declined"} value={notificationsData?.meta?.totalDeclined} />
-        <StatisticsCard title={"Total Interested"} value={notificationsData?.meta?.totalInterested} />
-      </div>
 
-      <RequestsList token={token} notificationsData={notificationsData} isLoading={isLoading} setCurrentPage={setCurrentPage} currentPage={currentPage} limit={limit} />
+      {isLoading ? (
+        <div>
+          <StatisticsSkeleton />
+        </div>
+      ) : (
+        <div className="my-8 grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-6">
+          <StatisticsCard
+            title={"Total Requests"}
+            value={notificationsData?.meta?.totalRequests}
+          />
+          <StatisticsCard
+            title={"Total Approved"}
+            value={notificationsData?.meta?.totalApproved}
+          />
+          <StatisticsCard
+            title={"Total Declined"}
+            value={notificationsData?.meta?.totalDeclined}
+          />
+          <StatisticsCard
+            title={"Total Interested"}
+            value={notificationsData?.meta?.totalInterested}
+          />
+        </div>
+      )}
+
+      <RequestsList
+        token={token}
+        notificationsData={notificationsData}
+        isLoading={isLoading}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        limit={limit}
+      />
     </main>
   );
 }
