@@ -99,7 +99,13 @@ export default function RequestDetails({
             </div>
             <div className="flex flex-col justify-between">
               <a
-                href={`${notification?.studentId?.documentFile}`}
+                href={notification?.studentId?.documentFile || "#"}
+                onClick={(e) => {
+                  if (!notification?.studentId?.documentFile) {
+                    e.preventDefault();
+                    toast.error("No available document");
+                  }
+                }}
                 rel="noopener noreferrer"
                 target="_blank"
                 className="font-semibold text-right mt-2 inline-block text-[#33A852] underline"
