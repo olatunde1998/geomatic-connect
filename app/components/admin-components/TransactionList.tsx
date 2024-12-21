@@ -11,6 +11,7 @@ interface transactionData {
   _id: string;
   reference?: string;
   studentId: { fullName: string } | null;
+  companyId: { companyName: string } | null;
   email: string;
   state: string;
   transactionDate?: any;
@@ -158,7 +159,13 @@ export default function TransactionList({
       header: () => <span>Reference Id</span>,
     }),
     columnHelper.accessor("studentId", {
-      cell: (info) => <span> {info?.row?.original?.studentId?.fullName}</span>,
+      cell: (info) => (
+        <span>
+          {" "}
+          {info?.row?.original?.studentId?.fullName ||
+            info?.row?.original?.companyId?.companyName}
+        </span>
+      ),
       header: () => <span>FullName</span>,
     }),
     columnHelper.accessor("transactionDate", {
