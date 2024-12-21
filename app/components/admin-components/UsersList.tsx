@@ -5,6 +5,7 @@ import { Table } from "@/app/components/tables/Table";
 import { Skeleton } from "@/app/components/skeletons/Skeleton";
 import { ArrowDown, Check, File, Filter } from "lucide-react";
 import { formatDate } from "@/utils/utils";
+import { useRouter } from "next/navigation";
 
 interface UsersData {
   _id: string;
@@ -58,6 +59,7 @@ export default function UsersList({
   limit,
 }: UsersListProps) {
   const [selectedRows, setSelectedRows] = useState<RowType[]>([]);
+  const router = useRouter();
 
   // handle check box
   function IndeterminateCheckbox({
@@ -103,6 +105,13 @@ export default function UsersList({
     []
   );
 
+  // Navigate to the dynamic page
+  const handleRowClick = (id: string) => {
+    if (id) {
+      router.push(`/admin-dashboard/${id}`); // Adjust the path if your dynamic page is under a different route
+    }
+  };
+
   // create columnHelper
   const columnHelper = createColumnHelper<UsersData>();
   // Table columns
@@ -134,7 +143,10 @@ export default function UsersList({
     }),
     columnHelper.accessor("fullName", {
       cell: (info) => (
-        <span className="flex items-center gap-2">
+        <span
+          onClick={() => handleRowClick(info?.row?.original?._id)}
+          className="flex items-center gap-2"
+        >
           <span className="w-fit h-fit p-2 rounded-full bg-slate-200 flex items-center justify-center">
             <File size={14} />
           </span>
@@ -147,7 +159,9 @@ export default function UsersList({
     }),
     columnHelper.accessor("createdAt", {
       cell: (info) => (
-        <span> {formatDate(info?.row?.original?.createdAt)}</span>
+        <span onClick={() => handleRowClick(info?.row?.original?._id)}>
+          {formatDate(info?.row?.original?.createdAt)}
+        </span>
       ),
       header: () => (
         <span className="flex items-center">
@@ -169,6 +183,7 @@ export default function UsersList({
               : "bg-[#EDEDF1] text-[#6C748B] w-fit px-3"
           } text-center p-1 rounded-2xl flex items-center space-x-2 justify-center
           `}
+          onClick={() => handleRowClick(info?.row?.original?._id)}
         >
           <p
             className={` ${
@@ -191,15 +206,27 @@ export default function UsersList({
       ),
     }),
     columnHelper.accessor("state", {
-      cell: (info) => <span>{info?.row?.original?.state}</span>,
+      cell: (info) => (
+        <span onClick={() => handleRowClick(info?.row?.original?._id)}>
+          {info?.row?.original?.state}
+        </span>
+      ),
       header: () => <span>Location</span>,
     }),
     columnHelper.accessor("email", {
-      cell: (info) => <span>{info?.row?.original?.email}</span>,
+      cell: (info) => (
+        <span onClick={() => handleRowClick(info?.row?.original?._id)}>
+          {info?.row?.original?.email}
+        </span>
+      ),
       header: () => <span>Email</span>,
     }),
     columnHelper.accessor("isVerified", {
-      header: () => <span>Status</span>,
+      header: () => (
+        <span>
+          Status
+        </span>
+      ),
       cell: (info) => (
         <div
           className={`
@@ -209,6 +236,7 @@ export default function UsersList({
                 : "bg-[#f3392f] text-[#FFFFFF] px-3 w-fit"
             } text-center p-1 rounded-2xl 
             `}
+          onClick={() => handleRowClick(info?.row?.original?._id)}
         >
           <p className="capitalize">
             {info?.row?.original?.isVerified ? "Active" : "Inactive"}
