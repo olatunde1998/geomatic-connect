@@ -77,15 +77,14 @@ export default function AdminNavBar({ session }: { session: any }) {
                 href={`/admin-dashboard/billing`}
                 className="text-[#33A852]"
               >
-                Pricing
+                Billings
               </Link>
               <Link
                 href={`/admin-dashboard/requests`}
                 className="text-[#33A852] ml-4"
               >
-                Notifications
+                Requests
               </Link>
-              <p className="text-[#33A852] underline ml-3">See more Profiles</p>
 
               <div className="flex items-center space-x-3 ml-4">
                 <div className="bg-slate-300 p-2 rounded-lg flex items-center justify-center">

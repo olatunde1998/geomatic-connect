@@ -65,6 +65,10 @@ export const adminMobileRoutes = [
     href: "/admin-dashboard/requests",
   },
   {
+    name: "Billings",
+    href: "/admin-dashboard/billing",
+  },
+  {
     name: "Settings",
     href: "/admin-dashboard/settings",
   },
