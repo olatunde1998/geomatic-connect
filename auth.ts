@@ -40,6 +40,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   secret: process.env.AUTH_SECRET,
+  session: {
+    strategy: "jwt",
+    maxAge: 18000, //5hours
+  },
 
   callbacks: {
     async redirect({ url, baseUrl }) {
@@ -47,7 +51,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (url.startsWith(baseUrl)) return url;
       return baseUrl; // Ensure all redirects go to the base URL if unauthenticated
     },
-  
+
     jwt({ token, user }) {
       if (user) {
         token._id = user._id as string;
