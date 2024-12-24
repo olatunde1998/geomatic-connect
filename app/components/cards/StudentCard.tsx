@@ -13,6 +13,7 @@ import { CardSkeleton } from "@/app/components/skeletons/CardSkeleton";
 import ApproveMessage from "@/app/components/company-components/ApproveMessage";
 import DeclineMessage from "@/app/components/company-components/DeclineMessage";
 import UserAvatar from "@/public/images/profile-pic.png";
+import Trash from "@/app/components/trash/Trash";
 
 interface StudentCardProps {
   token: any;
@@ -70,6 +71,15 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
         <div>
           <CardSkeleton />
         </div>
+      ) : studentsData?.data?.length !== 0 ? (
+        <>
+          <div className="gap-2 my-10 md:mt-24">
+            <Trash
+              headingText="No Student Available"
+              subHeadingText="No request have been found yet. Click the 'Subscribe' button to upgrade your account."
+            />
+          </div>
+        </>
       ) : (
         <div className="space-y-8 md:gap-6 md:grid md:grid-cols-2 xl:grid-cols-3 md:space-y-0">
           {studentsData?.data?.map((item: any) => (

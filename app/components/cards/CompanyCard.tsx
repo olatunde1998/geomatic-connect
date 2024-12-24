@@ -9,6 +9,7 @@ import { CardSkeleton } from "@/app/components/skeletons/CardSkeleton";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import UserAvatar from "@/public/images/profile-pic.png";
+import Trash from "@/app/components/trash/Trash";
 
 interface CompanyCardProps {
   token: any;
@@ -51,6 +52,15 @@ export default function CompanyCard({
         <div>
           <CardSkeleton />
         </div>
+      ) : companiesData?.data?.length === 0 ? (
+        <>
+          <div className="gap-2 my-10 md:mt-24">
+            <Trash
+              headingText="No Company Available"
+              subHeadingText="No companies have been found yet. Click the 'Billing/Pricing' button to upgrade your account."
+            />
+          </div>
+        </>
       ) : (
         <div className="space-y-8 md:gap-6 md:grid md:grid-cols-2 xl:grid-cols-3 md:space-y-0">
           {companiesData?.data?.map((item: any) => (
