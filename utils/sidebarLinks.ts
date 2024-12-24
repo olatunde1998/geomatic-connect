@@ -107,7 +107,7 @@ export const studentMobileRoutes = [
     href: "/student-dashboard/settings",
   },
   {
-    name: "Pricing",
+    name: "Billing",
     href: "/student-dashboard/pricing",
   },
 ];
