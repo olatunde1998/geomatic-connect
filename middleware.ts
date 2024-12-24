@@ -1,8 +1,31 @@
-export { auth as middleware } from "@/auth";
+// export { auth as middleware } from "@/auth";
+import { auth } from "@/auth";
+
+export default auth((req) => {
+  const { auth } = req;
+  const { pathname } = req.nextUrl;
+
+  // List of public pages that don't require authentication
+  const publicPages = [
+    "/",
+    "/login",
+    "/signup",
+    "/verify-email",
+    "/forgot-password",
+    "/reset-password",
+  ];
+  const isPublicPage = publicPages.includes(pathname);
+
+  // If it's not a public page and user isn't authenticated
+  if (!auth && !isPublicPage) {
+    return Response.redirect(new URL("/login", req.url));
+  }
+});
 
 export const config = {
   matcher: [
-    "/((?!api|_next|.*\\..*).*)",
+    // "/((?!api|_next|.*\\..*).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
     "/admin-dashboard",
     "/company-dashboard",
     "/student-dashboard",
