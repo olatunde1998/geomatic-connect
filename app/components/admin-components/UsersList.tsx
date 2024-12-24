@@ -272,7 +272,7 @@ export default function UsersList({
                 Pick an account plan that fits your workflow.
               </p>
             </div>
-            <div className="my-4 flex p-2 w-[150px] justify-center items-center gap-[8px] rounded-[8px] cursor-pointer border-[1.5px] border-[#D0D5DD] text-[#344054]">
+            <div className="my-4 flex p-2 w-[100px] justify-center items-center gap-[8px] rounded-[8px] cursor-pointer border-[1.5px] border-[#D0D5DD] text-[#344054]">
               <Filter className="w-4 h-4 md:w-5 md:h-5" />
               <p className="text-sm md:text-md ">Filter</p>
             </div>
