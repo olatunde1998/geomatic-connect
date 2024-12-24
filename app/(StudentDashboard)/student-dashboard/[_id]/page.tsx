@@ -12,7 +12,9 @@ export default async function StudentDetailsPage({ params }: { params: any }) {
   const session = await auth();
   const companyId = params?._id;
 
-  if (!session?.user) redirect("/login");
+  if (!session?.user) {
+    redirect("/login");
+  }
 
   if (!companyId || !isValidCompanyId(companyId)) {
     notFound(); // Returns a 404 page

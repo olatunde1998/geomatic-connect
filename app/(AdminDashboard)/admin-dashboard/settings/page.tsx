@@ -6,7 +6,9 @@ export default async function SettingsPage() {
   const session = await auth();
   const token = session?.user?.token;
   const userId = session?.user?._id;
-  if (!session?.user) redirect("/login");
+  if (!session?.user) {
+    redirect("/login");
+  }
 
   return (
     <main className="min-h-screen pt-24 xl:p-2 lg:pt-32 xl:pt-32 font-sans text-md">

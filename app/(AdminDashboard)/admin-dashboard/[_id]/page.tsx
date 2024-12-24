@@ -13,7 +13,9 @@ export default async function UsersDetailsPage({ params }: { params: any }) {
   const token = session?.user?.token;
   const userId = params?._id;
 
-  if (!session?.user) redirect("/login");
+  if (!session?.user) {
+    redirect("/login");
+  }
 
   if (!userId || !isValidUserId(userId)) {
     notFound(); // Returns a 404 page
