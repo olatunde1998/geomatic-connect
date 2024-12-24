@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   manifest: "/manifest.json",
   title: "Geomatic Connect",
-  description: "Geomatics Connect Application Dashboard",
+  description: "Geomatic Connect Application Dashboard",
   viewport: {
     width: "device-width",
     height: "device-height",
