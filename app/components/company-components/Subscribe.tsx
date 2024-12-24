@@ -207,7 +207,7 @@ export default function Subscribe({ token, userId }: SubscribeProps) {
                       {isSubscribing === planMethod ? (
                         "Subscribing..."
                       ) : (
-                        <div>Subscribe</div>
+                        <p>Subscribe</p>
                       )}
                     </p>
                   </div>

@@ -207,7 +207,7 @@ export default function Pricing({ token, userId }: PricingProps) {
                       {isSubscribing === planMethod ? (
                         "Subscribing..."
                       ) : (
-                        <div>Subscribe</div>
+                        <p>Subscribe</p>
                       )}
                     </p>
                   </div>
