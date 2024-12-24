@@ -10,14 +10,14 @@ import {
 } from "@/app/services/payment.request";
 import { GetUserByIdRequest } from "@/app/services/request.request";
 
-interface PricingProps {
+interface BillingProps {
   token?: String;
   userId?: String;
   setSelectedBillingCycleTab?: any;
   selectedBillingCycleTab?: any;
 }
 
-export default function Pricing({ token, userId }: PricingProps) {
+export default function Billing({ token, userId }: BillingProps) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [selectedBillingCycleTab, setSelectedBillingCycleTab] =
     useState("Monthly");
@@ -163,7 +163,7 @@ export default function Pricing({ token, userId }: PricingProps) {
           </div>
         </div>
 
-        {/*=== Pricing Cards === */}
+        {/*=== Billing Cards === */}
         <div className="md:flex lg:justify-end mt-6 text-xs md:text-sm">
           {selectedBillingCycleTab && (
             <motion.div
@@ -204,11 +204,9 @@ export default function Pricing({ token, userId }: PricingProps) {
                       }}
                       className="text-[#FFFFFF] p-3 rounded-md text-center cursor-pointer bg-green-500"
                     >
-                      {isSubscribing === planMethod ? (
-                        "Subscribing..."
-                      ) : (
-                        <p>Subscribe</p>
-                      )}
+                      {isSubscribing === planMethod
+                        ? "Subscribing..."
+                        : "Subscribe"}
                     </p>
                   </div>
                 )

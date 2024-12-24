@@ -1,8 +1,8 @@
 import { auth } from "@/auth";
-import Pricing from "@/app/components/student-components/Pricing";
+import Billing from "@/app/components/student-components/Billing";
 import { redirect } from "next/navigation";
 
-export default async function PricingPage() {
+export default async function BillingPage() {
   const session = await auth();
   const token = session?.user?.token;
   const userId = session?.user?._id;
@@ -19,7 +19,7 @@ export default async function PricingPage() {
         </p>
       </div>
       <section className="h-fit border mt-8 p-6 rounded-md">
-        <Pricing token={token} userId={userId} />
+        <Billing token={token} userId={userId} />
       </section>
     </main>
   );

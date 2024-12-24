@@ -204,11 +204,9 @@ export default function Subscribe({ token, userId }: SubscribeProps) {
                       }}
                       className="text-[#FFFFFF] p-3 rounded-md text-center cursor-pointer bg-green-500"
                     >
-                      {isSubscribing === planMethod ? (
-                        "Subscribing..."
-                      ) : (
-                        <p>Subscribe</p>
-                      )}
+                      {isSubscribing === planMethod
+                        ? "Subscribing..."
+                        : "Subscribe"}
                     </p>
                   </div>
                 )
