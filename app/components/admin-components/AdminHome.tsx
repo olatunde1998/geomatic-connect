@@ -10,6 +10,7 @@ import AddUser from "./AddUser";
 import { GetUsersRequest } from "@/app/services/users.request";
 import { useQuery } from "@tanstack/react-query";
 import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
+import Trash from "@/app/components/trash/Trash";
 
 interface AdminHomeProps {
   token: any;
@@ -42,39 +43,49 @@ export default function AdminHome({ token }: AdminHomeProps) {
             <Plus className="w-4 h-4 md:w-5 md:h-5" />
           </div>
         </div>
-
-        {isLoading ? (
-          <div>
-            <StatisticsSkeleton />
+        {userData?.data?.length === 0 ? (
+          <div className="gap-2 my-6">
+            <Trash
+              headingText="Start Adding Users"
+              subHeadingText="No users have been added yet. Click the 'Add User' button above to create a new user."
+            />
           </div>
         ) : (
-          <div className="my-8 grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-6">
-            <StatisticsCard
-              title={"Total Users"}
-              value={userData?.meta?.totalUsers}
-            />
-            <StatisticsCard
-              title={"Total Companies"}
-              value={userData?.meta?.totalCompanies}
-            />
-            <StatisticsCard
-              title={"Total Students"}
-              value={userData?.meta?.totalStudents}
-            />
-            <StatisticsCard
-              title={"Total Admins"}
-              value={userData?.meta?.totalAdmins}
-            />
-          </div>
-        )}
+          <>
+            {isLoading ? (
+              <div>
+                <StatisticsSkeleton />
+              </div>
+            ) : (
+              <div className="my-8 grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-6">
+                <StatisticsCard
+                  title={"Total Users"}
+                  value={userData?.meta?.totalUsers}
+                />
+                <StatisticsCard
+                  title={"Total Companies"}
+                  value={userData?.meta?.totalCompanies}
+                />
+                <StatisticsCard
+                  title={"Total Students"}
+                  value={userData?.meta?.totalStudents}
+                />
+                <StatisticsCard
+                  title={"Total Admins"}
+                  value={userData?.meta?.totalAdmins}
+                />
+              </div>
+            )}
 
-        <UsersList
-          userData={userData}
-          isLoading={isLoading}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-          limit={limit}
-        />
+            <UsersList
+              userData={userData}
+              isLoading={isLoading}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+              limit={limit}
+            />
+          </>
+        )}
       </main>
 
       {/*============ SHEETS ============ */}

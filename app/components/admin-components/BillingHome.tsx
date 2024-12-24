@@ -5,6 +5,7 @@ import StatisticsCard from "@/app/components/cards/StatisticsCard";
 import { useQuery } from "@tanstack/react-query";
 import { GetAllSubscriptions } from "@/app/services/payment.request";
 import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
+import Trash from "@/app/components/trash/Trash";
 
 interface BillingHomeProps {
   token: any;
@@ -30,38 +31,49 @@ export default function BillingHome({ token }: BillingHomeProps) {
         </p>
       </div>
 
-      {isLoading ? (
-        <div>
-          <StatisticsSkeleton />
+      {subscriptionData?.data?.length === 0 ? (
+        <div className="gap-2 my-6">
+          <Trash
+            headingText="No Billing yet"
+            subHeadingText="No billing have been made yet. Check back later."
+          />
         </div>
       ) : (
-        <div className="my-8 grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-6">
-          <StatisticsCard
-            title={"Total Transaction"}
-            value={subscriptionData?.meta?.totalTransactions}
-          />
-          <StatisticsCard
-            title={"Success Transaction"}
-            value={subscriptionData?.meta?.totalSuccess}
-          />
-          <StatisticsCard
-            title={"Failed Transaction"}
-            value={subscriptionData?.meta?.totalFailed}
-          />
-          <StatisticsCard
-            title={"Abandoned Transaction"}
-            value={subscriptionData?.meta?.totalAbandoned}
-          />
-        </div>
-      )}
+        <>
+          {isLoading ? (
+            <div>
+              <StatisticsSkeleton />
+            </div>
+          ) : (
+            <div className="my-8 grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-6">
+              <StatisticsCard
+                title={"Total Transaction"}
+                value={subscriptionData?.meta?.totalTransactions}
+              />
+              <StatisticsCard
+                title={"Success Transaction"}
+                value={subscriptionData?.meta?.totalSuccess}
+              />
+              <StatisticsCard
+                title={"Failed Transaction"}
+                value={subscriptionData?.meta?.totalFailed}
+              />
+              <StatisticsCard
+                title={"Abandoned Transaction"}
+                value={subscriptionData?.meta?.totalAbandoned}
+              />
+            </div>
+          )}
 
-      <TransactionList
-        subscriptionData={subscriptionData}
-        isLoading={isLoading}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-        limit={limit}
-      />
+          <TransactionList
+            subscriptionData={subscriptionData}
+            isLoading={isLoading}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            limit={limit}
+          />
+        </>
+      )}
     </main>
   );
 }

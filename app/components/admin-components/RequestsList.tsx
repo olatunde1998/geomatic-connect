@@ -240,7 +240,7 @@ export default function RequestsList({
           </span>
         </span>
       ),
-      header: () => <span>FullName</span>,
+      header: () => <span className="text-[#101828]">FullName</span>,
     }),
     columnHelper.accessor("companyId", {
       cell: (info) => (
@@ -250,12 +250,12 @@ export default function RequestsList({
           </span>
         </span>
       ),
-      header: () => <span>Company of Interest</span>,
+      header: () => <span className="text-[#101828]">Company of Interest</span>,
     }),
     columnHelper.accessor("trackPeriod", {
       cell: (info) => <span> {info?.row?.original?.trackPeriod}</span>,
       header: () => (
-        <span className="flex items-center">
+        <span className="flex items-center text-[#101828]">
           Track Period
           <ArrowDown size={18} className="ml-2" />
         </span>
@@ -263,10 +263,10 @@ export default function RequestsList({
     }),
     columnHelper.accessor("institutionName", {
       cell: (info) => <span>{info?.row?.original?.institutionName}</span>,
-      header: () => <span>Institution Name</span>,
+      header: () => <span className="text-[#101828]">Institution Name</span>,
     }),
     columnHelper.accessor("status", {
-      header: () => <span>Status</span>,
+      header: () => <span className="text-[#101828]">Status</span>,
       cell: (info) => (
         <div
           className={`
@@ -371,7 +371,7 @@ export default function RequestsList({
           <div className="md:flex items-center md:space-x-4">
             <div className="w-full">
               <p className="text-gray-600 text-lg font-semibold">
-                Notification History
+                Request History
               </p>
               <p className="text-sm text-[#6C748B] font-light">
                 Current Request according to Students Interest.
@@ -384,7 +384,7 @@ export default function RequestsList({
           </div>
         </div>
 
-        {/* ===== NOTIFICATIONS AND SKELETON GOES HERE === */}
+        {/* ===== REQUESTS AND SKELETON GOES HERE === */}
         {isLoading ? (
           <div className="mt-6 ">
             <Skeleton />

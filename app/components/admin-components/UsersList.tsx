@@ -155,7 +155,7 @@ export default function UsersList({
           </span>
         </span>
       ),
-      header: () => <span>FullName/Company</span>,
+      header: () => <span className="text-[#101828]">FullName/Company</span>,
     }),
     columnHelper.accessor("createdAt", {
       cell: (info) => (
@@ -164,14 +164,14 @@ export default function UsersList({
         </span>
       ),
       header: () => (
-        <span className="flex items-center">
+        <span className="flex items-center text-[#101828]">
           Created date
           <ArrowDown size={18} className="ml-2" />
         </span>
       ),
     }),
     columnHelper.accessor("role", {
-      header: () => <span>Role</span>,
+      header: () => <span className="text-[#101828]">Role</span>,
       cell: (info) => (
         <div
           className={`
@@ -211,7 +211,7 @@ export default function UsersList({
           {info?.row?.original?.state}
         </span>
       ),
-      header: () => <span>Location</span>,
+      header: () => <span className="text-[#101828]">Location</span>,
     }),
     columnHelper.accessor("email", {
       cell: (info) => (
@@ -219,14 +219,10 @@ export default function UsersList({
           {info?.row?.original?.email}
         </span>
       ),
-      header: () => <span>Email</span>,
+      header: () => <span className="text-[#101828]">Email</span>,
     }),
     columnHelper.accessor("isVerified", {
-      header: () => (
-        <span>
-          Status
-        </span>
-      ),
+      header: () => <span className="text-[#101828]">Status</span>,
       cell: (info) => (
         <div
           className={`

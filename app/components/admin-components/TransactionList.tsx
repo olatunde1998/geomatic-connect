@@ -147,7 +147,7 @@ export default function TransactionList({
     }),
     columnHelper.accessor("reference", {
       cell: (info) => (
-        <span className="flex items-center gap-2 text-[#101828]">
+        <span className="flex items-center gap-2">
           <span className="w-fit h-fit p-2 rounded-full bg-slate-200 flex items-center justify-center">
             <File size={14} />
           </span>
@@ -156,7 +156,7 @@ export default function TransactionList({
           </span>
         </span>
       ),
-      header: () => <span>Reference Id</span>,
+      header: () => <span className="text-[#101828]">Reference Id</span>,
     }),
     columnHelper.accessor("studentId", {
       cell: (info) => (
@@ -166,21 +166,21 @@ export default function TransactionList({
             info?.row?.original?.companyId?.companyName}
         </span>
       ),
-      header: () => <span>Payer&apos;s Name</span>,
+      header: () => <span className="text-[#101828]">Payer&apos;s Name</span>,
     }),
     columnHelper.accessor("transactionDate", {
       cell: (info) => (
         <span> {formatDate(info?.row?.original?.transactionDate)}</span>
       ),
       header: () => (
-        <span className="flex items-center">
+        <span className="flex items-center text-[#101828]">
           Transaction date
           <ArrowDown size={18} className="ml-2" />
         </span>
       ),
     }),
     columnHelper.accessor("status", {
-      header: () => <span>Status</span>,
+      header: () => <span className="text-[#101828]">Status</span>,
       cell: (info) => (
         <div
           className={`
@@ -198,7 +198,7 @@ export default function TransactionList({
       ),
     }),
     columnHelper.accessor("amount", {
-      header: () => <span>Amount</span>,
+      header: () => <span className="text-[#101828]">Amount</span>,
       cell: (info) => (
         <div className="text-[#6C748B] w-fit px-3 text-center p-1 rounded-2xl flex items-center space-x-2 justify-center capitalize">
           &#8358;{info?.row?.original?.amount}
@@ -207,7 +207,7 @@ export default function TransactionList({
     }),
     columnHelper.accessor("email", {
       cell: (info) => <span>{info?.row?.original?.email}</span>,
-      header: () => <span>Email</span>,
+      header: () => <span className="text-[#101828]">Email</span>,
     }),
   ];
 
