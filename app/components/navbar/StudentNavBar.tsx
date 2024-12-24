@@ -90,7 +90,7 @@ export default function StudentNavBar({ session }: { session: any }) {
             </div>
             <div className="hidden lg:flex items-center gap-x-2 text-sm md:text-base cursor-pointer font-light w-fit">
               <Link
-                href={`/student-dashboard/pricing`}
+                href={`/student-dashboard/billing`}
                 className="text-[#33A852]"
               >
                 Pricing

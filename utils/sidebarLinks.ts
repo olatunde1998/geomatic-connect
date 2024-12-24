@@ -49,7 +49,7 @@ export const studentNavItems = [
   },
   {
     name: "Billing",
-    href: "/student-dashboard/pricing",
+    href: "/student-dashboard/billing",
     icon: CreditCard,
   },
 ];
@@ -108,6 +108,6 @@ export const studentMobileRoutes = [
   },
   {
     name: "Billing",
-    href: "/student-dashboard/pricing",
+    href: "/student-dashboard/billing",
   },
 ];
