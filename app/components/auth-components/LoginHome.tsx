@@ -10,6 +10,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { getSession, signIn } from "next-auth/react";
+import GoogleImage from "@/public/images/google.png";
+import GithubImage from "@/public/images/github.png";
 
 const schema = yup.object().shape({
   email: yup
@@ -128,7 +130,7 @@ export default function LoginHome() {
           >
             <div>
               <Image
-                src="/images/google.png"
+                src={GoogleImage}
                 width={100}
                 height={100}
                 alt="doctor pics"
@@ -146,7 +148,7 @@ export default function LoginHome() {
           >
             <div>
               <Image
-                src="/images/github.png"
+                src={GithubImage}
                 width={100}
                 height={100}
                 alt="doctor pics"
