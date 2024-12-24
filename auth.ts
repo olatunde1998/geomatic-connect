@@ -48,9 +48,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   callbacks: {
     async redirect({ url, baseUrl }) {
-      // Redirect to the login page if unauthenticated
-      if (url.startsWith(baseUrl)) return url;
-      return baseUrl; // Ensure all redirects go to the base URL if unauthenticated
+      return url.startsWith(baseUrl) ? url : baseUrl;
     },
 
     jwt({ token, user }) {
