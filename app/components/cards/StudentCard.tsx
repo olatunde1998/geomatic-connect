@@ -71,7 +71,7 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
         <div>
           <CardSkeleton />
         </div>
-      ) : studentsData?.data?.length !== 0 ? (
+      ) : studentsData?.data?.length === 0 ? (
         <>
           <div className="gap-2 my-10 md:mt-24">
             <Trash
@@ -130,14 +130,14 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
                     <span>Resides in {item?.studentId?.state}</span>
                   </div>
                 </div>
-                <p className="font-medium">Expertise</p>
+                <p className="font-medium">Experience</p>
                 <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
                   <p className="bg-[#E6E9EB] p-2">Engineering</p>
                   <p className="bg-[#E6E9EB] p-2">Cadastral</p>
                   <p className="bg-[#E6E9EB] p-2">GIS/Remote</p>
                   <p className="bg-[#E6E9EB] p-2">Drone Piloting</p>
                   <p className="bg-[#E6E9EB] p-2">Topographical</p>
-                  <p className="bg-[#E6E9EB] p-2">MySQL</p>
+                  <p className="bg-[#E6E9EB] p-2">Hydrographical</p>
                 </div>
                 {/* === PROFILE BUTTON === */}
                 <div className="flex gap-3 justify-between">
