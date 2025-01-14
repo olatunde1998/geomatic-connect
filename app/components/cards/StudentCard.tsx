@@ -71,7 +71,8 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
         <div>
           <CardSkeleton />
         </div>
-      ) : studentsData?.data?.length === 0 ? (
+      ) : studentsData?.data?.length === 0 ||
+        studentsData?.data?.length === undefined ? (
         <>
           <div className="gap-2 my-10 md:mt-24">
             <Trash
