@@ -26,7 +26,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
   });
 
   // Delete User Request Logic
-  const handleDeleteUserRequest = async () => {
+  const deleteUserHandler = async () => {
     setIsDeleting(true);
     try {
       const response = await DeleteUserRequest(userId, token);
@@ -203,12 +203,12 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
         {/* === Submit Button === */}
         <div className="flex justify-between gap-6">
           <button
-            onClick={() => handleDeleteUserRequest()}
+            onClick={() => deleteUserHandler()}
             disabled={isDeleting}
             className="w-[150px] mt-10 px-1.5 py-1.5 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316]"
           >
             <span className="text-sm md:text-base">
-              {isDeleting ? "Deleting...." : "Delete Request"}
+              {isDeleting ? "Deleting...." : "Delete User"}
             </span>
           </button>
         </div>
