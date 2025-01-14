@@ -106,7 +106,7 @@ export default function CompanyCard({
                   <p className="text-xl font-medium text-center">
                     <span>{item?.companyName} </span>
                   </p>
-                  <p className="font-light text-sm">Java Developer</p>
+                  <p className="font-light text-sm">Registered Surveyor</p>
                 </div>
 
                 <p className="font-medium my-3">About</p>
@@ -116,7 +116,7 @@ export default function CompanyCard({
                 <div className="space-y-2 my-3 font-light text-sm">
                   <div className="flex items-center gap-2">
                     <GraduationCap size={24} />
-                    <span>Graduate of University of Port Harcourt</span>
+                    <span> Accredited by SURCON</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin size={24} />
@@ -130,7 +130,7 @@ export default function CompanyCard({
                   <p className="bg-[#E6E9EB] p-2">GIS/Remote</p>
                   <p className="bg-[#E6E9EB] p-2">Drone Piloting</p>
                   <p className="bg-[#E6E9EB] p-2">Topographical</p>
-                  <p className="bg-[#E6E9EB] p-2">MySQL</p>
+                  <p className="bg-[#E6E9EB] p-2">Hydrographical</p>
                 </div>
                 {/* === PROFILE BUTTON === */}
                 <div className="flex gap-3 justify-between">
