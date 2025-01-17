@@ -2,9 +2,8 @@
 import { useEffect } from "react";
 import Navbar from "@/app/components/navbar/Navbar";
 import Hero from "@/app/components/landing-page-components/Hero";
-// import HowItWorks from "@/app/components/landing-page-components/HowItWorks";
-import HowItWorksTwo from "@/app/components/landing-page-components/HowItWorksTwo";
-import ConnectServices from "@/app/components/landing-page-components/ConnectServices";
+import HowItWorks from "@/app/components/landing-page-components/HowItWorks";
+import WhoWeAre from "@/app/components/landing-page-components/WhoWeAre";
 import Testimonial from "@/app/components/landing-page-components/Testimonial";
 import Pricing from "@/app/components/landing-page-components/Pricing";
 import Faq from "@/app/components/landing-page-components/Faq";
@@ -12,87 +11,53 @@ import ContactUs from "@/app/components/landing-page-components/ContactUs";
 import { Footer } from "@/app/components/landing-page-components/Footer";
 import { FaWhatsapp } from "react-icons/fa";
 
-
 export default function Home() {
-  // useEffect(() => {
-  //   const triggerLoginEndpoint = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `${process.env.NEXT_PUBLIC_BASEURL}/api/subscription`,
-  //         {
-  //           method: "GET",
-  //         }
-  //       );
-  //       if (!response.ok) {
-  //         console.error("Failed to wake up the server:", response.statusText);
-  //       } else {
-  //         console.log("Server woke up successfully!");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error waking up the server:", error);
-  //     }
-  //   };
-
-  //   triggerLoginEndpoint();
-  // }, []);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between pt-16 bg-[#F6F8FD]">
       <div className="w-full  flex-col items-center text-sm lg:flex">
         {/* === HERO SECTION === */}
-        <div className="bg-[#F2F6F6] lg:pt-8 w-full  flex-col items-center text-sm lg:flex">
-          <div className="max-w-7xl text-sm md:px-6">
+        <div className="bg-[#F2F6F6] lg:pt-8 w-full text-sm">
+          <div className="max-w-[1300px] mx-auto text-sm md:px-6">
             <Navbar />
             <Hero />
           </div>
         </div>
-        {/* === HOW IT WORKS SECTION === */}
-        <div className="w-full flex-col items-center text-sm lg:flex">
-          <div className="max-w-7xl text-sm md:px-6">
-            {/* <HowItWorks /> */}
-            <HowItWorksTwo/>
-          </div>
+        {/* === WHO WE ARE SECTION === */}
+        <div className="w-full text-sm  max-w-[1200px] mx-auto px-6 pb-16 md:px-10 md:pt-16 lg:py-20">
+          <WhoWeAre />
         </div>
 
-        {/* === CONNECT SERVICE SECTION === */}
-        <div
-          id="about-id"
-          className="w-full flex-col items-center text-sm lg:flex bg-[#638E96]"
-        >
-          <div className="max-w-7xl mx-auto text-sm px-4 py-10">
-            <ConnectServices />
+        {/* === HOW IT WORKS SECTION === */}
+        <div id="about-id" className="w-full text-sm bg-[#014751] opacity-80">
+          <div className="max-w-[1200px] mx-auto text-sm px-6 md:px-10 py-10">
+            <HowItWorks />
           </div>
         </div>
 
         {/* === Testimonial === */}
         <div className="w-full  flex-col items-center text-sm lg:flex">
-          <div className="w-full max-w-7xl text-sm ">
+          <div className="w-full max-w-[1200px] text-sm ">
             <Testimonial />
           </div>
         </div>
 
         {/* === PRICING SECTION === */}
-        <div className="bg-[#F2F6F6] w-full flex-col items-center text-sm lg:flex">
-          <div className=" w-full max-w-7xl text-sm  md:px-6">
+        <div className="bg-[#F2F6F6] w-full text-sm">
+          <div className="max-w-[1200px] mx-auto text-sm md:px-6">
             <Pricing />
           </div>
         </div>
 
         {/* === FAQs === */}
-        <div
-          id="faq-id"
-          className="w-full flex-col items-center text-sm lg:flex pb-20 md:py-20"
-        >
-          <div className="w-full max-w-7xl text-sm ">
+        <div id="faq-id" className="w-full text-sm pb-20 md:py-20">
+          <div className="w-full max-w-[1150px] mx-auto">
             <Faq />
           </div>
         </div>
 
         {/* === CONTACT US SECTION === */}
-        <div
-          id="contactUs-id"
-          className="bg-[#F2F6F6] w-full text-sm lg:flex flex-col items-center"
-        >
-          <div className="max-w-7xl text-sm  md:px-6">
+        <div id="contactUs-id" className="bg-[#F2F6F6] text-sm w-full">
+          <div className="max-w-[1200px] mx-auto text-sm ">
             <ContactUs />
           </div>
         </div>
@@ -115,7 +80,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe-refine.png)] "></div>
           {/* ===Overlay with color and opacity=== */}
           <div className="absolute inset-0 bg-[#014751] opacity-80 rounded-tl-[32px] rounded-br-[32px]"></div>
-          <div className="relative w-full max-w-7xl text-sm">
+          <div className="relative w-full max-w-[1200px] text-sm">
             <Footer />
           </div>
         </div>
