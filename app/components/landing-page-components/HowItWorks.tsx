@@ -3,6 +3,8 @@ import ReactPlayer from "react-player";
 import Link from "next/link";
 import { Check } from "lucide-react";
 
+
+
 export default function HowItWorks() {
   const handleSmoothScroll = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -54,13 +56,15 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        <div className="w-full h-fit mt-12 lg:mt-16">
+        <div className="w-full h-fit md:h-[350px] lg:w-[400px] xl:w-[550px] xl:h-[350px] mt-12 lg:mt-16">
           <ReactPlayer
             width="100%"
             height="100%"
             controls
             className=""
-            url="../../../videos/geomatic-guide.mov"
+            // url="../../../videos/geomatic-guide.mov"
+            // url="../../../videos/demo-vidio.mp4"
+            url="https://www.youtube.com/watch?v=CqlkEw4P0aM"
           />
         </div>
       </main>
