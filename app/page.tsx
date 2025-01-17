@@ -1,5 +1,3 @@
-"use client";
-import { useEffect } from "react";
 import Navbar from "@/app/components/navbar/Navbar";
 import Hero from "@/app/components/landing-page-components/Hero";
 import HowItWorks from "@/app/components/landing-page-components/HowItWorks";
@@ -68,9 +66,9 @@ export default function Home() {
             href="https://api.whatsapp.com/send/?phone=2348133642798&text=Welcome+to+Geomatic+Connect%2C+please+ask+me+any+question+regarding+our+products+and+services&type=phone_number&app_absent=0"
             target="_blank"
           >
-            <div className="bg-[#019734] p-2.5 rounded-full flex items-center">
+            <span className="bg-[#019734] p-2.5 rounded-full flex items-center">
               <FaWhatsapp color="#FFFFFF" size={42} className="" />
-            </div>
+            </span>
           </a>
         </div>
 
