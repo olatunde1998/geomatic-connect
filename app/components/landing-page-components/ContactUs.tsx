@@ -5,7 +5,7 @@ import Contact from "@/public/images/contact.png";
 export default function ContactUs() {
   return (
     <>
-      <main className="px-3 lg:px-6 w-full grid grid-cols-2 lg:flex lg:gap-10 xl:gap-0">
+      <main className="px-3 grid grid-cols-2 lg:flex lg:gap-10 xl:gap-0">
         {/* ====Section One ==== */}
         <section className="mt-8">
           <div className="lg:w-[400px]">

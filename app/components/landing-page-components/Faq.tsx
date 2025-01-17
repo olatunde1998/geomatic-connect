@@ -29,7 +29,7 @@ export default function Faq() {
                 activeFaq === faq.id
                   ? "bg-[#FFFFFF] mt-10 text-[#014751]  p-4 md:p-8 lg:p-10 rounded-tl-[32px] rounded-br-[32px]"
                   : "text-[#FFFFFF] mt-10  p-4 md:p-8 lg:px-10 lg:py-4 border-b-[0.5px] border-[#FFFFFF]"
-              } flex justify-between  max-w-6xl mx-auto cursor-pointer`}
+              } flex justify-between  max-w-[1100px] mx-auto cursor-pointer`}
             >
               <div>
                 <p

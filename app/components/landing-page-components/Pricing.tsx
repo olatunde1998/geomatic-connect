@@ -15,7 +15,7 @@ export default function Pricing() {
         </div>
         {/* ====Section Two ==== */}
         <section>
-          <div className="mt-10 px-6 md:px-2 space-y-10 md:mt-16 md:space-y-0 flex flex-col items-center md:grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 justify-center place-items-center">
+          <div className="mt-10 px-6 md:px-2 space-y-10 md:mt-16 md:space-y-0 flex flex-col items-center md:grid md:grid-cols-2 md:gap-3 lg:gap-10 lg:grid-cols-3 justify-center place-items-center">
             {pricingData.map((item: any) => (
               <div key={item.id}>
                 <PricingCard

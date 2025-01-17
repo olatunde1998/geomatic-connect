@@ -1,96 +1,69 @@
 "use client";
-import Image from "next/image";
-import React from "react";
-import Spiral from "@/public/images/spiral.svg";
+import ReactPlayer from "react-player";
+import Link from "next/link";
+import { Check } from "lucide-react";
 
 export default function HowItWorks() {
+  const handleSmoothScroll = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
   return (
-    <main className="py-10 xl:px-6 w-full lg:pb-[100px] xl:pb-[260px]">
-      {/* ==== Section One ==== */}
-      <div className="text-center mb-12">
-        <p className="text-xl font-extrabold lg:text-3xl">
-          How <span className="text-[#014751]">GeomaticConnect</span> Works?
-        </p>
-        <p className="text-md lg:text-xl mt-4 w-[250px] mx-auto">
-          Trusted by leading brands and companies
-        </p>
-      </div>
-
-      {/* ==== Steps Section ==== */}
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-12 relative">
-        
-        {/* Step 1 */}
-        <div className="text-center relative lg:ml-12 lg:top-16 xl:top-24 xl:ml-12 z-10">
-          <div className="bg-[#014751] text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl font-bold mx-auto mb-4 lg:hidden">
-            02
-          </div>
-          <div className="max-w-xs mx-auto">
-            <h3 className="text-lg font-semibold mb-2">
-              Make Payment
-            </h3>
-            <p className="lg:text-xs xl:text-sm text-gray-600">
-            Once you accept our fair all-cash offer, we’ll sign the contract
-            and schedule a closing date of your choice.
-            </p>
+    <>
+      <main className="w-full md:grid md:grid-cols-2 md:gap-32">
+        <div className="text-[#FFFFFF] lg:mt-10">
+          <p className="text-xl md:text-left font-bold md:text-2xl lg:text-3xl xl:text-4xl w-[250px] md:w-[100%]">
+            How it works?
+          </p>
+          <div className="w-24 h-1 bg-[#FFC957]" />
+          <p className="mt-4  md:text-left  text-xs md:text-base text-[#F0F0F0] lg:w-[500px] my-10 leading-8">
+            Make a type specimen book. It has survived not only five centuries,
+            but also the leap into.
+          </p>
+          <p className="mt-4 flex items-center gap-2   md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
+            <Check color="#6CB92B" />
+            Create Your Free Account with us
+          </p>
+          <p className="mt-4 flex items-center gap-2  md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
+            <Check color="#6CB92B" />
+            Verify Your Email Address
+          </p>{" "}
+          <p className="mt-4 flex items-center gap-2  md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
+            <Check color="#6CB92B" />
+            Login with your Free Account
+          </p>
+          <p className="mt-4 flex items-center gap-2  md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
+            <Check color="#6CB92B" />
+            Make Request to your desire Company
+          </p>
+          <div className="mt-10 flex space-x-8 mb-8">
+            <button
+              onClick={() => handleSmoothScroll("contactUs-id")}
+              className="hover:bg-[#014751] border-[1.3px] shadow-xl border-[#FFFFFF] p-3 lg:p-4 font-bold text-[#FFFFFF] rounded-md w-[100px] lg:w-[150px] text-xs"
+            >
+              Contact Us
+            </button>
+            <Link
+              href="/signup"
+              className="border-[#6CB92B] border-[1.3px] shadow-xl bg-[#FFFFFF] p-3 lg:p-3 items-center flex justify-center font-bold text-[#014751] rounded-md w-[150px] text-xs"
+            >
+              Register an account
+            </Link>
           </div>
         </div>
 
-        {/* Spiral Image */}
-        <div className="hidden lg:block absolute inset-0 items-center justify-center">
-          <Image
-            src={Spiral}
-            alt="Spiral Design"
-            width={600}
-            height={600}
-            priority
-            className="w-full"
+        <div className="w-full h-fit mt-12 lg:mt-16">
+          <ReactPlayer
+            width="100%"
+            height="100%"
+            controls
+            className=""
+            url="../../../videos/geomatic-guide.mov"
           />
         </div>
-
-        {/* Step 2 */}
-        <div className="text-center relative lg:top-16 xl:top-24  z-10">
-          <div className="bg-[#014751] text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl font-bold mx-auto mb-4 lg:hidden">
-            02
-          </div>
-          <div className="max-w-xs mx-auto">
-            <h3 className="text-lg font-semibold mb-2">
-              Make Payment
-            </h3>
-            <p className="lg:text-xs xl:text-sm text-gray-600">
-            Once you accept our fair all-cash offer, we&apos;ll sign the contract
-            and schedule a closing date of your choice.
-            </p>
-          </div>
-        </div>
-
-        {/* Step 3 */}
-        <div className="text-center relative lg:top-16 xl:top-24 z-10">
-          <div className="bg-[#014751] text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl font-bold mx-auto mb-4 lg:hidden">
-            03
-          </div>
-          <div className="max-w-xs mx-auto">
-            <h3 className="text-lg font-semibold mb-2">Accept The Offer</h3>
-            <p className="lg:text-xs xl:text-sm text-gray-600">
-              Once you accept our fair all-cash offer, we&apos;ll sign the contract
-              and schedule a closing date of your choice.
-            </p>
-          </div>
-        </div>
-
-        {/* Step 4 */}
-        <div className="text-center relative z-10 lg:mt-36  lg:right-6 xl:mt-40 xl:top-2 xl:right-4">
-          <div className="bg-[#014751] text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl font-bold mx-auto mb-4 lg:hidden">
-            04
-          </div>
-          <div className="max-w-xs mx-auto">
-            <h3 className="text-lg font-semibold mb-2">Cash in Your Pocket</h3>
-            <p className="lg:text-xs xl:text-sm text-gray-600">
-              On the closing day, we formally close the transaction, and after a
-              few days, you will get all your cash!
-            </p>
-          </div>
-        </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }

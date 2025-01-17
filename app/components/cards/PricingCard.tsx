@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import Link from "next/link";
 
 interface PricingCardProps {
   headings: string;
@@ -7,7 +8,7 @@ interface PricingCardProps {
   billingCycle: string;
   benefit: string[];
   buttonContent: string;
-  popular?: boolean,
+  popular?: boolean;
 }
 
 export default function PricingCard({
@@ -17,18 +18,38 @@ export default function PricingCard({
   benefit,
   buttonContent,
   billingCycle,
-  popular
+  popular,
 }: PricingCardProps) {
   return (
     <>
       <div>
-        <div className={`${popular ? "bg-[#155464] text-white" : "bg-[#FFFFFF]" } md:w-[300px] xl:w-[360px] px-6 py-8 md:py-8 md:pb-4 md:px-8 border border-slate-300 rounded-xl text-[#1C3C41]`}>
+        <div
+          className={`${
+            popular ? "bg-[#155464] text-white" : "bg-[#FFFFFF]"
+          } md:w-[300px] xl:w-[360px] px-6 py-8 md:py-8 md:pb-4 md:px-8 border border-slate-300 rounded-xl text-[#1C3C41]`}
+        >
           <div>
-            <p className={`${popular ? "text-[#FFFFFF]" : "text-[#1C3C41]"} font-bold text-2xl `}>{headings}</p>
-            <p className={`${popular ? "text-[#FFFFFF]" : "text-[#1E1E1E]"}  mt-4 font-light`}>{subHeadings}</p>
+            <p
+              className={`${
+                popular ? "text-[#FFFFFF]" : "text-[#1C3C41]"
+              } font-bold text-2xl `}
+            >
+              {headings}
+            </p>
+            <p
+              className={`${
+                popular ? "text-[#FFFFFF]" : "text-[#1E1E1E]"
+              }  mt-4 font-light`}
+            >
+              {subHeadings}
+            </p>
             <div className="flex gap-2 items-baseline mt-10">
-              <p className="font-bold text-3xl md:text-6xl">${amount}</p>
-              <p className={`${popular ? "text-[#FFFFFF]" : "text-[#6C748B]"} text-sm md:text-sm  whitespace-nowrap`}>
+              <p className="font-bold text-3xl md:text-4xl">₦{amount}</p>
+              <p
+                className={`${
+                  popular ? "text-[#FFFFFF]" : "text-[#6C748B]"
+                } text-sm md:text-sm  whitespace-nowrap`}
+              >
                 / {billingCycle}
               </p>
             </div>
@@ -45,9 +66,12 @@ export default function PricingCard({
                 </li>
               ))}
             </ul>
-            <p className="border border-slate-300 text-center p-3 rounded-lg mt-8 cursor-pointer">
+            <Link
+              href="/login"
+              className="block border border-slate-300 text-center p-3 rounded-lg mt-8 cursor-pointer"
+            >
               {buttonContent}
-            </p>
+            </Link>
           </div>
         </div>
       </div>

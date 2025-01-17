@@ -10,7 +10,7 @@ import HeroImage from "@/public/images/hero-refine.png";
 export default function Hero() {
   return (
     <>
-      <main className="p-2 px-6 grid md:grid-cols-2 gap-10 items-center w-full">
+      <main className="p-2 px-6 grid md:grid-cols-2 gap-10 items-center w-full xl:pl-24">
         {/* ====Section One ==== */}
         <div className="mt-10">
           <p className="text-3xl xl:text-5xl font-extrabold text-[#014751] w-fit md:max-w-[500px]">
@@ -56,7 +56,7 @@ export default function Hero() {
             width={500}
             height={500}
             priority
-            className="relative z-100 xl:w-[557px] xl:h-[610px] object-cover mix-blend-multiply"
+            className="relative z-100 xl:w-[557px] xl:h-[580px] object-cover mix-blend-multiply"
           />
         </div>
       </main>

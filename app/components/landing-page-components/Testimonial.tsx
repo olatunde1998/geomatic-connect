@@ -4,6 +4,11 @@ import TestimonialCard from "@/app/components/cards/TestimonialCard";
 import Google from "@/public/images/google-2.png";
 import Facebook from "@/public/images/facebook.png";
 import TrustPilot from "@/public/images/trustpilot.png";
+import RasheedPic from "@/public/images/student-pic.jpeg";
+import AdaezePic from "@/public/images/adaeze-img.jpeg";
+import MustophaPic from "@/public/images/mustopha-img.jpeg";
+import DamilarePic from "@/public/images/damilare-img.jpg";
+
 
 export default function Testimonial() {
   return (
@@ -14,7 +19,7 @@ export default function Testimonial() {
           <p className="text-xl  font-extrabold md:text-3xl xl:text-4xl text-[#014751]">
             Testimonials
           </p>
-          <p className="text-md md:text-base lg:text-lg w-[250px] lg:w-[300px] mx-auto mt-3">
+          <p className="text-md md:text-base text-[#747578] lg:text-lg w-[250px] lg:w-[300px] mx-auto mt-3">
             What Do Happy Clients Say About Working With Us?
           </p>
         </div>
@@ -25,17 +30,49 @@ export default function Testimonial() {
               <div className="relative gap-6 flex items-center justify-center animate md:relative left-0 ">
                 {/* part one */}
                 <div className="gap-6 flex items-center justify-around">
-                  <TestimonialCard />
-                  <TestimonialCard />
-                  <TestimonialCard />
-                  <TestimonialCard />
+                  <TestimonialCard
+                    imageUrl={RasheedPic}
+                    location="UI Ibadan, Oyo State"
+                    fullName="Rasheed Olatunde"
+                  />
+                  <TestimonialCard
+                    imageUrl={AdaezePic}
+                    location="Victoria Island, Lagos State"
+                    fullName="Adaeze Ugwu"
+                  />
+                  <TestimonialCard
+                    imageUrl={MustophaPic}
+                    location="Sango Ota, Ogun State"
+                    fullName="Mustopha Iyiola"
+                  />
+                  <TestimonialCard
+                    imageUrl={DamilarePic}
+                    location="Ede, Osun State"
+                    fullName="Damilare Adekilekun"
+                  />
                 </div>
                 {/* part two */}
                 <div className="gap-6 flex items-center justify-around">
-                  <TestimonialCard />
-                  <TestimonialCard />
-                  <TestimonialCard />
-                  <TestimonialCard />
+                  <TestimonialCard
+                    imageUrl={RasheedPic}
+                    location="UI Ibadan, Oyo State"
+                    fullName="Rasheed Olatunde"
+                  />
+                  <TestimonialCard
+                    imageUrl={AdaezePic}
+                    location="Victoria Island, Lagos State"
+                    fullName="Adaeze Ugwu"
+                  />
+                  <TestimonialCard
+                    imageUrl={MustophaPic}
+                    location="Sango Ota, Ogun State"
+                    fullName="Mustopha Iyiola"
+                  />
+                  <TestimonialCard
+                    imageUrl={DamilarePic}
+                    location="Ede, Osun State"
+                    fullName="Damilare Adekilekun"
+                  />
                 </div>
               </div>
             </div>

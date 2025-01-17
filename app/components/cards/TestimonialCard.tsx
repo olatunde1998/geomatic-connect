@@ -3,10 +3,16 @@ import { MdStar } from "react-icons/md";
 import Testimonial from "@/public/images/testimonial.jpg";
 
 interface TestimonialCardProps {
-  //   token: any;
+  imageUrl: any;
+  fullName: string;
+  location: string;
 }
 
-export default function TestimonialCard() {
+export default function TestimonialCard({
+  fullName,
+  imageUrl,
+  location,
+}: TestimonialCardProps) {
   return (
     <>
       <div>
@@ -14,7 +20,7 @@ export default function TestimonialCard() {
           <div className="flex gap-3 ">
             <div>
               <Image
-                src={Testimonial}
+                src={imageUrl}
                 alt="profile image"
                 width={100}
                 height={100}
@@ -24,10 +30,10 @@ export default function TestimonialCard() {
             </div>
             <div className="mt-2">
               <p className="font-extrabold text-base md:text-xl">
-                Rodriguez Millo
+                {fullName}
               </p>
               <p className="text-sm md:text-base text-gray-700 font-light mt-1">
-                Puorto Lobos, Mexico
+                {location}
               </p>
 
               <div className="mt-4 flex gap-0.5">

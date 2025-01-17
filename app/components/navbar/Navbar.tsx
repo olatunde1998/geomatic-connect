@@ -4,12 +4,12 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe } from "lucide-react";
+// import { Globe } from "lucide-react";
 import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
 
 const routes = [
   {
-    name: "About us",
+    name: "How it Works",
     href: "about-id",
   },
   {
@@ -69,7 +69,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed w-full z-20 top-0 left-0 border-b bg-[#F6F8FD] py-2.5 backdrop-blur-10">
-        <div className="max-w-[1100px] xl:max-w-7xl mx-auto p-2 px-4 md:px-2 flex justify-between items-center">
+        <div className="max-w-[1200px] mx-auto p-2 pr-4 md:px-2 flex justify-between items-center">
           {/* =======Company LOGO ==== */}
           <Link href="/" className="flex items-center">
             <Image
@@ -106,11 +106,11 @@ export default function Navbar() {
             </Link>
             <Link
               href="/signup"
-              className="bg-[#014751] p-3 font-bold text-[#FFFFFF] rounded-md"
+              className="bg-[#014751] p-3 text-sm font-normal text-[#FFFFFF] rounded-md"
             >
               Create free account
             </Link>
-            <Globe color="#014751" className="cursor-pointer mx-6" />
+            {/* <Globe color="#014751" className="cursor-pointer mx-6" /> */}
           </div>
 
           {/* ======= Menu button ======*/}
@@ -158,7 +158,10 @@ export default function Navbar() {
                 </div>
                 <ul className="flex flex-col p-2 font-medium rounded-lg space-y-2">
                   {mobileRoutes.map((route, index) => (
-                    <li key={index} className="block py-2 pl-1.5 mx-4 pr-3 border-b border-slate-200">
+                    <li
+                      key={index}
+                      className="block py-2 pl-1.5 mx-4 pr-3 border-b border-slate-200"
+                    >
                       <Link href={route.href}>{route.name}</Link>
                     </li>
                   ))}
