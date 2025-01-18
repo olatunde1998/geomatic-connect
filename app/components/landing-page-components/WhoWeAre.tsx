@@ -12,8 +12,8 @@ export default function WhoWeAre() {
             Who we are?
           </h2>
           <div className="w-24 h-1 bg-[#FFC957]" />
-          <div className="text-[#747578] max-w-[400px] my-10 leading-8 text-base ">
-            <p>
+          <div className="text-[#747578] max-w-[400px] mt-6 mb-10 md:my-10 leading-8 text-base ">
+            <p className="text-sm leading-8 md:text-base md:leading-8">
               We are a company that prioritizes students satisfaction so that we
               can become a favorite company for all companies that use our
               services
@@ -21,20 +21,20 @@ export default function WhoWeAre() {
             <hr className="my-10 bg-[#014751] h-[2px]" />
             <div className="flex items-center justify-between gap-6 mb-16">
               <div className="flex flex-col items-center justify-center gap-3">
-                <h3 className="text-3xl font-bold ">65</h3>
-                <p className="text-sm lg:whitespace-nowrap">
+                <h3 className="text-2xl md:text-3xl font-bold">10+</h3>
+                <p className="text-xs md:text-sm text-center lg:whitespace-nowrap">
                   Project Completed
                 </p>
               </div>
               <div className="flex flex-col items-center justify-center gap-3">
-                <h3 className="text-3xl font-bold ">50+</h3>
-                <p className="text-sm lg:whitespace-nowrap">
+                <h3 className="text-3xl font-bold">50+</h3>
+                <p className="text-xs md:text-sm text-center lg:whitespace-nowrap">
                   Company work with
                 </p>
               </div>
               <div className="flex flex-col items-center justify-center gap-3">
-                <h3 className="text-3xl font-bold ">65+</h3>
-                <p className="text-sm lg:whitespace-nowrap">
+                <h3 className="text-3xl font-bold">60+</h3>
+                <p className="text-xs md:text-sm text-center lg:whitespace-nowrap">
                   Students connected
                 </p>
               </div>
