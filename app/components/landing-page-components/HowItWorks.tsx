@@ -3,8 +3,6 @@ import ReactPlayer from "react-player";
 import Link from "next/link";
 import { Check } from "lucide-react";
 
-
-
 export default function HowItWorks() {
   const handleSmoothScroll = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -21,8 +19,9 @@ export default function HowItWorks() {
           </p>
           <div className="w-24 h-1 bg-[#FFC957]" />
           <p className="mt-4  md:text-left  text-xs md:text-base text-[#F0F0F0] lg:w-[500px] my-10 leading-8">
-            Make a type specimen book. It has survived not only five centuries,
-            but also the leap into.
+            Watch the video to learn how to submit requests to your desired
+            companies using Geomatic Connect. Discover how to navigate and make
+            the most of the application&apos;s features.
           </p>
           <p className="mt-4 flex items-center gap-2   md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
             <Check color="#6CB92B" />
