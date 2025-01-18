@@ -25,7 +25,7 @@ export default function TestimonialCard({
                 width={100}
                 height={100}
                 priority
-                className="w-[100px] h-[100px] md:w-[100px] md:h-[100px] object-cover rounded-full"
+                className="w-[70px] h-[70px] md:w-[100px] md:h-[100px] object-cover rounded-full"
               />
             </div>
             <div className="mt-2">
