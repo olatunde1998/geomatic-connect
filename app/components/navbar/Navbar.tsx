@@ -4,8 +4,10 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
-// import { Globe } from "lucide-react";
 import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
+import { IoSparklesSharp } from "react-icons/io5";
+import { Modal } from "@/app/components/modals/Modal";
+import Chatbot from "../chatbot/ChatBot";
 
 const routes = [
   {
@@ -35,6 +37,7 @@ const mobileRoutes = [
 
 export default function Navbar() {
   const [dropNav, setDropNav] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [showActions, setShowActions] = useState(false);
 
   // Refs
@@ -64,6 +67,11 @@ export default function Navbar() {
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  };
+
+  // toggleChat handler
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
   };
 
   return (
@@ -98,15 +106,22 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
+
             <Link
               href="/login"
               className="p-3 font-medium rounded-md mx-4 hover:text-[#014751]"
             >
               Login
             </Link>
+            <p
+              onClick={() => toggleChat()}
+              className="hidden bg-[#F2F6F6] border-[0.2px] border-[#014751] px-3 py-2 font-medium cursor-pointer rounded-md mx-4 hover:text-[#014751] lg:flex items-center gap-3"
+            >
+              <IoSparklesSharp /> <span>Ask AI</span>
+            </p>
             <Link
               href="/signup"
-              className="bg-[#014751] p-3 text-sm font-normal text-[#FFFFFF] rounded-md"
+              className="bg-[#014751] px-3 py-2 text-sm font-normal text-[#FFFFFF] rounded-md"
             >
               Create free account
             </Link>
@@ -171,6 +186,10 @@ export default function Navbar() {
           </AnimatePresence>
         </section>
       </nav>
+      {/* === MODALS === */}
+      <Modal show={isChatOpen} onClose={() => setIsChatOpen(false)}>
+        <Chatbot toggleChat={toggleChat} />
+      </Modal>
     </>
   );
 }
