@@ -18,7 +18,38 @@ body {
   }
 }
 
-/* Testimonial styling */
+/* =====Hero styling ==== */
+@keyframes fadeSpring {
+  0%, 24% {
+    opacity: 1;
+    transform: translateY(0);
+    display: inline-block;
+  }
+  25%, 100% {
+    opacity: 0;
+    transform: translateY(10px);
+    display: none;
+  }
+}
+
+.animate-fadeSpring1 {
+  animation: fadeSpring 10s linear 0s infinite; 
+}
+
+.animate-fadeSpring2 {
+  animation: fadeSpring 10s linear -7.5s infinite; 
+}
+
+.animate-fadeSpring3 {
+  animation: fadeSpring 10s linear -5s infinite; 
+}
+
+.animate-fadeSpring4 {
+  animation: fadeSpring 10s linear -2.5s infinite; 
+}
+
+
+/* =====Testimonial styling ===== */
 @keyframes marquee {
   0% {
     left: 0;
@@ -29,7 +60,7 @@ body {
 }
 .animate {
   width: 300%;
-  animation: marquee 20s linear infinite;
+  animation: marquee 15s linear infinite;
   top: 50%;
   transform: translate(0, -50%);
 }
