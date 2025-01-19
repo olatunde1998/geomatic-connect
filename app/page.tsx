@@ -23,7 +23,7 @@ export default function Home() {
           </div>
         </div>
         {/* === WHO WE ARE SECTION === */}
-        <div className="w-full text-sm  max-w-[1200px] mx-auto px-6 pb-16 md:px-10 md:pt-16 lg:py-20">
+        <div id="whoWeAre-id"  className="w-full text-sm  max-w-[1200px] mx-auto px-6 pb-16 md:px-10 md:pt-16 lg:py-20">
           <WhoWeAre />
         </div>
 
@@ -35,14 +35,17 @@ export default function Home() {
         </div>
 
         {/* === Testimonial === */}
-        <div className="w-full  flex-col items-center text-sm lg:flex">
+        <div
+          id="testimonial-id"
+          className="w-full  flex-col items-center text-sm lg:flex"
+        >
           <div className="w-full max-w-[1200px] text-sm ">
             <Testimonial />
           </div>
         </div>
 
         {/* === PRICING SECTION === */}
-        <div className="bg-[#F2F6F6] w-full text-sm">
+        <div id="pricing-id" className="bg-[#F2F6F6] w-full text-sm">
           <div className="max-w-[1200px] mx-auto text-sm md:px-6">
             <Pricing />
           </div>

@@ -1,3 +1,4 @@
+"use client";
 import { RiFacebookCircleFill } from "react-icons/ri";
 import { BsGithub } from "react-icons/bs";
 import { FaTwitter } from "react-icons/fa";
@@ -9,6 +10,13 @@ import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
 export const Footer = () => {
   const today: Date = new Date();
   const currentYear: number = today.getFullYear();
+
+  const handleSmoothScroll = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
   return (
     <div className="px-6 text-white py-10">
       <section className="mb-2 md:flex justify-between pb-10 md:mb-20">
@@ -26,21 +34,25 @@ export const Footer = () => {
           <div>
             <p className="font-bold mb-8"> Quick Links</p>
             <ul className="cursor-pointer space-y-4 font-light text-base lg:text-lg">
-              <li>About </li>
-              <li>Contact Us </li>
-              <li>Blogs </li>
-              <li>Testimonial</li>
+              <li onClick={() => handleSmoothScroll(`about-id`)}>About </li>
+              <li onClick={() => handleSmoothScroll(`contactUs-id`)}>
+                Contact Us{" "}
+              </li>
+              <li onClick={() => handleSmoothScroll(`testimonial-id`)}>
+                Testimonial
+              </li>
               <li>Community </li>
             </ul>
           </div>
           <div className="my-10 md:my-0">
             <p className="font-bold mb-8"> Services</p>
             <ul className="cursor-pointer space-y-4 font-light text-base lg:text-lg">
-              <li>Faq </li>
-              <li>Our Services</li>
-              <li>Pricing </li>
+              <li onClick={() => handleSmoothScroll(`faq-id`)}>Faq </li>
+              <li onClick={() => handleSmoothScroll(`whoWeAre-id`)}>
+                Our Services
+              </li>
+              <li onClick={() => handleSmoothScroll(`pricing-id`)}>Pricing </li>
               <li>Career Paths</li>
-              <li>Free Resources</li>
             </ul>
           </div>
         </div>

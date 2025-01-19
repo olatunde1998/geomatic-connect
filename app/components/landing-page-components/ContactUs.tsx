@@ -1,6 +1,6 @@
-"use client";
 import Image from "next/image";
 import Contact from "@/public/images/contact.png";
+import Link from "next/link";
 
 export default function ContactUs() {
   return (
@@ -25,13 +25,20 @@ export default function ContactUs() {
           <div className="text-base  font-bold lg:text-2xl xl:text-3xl text-[#014751] md:mt-3 md:w-[300px]">
             We&apos;ll Connect You With in 48hours.
           </div>
-          <div className="lg:flex  gap-3  h-fit mt-6 xl:ml-28">
-            <p className="p-3 lg:p-4 bg-[#014751] text-[#FFFFFF] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center cursor-pointer text-sm">
+          <div className="lg:flex gap-3 h-fit mt-6 xl:ml-28">
+            <a
+              href="https://api.whatsapp.com/send/?phone=2348133642798&text=Welcome+to+Geomatic+Connect%2C+please+ask+me+any+question+regarding+our+products+and+services&type=phone_number&app_absent=0"
+              target="_blank"
+              className="bg-[#014751] text-[#FFFFFF] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center cursor-pointer text-sm"
+            >
               Contact Us
-            </p>
-            <p className="p-3 lg:p-4 mt-2 md:mt-3 lg:mt-0 bg-[#FFFFFF] text-xs border-[1.3px] border-[#014751] text-[#014751] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center font-semibold cursor-pointer">
+            </a>
+            <Link
+              href="/signup"
+              className="p-3 lg:p-4 mt-2 md:mt-3 lg:mt-0 bg-[#FFFFFF] text-xs border-[1.3px] border-[#014751] text-[#014751] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center font-semibold cursor-pointer"
+            >
               Register Now
-            </p>
+            </Link>
           </div>
         </section>
       </main>
