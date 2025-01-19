@@ -129,7 +129,13 @@ export default function Navbar() {
           </div>
 
           {/* ======= Menu button ======*/}
-          <div className="md:hidden">
+          <div className="flex md:hidden">
+            <p
+              onClick={() => toggleChat()}
+              className="md:hidden bg-[#F2F6F6] border-[0.2px] border-[#014751] px-3 py-2 font-medium cursor-pointer rounded-sm mx-4 hover:text-[#014751] flex items-center gap-3"
+            >
+              <IoSparklesSharp /> <span>Ask AI</span>
+            </p>
             {!dropNav && (
               <HiMenu
                 className="text-lg transition"
