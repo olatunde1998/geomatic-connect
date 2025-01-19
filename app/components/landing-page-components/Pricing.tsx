@@ -8,8 +8,8 @@ export default function Pricing() {
       <main className="py-10 pb-20 px- w-full">
         {/* ====Section One ==== */}
         <div className="text-center">
-          <p className="text-md lg:text-2xl">Our Pricing</p>
-          <p className="text-xl font-bold lg:text-3xl xl:text-4xl text-[#014751] mt-3 w-[280px] lg:w-[450px] mx-auto">
+          <p className="text-md md:text-2xl">Our Pricing</p>
+          <p className="text-xl font-bold md:text-3xl xl:text-4xl text-[#014751] mt-3 w-[280px] md:w-[400px] lg:w-[450px] mx-auto">
             We Provide Various Offer Packages For You
           </p>
         </div>

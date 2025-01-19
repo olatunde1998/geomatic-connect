@@ -14,7 +14,7 @@ export default function HowItWorks() {
     <>
       <main className="w-full md:grid md:grid-cols-2 md:gap-32">
         <div className="text-[#FFFFFF] lg:mt-10">
-          <p className="text-xl md:text-left font-bold md:text-2xl lg:text-3xl xl:text-4xl w-[250px] md:w-[100%]">
+          <p className="text-xl md:text-left font-bold md:text-3xl xl:text-4xl w-[250px] md:w-[100%]">
             How it works?
           </p>
           <div className="w-24 h-1 bg-[#FFC957]" />

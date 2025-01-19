@@ -15,7 +15,7 @@ export default function Faq() {
         <div className="absolute inset-0 bg-[#014751] opacity-80 rounded-tl-[32px] rounded-br-[32px]"></div>
         {/* ====Section One (CONTENT)==== */}
         <div className="relative">
-          <p className="text-center text-xl uppercase  font-extrabold lg:text-3xl xl:text-4xl text-[#FFFFFF]">
+          <p className="text-center text-xl uppercase  font-extrabold md:text-3xl xl:text-4xl text-[#FFFFFF]">
             faq<span className="lowercase">s</span>
           </p>
           <p className="text-center text-md lg:text-lg mt-3 text-[#FFFFFF]">
