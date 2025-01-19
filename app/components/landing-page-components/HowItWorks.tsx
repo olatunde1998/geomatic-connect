@@ -14,7 +14,7 @@ export default function HowItWorks() {
     <>
       <main className="w-full md:grid md:grid-cols-2 md:gap-32">
         <div className="text-[#FFFFFF] lg:mt-10">
-          <p className="text-xl md:text-left font-bold md:text-3xl xl:text-4xl w-[250px] md:w-[100%]">
+          <p className="text-2xl md:text-left font-bold md:text-3xl xl:text-4xl w-[250px] md:w-[100%]">
             How it works?
           </p>
           <div className="w-24 h-1 bg-[#FFC957]" />
@@ -39,10 +39,10 @@ export default function HowItWorks() {
             <Check color="#6CB92B" />
             Make Request to your desire Company
           </p>
-          <div className="mt-10 flex space-x-8 mb-8">
+          <div className="mt-10 flex space-x-6 mb-8">
             <button
               onClick={() => handleSmoothScroll("contactUs-id")}
-              className="hover:bg-[#014751] border-[1.3px] shadow-xl border-[#FFFFFF] p-3 lg:p-4 font-bold text-[#FFFFFF] rounded-md w-[100px] lg:w-[150px] text-xs"
+              className="hover:bg-[#014751] border-[1.3px] shadow-xl border-[#FFFFFF] p-3 lg:p-4 font-bold text-[#FFFFFF] rounded-md w-[130px] lg:w-[150px] text-xs"
             >
               Contact Us
             </button>
