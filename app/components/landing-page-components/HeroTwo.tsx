@@ -24,7 +24,7 @@ export default function HeroTwo() {
               Be your own boss.
             </span>
             <span className="text-[#F51767] inline-block animate-fadeSpring4">
-              Reach your career goals.
+              Fulfill your dreams.
             </span>
           </h2>
 
