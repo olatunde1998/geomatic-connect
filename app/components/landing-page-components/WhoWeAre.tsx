@@ -11,7 +11,7 @@ export default function WhoWeAre() {
       <section className="grid md:grid-cols-2 md:gap-10 lg:gap-24">
         {/* ==== Section One ==== */}
         <div>
-          <h2 className="capitalize text-3xl font-bold text-[#014751] mt-16">
+          <h2 className="capitalize text-2xl md:text-3xl font-bold text-[#014751] mt-10">
             Who we are?
           </h2>
           <div className="w-24 h-1 bg-[#FFC957]" />

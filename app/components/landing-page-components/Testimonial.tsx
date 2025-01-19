@@ -16,10 +16,10 @@ export default function Testimonial() {
       <main className="py-14 px-6 xl:py-20 w-full">
         {/* ====Section One ==== */}
         <div className="text-center">
-          <p className="text-xl  font-extrabold md:text-3xl xl:text-4xl text-[#014751]">
+          <p className="text-2xl font-extrabold md:text-3xl xl:text-4xl text-[#014751]">
             Testimonials
           </p>
-          <p className="text-md md:text-base text-[#747578] lg:text-lg w-[250px] lg:w-[300px] mx-auto mt-3">
+          <p className="text-base md:text-base text-[#747578] lg:text-lg w-[250px] lg:w-[300px] mx-auto mt-3">
             What Do Happy Clients Say About Working With Us?
           </p>
         </div>
