@@ -1,11 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import HeroImage from "@/public/images/prototype.png";
-import HeroImageTwo from "@/public/images/hero-refine.png";
 import FssLogo from "@/public/images/fss-logo.png";
 import NISLogo from "@/public/images/nis-logo.png";
 import GeosysLogo from "@/public/images/geosys-logo.png";
 import GeoinfotechLogo from "@/public/images/geoinfotech.gif";
-import Link from "next/link";
+// import HeroImageTwo from "@/public/images/hero-refine.png";
+// import HeroImageThree from "@/public/images/prototype-2.png";
 
 export default function HeroTwo() {
   return (
@@ -51,7 +52,7 @@ export default function HeroTwo() {
         <div className="  relative w-[80%] mx-auto mt-10 h-[250px] md:w-[90%] md:h-[450px] lg:w-[80%] lg:h-[610.44px] xl:h-[710px] shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]">
           <Image
             src={HeroImage}
-            alt="hero main picx"
+            alt="application prototype picture"
             fill
             priority
             className="rounded-lg border-[0.5px] border-slate-300"
@@ -69,111 +70,111 @@ export default function HeroTwo() {
               too.
             </h2>
             <div className="h-[80px] mx-auto md:h-[80px]">
-              <div className="w-full relative overflow-hidden pt-14">
+              <div className="w-full relative overflow-hidden pt-10">
                 <div className="relative flex items-center justify-center animate md:relative left-0 ">
                   {/* ====part one==== */}
                   <div className="w-[150%] flex items-center justify-around">
-                    <div className=" w-[100px] h-[100px] mx-6">
+                    <div className="w-[80px] h-[80px] mx-6">
                       <Image
                         src={FssLogo}
                         width={70}
                         height={70}
                         priority
-                        alt="NIPOST brand logo"
+                        alt="FSS logo"
                         className="w-auto h-auto"
                       />
                     </div>
 
-                    <div className="w-[100px] h-[100px] mx-6">
+                    <div className="w-[80px] h-[80px] mx-6">
                       <Image
                         src={NISLogo}
                         width={70}
                         height={70}
                         priority
-                        alt="Ondo State brand logo"
+                        alt="NIS Logo"
                         className="w-auto h-auto"
                       />
                     </div>
-                    <div className=" w-[100px] h-[100px] mx-6">
+                    <div className=" w-[80px] h-[80px] mx-6">
                       <Image
                         src={GeosysLogo}
                         width={70}
                         height={70}
                         priority
-                        alt="Federal Capital Teritary Abuja brand logo"
+                        alt="geosys logo"
                         className="w-auto h-auto"
                       />
                     </div>
-                    <div className="w-[100px] h-[100px]  mx-6">
+                    <div className="w-[80px] h-[80px]  mx-6">
                       <Image
                         src={NISLogo}
                         width={70}
                         height={70}
                         priority
-                        alt="Ondo State brand logo"
+                        alt="NIS logo"
                         className="w-auto h-auto"
                       />
                     </div>
-                    <div className="w-[100px] h-[100px] mx-6">
+                    <div className="w-[80px] h-[80px] mx-6">
                       <Image
                         src={GeoinfotechLogo}
                         width={70}
                         height={70}
                         priority
-                        alt="Ondo State brand logo"
+                        alt="geoinfotech logo"
                         className="w-auto h-auto"
                       />
                     </div>
                   </div>
                   {/* =====part two==== */}
                   <div className="w-[150%] flex items-center justify-around">
-                    <div className=" w-[100px] h-[100px] flex items-center justify-center mx-6">
+                    <div className=" w-[80px] h-[80px] flex items-center justify-center mx-6">
                       <Image
                         src={FssLogo}
                         width={70}
                         height={70}
                         priority
-                        alt="NIPOST brand logo"
+                        alt="FSS logo"
                         className="w-auto h-auto"
                       />
                     </div>
-                    <div className="w-[100px] h-[100px]  mx-6">
+                    <div className="w-[80px] h-[80px]  mx-6">
                       <Image
                         src={NISLogo}
                         width={70}
                         height={70}
                         priority
-                        alt="Ondo State brand logo"
+                        alt="NIS logo"
                         className="w-auto h-auto"
                       />
                     </div>
-                    <div className="w-[100px] h-[100px] flex items-center justify-center mx-6">
+                    <div className="w-[80px] h-[80px] flex items-center justify-center mx-6">
                       <Image
                         src={GeosysLogo}
                         width={70}
                         height={70}
                         priority
-                        alt="Federal Capital Teritary Abuja brand logo"
+                        alt="geosys logo"
                         className="w-auto h-auto"
                       />
                     </div>
-                    <div className="w-[100px] h-[100px]  mx-6">
+                    <div className="w-[80px] h-[80px]  mx-6">
                       <Image
                         src={NISLogo}
                         width={70}
                         height={70}
                         priority
-                        alt="Ondo State brand logo"
+                        alt="NIS logo"
                         className="w-auto h-auto"
                       />
                     </div>
-                    <div className=" w-[100px] h-[100px]  mx-6">
+                    <div className=" w-[80px] h-[80px]  mx-6">
                       <Image
                         src={GeoinfotechLogo}
                         width={70}
                         height={70}
                         priority
-                        alt="Ondo State brand logo"
+                        alt="geoinfotech logo"
                         className="w-auto h-auto"
                       />
                     </div>
