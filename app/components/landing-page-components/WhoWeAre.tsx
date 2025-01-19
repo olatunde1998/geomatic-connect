@@ -50,52 +50,52 @@ export default function WhoWeAre() {
 
         {/* ==== Steps Section ==== */}
         <div className="grid grid-cols-2 gap-4 xl:gap-6">
-          <div className="bg-[#F2F6F6] border border-slate-300 shadow-sm pt-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
+          <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
             <p className="text-2xl text-[#014751] font-bold border border-[#014751] p-4 rounded-full bg-white w-10 h-10 text-center flex justify-center items-center">
               1
             </p>
             <p className="font-semibold mt-8 md:mt-10 mb-4 text-xl text-[#014751]">
               Vision
             </p>
-            <p className="font-light">
-              Our goal is to be one of the leading digital transformation
-              partners for African governments.
+            <p className="font-light leading-6">
+              Our vision is to be the leading platform connecting geomatic
+              students with their preferred companies for industrial training,
+              SIWES, and professional development.
             </p>
           </div>
-          <div className="bg-[#F2F6F6] border border-slate-300 shadow-sm py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
+          <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
             <p className="text-2xl text-[#014751] font-bold border border-[#014751] p-4 rounded-full bg-white w-10 h-10 text-center flex justify-center items-center">
               2
             </p>
             <p className="font-semibold mt-8 md:mt-10 mb-4 text-xl text-[#014751]">
               Mission
             </p>
-            <p className="font-light">
-              Our aim is to consistently offer automation technology platforms
-              to geomatic students that drive an outstanding placement offer.
+            <p className="font-light leading-6">
+              We aim to deliver automation platforms that boost placement
+              opportunities for geomatic students.
             </p>
           </div>
-          <div className="bg-[#F2F6F6] border border-slate-300 shadow-sm py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
+          <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
             <p className="text-2xl text-[#014751] font-bold border border-[#014751] p-4 rounded-full bg-white w-10 h-10 text-center flex justify-center items-center">
               3
             </p>
             <p className="font-semibold mt-8 md:mt-10 mb-4 text-xl text-[#014751]">
               Our Core Values
             </p>
-            <p className="font-light">
-              Customer Focus, Innovation, Integrity & Respect.
+            <p className="font-light leading-6">
+              Students Focus, Innovation, Integrity & Respect.
             </p>
           </div>
-          <div className="bg-[#F2F6F6] border border-slate-300 shadow-sm py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
+          <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
             <p className="text-2xl text-[#014751] font-bold border border-[#014751] p-4 rounded-full bg-white w-10 h-10 text-center flex justify-center items-center">
               4
             </p>
             <p className="font-semibold mt-8 md:mt-10 mb-4 text-xl text-[#014751]">
               Our Culture
             </p>
-            <p className="font-light">
-              At Geomatic Connect - create great solutions, help geomatic
-              students achieve great increases in placement, and we want to be
-              great contributors to our nation.
+            <p className="font-light leading-6">
+              At Geomatic Connect, we create solutions to boost geomatic student
+              placements and contribute to national growth.
             </p>
           </div>
         </div>

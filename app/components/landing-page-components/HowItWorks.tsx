@@ -50,7 +50,7 @@ export default function HowItWorks() {
               href="/signup"
               className="border-[#6CB92B] border-[1.3px] shadow-xl bg-[#FFFFFF] p-3 lg:p-3 items-center flex justify-center font-bold text-[#014751] rounded-md w-[150px] text-xs"
             >
-              Register an account
+              Create free account
             </Link>
           </div>
         </div>
@@ -60,7 +60,6 @@ export default function HowItWorks() {
             width="100%"
             height="100%"
             controls
-            className=""
             // url="../../../videos/geomatic-guide.mov"
             // url="../../../videos/demo-vidio.mp4"
             // url="https://www.youtube.com/watch?v=CqlkEw4P0aM"
