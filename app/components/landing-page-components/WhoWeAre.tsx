@@ -1,6 +1,9 @@
-"use client";
 import Link from "next/link";
 import React from "react";
+import { TbSitemap } from "react-icons/tb";
+import { BsBarChart } from "react-icons/bs";
+import { GoPeople } from "react-icons/go";
+import { GiArcheryTarget } from "react-icons/gi";
 
 export default function WhoWeAre() {
   return (
@@ -51,10 +54,10 @@ export default function WhoWeAre() {
         {/* ==== Steps Section ==== */}
         <div className="grid grid-cols-2 gap-4 xl:gap-6">
           <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
-            <p className="text-2xl text-[#014751] font-bold border border-[#014751] p-4 rounded-full bg-white w-10 h-10 text-center flex justify-center items-center">
-              1
+            <p className=" text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
+              <GiArcheryTarget size={32} />
             </p>
-            <p className="font-semibold mt-8 md:mt-10 mb-4 text-xl text-[#014751]">
+            <p className="font-semibold mt-8 mb-4 text-xl text-[#014751]">
               Vision
             </p>
             <p className="font-light leading-6">
@@ -64,10 +67,10 @@ export default function WhoWeAre() {
             </p>
           </div>
           <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
-            <p className="text-2xl text-[#014751] font-bold border border-[#014751] p-4 rounded-full bg-white w-10 h-10 text-center flex justify-center items-center">
-              2
+            <p className=" text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
+              <TbSitemap size={32} />
             </p>
-            <p className="font-semibold mt-8 md:mt-10 mb-4 text-xl text-[#014751]">
+            <p className="font-semibold mt-8 mb-4 text-xl text-[#014751]">
               Mission
             </p>
             <p className="font-light leading-6">
@@ -76,10 +79,10 @@ export default function WhoWeAre() {
             </p>
           </div>
           <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
-            <p className="text-2xl text-[#014751] font-bold border border-[#014751] p-4 rounded-full bg-white w-10 h-10 text-center flex justify-center items-center">
-              3
+            <p className=" text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
+              <GoPeople size={32} />
             </p>
-            <p className="font-semibold mt-8 md:mt-10 mb-4 text-xl text-[#014751]">
+            <p className="font-semibold mt-8 mb-4 text-xl text-[#014751]">
               Our Core Values
             </p>
             <p className="font-light leading-6">
@@ -87,10 +90,10 @@ export default function WhoWeAre() {
             </p>
           </div>
           <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
-            <p className="text-2xl text-[#014751] font-bold border border-[#014751] p-4 rounded-full bg-white w-10 h-10 text-center flex justify-center items-center">
-              4
+            <p className=" text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
+              <BsBarChart size={32} />
             </p>
-            <p className="font-semibold mt-8 md:mt-10 mb-4 text-xl text-[#014751]">
+            <p className="font-semibold mt-8 mb-4 text-xl text-[#014751]">
               Our Culture
             </p>
             <p className="font-light leading-6">
