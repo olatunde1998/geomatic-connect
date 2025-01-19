@@ -2,10 +2,7 @@
 import { MapPin, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-// import HeroImage from "@/public/images/hero.png"
-// import HeroImage from "@/public/images/hero-6-remove.png"
 import HeroImage from "@/public/images/hero-refine.png";
-// import HeroImage from "@/public/images/hero-4-raw.jpg";
 
 export default function Hero() {
   return (
