@@ -1,5 +1,6 @@
 import Navbar from "@/app/components/navbar/Navbar";
-import Hero from "@/app/components/landing-page-components/Hero";
+// import Hero from "@/app/components/landing-page-components/Hero";
+import HeroTwo from "@/app/components/landing-page-components/HeroTwo";
 import HowItWorks from "@/app/components/landing-page-components/HowItWorks";
 import WhoWeAre from "@/app/components/landing-page-components/WhoWeAre";
 import Testimonial from "@/app/components/landing-page-components/Testimonial";
@@ -17,7 +18,8 @@ export default function Home() {
         <div className="bg-[#F2F6F6] lg:pt-8 w-full text-sm">
           <div className="max-w-[1300px] mx-auto text-sm md:px-6">
             <Navbar />
-            <Hero />
+            {/* <Hero /> */}
+            <HeroTwo />
           </div>
         </div>
         {/* === WHO WE ARE SECTION === */}
