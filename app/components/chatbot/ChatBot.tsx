@@ -88,7 +88,6 @@ export default function Chatbot({ toggleChat }: ChatBotProps) {
               </Button>
             </CardHeader>
 
-            {/* ===== */}
             <CardContent>
               <ScrollArea className="h-[300px] pr-4">
                 {messages.length === 0 && (
@@ -147,7 +146,6 @@ export default function Chatbot({ toggleChat }: ChatBotProps) {
               </ScrollArea>
             </CardContent>
 
-            {/* ==== */}
             <CardFooter>
               <form
                 onSubmit={handleSubmit}
