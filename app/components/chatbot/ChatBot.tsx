@@ -38,7 +38,7 @@ export default function Chatbot({ toggleChat }: ChatBotProps) {
     stop,
     reload,
     error,
-  } = useChat({ api: "/api/openai" });
+  } = useChat({ api: "/api/openai", id: "persistent-chat" });
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
