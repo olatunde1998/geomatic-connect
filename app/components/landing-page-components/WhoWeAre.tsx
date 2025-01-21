@@ -44,7 +44,7 @@ export default function WhoWeAre() {
             </div>
             <Link
               href="/signup"
-              className="bg-[#014751] p-4 text-sm font-normal text-[#FFFFFF] rounded-md"
+              className="bg-[#014751] dark:bg-muted dark:hover:bg-primary-foreground p-4 text-sm font-normal text-[#FFFFFF] rounded-md"
             >
               Create free account
             </Link>
@@ -53,50 +53,50 @@ export default function WhoWeAre() {
 
         {/* ==== Steps Section ==== */}
         <div className="grid grid-cols-2 gap-4 xl:gap-6">
-          <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
+          <div className="bg-[#F2F6F6] dark:hover:bg-muted border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
             <p className=" text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
               <GiArcheryTarget size={32} />
             </p>
             <p className="font-semibold mt-8 mb-4 text-xl text-[#014751]">
               Vision
             </p>
-            <p className="font-light leading-6">
+            <p className="font-light leading-6 dark:text-muted-foreground">
               Our vision is to be the leading platform connecting geomatic
               students with their preferred companies for industrial training,
               SIWES, and professional development.
             </p>
           </div>
-          <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
+          <div className="bg-[#F2F6F6] dark:hover:bg-muted border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
             <p className=" text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
               <TbSitemap size={32} />
             </p>
             <p className="font-semibold mt-8 mb-4 text-xl text-[#014751]">
               Mission
             </p>
-            <p className="font-light leading-6">
+            <p className="font-light leading-6 dark:text-muted-foreground">
               We aim to deliver automation platforms that boost placement
               opportunities for geomatic students.
             </p>
           </div>
-          <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
+          <div className="bg-[#F2F6F6] dark:hover:bg-muted border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
             <p className=" text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
               <GoPeople size={32} />
             </p>
             <p className="font-semibold mt-8 mb-4 text-xl text-[#014751]">
               Our Core Values
             </p>
-            <p className="font-light leading-6">
+            <p className="font-light leading-6 dark:text-muted-foreground">
               Students Focus, Innovation, Integrity & Respect.
             </p>
           </div>
-          <div className="bg-[#F2F6F6] border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
+          <div className="bg-[#F2F6F6] dark:hover:bg-muted  border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]">
             <p className=" text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
               <BsBarChart size={32} />
             </p>
             <p className="font-semibold mt-8 mb-4 text-xl text-[#014751]">
               Our Culture
             </p>
-            <p className="font-light leading-6">
+            <p className="font-light leading-6 dark:text-muted-foreground">
               At Geomatic Connect, we create solutions to boost geomatic student
               placements and contribute to national growth.
             </p>

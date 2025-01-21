@@ -126,7 +126,6 @@ export default function LoginHome() {
           {/* ======= Google Authentication container ====== */}
           <div
             className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
-            // onClick={() => signUpWithGoogle()}
           >
             <div>
               <Image
@@ -144,7 +143,6 @@ export default function LoginHome() {
           {/* ======= Github Authentication container ====== */}
           <div
             className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
-            // onClick={() => signUpWithGithub()}
           >
             <div>
               <Image
@@ -176,7 +174,7 @@ export default function LoginHome() {
                   errors.email
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                     : ""
-                } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+                } dark:bg-[#FFFFFF] px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
               />
             </div>
 
@@ -192,7 +190,7 @@ export default function LoginHome() {
                     errors.password
                       ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                       : ""
-                  } pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+                  } dark:bg-[#FFFFFF] pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
                 />
               </div>
               <span

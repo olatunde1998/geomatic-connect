@@ -4,7 +4,7 @@ export const StatisticsSkeleton = () => {
       {/* ==CARD ONE=== */}
       <div className="relative -z-[9999] w-full rounded overflow-hidden">
         <div className="w-full">
-          <div className="border border-slate-200 p-3 rounded-lg max-h-28 h-28 flex flex-col items-start justify-center">
+          <div className="border border-slate-200 dark:border-muted p-3 rounded-lg max-h-28 h-28 flex flex-col items-start justify-center">
             <div className="w-full h-10 mb-2 bg-gray-100 dark:bg-accent animate-pulse">
               <div className="w-full h-10 mb-2 bg-gray-100 dark:bg-accent animate-pulse"></div>
             </div>
@@ -17,7 +17,7 @@ export const StatisticsSkeleton = () => {
       {/* ==CARD TWO=== */}
       <div className="relative -z-[9999] w-full rounded overflow-hidden">
         <div className="w-full">
-          <div className="border border-slate-200 p-3 rounded-lg max-h-28 h-28 flex flex-col items-start justify-center">
+          <div className="border border-slate-200 dark:border-muted p-3 rounded-lg max-h-28 h-28 flex flex-col items-start justify-center">
             <div className="w-full h-10 mb-2 bg-gray-100 dark:bg-accent animate-pulse">
               <div className="w-full h-10 mb-2 bg-gray-100 dark:bg-accent animate-pulse"></div>
             </div>
@@ -31,7 +31,7 @@ export const StatisticsSkeleton = () => {
       {/* ==CARD THREE=== */}
       <div className="relative -z-[9999] w-full rounded overflow-hidden">
         <div className="w-full">
-          <div className="border border-slate-200 p-3 rounded-lg max-h-28 h-28 flex flex-col items-start justify-center">
+          <div className="border border-slate-200 dark:border-muted p-3 rounded-lg max-h-28 h-28 flex flex-col items-start justify-center">
             <div className="w-full h-10 mb-2 bg-gray-100 dark:bg-accent animate-pulse">
               <div className="w-full h-10 mb-2 bg-gray-100 dark:bg-accent animate-pulse"></div>
             </div>
@@ -45,7 +45,7 @@ export const StatisticsSkeleton = () => {
       {/* ==CARD FOUR=== */}
       <div className="relative -z-[9999] w-full rounded overflow-hidden">
         <div className="w-full">
-          <div className="border border-slate-200 p-3 rounded-lg max-h-28 h-28 flex flex-col items-start justify-center">
+          <div className="border border-slate-200 dark:border-muted p-3 rounded-lg max-h-28 h-28 flex flex-col items-start justify-center">
             <div className="w-full h-10 mb-2 bg-gray-100 dark:bg-accent animate-pulse">
               <div className="w-full h-10 mb-2 bg-gray-100 dark:bg-accent animate-pulse"></div>
             </div>

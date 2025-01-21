@@ -87,7 +87,7 @@ export default function ResetPassword({ token }: ResetPasswordProps) {
                     errors.password
                       ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                       : ""
-                  } pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+                  } dark:bg-[#FFFFFF] pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
                 />
               </div>
               <span
@@ -125,7 +125,7 @@ export default function ResetPassword({ token }: ResetPasswordProps) {
                     errors.confirmPassword
                       ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                       : ""
-                  } pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+                  } dark:bg-[#FFFFFF] pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
                 />
               </div>
               <span

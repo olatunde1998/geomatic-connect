@@ -22,7 +22,9 @@ export default function RequestsHome({ token }: RequestsHomeProps) {
   return (
     <main className="flex min-h-screen flex-col pt-24 lg:pt-32">
       <div className="w-full">
-        <p className="text-gray-600 text-lg font-semibold">Manage Requests</p>
+        <p className="text-gray-600 text-lg font-semibold dark:text-accent-foreground">
+          Manage Requests
+        </p>
         <p className="text-sm text-gray-500 font-normal">
           Administer user requests and notifications within the platform.
         </p>
@@ -43,19 +45,19 @@ export default function RequestsHome({ token }: RequestsHomeProps) {
           ) : (
             <div className="my-8 grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-6">
               <StatisticsCard
-                title={"Total Requests"}
+                title={"Requests"}
                 value={notificationsData?.meta?.totalRequests}
               />
               <StatisticsCard
-                title={"Total Approved"}
+                title={"Approved"}
                 value={notificationsData?.meta?.totalApproved}
               />
               <StatisticsCard
-                title={"Total Declined"}
+                title={"Declined"}
                 value={notificationsData?.meta?.totalDeclined}
               />
               <StatisticsCard
-                title={"Total Interested"}
+                title={"Interested"}
                 value={notificationsData?.meta?.totalInterested}
               />
             </div>

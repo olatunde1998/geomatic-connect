@@ -13,6 +13,7 @@ import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import { useRouter } from "next/navigation";
 import { companyMobileRoutes } from "@/utils/sidebarLinks";
 import { GetUserProfileRequest } from "@/app/services/users.request";
+import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 export default function CompanyNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -64,7 +65,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
 
   return (
     <>
-      <nav className="bg-white fixed px-6 z-[1000] lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent ">
+      <nav className="bg-white dark:bg-background fixed px-6 z-[1000] lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent ">
         <div className="flex justify-between items-center lg:block ">
           <div className="lg:flex justify-between items-center">
             <div className="flex items-center">
@@ -80,7 +81,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
                   />
                 </div>
               </span>
-              <div className="border-l border-slate-300 pl-3 ml-3 space-y-3 hidden md:inline-block">
+              <div className="border-l border-slate-300 dark:border-muted pl-3 ml-3 space-y-3 hidden md:inline-block">
                 <p className="text-xs font-light">
                   Hi {userData?.data?.companyName ?? "Geomatician"}
                 </p>
@@ -97,20 +98,18 @@ export default function CompanyNavBar({ session }: { session: any }) {
               <p className="text-[#33A852] underline ml-3">See more Profiles</p>
 
               <div className="flex items-center space-x-3 ml-4">
-                <div className="bg-slate-300 p-2 rounded-lg flex items-center justify-center">
-                  <Mail size={16} />
-                </div>
+                <ModeToggle />
                 <Link
                   href={`/company-dashboard/notifications`}
-                  className="bg-slate-300 p-2 rounded-lg flex items-center justify-center"
+                  className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
                 >
-                  <Bell size={14} />
+                  <Bell size={18} />
                 </Link>
                 <Link
                   href={`/company-dashboard/settings`}
-                  className="bg-slate-300 p-2 rounded-lg flex items-center justify-center"
+                  className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
                 >
-                  <Settings size={14} />
+                  <Settings size={18} />
                 </Link>
 
                 <div
@@ -140,7 +139,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
                     >
                       <Link
                         href={`/company-dashboard/settings`}
-                        className="hover:bg-gray-100 flex items-center gap-x-2 cursor-pointer p-2 pr-10 pl-4"
+                        className="hover:bg-gray-100 dark:text-primary-foreground flex items-center gap-x-2 cursor-pointer p-2 pr-10 pl-4"
                       >
                         <Settings size={18} className="text-gray-600" />
                         Settings
@@ -163,14 +162,12 @@ export default function CompanyNavBar({ session }: { session: any }) {
           </div>
           {/* ======= Menu button (Hamburger button) ======*/}
           <div className="lg:hidden flex space-x-3">
-            <div className="bg-slate-300 p-2 rounded-lg flex items-center justify-center">
-              <Mail size={16} />
-            </div>
+            <ModeToggle />
             <Link
               href={`/company-dashboard/notifications`}
-              className="bg-slate-300 p-2 rounded-lg flex items-center justify-center"
+              className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
             >
-              <Bell size={14} />
+              <Bell size={18} />
             </Link>
 
             <HiMenu
@@ -192,7 +189,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
                 animate={{ x: 0 }}
                 exit={{ x: "90vw" }}
                 transition={{ type: "spring", duration: 3 }}
-                className="fixed top-0 right-0 w-[80%] min-h-screen bg-[#F6F8FD] z-30 pl-4"
+                className="fixed top-0 right-0 w-[80%] min-h-screen bg-[#F6F8FD] dark:bg-muted z-30 pl-4"
               >
                 <div className="flex justify-between p-3 pr-6">
                   <a href="#" className="flex items-center">
@@ -205,7 +202,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
                     />
                   </a>
                   <HiX
-                    className="text-lg transition mt-2"
+                    className="text-lg transition mt-2 dark:text-accent-foreground"
                     size={32}
                     onClick={() => {
                       setDropNav(false);
@@ -214,7 +211,10 @@ export default function CompanyNavBar({ session }: { session: any }) {
                 </div>
                 <ul className="flex flex-col mt-4 font-light text-sm rounded-lg space-y-3">
                   {companyMobileRoutes.map((route, index) => (
-                    <li key={index} className="block py-2 pl-1.5 mx-2 pr-3 border-b border-slate-200">
+                    <li
+                      key={index}
+                      className="block py-2 pl-1.5 mx-2 pr-3 border-b border-slate-200 dark:text-accent-foreground"
+                    >
                       <Link
                         onClick={() => {
                           setDropNav(false);

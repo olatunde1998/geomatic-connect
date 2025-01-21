@@ -18,31 +18,31 @@ export default function HowItWorks() {
             How it works?
           </p>
           <div className="w-24 h-1 bg-[#FFC957]" />
-          <p className="mt-4  md:text-left  text-xs md:text-base text-[#F0F0F0] lg:w-[500px] my-10 leading-8">
+          <p className="mt-4 md:text-left  text-xs md:text-base font-light text-[#F0F0F0] lg:w-[500px] my-10 !leading-10">
             Watch the video to learn how to submit requests to your desired
             companies using Geomatic Connect. Discover how to navigate and make
             the most of the application&apos;s features.
           </p>
-          <p className="mt-4 flex items-center gap-2   md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
+          <p className="mt-4 flex items-center font-light gap-2 md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
             <Check color="#6CB92B" />
             Create Your Free Account with us
           </p>
-          <p className="mt-4 flex items-center gap-2  md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
+          <p className="mt-4 flex items-center font-light gap-2 md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
             <Check color="#6CB92B" />
             Verify Your Email Address
           </p>{" "}
-          <p className="mt-4 flex items-center gap-2  md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
+          <p className="mt-4 flex items-center font-light gap-2 md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
             <Check color="#6CB92B" />
             Login with your Free Account
           </p>
-          <p className="mt-4 flex items-center gap-2  md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
+          <p className="mt-4 flex items-center font-light gap-2 md:text-left text-sm text-[#F0F0F0] lg:w-[500px]">
             <Check color="#6CB92B" />
             Make Request to your desire Company
           </p>
           <div className="mt-10 flex space-x-6 mb-8">
             <button
               onClick={() => handleSmoothScroll("contactUs-id")}
-              className="hover:bg-[#014751] border-[1.3px] shadow-xl border-[#FFFFFF] p-3 lg:p-4 font-bold text-[#FFFFFF] rounded-md w-[130px] lg:w-[150px] text-xs"
+              className="dark:bg-muted dark:hover:bg-background dark:border-muted-foreground dark:border-[0.2px] hover:bg-[#014751] border-[1.3px] shadow-xl border-[#FFFFFF] p-3 lg:p-4 font-bold text-[#FFFFFF] rounded-md w-[130px] lg:w-[150px] text-xs"
             >
               Contact Us
             </button>

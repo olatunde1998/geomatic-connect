@@ -156,7 +156,11 @@ export default function TransactionList({
           </span>
         </span>
       ),
-      header: () => <span className="text-[#101828]">Reference Id</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          Reference Id
+        </span>
+      ),
     }),
     columnHelper.accessor("studentId", {
       cell: (info) => (
@@ -166,21 +170,29 @@ export default function TransactionList({
             info?.row?.original?.companyId?.companyName}
         </span>
       ),
-      header: () => <span className="text-[#101828]">Payer&apos;s Name</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          Payer&apos;s Name
+        </span>
+      ),
     }),
     columnHelper.accessor("transactionDate", {
       cell: (info) => (
         <span> {formatDate(info?.row?.original?.transactionDate)}</span>
       ),
       header: () => (
-        <span className="flex items-center text-[#101828]">
+        <span className="flex items-center text-[#101828] dark:text-accent-foreground">
           Transaction date
           <ArrowDown size={18} className="ml-2" />
         </span>
       ),
     }),
     columnHelper.accessor("status", {
-      header: () => <span className="text-[#101828]">Status</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          Status
+        </span>
+      ),
       cell: (info) => (
         <div
           className={`
@@ -198,7 +210,11 @@ export default function TransactionList({
       ),
     }),
     columnHelper.accessor("amount", {
-      header: () => <span className="text-[#101828]">Amount</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          Amount
+        </span>
+      ),
       cell: (info) => (
         <div className="text-[#6C748B] w-fit px-3 text-center p-1 rounded-2xl flex items-center space-x-2 justify-center capitalize">
           &#8358;{info?.row?.original?.amount}
@@ -207,7 +223,11 @@ export default function TransactionList({
     }),
     columnHelper.accessor("email", {
       cell: (info) => <span>{info?.row?.original?.email}</span>,
-      header: () => <span className="text-[#101828]">Email</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          Email
+        </span>
+      ),
     }),
   ];
 
@@ -234,14 +254,14 @@ export default function TransactionList({
         <div>
           <div className="md:flex items-center md:space-x-4">
             <div className="w-full">
-              <p className="text-gray-600 text-lg font-semibold">
+              <p className="text-gray-600 text-lg font-semibold dark:text-accent-foreground">
                 Transaction History
               </p>
               <p className="text-sm text-[#6C748B] font-light">
                 Pick an account plan that fits your workflow.
               </p>
             </div>
-            <div className="my-4 flex p-2 justify-center items-center gap-[8px] rounded-[8px] w-[150px] md:w-[200px] cursor-pointer border-[1.5px] border-[#D0D5DD] text-[#344054]">
+            <div className="dark:text-accent-foreground my-4 flex p-2 justify-center items-center gap-[8px] rounded-[8px] w-[150px] md:w-[200px] cursor-pointer border-[1.5px] border-[#D0D5DD] dark:border-muted dark:hover:bg-muted text-[#344054]">
               <CloudDownload className="w-4 h-4 md:w-5 md:h-5" />
               <p className="text-sm md:text-md ">Download all</p>
             </div>
@@ -259,7 +279,7 @@ export default function TransactionList({
             No Existing User, Please check back later.
           </div>
         ) : (
-          <div className="mt-3 pt-6 h-auto border-t-[1.3px] border-slate-200 rounded-tl-[8p rounded-tr-[8px] bg-white max-w-[760px] md:max-w-none">
+          <div className="mt-3 pt-6 h-auto border-t-[1.3px] border-slate-200 dark:border-t-muted rounded-tl-[8p rounded-tr-[8px] bg-white dark:bg-background max-w-[760px] md:max-w-none">
             <Table
               data={subscriptionData ? subscriptionData?.data : []}
               columns={columns}

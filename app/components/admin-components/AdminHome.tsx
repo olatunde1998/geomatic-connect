@@ -30,7 +30,7 @@ export default function AdminHome({ token }: AdminHomeProps) {
       <main className="flex min-h-screen flex-col pt-24 lg:pt-32">
         <div className="md:flex items-center md:space-x-4">
           <div className="w-full">
-            <p className="text-gray-600 text-lg font-semibold">Manage Users</p>
+            <p className="text-gray-600 text-lg font-semibold dark:text-accent-foreground">Manage Users</p>
             <p className="text-sm text-gray-500 font-normal">
               Administer user accounts and privileges within the platform.
             </p>
@@ -59,19 +59,19 @@ export default function AdminHome({ token }: AdminHomeProps) {
             ) : (
               <div className="my-8 grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-6">
                 <StatisticsCard
-                  title={"Total Users"}
+                  title={"Users"}
                   value={userData?.meta?.totalUsers}
                 />
                 <StatisticsCard
-                  title={"Total Companies"}
+                  title={"Companies"}
                   value={userData?.meta?.totalCompanies}
                 />
                 <StatisticsCard
-                  title={"Total Students"}
+                  title={"Students"}
                   value={userData?.meta?.totalStudents}
                 />
                 <StatisticsCard
-                  title={"Total Admins"}
+                  title={"Admins"}
                   value={userData?.meta?.totalAdmins}
                 />
               </div>

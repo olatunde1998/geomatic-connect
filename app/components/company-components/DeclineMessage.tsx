@@ -26,7 +26,7 @@ export default function DeclineMessage({ setShowConfirmDecline,  handleDeclinedR
       {/*======= Cancel Button and Delete Button ====== */}
       <div className="mt-12 flex space-x-4">
         <div
-          className="border-[1.5px] border-slate-300 rounded-[8px] px-[28px] py-[12px] cursor-pointer text-center w-full lg:w-[230px]"
+          className="border-[1.5px] border-slate-300 dark:text-primary-foreground rounded-[8px] px-[28px] py-[12px] cursor-pointer text-center w-full lg:w-[230px]"
           onClick={() => setShowConfirmDecline(false)}
         >
           Cancel

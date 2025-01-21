@@ -240,7 +240,11 @@ export default function RequestsList({
           </span>
         </span>
       ),
-      header: () => <span className="text-[#101828]">FullName</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          FullName
+        </span>
+      ),
     }),
     columnHelper.accessor("companyId", {
       cell: (info) => (
@@ -250,12 +254,16 @@ export default function RequestsList({
           </span>
         </span>
       ),
-      header: () => <span className="text-[#101828]">Company of Interest</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          Company of Interest
+        </span>
+      ),
     }),
     columnHelper.accessor("trackPeriod", {
       cell: (info) => <span> {info?.row?.original?.trackPeriod}</span>,
       header: () => (
-        <span className="flex items-center text-[#101828]">
+        <span className="flex items-center text-[#101828] dark:text-accent-foreground">
           Track Period
           <ArrowDown size={18} className="ml-2" />
         </span>
@@ -263,10 +271,18 @@ export default function RequestsList({
     }),
     columnHelper.accessor("institutionName", {
       cell: (info) => <span>{info?.row?.original?.institutionName}</span>,
-      header: () => <span className="text-[#101828]">Institution Name</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          Institution Name
+        </span>
+      ),
     }),
     columnHelper.accessor("status", {
-      header: () => <span className="text-[#101828]">Status</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          Status
+        </span>
+      ),
       cell: (info) => (
         <div
           className={`
@@ -370,14 +386,14 @@ export default function RequestsList({
         <div>
           <div className="md:flex items-center md:space-x-4">
             <div className="w-full">
-              <p className="text-gray-600 text-lg font-semibold">
+              <p className="text-gray-600 text-lg font-semibold dark:text-accent-foreground">
                 Request History
               </p>
               <p className="text-sm text-[#6C748B] font-light">
                 Current Request according to Students Interest.
               </p>
             </div>
-            <div className="my-4 flex p-2 w-[150px] justify-center items-center gap-[8px] rounded-[8px] cursor-pointer border-[1.5px] border-[#D0D5DD] text-[#344054]">
+            <div className="dark:text-accent-foreground my-4 flex p-2 w-[150px] justify-center items-center gap-[8px] rounded-[8px] cursor-pointer border-[1.5px] dark:border-muted dark:hover:bg-muted border-[#D0D5DD] text-[#344054]">
               <Filter className="w-4 h-4 md:w-5 md:h-5" />
               <p className="text-sm md:text-md ">Filter</p>
             </div>
@@ -395,7 +411,7 @@ export default function RequestsList({
             No Existing User, Please check back later.
           </div>
         ) : (
-          <div className="mt-3 pt-6 h-auto border-t-[1.3px]  border-slate-200 overflow-scroll rounded-tl-[8p rounded-tr-[8px] max-w-[760px] md:max-w-none">
+          <div className="mt-3 pt-6 h-auto border-t-[1.3px]  border-slate-200 dark:border-t-muted overflow-scroll rounded-tl-[8p rounded-tr-[8px] dark:bg-background max-w-[760px] md:max-w-none">
             <Table
               data={notificationsData ? notificationsData?.data : []}
               columns={columns}

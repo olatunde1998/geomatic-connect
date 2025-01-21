@@ -237,9 +237,9 @@ export default function Settings({ token, userId }: SettingsProps) {
           <div>
             {/* =====Profile Picture ===== */}
             <section>
-              <div className="border-[0.5px] border-slate-300 px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
+              <div className="border-[0.5px] border-slate-300 dark:border-muted px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white dark:bg-background max-w-[540px] mt-6">
                 <p className="text-sm font-medium">Profile picture</p>
-                <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[0.6px] border-slate-300 mt-4 cursor-pointer">
+                <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white dark:bg-background rounded-2xl  border-[0.6px] border-slate-300 dark:border-muted mt-4 cursor-pointer">
                   <label
                     htmlFor="avatarInput"
                     className="w-full p-3 flex  justify-between tracking-wide cursor-pointer"
@@ -283,11 +283,11 @@ export default function Settings({ token, userId }: SettingsProps) {
 
             {/* =====Documents  ===== */}
             <section>
-              <div className="border-[0.5px] border-slate-300 px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
+              <div className="border-[0.5px] border-slate-300 dark:border-muted px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white dark:bg-background max-w-[540px] mt-6">
                 <p className="text-sm font-medium">
                   Documents(CV / SIWES Letter /IT Letter/ Professional Letter)
                 </p>
-                <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[0.6px] border-slate-300 mt-4 cursor-pointer">
+                <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white dark:bg-background rounded-2xl  border-[0.6px] border-slate-300 dark:border-muted mt-4 cursor-pointer">
                   <label
                     htmlFor="documentInput"
                     className="w-full p-3 flex  justify-between tracking-wide cursor-pointer"

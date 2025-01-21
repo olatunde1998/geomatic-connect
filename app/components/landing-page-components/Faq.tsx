@@ -12,7 +12,7 @@ export default function Faq() {
         {/* ===== Background Image ===== */}
         <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe-refine.png)] "></div>
         {/* =====Overlay with color and opacity==== */}
-        <div className="absolute inset-0 bg-[#014751] opacity-80 rounded-tl-[32px] rounded-br-[32px]"></div>
+        <div className="absolute inset-0 bg-[#014751] dark:bg-primary-foreground dark:opacity-100 opacity-80 rounded-tl-[32px] rounded-br-[32px]"></div>
         {/* ====Section One (CONTENT)==== */}
         <div className="relative">
           <p className="text-center text-xl uppercase  font-extrabold md:text-3xl xl:text-4xl text-[#FFFFFF]">
@@ -28,7 +28,7 @@ export default function Faq() {
               className={`${
                 activeFaq === faq.id
                   ? "bg-[#FFFFFF] mt-10 text-[#014751]  p-4 md:p-8 lg:p-10 rounded-tl-[32px] rounded-br-[32px]"
-                  : "text-[#FFFFFF] mt-10  p-4 md:p-8 lg:px-10 lg:py-4 border-b-[0.5px] border-[#FFFFFF]"
+                  : "text-[#FFFFFF] mt-10  p-4 md:p-8 lg:px-10 lg:py-4 border-b-[0.5px] border-[#FFFFFF] dark:border-b-[2px] dark:border-border"
               } flex justify-between  max-w-[1100px] mx-auto cursor-pointer`}
             >
               <div>

@@ -88,7 +88,7 @@ export default function StudentSignup() {
                 errors.fullName
                   ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                   : ""
-              } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+              } dark:bg-[#FFFFFF] px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
             />
           </div>
 
@@ -149,8 +149,8 @@ export default function StudentSignup() {
               className={`${
                 errors.mobileNumber
                   ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                  : ""
-              } phone-input bg-[#FFFFFF] border border-[#FFFFFF]`}
+                  : "dark:bg-[#FFFFFF]"
+              } dark:bg-[#FFFFFF] phone-input bg-[#FFFFFF] border border-[#FFFFFF]`}
             />
           </div>
 
@@ -163,7 +163,7 @@ export default function StudentSignup() {
               maxLength={40}
               className={`${
                 errors.email ? "border-[1.3px] border-red-500 bg-[#FEF3F2]" : ""
-              } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+              } dark:bg-[#FFFFFF] px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
             />
           </div>
 
@@ -179,7 +179,7 @@ export default function StudentSignup() {
                   errors.password
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                     : ""
-                } pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+                } dark:bg-[#FFFFFF] pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
               />
             </div>
             <span

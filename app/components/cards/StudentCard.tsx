@@ -85,8 +85,8 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
         <div className="space-y-8 md:gap-6 md:grid md:grid-cols-2 xl:grid-cols-3 md:space-y-0">
           {studentsData?.data?.map((item: any) => (
             <div key={item._id}>
-              <div className="max-w-[400px] p-6 border border-slate-300 bg-white">
-                <div className="p-6 border-b-[1.3px] border-slate-200 text-black flex flex-col items-center">
+              <div className="max-w-[400px] p-6 border border-slate-300 dark:border-muted bg-white dark:bg-muted">
+                <div className="p-6 border-b-[1.3px] border-slate-200 dark:border-muted text-black flex flex-col items-center">
                   <div>
                     {item?.studentId?.avatarImage ? (
                       <Image
@@ -107,10 +107,10 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
                       />
                     )}
                   </div>
-                  <p className="text-xl font-medium">
+                  <p className="text-xl font-medium dark:text-accent-foreground">
                     <span>{item?.studentId?.fullName}</span>
                   </p>
-                  <p className="font-light text-sm">
+                  <p className="font-light text-sm dark:text-accent-foreground">
                     {item?.studentId?.institutionName}
                   </p>
                 </div>
@@ -133,12 +133,24 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
                 </div>
                 <p className="font-medium">Experience</p>
                 <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
-                  <p className="bg-[#E6E9EB] p-2">Engineering</p>
-                  <p className="bg-[#E6E9EB] p-2">Cadastral</p>
-                  <p className="bg-[#E6E9EB] p-2">GIS/Remote</p>
-                  <p className="bg-[#E6E9EB] p-2">Drone Piloting</p>
-                  <p className="bg-[#E6E9EB] p-2">Topographical</p>
-                  <p className="bg-[#E6E9EB] p-2">Hydrographical</p>
+                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                    Engineering
+                  </p>
+                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                    Cadastral
+                  </p>
+                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                    GIS/Remote
+                  </p>
+                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                    Drone Piloting
+                  </p>
+                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                    Topographical
+                  </p>
+                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                    Hydrographical
+                  </p>
                 </div>
                 {/* === PROFILE BUTTON === */}
                 <div className="flex gap-3 justify-between">

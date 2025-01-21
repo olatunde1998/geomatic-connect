@@ -49,11 +49,13 @@ export function CompanySidebar({ session }: { session: any }) {
             <Link key={index} href={item.href}>
               <span
                 className={cn(
-                  "group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#F9FAFB] hover:text-accent-foreground",
-                  pathname === item.href ? "bg-gray-200" : "bg-transparent"
+                  "group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#F9FAFB] dark:hover:bg-muted",
+                  pathname === item.href
+                    ? "bg-gray-200 dark:bg-muted"
+                    : "bg-transparent"
                 )}
               >
-                <item.icon className="mr-2 h-4 w-4 text-primary" />
+                <item.icon className="mr-2 h-4 w-4 text-[#33A852]" />
                 <span className="font-medium">{item.name}</span>
               </span>
             </Link>
@@ -89,7 +91,7 @@ export function CompanySidebar({ session }: { session: any }) {
             >
               <div className="flex items-center space-x-4 hover:bg-gray-100 p-2 pr-3 cursor-pointer">
                 <Settings size={16} />
-                <Link className="block" href="/admin-dashboard/settings">
+                <Link className="block" href="/company-dashboard/settings">
                   Settings
                 </Link>
               </div>

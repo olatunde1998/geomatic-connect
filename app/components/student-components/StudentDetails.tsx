@@ -38,7 +38,7 @@ export default function StudentDetails({
 
   return (
     <>
-      <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] flex p-2 gap-3  lg:my-20 xl:my-10">
+      <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] dark:bg-muted flex p-2 gap-3  lg:my-20 xl:my-10">
         <div className="flex items-center">
           <p
             onClick={() => router.back()}

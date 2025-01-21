@@ -25,7 +25,9 @@ export default function PricingCard({
       <div>
         <div
           className={`${
-            popular ? "bg-[#155464] text-white" : "bg-[#FFFFFF]"
+            popular
+              ? "bg-[#155464] dark:bg-primary-foreground text-white"
+              : "bg-[#FFFFFF]"
           } md:w-[300px] xl:w-[360px] px-6 py-8 md:py-8 md:pb-4 md:px-8 border border-slate-300 rounded-xl text-[#1C3C41]`}
         >
           <div>

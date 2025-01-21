@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import SessionProviderPage from "./providers/session-providers";
+import SessionProviderPage from "@/app/providers/session-providers";
+import { ThemeProvider } from "@/app/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +16,6 @@ export const metadata: Metadata = {
     initialScale: 1,
   },
 };
-
 
 export default function RootLayout({
   children,
@@ -33,7 +33,16 @@ export default function RootLayout({
           process.env.NODE_ENV == "development" ? "debug-screens" : ""
         }`}
       >
-        <SessionProviderPage>{children}</SessionProviderPage>
+        <SessionProviderPage>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </SessionProviderPage>
       </body>
     </html>
   );

@@ -95,7 +95,7 @@ export default function SendRequest({
         <div className="w-full pt-1 md:pt-10 md:pb-20">
           <div>
             <div className="text-primary mb-8  flex items-center justify-between border-b border-slate-300 pb-8">
-              <p className="text-xl">Make a Request</p>
+              <p className="text-xl text-[#33A852]">Make a Request</p>
               <X color="#33A852" onClick={() => setShowSendRequest(false)} />
             </div>
           </div>

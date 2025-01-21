@@ -48,7 +48,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
   return (
     <>
       {/* ====== Filter & Search Goes here ====== */}
-      <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] lg:flex p-4  lg:my-20 xl:my-10">
+      <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] dark:bg-muted lg:flex p-4  lg:my-20 xl:my-10">
         <div className="md:flex items-center">
           <p>Filter By:</p>
           <div className="md:flex space-y-2 mt-3 md:mt-0 md:space-y-0 md:ml-3 md:space-x-3">

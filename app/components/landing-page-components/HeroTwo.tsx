@@ -13,7 +13,7 @@ export default function HeroTwo() {
     <section className="">
       <section className="leading-normal pt-16">
         <div className="text-center px-4">
-          <h2 className="text-[40px] md:text-[42px] lg:text-[58px] font-bold text-[#000000]">
+          <h2 className="text-[40px] md:text-[42px] lg:text-[58px] font-bold text-[#000000] dark:text-accent-foreground">
             Learn in-demand skills <br />{" "}
             <span className="text-[#F51767] inline-block animate-fadeSpring1">
               Get hired.
@@ -29,7 +29,7 @@ export default function HeroTwo() {
             </span>
           </h2>
 
-          <p className="text-base md:text-lg leading-8  my-6 md:max-w-[500px] lg:max-w-[700px] mx-auto text-[#373F49]">
+          <p className="text-base md:text-lg leading-8  my-6 md:max-w-[500px] lg:max-w-[700px] mx-auto text-[#373F49] dark:text-muted-foreground">
             The most efficient and supportive way for you to get connected,
             learn in-demand skills and advance your career.
           </p>

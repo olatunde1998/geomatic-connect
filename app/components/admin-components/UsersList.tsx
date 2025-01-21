@@ -150,12 +150,16 @@ export default function UsersList({
           <span className="w-fit h-fit p-2 rounded-full bg-slate-200 flex items-center justify-center">
             <File size={14} />
           </span>
-          <span className="whitespace-normal break-words overflow-hidden text-ellipsis  max-w-[130px]">
+          <span className="whitespace-normal break-words overflow-hidden text-ellipsis max-w-[130px]">
             {info?.row?.original?.fullName ?? info?.row?.original?.companyName}
           </span>
         </span>
       ),
-      header: () => <span className="text-[#101828]">FullName/Company</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          FullName/Company
+        </span>
+      ),
     }),
     columnHelper.accessor("createdAt", {
       cell: (info) => (
@@ -164,14 +168,16 @@ export default function UsersList({
         </span>
       ),
       header: () => (
-        <span className="flex items-center text-[#101828]">
+        <span className="flex items-center text-[#101828] dark:text-accent-foreground">
           Created date
           <ArrowDown size={18} className="ml-2" />
         </span>
       ),
     }),
     columnHelper.accessor("role", {
-      header: () => <span className="text-[#101828]">Role</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">Role</span>
+      ),
       cell: (info) => (
         <div
           className={`
@@ -211,7 +217,11 @@ export default function UsersList({
           {info?.row?.original?.state}
         </span>
       ),
-      header: () => <span className="text-[#101828]">Location</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          Location
+        </span>
+      ),
     }),
     columnHelper.accessor("email", {
       cell: (info) => (
@@ -219,10 +229,18 @@ export default function UsersList({
           {info?.row?.original?.email}
         </span>
       ),
-      header: () => <span className="text-[#101828]">Email</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          Email
+        </span>
+      ),
     }),
     columnHelper.accessor("isVerified", {
-      header: () => <span className="text-[#101828]">Status</span>,
+      header: () => (
+        <span className="text-[#101828] dark:text-accent-foreground">
+          Status
+        </span>
+      ),
       cell: (info) => (
         <div
           className={`
@@ -265,16 +283,16 @@ export default function UsersList({
         <div>
           <div className="md:flex items-center md:space-x-4">
             <div className="w-full">
-              <p className="text-gray-600 text-lg font-semibold">
+              <p className="text-gray-600 text-lg font-semibold dark:text-accent-foreground">
                 Existing Users
               </p>
               <p className="text-sm text-[#6C748B] font-light">
                 Pick an account plan that fits your workflow.
               </p>
             </div>
-            <div className="my-4 flex p-2 w-[100px] justify-center items-center gap-[8px] rounded-[8px] cursor-pointer border-[1.5px] border-[#D0D5DD] text-[#344054]">
+            <div className="dark:text-accent-foreground my-4 flex p-2 w-[100px] justify-center items-center gap-[8px] rounded-[8px] cursor-pointer border-[1.5px] dark:border-muted dark:hover:bg-muted border-[#D0D5DD] text-[#344054]">
               <Filter className="w-4 h-4 md:w-5 md:h-5" />
-              <p className="text-sm md:text-md ">Filter</p>
+              <p className="text-sm md:text-md">Filter</p>
             </div>
           </div>
         </div>
@@ -285,12 +303,12 @@ export default function UsersList({
             <Skeleton />
           </div>
         ) : userData?.length === 0 ? (
-          <div className="mt-3 pt-6 pb-20 border-t-[1.3px] border-slate-200">
+          <div className="mt-3 pt-6 pb-20 border-t-[1.3px] border-slate-200 dark:border-muted">
             {/* ====TRANSACTION EMPTY TRASH GOES HERE === */}
             No Existing User, Please check back later.
           </div>
         ) : (
-          <div className="mt-3 pt-6 h-auto border-t-[1.3px] border-slate-200 rounded-tl-[8p rounded-tr-[8px] bg-white max-w-[760px] md:max-w-none">
+          <div className="mt-3 pt-6 h-auto border-t-[1.3px] border-slate-200 dark:border-t-muted rounded-tr-[8px] bg-white dark:bg-background max-w-[760px] md:max-w-none">
             <Table
               data={userData ? userData?.data : []}
               columns={columns}

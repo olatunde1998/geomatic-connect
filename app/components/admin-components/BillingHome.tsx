@@ -23,7 +23,7 @@ export default function BillingHome({ token }: BillingHomeProps) {
   return (
     <main className="flex min-h-screen flex-col pt-24 lg:pt-32">
       <div className="w-full">
-        <p className="text-gray-600 text-lg font-semibold">
+        <p className="text-gray-600 text-lg font-semibold dark:text-accent-foreground">
           Manage Transactions
         </p>
         <p className="text-sm text-gray-500 font-normal">

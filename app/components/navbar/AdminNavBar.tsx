@@ -13,6 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import { useRouter } from "next/navigation";
 import { adminMobileRoutes } from "@/utils/sidebarLinks";
+import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 export default function AdminNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -46,30 +47,32 @@ export default function AdminNavBar({ session }: { session: any }) {
 
   return (
     <>
-      <nav className="bg-white fixed px-6 z-[1000] lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent ">
+      <nav className="bg-white dark:bg-background fixed px-6 z-[1000] lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent ">
         <div className="flex justify-between items-center lg:block ">
           <div className="lg:flex justify-between items-center">
             <div className="flex items-center">
-              <span onClick={() => router.back()} className="font-bold">
-                <div className="flex items-center">
-                  <Image
-                    src={GeomaticLogo}
-                    alt="profile image"
-                    width={100}
-                    height={100}
-                    priority
-                    className="w-[80px] h-[40px] md:w-[150px] md:h-[50px] object-contain md:object-cover"
-                  />
-                </div>
-              </span>
-              <div className="border-l border-slate-300 pl-3 ml-3 space-y-3 hidden md:inline-block">
-                <p className="text-xs font-light">
+              <div
+                onClick={() => router.back()}
+                className="flex items-center font-bold"
+              >
+                <Image
+                  src={GeomaticLogo}
+                  alt="profile image"
+                  width={100}
+                  height={100}
+                  priority
+                  className="w-[80px] h-[40px] md:w-[150px] md:h-[50px] object-contain md:object-cover"
+                />
+              </div>
+
+              <div className="border-l border-slate-300 dark:border-muted pl-3 ml-3 space-y-3 hidden md:inline-block">
+                <p className="text-xs font-light dark:text-muted-foreground">
                   Hi{" "}
                   {userData?.data?.fullName ??
                     userData?.data?.companyName ??
                     "Admin"}
                 </p>
-                <p>Welcome 👋</p>
+                <p className="dark:text-muted-foreground">Welcome 👋</p>
               </div>
             </div>
             <div className="hidden lg:flex items-center gap-x-2 text-sm md:text-base cursor-pointer font-light w-fit">
@@ -87,22 +90,19 @@ export default function AdminNavBar({ session }: { session: any }) {
               </Link>
 
               <div className="flex items-center space-x-3 ml-4">
-                <div className="bg-slate-300 p-2 rounded-lg flex items-center justify-center">
-                  <Mail size={16} />
-                </div>
+                <ModeToggle />
                 <Link
                   href={`/admin-dashboard/requests`}
-                  className="bg-slate-300 p-2 rounded-lg flex items-center justify-center"
+                  className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
                 >
-                  <Bell size={14} />
+                  <Bell size={18} />
                 </Link>
                 <Link
                   href={`/admin-dashboard/settings`}
-                  className="bg-slate-300 p-2 rounded-lg flex items-center justify-center"
+                  className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
                 >
-                  <Settings size={14} />
+                  <Settings size={18} />
                 </Link>
-
                 <div
                   onClick={() => setShowActions((prevState) => !prevState)}
                   className="flex justify-start"
@@ -130,7 +130,7 @@ export default function AdminNavBar({ session }: { session: any }) {
                     >
                       <Link
                         href={`/admin-dashboard/settings`}
-                        className="hover:bg-gray-100 flex items-center gap-x-2 cursor-pointer p-2 pr-10 pl-4"
+                        className="hover:bg-gray-100 dark:text-primary-foreground flex items-center gap-x-2 cursor-pointer p-2 pr-10 pl-4"
                       >
                         <Settings size={18} className="text-gray-600" />
                         Settings
@@ -153,11 +153,9 @@ export default function AdminNavBar({ session }: { session: any }) {
           </div>
           {/* ======= Menu button (Hamburger button) ======*/}
           <div className="lg:hidden flex space-x-3">
-            <div className="bg-slate-300 p-2 rounded-lg flex items-center justify-center">
-              <Mail size={16} />
-            </div>
-            <div className="bg-slate-300 p-2 rounded-lg flex items-center justify-center">
-              <Bell size={14} />
+            <ModeToggle />
+            <div className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center">
+              <Bell size={18} />
             </div>
 
             <HiMenu
@@ -179,7 +177,7 @@ export default function AdminNavBar({ session }: { session: any }) {
                 animate={{ x: 0 }}
                 exit={{ x: "90vw" }}
                 transition={{ type: "spring", duration: 3 }}
-                className="fixed top-0 right-0 w-[80%] min-h-screen bg-[#F6F8FD] z-30 pl-4"
+                className="fixed top-0 right-0 w-[80%] min-h-screen bg-[#F6F8FD] dark:bg-muted z-30 pl-4"
               >
                 <div className="flex justify-between p-3 pr-6">
                   <a href="#" className="flex items-center">
@@ -192,7 +190,7 @@ export default function AdminNavBar({ session }: { session: any }) {
                     />
                   </a>
                   <HiX
-                    className="text-lg transition mt-2"
+                    className="text-lg transition mt-2 dark:text-accent-foreground"
                     size={32}
                     onClick={() => {
                       setDropNav(false);
@@ -203,7 +201,7 @@ export default function AdminNavBar({ session }: { session: any }) {
                   {adminMobileRoutes.map((route, index) => (
                     <li
                       key={index}
-                      className="block py-2 pl-1.5 mx-2 pr-3 border-b border-slate-200"
+                      className="block py-2 pl-1.5 mx-2 pr-3 border-b border-slate-200 dark:text-accent-foreground"
                     >
                       <Link
                         onClick={() => {

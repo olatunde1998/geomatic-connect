@@ -7,7 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
 import { IoSparklesSharp } from "react-icons/io5";
 import { Modal } from "@/app/components/modals/Modal";
-import Chatbot from "../chatbot/ChatBot";
+import Chatbot from "@/app/components/chatbot/ChatBot";
+import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 const routes = [
   {
@@ -76,7 +77,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed w-full z-20 top-0 left-0 border-b bg-[#F6F8FD] py-2.5 backdrop-blur-10">
+      <nav className="fixed w-full z-20 top-0 left-0 border-b bg-[#F6F8FD] dark:bg-primary-foreground py-2.5 backdrop-blur-10">
         <div className="max-w-[1200px] mx-auto p-2 pr-4 md:px-2 flex justify-between items-center">
           {/* =======Company LOGO ==== */}
           <Link href="/" className="flex items-center">
@@ -115,16 +116,19 @@ export default function Navbar() {
             </Link>
             <p
               onClick={() => toggleChat()}
-              className="hidden bg-[#F2F6F6] border-[0.2px] border-[#014751] px-3 py-2 font-medium cursor-pointer rounded-md mx-4 hover:text-[#014751] lg:flex items-center gap-3"
+              className="hidden bg-[#F2F6F6] dark:bg-background dark:hover:bg-muted dark:border dark:border-muted border-[0.2px] border-[#014751] px-3 py-2 font-medium cursor-pointer rounded-md mx-4 hover:text-[#014751] dark:hover:text-accent-foreground lg:flex items-center gap-3"
             >
               <IoSparklesSharp /> <span>Ask AI</span>
             </p>
             <Link
               href="/signup"
-              className="bg-[#014751] px-3 py-2 text-sm font-normal text-[#FFFFFF] rounded-md"
+              className="bg-[#014751] dark:bg-muted dark:hover:bg-background dark:border px-3 py-2 text-sm font-normal text-[#FFFFFF] rounded-md"
             >
               Create free account
             </Link>
+            <div className="ml-4">
+              <ModeToggle />
+            </div>
             {/* <Globe color="#014751" className="cursor-pointer mx-6" /> */}
           </div>
 

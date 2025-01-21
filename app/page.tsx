@@ -15,7 +15,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between pt-16 bg-[#F6F8FD]">
       <div className="w-full  flex-col items-center text-sm lg:flex">
         {/* === HERO SECTION === */}
-        <div className="bg-[#F2F6F6] lg:pt-8 w-full text-sm">
+        <div className="bg-[#F2F6F6 bg-primary-foreground lg:pt-8 w-full text-sm">
           <div className="max-w-[1300px] mx-auto text-sm md:px-6">
             <Navbar />
             {/* <Hero /> */}
@@ -23,12 +23,18 @@ export default function Home() {
           </div>
         </div>
         {/* === WHO WE ARE SECTION === */}
-        <div id="whoWeAre-id"  className="w-full text-sm  max-w-[1200px] mx-auto px-6 pb-16 md:px-10 md:pt-16 lg:py-20">
+        <div
+          id="whoWeAre-id"
+          className="w-full text-sm  max-w-[1200px] mx-auto px-6 pb-16 md:px-10 md:pt-16 lg:py-20"
+        >
           <WhoWeAre />
         </div>
 
         {/* === HOW IT WORKS SECTION === */}
-        <div id="about-id" className="w-full text-sm bg-[#014751] opacity-80">
+        <div
+          id="about-id"
+          className="w-full text-sm bg-[#014751] dark:bg-primary-foreground dark:opacity-100 opacity-80"
+        >
           <div className="max-w-[1200px] mx-auto text-sm px-6 md:px-10 py-10">
             <HowItWorks />
           </div>
@@ -78,11 +84,11 @@ export default function Home() {
         </div>
 
         {/* === FOOTER SECTION === */}
-        <div className="bg-[#014751] w-full text-sm lg:flex flex-col items-center relative">
+        <div className="bg-[#014751]  w-full text-sm lg:flex flex-col items-center relative">
           {/* === Background Image === */}
           <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe-refine.png)] "></div>
           {/* ===Overlay with color and opacity=== */}
-          <div className="absolute inset-0 bg-[#014751] opacity-80 rounded-tl-[32px] rounded-br-[32px]"></div>
+          <div className="absolute inset-0 bg-[#014751] dark:bg-primary-foreground dark:opacity-100 opacity-80 dark:rounded-none rounded-tl-[32px] rounded-br-[32px]"></div>
           <div className="relative w-full max-w-[1200px] text-sm">
             <Footer />
           </div>

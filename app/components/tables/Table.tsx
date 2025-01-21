@@ -60,7 +60,7 @@ export const Table = ({
 
   return (
     <div>
-      <div className="w-full mb-8 border-[1.3px] border-slate-200 overflow-x-auto block rounded-lg min-h-[30.3rem] bg-white text-[#667085">
+      <div className="w-full mb-8 border-[1.3px] border-slate-200 dark:border-muted overflow-x-auto block rounded-lg min-h-[30.3rem] bg-white dark:bg-muted text-[#667085">
         {/* Render table if table has data  */}
         <table className="w-full h-full rounded-lg">
           <thead className="text-xs">
@@ -70,7 +70,7 @@ export const Table = ({
                 {headerGroup.headers.map((header, idx) => (
                   <th
                     key={idx}
-                    className="bg-[#F9FAFB] font-normal text-sm text-[#6C748B] whitespace-nowrap py-5 px-5 text-left capitalize"
+                    className="bg-[#F9FAFB] dark:bg-muted font-normal text-sm text-[#6C748B] dark:text-red-800 whitespace-nowrap py-5 px-5 text-left capitalize"
                   >
                     {header.isPlaceholder
                       ? null
@@ -88,7 +88,7 @@ export const Table = ({
             {table.getRowModel().rows.map((row, index) => (
               <tr
                 key={index}
-                className="border-t-[1.3px] bg-[#FFFFFF] border-slate-200 text-[14px] text-sm text-[#6C748B] font-normal cursor-pointer whitespace-nowrap hover:bg-[#F9FAFB]"
+                className="border-t-[1.3px] bg-[#FFFFFF] dark:bg-muted border-slate-200 dark:border-t-[0.1px] text-[14px] text-sm text-[#6C748B] font-normal cursor-pointer whitespace-nowrap hover:bg-[#F9FAFB]"
               >
                 {row.getVisibleCells().map((cell, key) => (
                   <td

@@ -69,7 +69,7 @@ export default function ForgotPassword() {
                   errors.email
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                     : ""
-                } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+                } dark:bg-[#FFFFFF] px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
               />
             </div>
             <button

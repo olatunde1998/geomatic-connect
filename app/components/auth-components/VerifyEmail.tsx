@@ -109,13 +109,13 @@ export default function VerifyEmail() {
                   value={digit}
                   onChange={(e) => handleChange(index, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(index, e)}
-                  className="w-16 h-16 text-center text-5xl font-bold bg-[#5cd096] text-white border-2 border-gray-600 px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg"
+                  className="w-16 h-16 text-center text-5xl font-bold bg-[#5cd096] dark:bg-[#5cd096] text-white dark:text-[#FFFFFF]  border-2 border-gray-600 px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg"
                 />
               ))}
             </div>
             <button
               disabled={isLoading || code.some((digit) => !digit)}
-              className="px-8 py-2 cursor-pointer  mt-4 bg-[#1F4D36] text-[16px] text-white rounded-lg w-full  transition duration-500 ease-in-out hover:shadow-[0_0_20px_rgba(31,77,54,0.7)] hover:brightness-150"
+              className="px-8 py-2 cursor-pointer  mt-4 bg-[#1F4D36] text-[16px] text-white dark:text-[#FFFFFF] rounded-lg w-full  transition duration-500 ease-in-out hover:shadow-[0_0_20px_rgba(31,77,54,0.7)] hover:brightness-150"
             >
               {isLoading ? "Verifying..." : "Verify Email"}
             </button>
