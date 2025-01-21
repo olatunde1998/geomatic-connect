@@ -63,7 +63,8 @@ export default function HowItWorks() {
             // url="../../../videos/geomatic-guide.mov"
             // url="../../../videos/demo-vidio.mp4"
             // url="https://www.youtube.com/watch?v=CqlkEw4P0aM"
-            url="https://res.cloudinary.com/dgfjxhoae/video/upload/v1737145105/geomatic-guide_gdwutv.mov"
+            // url="https://res.cloudinary.com/dgfjxhoae/video/upload/v1737145105/geomatic-guide_gdwutv.mov"
+            url="https://res.cloudinary.com/dgfjxhoae/video/upload/v1737481250/geomatic-connect/geomatic-demo-veed_vrlz1o.mp4"
           />
         </div>
       </main>
