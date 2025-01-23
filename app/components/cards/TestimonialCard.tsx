@@ -29,7 +29,7 @@ export default function TestimonialCard({
               />
             </div>
             <div className="mt-2">
-              <p className="font-extrabold text-base md:text-xl">
+              <p className="font-extrabold dark:text-primary-foreground text-base md:text-xl">
                 {fullName}
               </p>
               <p className="text-sm md:text-base text-gray-700 font-light mt-1">
