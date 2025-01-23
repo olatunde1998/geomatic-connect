@@ -44,13 +44,6 @@ export const GetCompaniesRequest = async (token: string, state: string) => {
     const data = await response.data;
     return data;
   } catch (error: any) {
-    // Log detailed error information for debugging
-    console.error(
-      `Error fetching companies in state ${state}:`,
-      error.message || error
-    );
-
-    // Throw a custom error message
     throw new Error(
       error.response?.data?.message ||
         `Failed to fetch companies in state ${state}.`
