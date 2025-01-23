@@ -129,14 +129,13 @@ export default function Navbar() {
             <div className="ml-4">
               <ModeToggle />
             </div>
-            {/* <Globe color="#014751" className="cursor-pointer mx-6" /> */}
           </div>
 
           {/* ======= Menu button ======*/}
           <div className="flex md:hidden">
             <p
               onClick={() => toggleChat()}
-              className="md:hidden bg-[#F2F6F6] border-[0.2px] border-[#014751] px-3 py-2 font-medium cursor-pointer rounded-sm mx-4 hover:text-[#014751] flex items-center gap-3"
+              className="md:hidden bg-[#F2F6F6] dark:bg-background dark:hover:bg-muted dark:border dark:border-muted border-[0.2px] border-[#014751] px-3 py-2 font-medium cursor-pointer rounded-sm mx-4 hover:text-[#014751] flex items-center gap-3"
             >
               <IoSparklesSharp /> <span>Ask AI</span>
             </p>
