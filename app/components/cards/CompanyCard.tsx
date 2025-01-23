@@ -1,13 +1,12 @@
+"use client";
 import { GetCompaniesRequest } from "@/app/services/request.request";
 import { Sheet } from "@/app/components/sheets/Sheet";
 import { useQuery } from "@tanstack/react-query";
 import { GraduationCap, MapPin, Send } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import SendRequest from "../student-components/SendRequest";
+import SendRequest from "@/app/components/student-components/SendRequest";
 import { CardSkeleton } from "@/app/components/skeletons/CardSkeleton";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 import UserAvatar from "@/public/images/profile-pic.png";
 import Trash from "@/app/components/trash/Trash";
 
@@ -30,21 +29,10 @@ export default function CompanyCard({
   userData,
   selectedState,
 }: CompanyCardProps) {
-  const router = useRouter();
-  const {
-    data: companiesData,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: companiesData, isLoading } = useQuery({
     queryKey: ["getCompaniesApi", selectedState],
     queryFn: () => GetCompaniesRequest(token, selectedState),
   });
-
-  if (isError) {
-    // router.push("/login");
-    toast.error("Oops! Something went wrong. Please try again.");
-    return null; // Prevent further rendering
-  }
 
   return (
     <>
@@ -52,7 +40,9 @@ export default function CompanyCard({
         <div>
           <CardSkeleton />
         </div>
-      ) : companiesData?.data?.length === 0 ? (
+      ) : !companiesData ||
+        !companiesData.data ||
+        companiesData.data.length === 0 ? (
         <>
           <div className="gap-2 my-10 md:mt-24">
             <Trash
@@ -130,11 +120,21 @@ export default function CompanyCard({
                   <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
                     Engineering
                   </p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">Cadastral</p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">GIS/Remote</p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">Drone Piloting</p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">Topographical</p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">Hydrographical</p>
+                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                    Cadastral
+                  </p>
+                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                    GIS/Remote
+                  </p>
+                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                    Drone Piloting
+                  </p>
+                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                    Topographical
+                  </p>
+                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                    Hydrographical
+                  </p>
                 </div>
                 {/* === PROFILE BUTTON === */}
                 <div className="flex gap-3 justify-between">
