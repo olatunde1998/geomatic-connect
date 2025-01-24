@@ -149,8 +149,8 @@ export default function StudentSignup() {
               className={`${
                 errors.mobileNumber
                   ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                  : "dark:bg-[#FFFFFF]"
-              } dark:bg-[#FFFFFF] phone-input bg-[#FFFFFF] border border-[#FFFFFF]`}
+                  : "bg-[#FFFFFF]"
+              } phone-input input-phone-number bg-[#FFFFFF] border border-[#FFFFFF]`}
             />
           </div>
 

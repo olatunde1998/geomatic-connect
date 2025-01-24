@@ -97,6 +97,15 @@
   color: #4b5563;
 }
 
+.input-phone-number input:focus{
+    outline: none;
+    border:none;
+}
+
+.dark .input-phone-number input {
+  background-color: #ffffff;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
