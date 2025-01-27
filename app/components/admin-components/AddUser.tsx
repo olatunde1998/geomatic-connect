@@ -106,7 +106,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
 
   return (
     <div>
-      <div className="w-full md:pb-20">
+      <div className="w-full md:pb-20 text-[#1F4D36]">
         <div>
           <div className="mb-8 md:mt-6 flex items-center justify-between text-[#33A852]">
             <p>Add New Company</p>
@@ -135,7 +135,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                 <input
                   className={`${
                     errors.companyName ? "bg-[#FEF3F2]" : ""
-                  } py-1 focus:outline-none cursor-text placeholder:text-sm`}
+                  } dark:bg-[#FFFFFF] py-1 focus:outline-none cursor-text placeholder:text-sm`}
                   type="text"
                   placeholder="NIS"
                   {...register("companyName")}
@@ -163,7 +163,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                 <input
                   className={`${
                     errors.companyAddress ? "bg-[#FEF3F2]" : ""
-                  } py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm`}
+                  } dark:bg-[#FFFFFF] py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm`}
                   type="text"
                   placeholder="Company Address *"
                   {...register("companyAddress")}
@@ -189,7 +189,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                 <input
                   className={`${
                     errors.email ? "bg-[#FEF3F2]" : ""
-                  } py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm`}
+                  } dark:bg-[#FFFFFF] py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm`}
                   type="email"
                   placeholder="Company Email *"
                   {...register("email")}
@@ -218,7 +218,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                   placeholder="Your Location"
                   padding={"4px"}
                   borderRadius={"5px"}
-                  border="1px solid #6C748B"
+                  border={errors.state ? "" : "1px solid #6C748B"}
                   backgroundColor={errors.state ? "#FEF3F2" : "#ffffff"}
                   onChange={(option: any) => {
                     setValue("state", option?.value || "");
@@ -245,7 +245,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                   errors.professionalId
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                     : "border-[1.3px] border-[#6C748B] rounded-md"
-                }  mt-2 px-3 py-2.5 focus:outline-none cursor-text flex justify-between rounded-lg w-full placeholder:text-sm`}
+                }  dark:bg-[#FFFFFF] mt-2 px-3 py-2.5 focus:outline-none cursor-text flex justify-between rounded-lg w-full placeholder:text-sm`}
               />
             </div>
 
@@ -271,7 +271,7 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
                   errors.mobileNumber
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                     : "border-[1.3px] border-[#6C748B] rounded-md"
-                } mt-2 phone-input bg-[#FFFFFF]`}
+                } mt-2 phone-input input-phone-number bg-[#FFFFFF]`}
               />
             </div>
 
