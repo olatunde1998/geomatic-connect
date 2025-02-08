@@ -8,8 +8,31 @@ import { Analytics } from "@vercel/analytics/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Geomatic Connect",
-  description: "Geomatic Connect Application Dashboard",
+  manifest: "/manifest.json",
+  title: {
+    template: "%s",
+    default: "Geomatic Connect | Admin",
+  },
+  description:
+    "Geomatic Connect is an platform designed to provide a platform for higher education students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also serves as a valuable resource for companies to discover and recruit qualified candidates",
+  viewport: {
+    width: "device-width",
+    height: "device-height",
+    initialScale: 1,
+  },
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_APP_URL}`),
+  twitter: {
+    card: "summary_large_image",
+    site: `${process.env.NEXT_PUBLIC_APP_URL}`,
+    creator: "Geomatic Connect Teams",
+    title: "Geomatic Connect",
+    description:
+      "Geomatic Connect is an platform designed to provide a platform for higher education students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also serves as a valuable resource for companies to discover and recruit qualified candidates",
+    images: ["/images/opengraph-image.png"],
+  },
+  openGraph: {
+    images: ["/images/opengraph-image.png"],
+  },
 };
 
 export default async function AdminLayout({

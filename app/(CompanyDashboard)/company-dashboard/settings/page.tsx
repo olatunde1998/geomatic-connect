@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { auth } from "@/auth";
 import Settings from "@/app/components/company-components/Settings";
 import { redirect } from "next/navigation";
 
+export const metadata: Metadata = {
+  title: "Settings | Geomatic Connect",
+  description:
+    "Geomatic Connect is an platform designed to provide a platform for higher education students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also serves as a valuable resource for companies to discover and recruit qualified candidates",
+};
 export default async function SettingsPage() {
   const session = await auth();
   const token = session?.user?.token;

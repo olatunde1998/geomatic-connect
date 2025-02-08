@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { auth } from "@/auth";
 import Subscribe from "@/app/components/company-components/Subscribe";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Subscribe | Geomatic Connect",
+  description:
+    "Geomatic Connect is an platform designed to provide a platform for higher education students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also serves as a valuable resource for companies to discover and recruit qualified candidates",
+};
 
 export default async function SubscribePage() {
   const session = await auth();

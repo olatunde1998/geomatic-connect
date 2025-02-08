@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "@/app/components/navbar/Navbar";
 // import Hero from "@/app/components/landing-page-components/Hero";
 import HeroTwo from "@/app/components/landing-page-components/HeroTwo";
@@ -9,6 +10,12 @@ import Faq from "@/app/components/landing-page-components/Faq";
 import ContactUs from "@/app/components/landing-page-components/ContactUs";
 import { Footer } from "@/app/components/landing-page-components/Footer";
 import { FaWhatsapp } from "react-icons/fa";
+
+export const metadata: Metadata = {
+  title: "Home | Geomatic Connect",
+  description:
+    "Geomatic Connect is an platform designed to provide a platform for higher education students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also serves as a valuable resource for companies to discover and recruit qualified candidates",
+};
 
 export default function Home() {
   return (
