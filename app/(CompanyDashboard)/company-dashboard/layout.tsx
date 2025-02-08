@@ -3,6 +3,7 @@ import { CompanySidebar } from "@/app/components/sidebar/CompanySidebar";
 import { auth } from "@/auth";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default async function CompanyLayout({
           </div>
           <main className="lg:pl-48 xl:pl-52 xl:pr-6 overflow-x-auto">
             {children}
+            <Analytics />
           </main>
         </div>
       </div>

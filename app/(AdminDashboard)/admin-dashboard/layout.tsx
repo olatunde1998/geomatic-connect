@@ -3,6 +3,7 @@ import { AdminSidebar } from "@/app/components/sidebar/AdminSidebar";
 import { auth } from "@/auth";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default async function AdminLayout({
             </div>
             <main className="px-6 md:pl-52 lg:pl-60 xl:pl-72 md:pr-12 overflow-x-auto">
               {children}
+              <Analytics />
             </main>
           </div>
         </div>
