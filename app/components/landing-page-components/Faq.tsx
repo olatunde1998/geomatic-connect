@@ -39,16 +39,18 @@ export default function Faq() {
                 >
                   Q{faq.id}- <span className="ml-4">{faq.question}</span>
                 </p>
-                {activeFaq === faq.id && (
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-sm lg:text-base mt-4"
-                  >
-                    {faq.answer}
-                  </motion.p>
-                )}
+                <motion.p
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={
+                    activeFaq === faq.id
+                      ? { height: "auto", opacity: 1 }
+                      : { height: 0, opacity: 0 }
+                  }
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="text-sm lg:text-base mt-4"
+                >
+                  {faq.answer}
+                </motion.p>
               </div>
               <div className="cursor-pointer">
                 {activeFaq === faq.id ? <Minus /> : <Plus />}
