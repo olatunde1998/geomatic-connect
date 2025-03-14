@@ -33,20 +33,20 @@ export default function Billing({ token, userId }: BillingProps) {
 
   const monthlyPlans = [
     {
-      planMethod: "Basic",
+      planMethod: "Starter Monthly",
       amount: 1500,
       color: "#12B76A",
       paymentPlanId: 129893,
     },
     {
-      planMethod: "Growth",
+      planMethod: "Professional Monthly",
       amount: 1999,
       color: "#F59E0B",
       popular: true,
       paymentPlanId: 129903,
     },
     {
-      planMethod: "Scale",
+      planMethod: "Enterprise Monthly",
       amount: 2999,
       color: "#AA0BF5",
       paymentPlanId: 129902,
@@ -55,20 +55,20 @@ export default function Billing({ token, userId }: BillingProps) {
 
   const yearlyPlans = [
     {
-      planMethod: "Basic",
+      planMethod: "Starter Yearly",
       amount: 10000,
       color: "#12B76A",
       paymentPlanId: 129899,
     },
     {
-      planMethod: "Growth",
+      planMethod: "Professional Yearly",
       amount: 15000,
       color: "#F59E0B",
       popular: true,
       paymentPlanId: 129900,
     },
     {
-      planMethod: "Scale",
+      planMethod: "Enterprise Yearly",
       amount: 20000,
       color: "#AA0BF5",
       paymentPlanId: 129901,
@@ -80,19 +80,19 @@ export default function Billing({ token, userId }: BillingProps) {
   const billingCycle = selectedBillingCycleTab;
 
   // Payment Handler Logic
-  const handleAcceptPayment = async (amount: Number) => {
+  const handleAcceptPayment = async (amount: Number, planMethod: string) => {
     setIsProcessing(true);
     const body = {
       email: userData?.data?.email,
       amount,
-      metadata: { subscriptionPlan: "Freemium" },
+      metadata: { subscriptionPlan: planMethod },
     };
 
     try {
       const response = await AcceptPaymentRequest(body);
       if (response?.data?.authorization_url) {
         localStorage.setItem("paymentReference", response.data.reference);
-        localStorage.setItem("subscriptionPlan", "Freemium");
+        localStorage.setItem("subscriptionPlan", planMethod);
         window.location.href = response?.data?.authorization_url;
       } else {
         return;
@@ -136,7 +136,12 @@ export default function Billing({ token, userId }: BillingProps) {
       <section>
         {/* ==== Headings and Tab ===== */}
         <div className="flex justify-between items-center">
-          <p className="text-sm">Your Current Plan:</p>
+          <p className="text-sm">
+            Your Current Plan:{" "}
+            <span className="text-[#33A852]">
+              {userData?.data?.subscription}
+            </span>
+          </p>
           <div className="flex items-center gap-5">
             <div className="border-[1.3px] border-slate-200 flex justify-between items-center text-xs md:text-sm p-1 rounded-3xl w-[200px]">
               <p
@@ -188,7 +193,7 @@ export default function Billing({ token, userId }: BillingProps) {
                     >
                       Most Popular
                     </p>
-                    <p className="font-bold text-lg text-[#575D72]">
+                    <p className="font-bold text-base text-[#575D72]">
                       {planMethod}
                     </p>
                     <div className="flex gap-2 items-baseline my-8 text-[#575D72]">
@@ -200,7 +205,7 @@ export default function Billing({ token, userId }: BillingProps) {
                     <p
                       onClick={() => {
                         handleButtonClick(planMethod);
-                        handleAcceptPayment(amount);
+                        handleAcceptPayment(amount, planMethod);
                       }}
                       className="text-[#FFFFFF] p-3 rounded-md text-center cursor-pointer bg-green-500"
                     >
