@@ -8,7 +8,7 @@ import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
 import { IoSparklesSharp } from "react-icons/io5";
 import { Modal } from "@/app/components/modals/Modal";
 import Chatbot from "@/app/components/chatbot/ChatBot";
-import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
+// import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 const routes = [
   {
@@ -126,9 +126,7 @@ export default function Navbar() {
             >
               Create free account
             </Link>
-            <div className="ml-4">
-              <ModeToggle />
-            </div>
+            <div className="ml-4">{/* <ModeToggle /> */}</div>
           </div>
 
           {/* ======= Menu button ======*/}

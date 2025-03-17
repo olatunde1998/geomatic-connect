@@ -8,12 +8,12 @@ import Logout from "@/app/components/auth-components/Logout";
 import { GetUserProfileRequest } from "@/app/services/users.request";
 import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
-import { Bell, Mail, LogOut, Settings } from "lucide-react";
+import { Bell, LogOut, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import { useRouter } from "next/navigation";
 import { adminMobileRoutes } from "@/utils/sidebarLinks";
-import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
+// import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 export default function AdminNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -90,7 +90,7 @@ export default function AdminNavBar({ session }: { session: any }) {
               </Link>
 
               <div className="flex items-center space-x-3 ml-4">
-                <ModeToggle />
+                {/* <ModeToggle /> */}
                 <Link
                   href={`/admin-dashboard/requests`}
                   className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
@@ -153,7 +153,7 @@ export default function AdminNavBar({ session }: { session: any }) {
           </div>
           {/* ======= Menu button (Hamburger button) ======*/}
           <div className="lg:hidden flex space-x-3">
-            <ModeToggle />
+            {/* <ModeToggle /> */}
             <div className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center">
               <Bell size={18} />
             </div>

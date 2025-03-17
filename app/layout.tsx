@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import SessionProviderPage from "@/app/providers/session-providers";
-import { ThemeProvider } from "@/app/providers/theme-provider";
+// import { ThemeProvider } from "@/app/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -52,14 +52,14 @@ export default function RootLayout({
         }`}
       >
         <SessionProviderPage>
-          <ThemeProvider
+          {/* <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-          >
+          > */}
             {children}
-          </ThemeProvider>
+          {/* </ThemeProvider> */}
         </SessionProviderPage>
         <Analytics />
       </body>

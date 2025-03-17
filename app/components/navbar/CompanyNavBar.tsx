@@ -7,14 +7,14 @@ import { Modal } from "@/app/components/modals/Modal";
 import Logout from "@/app/components/auth-components/Logout";
 import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
-import { Bell, Mail, LogOut, Settings } from "lucide-react";
+import { Bell, LogOut, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import { useRouter } from "next/navigation";
 import { companyMobileRoutes } from "@/utils/sidebarLinks";
 import { GetUserProfileRequest } from "@/app/services/users.request";
-import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 import { GetUserNotifications } from "@/app/services/notifications.request";
+// import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 export default function CompanyNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -106,7 +106,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
               <p className="text-[#33A852] underline ml-3">See more Profiles</p>
 
               <div className="flex items-center space-x-3 ml-4">
-                <ModeToggle />
+                {/* <ModeToggle /> */}
                 <Link
                   href={`/company-dashboard/notifications`}
                   className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
@@ -178,7 +178,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
           </div>
           {/* ======= Menu button (Hamburger button) ======*/}
           <div className="lg:hidden flex space-x-3">
-            <ModeToggle />
+            {/* <ModeToggle /> */}
             <Link
               href={`/company-dashboard/notifications`}
               className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"

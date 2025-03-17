@@ -14,8 +14,8 @@ import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import { useRouter } from "next/navigation";
 import { studentMobileRoutes } from "@/utils/sidebarLinks";
 import SubscribeModal from "@/app/components/student-components/SubscribeModal";
-import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 import { GetUserNotifications } from "@/app/services/notifications.request";
+// import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 export default function StudentNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -120,7 +120,7 @@ export default function StudentNavBar({ session }: { session: any }) {
               </p>
 
               <div className="flex items-center space-x-3 ml-4">
-                <ModeToggle />
+                {/* <ModeToggle /> */}
                 <Link
                   href={`/student-dashboard/notifications`}
                   className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
@@ -191,7 +191,7 @@ export default function StudentNavBar({ session }: { session: any }) {
           </div>
           {/* ======= Menu button (Hamburger button) ======*/}
           <div className="lg:hidden flex space-x-3">
-            <ModeToggle />
+            {/* <ModeToggle /> */}
             <Link
               href={`/student-dashboard/notifications`}
               className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
