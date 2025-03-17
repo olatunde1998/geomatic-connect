@@ -163,7 +163,7 @@ export default function Chatbot({ toggleChat }: ChatBotProps) {
                   type="submit"
                   disabled={isLoading}
                   size="icon"
-                  className="size-9 rounded-full flex items-center justify-center"
+                  className="size-9 bg-slate-700 rounded-full flex items-center justify-center"
                 >
                   <Send className="size-4" />
                 </Button>
