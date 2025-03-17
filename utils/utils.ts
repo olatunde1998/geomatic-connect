@@ -15,3 +15,19 @@ export const formatDate = (dateString: string) => {
   };
   return date.toLocaleDateString("en-US", options);
 };
+
+// FUNCTION TO FORMAT DATE AND TIME
+export function formatTimestamp(timestamp: string): string {
+  const date = new Date(timestamp);
+  const options: Intl.DateTimeFormatOptions = {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "Africa/Lagos",
+  };
+  const formattedDate = new Intl.DateTimeFormat("en-NG", options).format(date);
+  return formattedDate.replace(",", "").replace(" ", " at ");
+}
