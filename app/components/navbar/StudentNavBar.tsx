@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { studentMobileRoutes } from "@/utils/sidebarLinks";
 import SubscribeModal from "@/app/components/student-components/SubscribeModal";
 import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
+import { GetUserNotifications } from "@/app/services/notifications.request";
 
 export default function StudentNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -25,10 +26,17 @@ export default function StudentNavBar({ session }: { session: any }) {
   const [showSubscribe, setShowSubscribe] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
+  const [currentPage] = useState(1);
+  const [limit] = useState(6);
 
   const { data: userData } = useQuery({
     queryKey: ["getUserProfileApi"],
     queryFn: () => GetUserProfileRequest(userId, token),
+  });
+
+  const { data: notificationData } = useQuery({
+    queryKey: ["getUserNotificationApi", currentPage],
+    queryFn: () => GetUserNotifications(token, currentPage, limit),
   });
 
   // Handle click outside of dropdown to close it
@@ -117,7 +125,14 @@ export default function StudentNavBar({ session }: { session: any }) {
                   href={`/student-dashboard/notifications`}
                   className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
                 >
-                  <Bell size={18} />
+                  <div className="relative">
+                    <Bell size={18} />
+                    {notificationData?.meta?.totalUnreadNotifications !== 0 && (
+                      <div className="absolute -top-4 -right-4 bg-[#DE3024] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                        {notificationData?.meta?.totalUnreadNotifications}
+                      </div>
+                    )}
+                  </div>
                 </Link>
                 <Link
                   href={`/student-dashboard/settings`}
@@ -181,7 +196,14 @@ export default function StudentNavBar({ session }: { session: any }) {
               href={`/student-dashboard/notifications`}
               className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
             >
-              <Bell size={18} />
+              <div className="relative">
+                <Bell size={18} />
+                {notificationData?.meta?.totalUnreadNotifications !== 0 && (
+                  <div className="absolute -top-4 -right-4 bg-[#DE3024] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {notificationData?.meta?.totalUnreadNotifications}
+                  </div>
+                )}
+              </div>
             </Link>
 
             <HiMenu

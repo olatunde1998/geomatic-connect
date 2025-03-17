@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { companyMobileRoutes } from "@/utils/sidebarLinks";
 import { GetUserProfileRequest } from "@/app/services/users.request";
 import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
+import { GetUserNotifications } from "@/app/services/notifications.request";
 
 export default function CompanyNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -24,10 +25,17 @@ export default function CompanyNavBar({ session }: { session: any }) {
   const [showSubscribe, setShowSubscribe] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
+  const [currentPage] = useState(1);
+  const [limit] = useState(6);
 
   const { data: userData } = useQuery({
     queryKey: ["getUserProfileApi"],
     queryFn: () => GetUserProfileRequest(userId, token),
+  });
+
+  const { data: notificationData } = useQuery({
+    queryKey: ["getUserNotificationApi", currentPage],
+    queryFn: () => GetUserNotifications(token, currentPage, limit),
   });
 
   // Handle click outside of dropdown to close it
@@ -103,7 +111,14 @@ export default function CompanyNavBar({ session }: { session: any }) {
                   href={`/company-dashboard/notifications`}
                   className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
                 >
-                  <Bell size={18} />
+                  <div className="relative">
+                    <Bell size={18} />
+                    {notificationData?.meta?.totalUnreadNotifications !== 0 && (
+                      <div className="absolute -top-4 -right-4 bg-[#DE3024] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                        {notificationData?.meta?.totalUnreadNotifications}
+                      </div>
+                    )}
+                  </div>
                 </Link>
                 <Link
                   href={`/company-dashboard/settings`}
@@ -119,8 +134,9 @@ export default function CompanyNavBar({ session }: { session: any }) {
                   <div className="relative cursor-pointer">
                     {!userData?.data?.avatarImage ? (
                       <div className="w-[50px] h-[50px] border-[1.3px] border-slate-200 items-center justify-center flex rounded-full text-[20px] bg-[#524A4C] text-white font-bold">
-                        {userData?.data?.companyName?.charAt(0)?.toUpperCase() ??
-                          "N/A"}
+                        {userData?.data?.companyName
+                          ?.charAt(0)
+                          ?.toUpperCase() ?? "N/A"}
                       </div>
                     ) : (
                       <Image
@@ -167,7 +183,14 @@ export default function CompanyNavBar({ session }: { session: any }) {
               href={`/company-dashboard/notifications`}
               className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
             >
-              <Bell size={18} />
+              <div className="relative">
+                <Bell size={18} />
+                {notificationData?.meta?.totalUnreadNotifications !== 0 && (
+                  <div className="absolute -top-4 -right-4 bg-[#DE3024] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {notificationData?.meta?.totalUnreadNotifications}
+                  </div>
+                )}
+              </div>
             </Link>
 
             <HiMenu
