@@ -1,6 +1,6 @@
 import { CreditCard, Home, BellRing, FileText, Settings } from "lucide-react";
 import { GoHome } from "react-icons/go";
-import { MdSupportAgent } from "react-icons/md";
+import { MdOutlinePayment, MdSupportAgent } from "react-icons/md";
 
 export const adminNavItems = [
   {
@@ -125,8 +125,8 @@ export const bottomRouteLinks = [
   {
     name: "Billing",
     href: "/billing",
-    key: "survey",
-    icon: FileText,
+    key: "billing",
+    icon: MdOutlinePayment,
   },
   {
     name: "Settings",
