@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
-import { auth } from "@/auth";
 import Notification from "@/app/components/student-components/Notifications";
 import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import { auth } from "@/auth";
 
 export const metadata: Metadata = {
   title: "Notifications | Geomatic Connect",
@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 export default async function NotificationPage() {
   const session = await auth();
   const token = session?.user?.token;
-  const userId = session?.user?._id;
   if (!session?.user) {
     redirect("/login");
   }
@@ -26,8 +25,8 @@ export default async function NotificationPage() {
           for one user only.
         </p>
       </div>
-      <section className="h-fit border mt-8 p-6 rounded-md">
-        <Notification token={token} userId={userId} />
+      <section className="h-fit border mt-8 rounded-md">
+        <Notification token={token} />
       </section>
     </main>
   );
