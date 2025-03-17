@@ -119,7 +119,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
                   <div className="relative cursor-pointer">
                     {!userData?.data?.avatarImage ? (
                       <div className="w-[50px] h-[50px] border-[1.3px] border-slate-200 items-center justify-center flex rounded-full text-[20px] bg-[#524A4C] text-white font-bold">
-                        {userData?.data?.fullName?.charAt(0)?.toUpperCase() ??
+                        {userData?.data?.companyName?.charAt(0)?.toUpperCase() ??
                           "N/A"}
                       </div>
                     ) : (
