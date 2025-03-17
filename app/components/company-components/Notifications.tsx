@@ -35,6 +35,7 @@ export default function Notification({ token }: NotificationProps) {
     queryKey: ["getUserNotificationApi", currentPage],
     queryFn: () => GetUserNotifications(token, currentPage, limit),
   });
+
   // Update Submission Handler
   const updateNotificationHandler = async (
     notificationId: any,
@@ -51,13 +52,13 @@ export default function Notification({ token }: NotificationProps) {
         return;
       } else {
         await UpdateUserNotificationRequest(notificationId, token, body);
-        await queryClient.invalidateQueries({
-          queryKey: ["getUserNotificationApi"],
-        });
       }
     } catch (error) {
       console.log(error);
     } finally {
+      await queryClient.invalidateQueries({
+        queryKey: ["getUserNotificationApi"],
+      });
     }
   };
 
