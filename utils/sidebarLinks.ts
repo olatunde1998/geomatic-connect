@@ -1,4 +1,6 @@
-import { CreditCard, Home, BellRing } from "lucide-react";
+import { CreditCard, Home, BellRing, FileText, Settings } from "lucide-react";
+import { GoHome } from "react-icons/go";
+import { MdSupportAgent } from "react-icons/md";
 
 export const adminNavItems = [
   {
@@ -111,3 +113,32 @@ export const studentMobileRoutes = [
     href: "/student-dashboard/billing",
   },
 ];
+
+// Bottom Navbar Route Links
+export const bottomRouteLinks = [
+  {
+    name: "Home",
+    href: "",
+    key: "home",
+    icon: GoHome,
+  },
+  {
+    name: "Billing",
+    href: "/billing",
+    key: "survey",
+    icon: FileText,
+  },
+  {
+    name: "Settings",
+    href: "/settings",
+    key: "settings",
+    icon: Settings,
+  },
+  {
+    name: "Support",
+    href: "/support",
+    key: "support",
+    icon: MdSupportAgent,
+  },
+];
+
