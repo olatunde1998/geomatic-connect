@@ -1,9 +1,10 @@
-import AdminNavBar from "@/app/components/navbar/AdminNavBar";
 import { AdminSidebar } from "@/app/components/sidebar/AdminSidebar";
-import { auth } from "@/auth";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import BottomNavBar from "@/app/components/navbar/BottomNavBar"
+import AdminNavBar from "@/app/components/navbar/AdminNavBar";
 import { Analytics } from "@vercel/analytics/next";
+import { Inter } from "next/font/google";
+import type { Metadata } from "next";
+import { auth } from "@/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,10 +51,11 @@ export default async function AdminLayout({
             <div className="hidden w-[200px] md:w-[160px] lg:w-[160px] xl:w-[200px] fixed flex-col md:block border-r ml-6 pr-2 lg:ml-10 pt-32 min-h-screen">
               <AdminSidebar />
             </div>
-            <main className="px-6 md:pl-52 lg:pl-60 xl:pl-72 md:pr-12 overflow-x-auto">
+            <main className="px-6 md:pl-52 lg:pl-60 xl:pl-72 md:pr-12 overflow-x-auto pb-28 md:pb-10">
               {children}
               <Analytics />
             </main>
+            <BottomNavBar />
           </div>
         </div>
       </div>
