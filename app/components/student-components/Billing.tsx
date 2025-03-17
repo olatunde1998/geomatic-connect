@@ -1,5 +1,5 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,6 +22,8 @@ export default function Billing({ token, userId }: BillingProps) {
   const [selectedBillingCycleTab, setSelectedBillingCycleTab] =
     useState("Monthly");
   const [isSubscribing, setIsSubscribing] = useState(null);
+  const queryClient = useQueryClient();
+
   const handleButtonClick = (planMethod: any) => {
     setIsSubscribing(planMethod);
   };
@@ -111,15 +113,15 @@ export default function Billing({ token, userId }: BillingProps) {
 
     if (storedReference && subscriptionPlan) {
       try {
-        const verifyResponse = await VerifyPaymentRequest(
-          storedReference,
-          subscriptionPlan
-        );
-        console.log(verifyResponse.message, "this is verify response");
+        await VerifyPaymentRequest(storedReference, subscriptionPlan);
+        // console.log(verifyResponse.message, "this is verify response");
 
         // Clear stored data
         localStorage.removeItem("paymentReference");
         localStorage.removeItem("subscriptionPlan");
+        await queryClient.invalidateQueries({
+          queryKey: ["getUserByIdApi"],
+        });
       } catch (error: any) {
         toast.error(error?.data?.message);
       }
