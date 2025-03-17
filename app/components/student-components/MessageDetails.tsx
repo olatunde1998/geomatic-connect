@@ -51,7 +51,8 @@ export default function MessageDetails({
                   </div>
 
                   <div className="flex justify-between text-sm font-normal border-b p-3">
-                    <span>Subscription</span> <span></span>
+                    <span>Subscription</span>
+                    <span>{messageData?.subscription}</span>
                   </div>
 
                   <div className="flex justify-between text-sm font-normal p-3">
