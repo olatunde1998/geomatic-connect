@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import StudentHome from "@/app/components/student-components/StudentHome";
+import TawkChat from "@/app/components/chatbot/TawkChat";
 
 export const metadata: Metadata = {
   title: "Dashboard | Geomatic Connect",
@@ -16,6 +17,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen p-6 lg:p-12 xl:p-20 xl:px-2 xl:pl-16">
       <StudentHome session={session} />
+      <TawkChat />
     </main>
   );
 }
