@@ -1,12 +1,12 @@
 "use client";
-import { useState } from "react";
-import StudentCard from "@/app/components/cards/StudentCard";
-import { specializationData, stateData } from "@/utils/FilterData";
-import ReactSelect from "@/app/components/inputs/ReactSelect";
-import { useQuery } from "@tanstack/react-query";
 import { GetUserByIdRequest } from "@/app/services/request.request";
+import StudentCard from "@/app/components/cards/StudentCard";
+import ReactSelect from "@/app/components/inputs/ReactSelect";
+import { stateData } from "@/utils/FilterData";
+import { useQuery } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
 interface CompanyHomeProps {
   session: any;
@@ -15,10 +15,9 @@ interface CompanyHomeProps {
 export default function CompanyHome({ session }: CompanyHomeProps) {
   const userId = session?.user?._id;
   const token = session.user.token;
-  const [selectedSpecialization, setSelectedSpecialization] = useState("");
   const [selectedState, setSelectedState] = useState("");
 
-  const { data: userData, isLoading } = useQuery({
+  const { data: userData } = useQuery({
     queryKey: ["getUserByIdApi"],
     queryFn: () => GetUserByIdRequest(userId, token),
   });
@@ -32,18 +31,19 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
           <div className="md:flex space-y-2 mt-3 md:mt-0 md:space-y-0 md:ml-3 md:space-x-3">
             {/* === DropDown Input === */}
             <div className="w-[226px]">
-              <ReactSelect
-                options={specializationData}
-                placeholder="Specialization *"
-                onChange={(option: any) => {
-                  setSelectedSpecialization(option?.value || "");
-                }}
+              <input
+                type="text"
+                name=""
+                onChange={(e) => e.target.value}
+                className="border border-[#cbd5e1] w-full p-4 cursor-text placeholder:text-xs focus:border-green-600 focus:ring-0 focus:outline-none"
+                placeholder="Search by student name"
               />
             </div>
             <div className="w-[153px]">
               <ReactSelect
                 options={stateData}
                 placeholder="State"
+                border="#16a34a"
                 onChange={(option: any) => {
                   setSelectedState(option?.value || "");
                 }}
