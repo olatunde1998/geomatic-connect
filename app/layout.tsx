@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import SessionProviderPage from "@/app/providers/session-providers";
 // import { ThemeProvider } from "@/app/providers/theme-provider";
 
-const inter = Inter({ subsets: ["latin"] });
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   manifest: "/manifest.json",
@@ -35,6 +44,9 @@ export const metadata: Metadata = {
   },
 };
 
+
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -47,7 +59,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#F2F6F6" />
       </head>
       <body
-        className={`${inter.className} ${
+        className={`${geistSans.variable} ${geistMono.variable} antialiased ${
           process.env.NODE_ENV == "development" ? "debug-screens" : ""
         }`}
       >
@@ -58,7 +70,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           > */}
-            {children}
+          {children}
           {/* </ThemeProvider> */}
         </SessionProviderPage>
         <Analytics />

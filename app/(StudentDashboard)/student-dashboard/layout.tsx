@@ -2,11 +2,19 @@ import { StudentSidebar } from "@/app/components/sidebar/StudentSidebar";
 import StudentNavBar from "@/app/components/navbar/StudentNavBar";
 import BottomNavBar from "@/app/components/navbar/BottomNavBar";
 import { Analytics } from "@vercel/analytics/next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { auth } from "@/auth";
 
-const inter = Inter({ subsets: ["latin"] });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   manifest: "/manifest.json",
@@ -43,7 +51,7 @@ export default async function StudentLayout({
 }>) {
   const session = await auth();
   return (
-    <div className={inter.className}>
+    <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <StudentNavBar session={session} />
       <div className="flex flex-col space-y-6">
         <div className="grid flex-1 gap-12 ">
