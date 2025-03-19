@@ -30,7 +30,7 @@ export default async function SupportPage() {
           </p>
         </div>
         <div className="mt-10 md:mt-0 grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-6 md:w-[60%] lg:w-[70%] xl:w-fit">
-          <div className="bg-[#F2F6F6] dark:hover:bg-muted border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[280px] md:max-w-[250px] h-full">
+          <div className="bg-[#F2F6F6] dark:hover:bg-muted border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg  md:max-w-[250px]">
             <p className=" text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
               <GiArcheryTarget size={32} />
             </p>
@@ -42,7 +42,7 @@ export default async function SupportPage() {
               team for prompt help.
             </p>
           </div>
-          <div className="bg-[#F2F6F6] dark:hover:bg-muted border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[280px] md:max-w-[250px] h-full">
+          <div className="bg-[#F2F6F6] dark:hover:bg-muted border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg md:max-w-[250px]">
             <p className=" text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
               <TbSitemap size={32} />
             </p>
