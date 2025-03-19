@@ -1,23 +1,32 @@
 import Select from "react-select";
 
-const customStyles = (padding: string, backgroundColor: string, borderRadius: string, border: string ) => ({
+const customStyles = (
+  padding: string,
+  backgroundColor: string,
+  borderRadius: string,
+  border: string
+) => ({
   control: (provided: any, state: any) => ({
     ...provided,
     width: "100%",
     borderShadow: "none",
     textAlign: "left",
-    backgroundColor, 
+    backgroundColor,
     padding,
-    boxShadow: provided.boxShadow,
     borderRadius,
     border,
     fontSize: "14px",
     borderColor: state.isFocused ? "transparent" : provided.borderColor,
+    boxShadow: state.isFocused ? "0 0 0 1px #16a34a" : "none",
   }),
   option: (provided: any, state: any) => ({
     ...provided,
     color: state.isSelected ? "black" : "grey",
-    backgroundColor: state.isSelected ? "#ECF1F7" : state.isFocused ? "#ECF1F7" : "white",
+    backgroundColor: state.isSelected
+      ? "#ECF1F7"
+      : state.isFocused
+      ? "#ECF1F7"
+      : "white",
     fontSize: "14px",
     lineHeight: "20px",
   }),
