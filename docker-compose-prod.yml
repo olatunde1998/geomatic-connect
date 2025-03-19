@@ -1,0 +1,9 @@
+services:
+  geomaticconnect:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "8080:3000"
+    container_name: geomaticconnect
