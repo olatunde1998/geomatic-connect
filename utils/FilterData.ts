@@ -1,12 +1,3 @@
-// Specialization data
-export const specializationData = [
-  { id: 1, label: "Cadastral Survey", value: "cadastral-survey" },
-  { id: 2, label: "Drone Survey", value: "drone-survey" },
-  { id: 3, label: "GIS & Remote Sensing", value: "GIS-remote-sensing" },
-  { id: 4, label: "Hydrographical Survey", value: "hydrographical-survey" },
-  { id: 5, label: "Topographical Survey", value: "topographical-survey" },
-];
-
 // State data
 export const stateData = [
   { id: 0, label: "All State", value: "" },
