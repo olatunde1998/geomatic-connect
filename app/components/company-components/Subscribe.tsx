@@ -137,14 +137,14 @@ export default function Subscribe({ token, userId }: SubscribeProps) {
     <>
       <section>
         {/* ==== Headings and Tab ===== */}
-        <div className="flex justify-between items-center">
+        <div className="md:flex justify-between items-center">
           <p className="text-sm">
             Your Current Plan:{" "}
             <span className="text-[#33A852]">
               {userData?.data?.subscription}
             </span>
           </p>
-          <div className="flex items-center gap-5">
+          <div className="mt-6 md:mt-0 flex items-center gap-5">
             <div className="border-[1.3px] border-slate-200 flex justify-between items-center text-xs md:text-sm p-1 rounded-3xl w-[200px]">
               <p
                 onClick={() => setSelectedBillingCycleTab("Monthly")}
@@ -177,14 +177,14 @@ export default function Subscribe({ token, userId }: SubscribeProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3"
+              className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3"
             >
               {plans.map(
                 ({ planMethod, amount, color, popular, paymentPlanId }) => (
                   <div
                     key={planMethod}
                     style={{ borderTopColor: color }}
-                    className={`border-t-[1.3px] rounded-lg w-full md:w-[230px] p-3`}
+                    className="border-t-[1.3px] rounded-lg w-full md:w-[230px] p-3"
                   >
                     <p
                       style={{ background: popular ? color : "#575D72" }}
