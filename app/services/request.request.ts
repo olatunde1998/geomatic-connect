@@ -29,10 +29,14 @@ export const GetAllNotifications = async (
 };
 
 // GET(READ) ALL COMPANIES REQUEST
-export const GetCompaniesRequest = async (token: string, state: string) => {
+export const GetCompaniesRequest = async (
+  token: string,
+  state: string,
+  search: string
+) => {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASEURL}/api/users/companies?state=${state}`,
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/users/companies?search=${search}&state=${state}`,
       {
         maxBodyLength: Infinity,
         headers: {

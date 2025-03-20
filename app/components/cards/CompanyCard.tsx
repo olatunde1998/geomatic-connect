@@ -18,6 +18,7 @@ interface CompanyCardProps {
   setShowSendRequest?: any;
   userData?: any;
   selectedState?: any;
+  search?: any;
 }
 
 export default function CompanyCard({
@@ -28,10 +29,11 @@ export default function CompanyCard({
   setShowSendRequest,
   userData,
   selectedState,
+  search,
 }: CompanyCardProps) {
   const { data: companiesData, isLoading } = useQuery({
-    queryKey: ["getCompaniesApi", selectedState],
-    queryFn: () => GetCompaniesRequest(token, selectedState),
+    queryKey: ["getCompaniesApi", selectedState, search],
+    queryFn: () => GetCompaniesRequest(token, selectedState, search),
   });
 
   return (

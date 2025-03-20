@@ -21,6 +21,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
   const [selectedState, setSelectedState] = useState("");
   const [selectedCompanyId, setSelectedCompanyId] = useState("");
   const [showSubscribe, setShowSubscribe] = useState<boolean>(false);
+  const [search, setSearch] = useState("");
 
   const { data: userData } = useQuery({
     queryKey: ["getUserByIdApi"],
@@ -55,8 +56,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
             <div className="w-[226px]">
               <input
                 type="text"
-                name=""
-                onChange={(e) => e.target.value}
+                onChange={(e: any) => setSearch(e.target.value)}
                 className="border border-[#cbd5e1] w-full p-4 cursor-text placeholder:text-xs focus:border-green-600 focus:ring-0 focus:outline-none"
                 placeholder="Search by company name"
               />
@@ -85,6 +85,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
           setShowSendRequest={setShowSendRequest}
           userData={userData}
           selectedState={selectedState}
+          search={search}
         />
       </div>
       <Modal show={showSubscribe} onClose={() => setShowSubscribe(false)}>
