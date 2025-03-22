@@ -26,6 +26,7 @@ interface TransactionListProps {
   currentPage?: number;
   limit?: number;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  debouncedSearch: string;
 }
 
 interface IndeterminateCheckboxProps {
@@ -58,6 +59,7 @@ export default function TransactionList({
   currentPage,
   limit,
   setSearch,
+  debouncedSearch,
 }: TransactionListProps) {
   const [selectedRows, setSelectedRows] = useState<RowType[]>([]);
   const [resetCheckboxes, setResetCheckboxes] = useState(false);
@@ -283,10 +285,9 @@ export default function TransactionList({
           <div className="mt-6 ">
             <Skeleton />
           </div>
-        ) : subscriptionData?.length === 0 ? (
-          <div className="mt-3 pt-6 pb-20 border-t-[1.3px] border-slate-200">
-            {/* ====TRANSACTION EMPTY TRASH GOES HERE === */}
-            No Existing User, Please check back later.
+        ) : subscriptionData?.data?.length === 0 && debouncedSearch ? (
+          <div className="text-base text-center border-t-[1.3px] border-slate-200 mt-10 pt-20 md:pt-32 max-w- bg-white rounded-lg p-6">
+            No Transaction Found, Please check back later.
           </div>
         ) : (
           <div className="mt-3 pt-6 h-auto border-t-[1.3px] border-slate-200 dark:border-t-muted rounded-tl-[8p rounded-tr-[8px] bg-white dark:bg-background max-w-[760px] md:max-w-none">

@@ -35,7 +35,7 @@ export default function BillingHome({ token }: BillingHomeProps) {
         </p>
       </div>
 
-      {subscriptionData?.data?.length === 0 ? (
+      {subscriptionData?.data?.length === 0 && !debouncedSearch ? (
         <div className="gap-2 my-6">
           <Trash
             headingText="No Billing yet"
@@ -76,6 +76,7 @@ export default function BillingHome({ token }: BillingHomeProps) {
             currentPage={currentPage}
             limit={limit}
             setSearch={setSearch}
+            debouncedSearch={debouncedSearch}
           />
         </>
       )}

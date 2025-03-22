@@ -48,7 +48,7 @@ export default function AdminHome({ token }: AdminHomeProps) {
             <Plus className="w-4 h-4 md:w-5 md:h-5" />
           </div>
         </div>
-        {userData?.data?.length === 0 ? (
+        {userData?.data?.length === 0 && !debouncedSearch ? (
           <div className="gap-2 my-6">
             <Trash
               headingText="Start Adding Users"
@@ -89,6 +89,7 @@ export default function AdminHome({ token }: AdminHomeProps) {
               currentPage={currentPage}
               limit={limit}
               setSearch={setSearch}
+              debouncedSearch={debouncedSearch}
             />
           </>
         )}
