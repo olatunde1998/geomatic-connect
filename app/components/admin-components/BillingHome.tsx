@@ -6,12 +6,15 @@ import { useQuery } from "@tanstack/react-query";
 import { GetAllSubscriptions } from "@/app/services/payment.request";
 import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
 import Trash from "@/app/components/trash/Trash";
+import { useDebounce } from "use-debounce";
 
 interface BillingHomeProps {
   token: any;
 }
 
 export default function BillingHome({ token }: BillingHomeProps) {
+  const [search, setSearch] = useState("");
+  const [debouncedSearch] = useDebounce(search, 500);
   const [currentPage, setCurrentPage] = useState(1);
   const [limit] = useState(6);
 
@@ -71,6 +74,7 @@ export default function BillingHome({ token }: BillingHomeProps) {
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             limit={limit}
+            setSearch={setSearch}
           />
         </>
       )}

@@ -6,11 +6,14 @@ import { GetAllNotifications } from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
 import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
 import Trash from "@/app/components/trash/Trash";
+import { useDebounce } from "use-debounce";
 
 interface RequestsHomeProps {
   token: any;
 }
 export default function RequestsHome({ token }: RequestsHomeProps) {
+  const [search, setSearch] = useState("");
+  const [debouncedSearch] = useDebounce(search, 500);
   const [currentPage, setCurrentPage] = useState(1);
   const [limit] = useState(6);
 
@@ -70,6 +73,7 @@ export default function RequestsHome({ token }: RequestsHomeProps) {
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             limit={limit}
+            setSearch={setSearch}
           />
         </>
       )}

@@ -11,12 +11,15 @@ import { GetUsersRequest } from "@/app/services/users.request";
 import { useQuery } from "@tanstack/react-query";
 import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
 import Trash from "@/app/components/trash/Trash";
+import { useDebounce } from "use-debounce";
 
 interface AdminHomeProps {
   token: any;
 }
 export default function AdminHome({ token }: AdminHomeProps) {
   const [showAddUser, setShowAddUser] = useState(false);
+  const [search, setSearch] = useState("");
+  const [debouncedSearch] = useDebounce(search, 500);
   const [currentPage, setCurrentPage] = useState(1);
   const [limit] = useState(6);
 
@@ -30,7 +33,9 @@ export default function AdminHome({ token }: AdminHomeProps) {
       <main className="flex min-h-screen flex-col pt-24 lg:pt-32">
         <div className="md:flex items-center md:space-x-4">
           <div className="w-full">
-            <p className="text-gray-600 text-lg font-semibold dark:text-accent-foreground">Manage Users</p>
+            <p className="text-gray-600 text-lg font-semibold dark:text-accent-foreground">
+              Manage Users
+            </p>
             <p className="text-sm text-gray-500 font-normal">
               Administer user accounts and privileges within the platform.
             </p>
@@ -83,6 +88,7 @@ export default function AdminHome({ token }: AdminHomeProps) {
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}
               limit={limit}
+              setSearch={setSearch}
             />
           </>
         )}

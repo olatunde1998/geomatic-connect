@@ -26,6 +26,7 @@ interface UsersListProps {
   setCurrentPage?: React.Dispatch<React.SetStateAction<number>>;
   currentPage?: number;
   limit?: number;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface IndeterminateCheckboxProps {
@@ -57,6 +58,7 @@ export default function UsersList({
   setCurrentPage,
   currentPage,
   limit,
+  setSearch,
 }: UsersListProps) {
   const [selectedRows, setSelectedRows] = useState<RowType[]>([]);
   const router = useRouter();
@@ -290,7 +292,16 @@ export default function UsersList({
                 Pick an account plan that fits your workflow.
               </p>
             </div>
-            <div className="dark:text-accent-foreground my-4 flex p-2 w-[100px] justify-center items-center gap-[8px] rounded-[8px] cursor-pointer border-[1.5px] dark:border-muted dark:hover:bg-muted border-[#D0D5DD] text-[#344054]">
+
+            <div className="md:w-[500px]">
+              <input
+                type="text"
+                onChange={(e: any) => setSearch(e.target.value)}
+                className="border border-[#cbd5e1] w-full p-2 mt-4 md:mt-0 rounded-md cursor-text placeholder:text-xs focus:border-green-600 focus:ring-0 focus:outline-none"
+                placeholder="Search... ✍️"
+              />
+            </div>
+            <div className="dark:text-accent-foreground my-4 flex p-2 w-[100px] justify-center items-center gap-[8px] rounded-[8px] cursor-pointer border dark:border-muted dark:hover:bg-muted border-[#D0D5DD] text-[#344054]">
               <Filter className="w-4 h-4 md:w-5 md:h-5" />
               <p className="text-sm md:text-md">Filter</p>
             </div>
