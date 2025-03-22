@@ -36,9 +36,10 @@ export const GetCompaniesRequest = async (
 ) => {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASEURL}/api/users/companies?search=${search}&state=${state}`,
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/users/companies`,
       {
         maxBodyLength: Infinity,
+        params: { state, search },
         headers: {
           Accept: "application/vnd.connect.v1+json",
           Authorization: `Bearer ${token}`,
@@ -253,13 +254,15 @@ export const AdminDeclineStudentRequest = async (body: any, token: any) => {
 // GET STUDENTS BY COMPANY ID REQUEST
 export const GetStudentsByCompanyRequest = async (
   companyId: any,
-  token: any
+  token: any,
+  state: string,
+  search: string
 ) => {
   try {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASEURL}/api/requests/company/${companyId}`,
       {
-        maxBodyLength: Infinity,
+        params: { state, search },
         headers: {
           Accept: "application/vnd.connect.v1+json",
           Authorization: `Bearer ${token}`,
