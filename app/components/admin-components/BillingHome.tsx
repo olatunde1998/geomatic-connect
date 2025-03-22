@@ -19,8 +19,9 @@ export default function BillingHome({ token }: BillingHomeProps) {
   const [limit] = useState(6);
 
   const { data: subscriptionData, isLoading } = useQuery({
-    queryKey: ["getSubscriptionsApi", currentPage],
-    queryFn: () => GetAllSubscriptions(currentPage, limit, token),
+    queryKey: ["getSubscriptionsApi", currentPage, debouncedSearch],
+    queryFn: () =>
+      GetAllSubscriptions(currentPage, limit, token, debouncedSearch),
   });
 
   return (

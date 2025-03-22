@@ -24,8 +24,8 @@ export default function AdminHome({ token }: AdminHomeProps) {
   const [limit] = useState(6);
 
   const { data: userData, isLoading } = useQuery({
-    queryKey: ["getUsersApi", currentPage],
-    queryFn: () => GetUsersRequest(token, currentPage, limit),
+    queryKey: ["getUsersApi", currentPage, debouncedSearch],
+    queryFn: () => GetUsersRequest(token, currentPage, limit, debouncedSearch),
   });
 
   return (
