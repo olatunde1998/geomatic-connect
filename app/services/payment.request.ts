@@ -42,17 +42,18 @@ export const VerifyPaymentRequest = async (
   return data;
 };
 
-
 // GET ALL SUBSCRIPTIONS
 export const GetAllSubscriptions = async (
   pageParam = 1,
   limit: number,
-  token: any
+  token: any,
+  search: string
 ) => {
   const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/subscription?pageNumber=${pageParam}&limit=${limit}`,
+    `${process.env.NEXT_PUBLIC_BASEURL}/api/subscription`,
     {
       maxBodyLength: Infinity,
+      params: { pageParam, limit, search },
       headers: {
         Accept: "application/vnd.connect.v1+json",
         Authorization: `Bearer ${token}`,
