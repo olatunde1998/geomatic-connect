@@ -6,6 +6,7 @@ import { stateData } from "@/utils/FilterData";
 import { useQuery } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDebounce } from "use-debounce";
 import { useState } from "react";
 
 interface CompanyHomeProps {
@@ -16,6 +17,8 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
   const userId = session?.user?._id;
   const token = session.user.token;
   const [selectedState, setSelectedState] = useState("");
+  const [search, setSearch] = useState("");
+  const [debouncedSearch] = useDebounce(search, 500);
 
   const { data: userData } = useQuery({
     queryKey: ["getUserByIdApi"],
@@ -33,8 +36,7 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
             <div className="w-[226px]">
               <input
                 type="text"
-                name=""
-                onChange={(e) => e.target.value}
+                onChange={(e: any) => setSearch(e.target.value)}
                 className="border border-[#cbd5e1] w-full p-4 cursor-text placeholder:text-xs focus:border-green-600 focus:ring-0 focus:outline-none"
                 placeholder="Search by student name"
               />
@@ -55,7 +57,12 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
 
       {/* ====CARD GOES HERE ===== */}
       <div>
-        <StudentCard token={token} companyId={userData?.data?._id} />
+        <StudentCard
+          token={token}
+          companyId={userData?.data?._id}
+          search={debouncedSearch}
+          selectedState={selectedState}
+        />
       </div>
       <ToastContainer />
     </>

@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import { useDebounce } from "use-debounce";
 
 interface StudentHomeProps {
   session: any;
@@ -22,6 +23,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
   const [selectedCompanyId, setSelectedCompanyId] = useState("");
   const [showSubscribe, setShowSubscribe] = useState<boolean>(false);
   const [search, setSearch] = useState("");
+  const [debouncedSearch] = useDebounce(search, 500);
 
   const { data: userData } = useQuery({
     queryKey: ["getUserByIdApi"],
@@ -85,7 +87,7 @@ export default function StudentHome({ session }: StudentHomeProps) {
           setShowSendRequest={setShowSendRequest}
           userData={userData}
           selectedState={selectedState}
-          search={search}
+          search={debouncedSearch}
         />
       </div>
       <Modal show={showSubscribe} onClose={() => setShowSubscribe(false)}>
