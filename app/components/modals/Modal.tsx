@@ -24,7 +24,7 @@ export const Modal: React.FC<ModalProps> = ({ show, onClose, children }) => {
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 z-[1005] flex items-center justify-center overflow-hidden">
+        <div className="fixed inset-0 z-[1005] flex items-center justify-center overflow-y-auto">
           <div
             style={{ backdropFilter: "blur(4px)" }}
             className="fixed inset-0 bg-[#575D7299]"
@@ -32,7 +32,7 @@ export const Modal: React.FC<ModalProps> = ({ show, onClose, children }) => {
           ></div>
           <div
             ref={modalRef}
-            className="p-3 z-20 md:w-fit overflow-y-auto max-h-full scrollbar-hide"
+            className="p-3 z-20 md:w-fit max-h-full scrollbar-hide"
           >
             {children}
           </div>
