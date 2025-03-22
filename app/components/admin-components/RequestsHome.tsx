@@ -6,22 +6,22 @@ import { GetAllNotifications } from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
 import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
 import Trash from "@/app/components/trash/Trash";
-import { useDebounce } from "use-debounce";
+// import { useDebounce } from "use-debounce";
 
 interface RequestsHomeProps {
   token: any;
 }
 export default function RequestsHome({ token }: RequestsHomeProps) {
-  const [search, setSearch] = useState("");
-  const [debouncedSearch] = useDebounce(search, 500);
   const [currentPage, setCurrentPage] = useState(1);
   const [limit] = useState(6);
+  // const [search, setSearch] = useState("");
+  // const [debouncedSearch] = useDebounce(search, 500);
 
   const { data: notificationsData, isLoading } = useQuery({
     queryKey: ["getNotificationsApi", currentPage],
     queryFn: () => GetAllNotifications(token, currentPage, limit),
   });
-
+  console.log(notificationsData, "this is the data here====");
   return (
     <main className="flex min-h-screen flex-col pt-24 lg:pt-32">
       <div className="w-full">
@@ -73,7 +73,7 @@ export default function RequestsHome({ token }: RequestsHomeProps) {
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             limit={limit}
-            setSearch={setSearch}
+            // setSearch={setSearch}
           />
         </>
       )}
