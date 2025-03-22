@@ -110,7 +110,12 @@ export default function AddUser({ setShowAddUser }: AddUserProps) {
         <div>
           <div className="mb-8 md:mt-6 flex items-center justify-between text-[#33A852]">
             <p>Add New Company</p>
-            <X onClick={() => setShowAddUser(false)} />
+            <button
+              onClick={() => setShowAddUser(false)}
+              className="rounded-md gap-6 hover:bg-slate-100 p-2"
+            >
+              <X className="size-5" />
+            </button>
           </div>
         </div>
 

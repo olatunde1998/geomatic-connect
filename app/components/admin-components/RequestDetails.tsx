@@ -12,6 +12,8 @@ interface RequestDetailsProps {
   setShowSendRequest?: any;
   notificationsData?: any;
   notificationID?: any;
+  setShowConfirmApprove?: any;
+  setShowConfirmDecline?: any;
 }
 
 export default function RequestDetails({
@@ -19,8 +21,9 @@ export default function RequestDetails({
   setShowSendRequest,
   notificationsData,
   notificationID,
+  setShowConfirmApprove,
+  setShowConfirmDecline,
 }: RequestDetailsProps) {
-  const [isSaving, setIsSaving] = useState(false);
   const [isForwarding, setIsForwarding] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
   const [responseData, setResponseData] = useState<any[]>([]);
@@ -30,8 +33,6 @@ export default function RequestDetails({
   const notification = notificationArray?.find(
     (notification: any) => notification?._id === notificationID
   );
-
-  console.log(notification, "==== this is single notification =====");
 
   // Forward Request to Company submission Logic
   const handleForwardRequest = async () => {
@@ -58,14 +59,17 @@ export default function RequestDetails({
   return (
     <div>
       {showSuccessMessage === false ? (
-        <div className="bg-[#FFFFFF] w-full  md:pt-10 md:pb-20 p-10">
+        <div className="bg-[#FFFFFF] w-full  md:pt-10 md:pb-16 p-10">
           <div>
             <div className="mb-8 flex items-center justify-between border-b border-slate-300 pb-8">
               <p className="text-xl">Forward a Request</p>
-              <X
+
+              <button
                 onClick={() => setShowSendRequest(false)}
-                className="cursor-pointer"
-              />
+                className="rounded-md gap-6 hover:bg-slate-100 p-2"
+              >
+                <X className="size-5" />
+              </button>
             </div>
           </div>
 
@@ -115,7 +119,7 @@ export default function RequestDetails({
               <button
                 disabled={isForwarding}
                 onClick={() => handleForwardRequest()}
-                className="w-full px-2 py-1 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer"
+                className="w-full px-2 py-1 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer rounded-sm"
               >
                 <span className="text-sm md:text-base">
                   {isForwarding ? "Forwarding...." : "Forward Request"}
@@ -205,20 +209,25 @@ export default function RequestDetails({
           {/* === Submit Button === */}
           <div className="flex justify-between gap-6">
             <button
-              disabled={isSaving}
-              className="w-full mt-10 px-1 py-1.5 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+              onClick={() => setShowConfirmApprove(true)}
+              disabled={
+                notification?.status !== "Interested" &&
+                notification?.status !== "Approved"
+              }
+              className={`${
+                notification?.status !== "Interested" &&
+                notification?.status !== "Approved"
+                  ? "cursor-not-allowed disabled:opacity-50"
+                  : "cursor-pointer"
+              } w-full mt-10 px-1 py-1.5 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] rounded-sm`}
             >
-              <span className="text-sm md:text-base">
-                {isSaving ? "Approving...." : "Approve Request"}
-              </span>
+              <span className="text-sm md:text-base">Approve Request</span>
             </button>
             <button
-              disabled={isSaving}
-              className="w-full mt-10 px-1.5 py-1.5 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316]"
+              onClick={() => setShowConfirmDecline(true)}
+              className="w-full mt-10 px-1.5 py-1.5 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316] rounded-sm"
             >
-              <span className="text-sm md:text-base">
-                {isSaving ? "Declining...." : "Decline Request"}
-              </span>
+              <span className="text-sm md:text-base">Decline Request</span>
             </button>
           </div>
         </div>

@@ -432,6 +432,8 @@ export default function RequestsList({
           setShowSendRequest={setShowSendRequest}
           notificationsData={notificationsData?.data}
           notificationID={selectedRow ? selectedRow._id : null}
+          setShowConfirmApprove={setShowConfirmApprove}
+          setShowConfirmDecline={setShowConfirmDecline}
         />
       </Modal>
 
