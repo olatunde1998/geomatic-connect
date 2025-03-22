@@ -11,7 +11,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { LoaderCircle, Upload } from "lucide-react";
+import { LoaderCircle, Plus, Upload } from "lucide-react";
+import { Sheet } from "@/app/components/sheets/Sheet";
+import AddTeamMate from "./AddTeamMate";
 
 interface SettingsProps {
   token?: String;
@@ -34,10 +36,8 @@ const schema = yup.object().shape({
 });
 
 export default function Settings({ token, userId }: SettingsProps) {
+  const [showAddTeamMate, setShowAddTeamMate] = useState(false);
   const [userImage, setUserImage] = useState<string | undefined>(undefined);
-  const [userDocument, setUserDocument] = useState<string | undefined>(
-    undefined
-  );
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedDocument, setSelectedDocument] = useState<File | null>(null);
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
@@ -107,7 +107,6 @@ export default function Settings({ token, userId }: SettingsProps) {
       }
 
       const response = await UpdateUserProfileRequest(userId, token, formData);
-      console.log(response, "this is response here====");
       toast.success(response?.message);
       queryClient.invalidateQueries({ queryKey: ["getUserProfileApi"] });
       queryClient.invalidateQueries({ queryKey: ["getUsersApi"] });
@@ -121,109 +120,130 @@ export default function Settings({ token, userId }: SettingsProps) {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmitHandler)}>
-        {/* ====Full Name === */}
-        <div>
-          <label htmlFor="name">
-            <span className="text-sm font-medium">Administration Name</span>
-            <input
-              type="text"
-              placeholder="Full name"
-              {...register("fullName")}
-              className={`${
-                errors.fullName && "border-[1.3px] border-red-500"
-              } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm`}
-            />
-          </label>
+      <div className="md:flex items-center md:space-x-4">
+        <div className="w-full font-sans text-md ">
+          <p className="text-2xl font-bold mb-2">Settings</p>
+          <p className="text-gray-500">Manage the settings of your account</p>
         </div>
-
-        {/* ====Email === */}
-        <div className="mt-3">
-          <label htmlFor="email">
-            <span className="text-sm font-medium">Email</span>
-            <input
-              type="email"
-              placeholder="Email"
-              {...register("email")}
-              disabled
-              className={`${
-                errors.email && "border-[1.3px] border-red-500"
-              } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm text-muted-foreground cursor-not-allowed`}
-            />
-          </label>
+        <div
+          onClick={() => setShowAddTeamMate(true)}
+          className="my-4 flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-full md:w-[200px] lg:w-[200px] cursor-pointer  px-3.5 py-4 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+        >
+          <p className="text-[#FFFFFF] text-sm md:text-md">Invite Team Mate</p>
+          <Plus className="w-4 h-4 md:w-5 md:h-5" />
         </div>
-        {/* ====Phon Number === */}
-        <div className="mt-3">
-          <label htmlFor="mobileNumber">
-            <span className="text-sm font-medium">Mobile Number</span>
-            <input
-              type="number"
-              {...register("mobileNumber")}
-              placeholder="(+234) 81 3364 ****"
-              className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm"
-            />
-          </label>
-        </div>
-
-        {/* =====Profile Picture ===== */}
-        <section>
-          <div className="border-[0.5px] border-slate-300 dark:border-muted px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white dark:bg-background max-w-[540px] mt-6">
-            <p className="text-sm font-medium">Profile picture</p>
-            <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white dark:bg-background rounded-2xl  border-[0.6px] border-slate-300 dark:border-muted mt-4 cursor-pointer">
-              <label
-                htmlFor="avatarInput"
-                className="w-full p-3 flex  justify-between tracking-wide cursor-pointer"
-              >
-                <div className="flex w-full items-center justify-between gap-2">
-                  <p className="w-full text-center">Upload image</p>
-                  <input
-                    type="file"
-                    name="user_Image"
-                    id="avatarInput"
-                    accept=".png,  .jpg, .jpeg"
-                    className="hidden input-field"
-                    onChange={handleFileChange}
-                  />
-
-                  {userImage || userProfileData?.data?.avatarImage ? (
-                    <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
-                      <Image
-                        src={userProfileData?.data?.avatarImage || userImage}
-                        alt="user avatar"
-                        width={100}
-                        height={100}
-                        className="rounded-full w-[45px] h-[35px]"
-                      />
-                    </div>
-                  ) : (
-                    <div className="border-slate-800 border-[1.3px] border-dashed rounded-full relative mx-auto flex items-center justify-center w-[45px] h-[45px]">
-                      <Upload
-                        size={24}
-                        className="rounded-full w-[45px] h-[24px]"
-                      />
-                    </div>
-                  )}
-                </div>
-              </label>
-            </div>
+      </div>
+      <section className="h-fit border mt-8 p-6 rounded-md">
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
+          {/* ====Full Name === */}
+          <div>
+            <label htmlFor="name">
+              <span className="text-sm font-medium">Administration Name</span>
+              <input
+                type="text"
+                placeholder="Full name"
+                {...register("fullName")}
+                className={`${
+                  errors.fullName && "border-[1.3px] border-red-500"
+                } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm`}
+              />
+            </label>
           </div>
-        </section>
 
-        <div className="">
-          <button
-            disabled={isUpdating}
-            className=" mt-6 rounded-md  px-3.5 py-2 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer"
-          >
-            {isUpdating ? (
-              <span className="flex space-x-4 gap-3">
-                <LoaderCircle /> Updating
-              </span>
-            ) : (
-              "Save Now"
-            )}
-          </button>
-        </div>
-      </form>
+          {/* ====Email === */}
+          <div className="mt-3">
+            <label htmlFor="email">
+              <span className="text-sm font-medium">Email</span>
+              <input
+                type="email"
+                placeholder="Email"
+                {...register("email")}
+                disabled
+                className={`${
+                  errors.email && "border-[1.3px] border-red-500"
+                } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm text-muted-foreground cursor-not-allowed`}
+              />
+            </label>
+          </div>
+          {/* ====Phon Number === */}
+          <div className="mt-3">
+            <label htmlFor="mobileNumber">
+              <span className="text-sm font-medium">Mobile Number</span>
+              <input
+                type="number"
+                {...register("mobileNumber")}
+                placeholder="(+234) 81 3364 ****"
+                className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm"
+              />
+            </label>
+          </div>
+
+          {/* =====Profile Picture ===== */}
+          <section>
+            <div className="border-[0.5px] border-slate-300 dark:border-muted px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white dark:bg-background max-w-[540px] mt-6">
+              <p className="text-sm font-medium">Profile picture</p>
+              <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white dark:bg-background rounded-2xl  border-[0.6px] border-slate-300 dark:border-muted mt-4 cursor-pointer">
+                <label
+                  htmlFor="avatarInput"
+                  className="w-full p-3 flex  justify-between tracking-wide cursor-pointer"
+                >
+                  <div className="flex w-full items-center justify-between gap-2">
+                    <p className="w-full text-center">Upload image</p>
+                    <input
+                      type="file"
+                      name="user_Image"
+                      id="avatarInput"
+                      accept=".png,  .jpg, .jpeg"
+                      className="hidden input-field"
+                      onChange={handleFileChange}
+                    />
+
+                    {userImage || userProfileData?.data?.avatarImage ? (
+                      <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
+                        <Image
+                          src={userProfileData?.data?.avatarImage || userImage}
+                          alt="user avatar"
+                          width={100}
+                          height={100}
+                          className="rounded-full w-[45px] h-[35px]"
+                        />
+                      </div>
+                    ) : (
+                      <div className="border-slate-800 border-[1.3px] border-dashed rounded-full relative mx-auto flex items-center justify-center w-[45px] h-[45px]">
+                        <Upload
+                          size={24}
+                          className="rounded-full w-[45px] h-[24px]"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <div className="">
+            <button
+              disabled={isUpdating}
+              className=" mt-6 rounded-md  px-3.5 py-2 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer"
+            >
+              {isUpdating ? (
+                <span className="flex space-x-4 gap-3">
+                  <LoaderCircle /> Updating
+                </span>
+              ) : (
+                "Save Now"
+              )}
+            </button>
+          </div>
+        </form>
+      </section>
+
+      {/*============ SHEETS ============ */}
+      {/* === Add TeamMate === */}
+      <Sheet show={showAddTeamMate} onClose={() => setShowAddTeamMate(false)}>
+        <AddTeamMate setShowAddTeamMate={setShowAddTeamMate} />
+      </Sheet>
       <ToastContainer />
     </>
   );
