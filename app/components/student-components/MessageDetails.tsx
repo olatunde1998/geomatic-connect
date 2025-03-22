@@ -21,7 +21,7 @@ export default function MessageDetails({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.2 }}
-            className="z-50 md:w-[500px]"
+            className="z-50 w-[350px] md:w-[500px]"
           >
             <div className="border-2 bg-white rounded-lg p-6 shadow-lg">
               <div className="flex flex-row items-center justify-between space-y-0 pb-3">
