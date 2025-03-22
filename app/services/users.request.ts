@@ -4,12 +4,14 @@ import axios from "axios";
 export const GetUsersRequest = async (
   token: any,
   pageParam = 1,
-  limit: number
+  limit: number,
+  search: string
 ) => {
   const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/users?pageNumber=${pageParam}&limit=${limit}`,
+    `${process.env.NEXT_PUBLIC_BASEURL}/api/users`,
     {
       maxBodyLength: Infinity,
+      params: { pageParam, limit, search },
       headers: {
         Accept: "application/vnd.connect.v1+json",
         Authorization: `Bearer ${token}`,
@@ -65,7 +67,6 @@ export const UpdateUserProfileRequest = async (
   }
 };
 
-
 // DELETE USER REQUEST
 export const DeleteUserRequest = async (userId: any, token: any) => {
   try {
@@ -83,7 +84,6 @@ export const DeleteUserRequest = async (userId: any, token: any) => {
     return data;
   } catch (error) {
     console.error("Error deleting user:", error);
-    throw error; 
+    throw error;
   }
 };
-
