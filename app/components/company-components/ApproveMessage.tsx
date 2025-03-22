@@ -14,14 +14,14 @@ export default function ApproveMessage({ setShowConfirmApprove,  handleApprovedR
 
   return (
     <div className="bg-white p-8 rounded-[0.63rem]  mx-auto">
-      <div className="bg-[#FEF3F2] p-3 w-fit rounded-full mx-auto">
-        <div className="bg-[#FEE4E2] p-3 rounded-full">
-          <CircleAlert color="#DE3024" size={32} />
+      <div className="bg-[#d4f6d7] p-3 w-fit rounded-full mx-auto">
+        <div className="bg-[#b3efb8] p-3 rounded-full">
+          <CircleAlert color="#49AD51" size={32} />
         </div>
       </div>
       <h2 className="text-xl mb-4 text-center mt-6 ">Approve Request</h2>
       <p className="text-md  text-center text-[#6C748B]">
-        Are you sure you want to accept this Request?
+        Are you sure you want to approve this Request?
       </p>
       {/*======= Cancel Button and Delete Button ====== */}
       <div className="mt-12 flex space-x-4">
