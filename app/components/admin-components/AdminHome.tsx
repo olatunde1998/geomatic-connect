@@ -1,6 +1,7 @@
 "use client";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
 import UsersList from "@/app/components/admin-components/UsersList";
 import StatisticsCard from "@/app/components/cards/StatisticsCard";
 import { Plus } from "lucide-react";
@@ -9,7 +10,6 @@ import { Sheet } from "@/app/components/sheets/Sheet";
 import AddUser from "./AddUser";
 import { GetUsersRequest } from "@/app/services/users.request";
 import { useQuery } from "@tanstack/react-query";
-import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
 import Trash from "@/app/components/trash/Trash";
 import { useDebounce } from "use-debounce";
 

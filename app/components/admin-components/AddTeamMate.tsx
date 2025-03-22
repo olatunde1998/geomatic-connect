@@ -122,7 +122,7 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
         {/* ===FORM SECTION === */}
         <form onSubmit={handleSubmit(onSubmitHandler)}>
           <section className="items-start space-y-6">
-            {/* === Company Name === */}
+            {/* === Team Mate Name === */}
             <div>
               <label
                 htmlFor="companyName"
