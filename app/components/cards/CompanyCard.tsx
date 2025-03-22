@@ -17,8 +17,8 @@ interface CompanyCardProps {
   showSendRequest?: any;
   setShowSendRequest?: any;
   userData?: any;
-  selectedState?: any;
-  search?: any;
+  selectedState: string;
+  search: string;
 }
 
 export default function CompanyCard({

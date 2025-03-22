@@ -18,9 +18,16 @@ import Trash from "@/app/components/trash/Trash";
 interface StudentCardProps {
   token: any;
   companyId: any;
+  selectedState: string;
+  search: string;
 }
 
-export default function StudentCard({ token, companyId }: StudentCardProps) {
+export default function StudentCard({
+  token,
+  companyId,
+  selectedState,
+  search,
+}: StudentCardProps) {
   const [isApproving, setIsApproving] = useState(false);
   const [isDeclining, setIsDeclining] = useState(false);
   const [selectedRequestId, setSelectedRequestId] = useState();
@@ -28,8 +35,9 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
   const [showConfirmDecline, setShowConfirmDecline] = useState(false);
 
   const { data: studentsData, isLoading } = useQuery({
-    queryKey: ["getStudentsApi"],
-    queryFn: () => GetStudentsByCompanyRequest(companyId, token),
+    queryKey: ["getStudentsApi", selectedState, search],
+    queryFn: () =>
+      GetStudentsByCompanyRequest(companyId, token, selectedState, search),
   });
 
   // Send Approved Request to Admin Logic
@@ -39,7 +47,7 @@ export default function StudentCard({ token, companyId }: StudentCardProps) {
       requestId: requestId,
     };
     try {
-      const response = await CompanyApproveStudentRequest(body, token);
+      await CompanyApproveStudentRequest(body, token);
       toast.success("Request Approved Successfully");
     } catch (error: any) {
       toast.error(error?.response?.data?.message);
