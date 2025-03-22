@@ -15,7 +15,7 @@ const customStyles = (
     padding,
     borderRadius,
     border,
-    fontSize: "14px",
+    fontSize: "12px",
     borderColor: state.isFocused ? "transparent" : provided.borderColor,
     boxShadow: state.isFocused ? "0 0 0 1px #16a34a" : "none",
   }),
