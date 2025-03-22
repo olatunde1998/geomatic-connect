@@ -3,7 +3,7 @@ import axios from "axios";
 // GET(READ) ALL USERS REQUEST
 export const GetUsersRequest = async (
   token: any,
-  pageParam = 1,
+  pageNumber = 1,
   limit: number,
   search: string
 ) => {
@@ -11,7 +11,7 @@ export const GetUsersRequest = async (
     `${process.env.NEXT_PUBLIC_BASEURL}/api/users`,
     {
       maxBodyLength: Infinity,
-      params: { pageParam, limit, search },
+      params: { pageNumber, limit, search },
       headers: {
         Accept: "application/vnd.connect.v1+json",
         Authorization: `Bearer ${token}`,
