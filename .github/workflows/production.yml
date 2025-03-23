@@ -1,0 +1,29 @@
+name: Deploy to Server via SSH
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy application via SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            cd /home/${{ secrets.SSH_USER }}/geomaticconnect
+            git pull origin main
+            docker-compose -f docker-compose-prod.yml down
+            docker-compose -f docker-compose-prod.yml build --no-cache
+            docker-compose -f docker-compose-prod.yml up -d
+          EOF
