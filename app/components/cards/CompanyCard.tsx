@@ -54,7 +54,7 @@ export default function CompanyCard({
           </div>
         </>
       ) : (
-        <div className="space-y-8  md:gap-6 md:grid md:grid-cols-2 xl:grid-cols-3 md:space-y-0">
+        <div className="space-y-8 md:gap-6 md:grid md:grid-cols-2 xl:grid-cols-3 md:space-y-0">
           {companiesData?.data?.map((item: any) => (
             <div key={item._id}>
               <div className="max-w-[400px] p-6 border border-slate-300 dark:border-muted bg-white dark:bg-muted">
