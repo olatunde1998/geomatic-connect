@@ -23,9 +23,10 @@ jobs:
           ssh -p 1624 -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
             cd /home/${{ secrets.SSH_USER }}/public_html
             git pull origin main
-            docker-compose -f docker-compose-prod.yml down
-            docker-compose -f docker-compose-prod.yml build --no-cache
-            docker-compose -f docker-compose-prod.yml up -d
+            docker compose -f docker-compose-prod.yml down
+            docker compose -f docker-compose-prod.yml build --no-cache
+            docker compose -f docker-compose-prod.yml up -d
           EOF
+
 
 
