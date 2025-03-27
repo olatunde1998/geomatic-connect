@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { GetUserByIdRequest } from "@/app/services/request.request";
+import { signOut } from "next-auth/react";
 
 export function CompanySidebar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -96,7 +97,7 @@ export function CompanySidebar({ session }: { session: any }) {
                 </Link>
               </div>
               <div
-                onClick={() => setShowLogOut(true)}
+                onClick={() => signOut()}
                 className="flex items-center space-x-4 hover:bg-gray-100 p-2 pr-3 cursor-pointer"
               >
                 <LogOut size={16} />

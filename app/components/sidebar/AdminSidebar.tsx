@@ -1,10 +1,11 @@
 "use client";
 import { adminNavItems } from "@/utils/sidebarLinks";
 import { cn } from "@/utils/utils";
-import { ChevronRight, LogOut, Settings, } from "lucide-react";
+import { ChevronRight, LogOut, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { signOut } from "next-auth/react";
 
 export function AdminSidebar() {
   const [showSignOutProfile, setShowSignOutProfile] = useState(false);
@@ -87,7 +88,7 @@ export function AdminSidebar() {
                 </Link>
               </div>
               <div
-                onClick={() => setShowLogOut(true)}
+                onClick={() => signOut()}
                 className="flex items-center space-x-4 hover:bg-gray-100 p-2 pr-3 cursor-pointer"
               >
                 <LogOut size={16} />
