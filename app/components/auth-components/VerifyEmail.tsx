@@ -5,9 +5,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { VerifyEmailRequest } from "@/app/services/auth.request";
+import {
+  ResendVerifyOTPRequest,
+  VerifyEmailRequest,
+} from "@/app/services/auth.request";
 
-export default function VerifyEmail() {
+interface VerifyEmailProps {
+  userEmail: string;
+}
+export default function VerifyEmail({ userEmail }: VerifyEmailProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [code, setCode] = useState(["", "", "", ""]);
@@ -86,6 +92,19 @@ export default function VerifyEmail() {
     }
   }, [code, handleSubmit]);
 
+  // Resend verification code
+  const resendVerificationCode = async () => {
+    const body = {
+      email: userEmail,
+    };
+    try {
+      const response = await ResendVerifyOTPRequest(body);
+      toast.success(response?.message);
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
   return (
     <>
       <div className="bg-[#F1F4EA] overflow-y-hidden md:w-[40%] xl:w-1/3 h-full  py-20 text-[#1F4D36]">
@@ -125,9 +144,12 @@ export default function VerifyEmail() {
           <div className="mt-4 text-sm">
             <div className="text-center text-xs flex items-center justify-center">
               <p>Didn&apos;t receive the email? </p>
-              <Link href="#" className="hover:underline ml-2">
+              <button
+                onClick={() => resendVerificationCode()}
+                className="hover:underline ml-2"
+              >
                 Click to resend
-              </Link>
+              </button>
             </div>
             <Link
               href="/login"
