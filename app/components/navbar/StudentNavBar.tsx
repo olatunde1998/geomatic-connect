@@ -127,7 +127,7 @@ export default function StudentNavBar({ session }: { session: any }) {
                 >
                   <div className="relative">
                     <Bell size={18} />
-                    {notificationData?.meta?.totalUnreadNotifications !== 0 && (
+                    {notificationData?.meta?.totalUnreadNotifications >= 1 && (
                       <div className="absolute -top-4 -right-4 bg-[#DE3024] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                         {notificationData?.meta?.totalUnreadNotifications}
                       </div>
@@ -198,7 +198,7 @@ export default function StudentNavBar({ session }: { session: any }) {
             >
               <div className="relative">
                 <Bell size={18} />
-                {notificationData?.meta?.totalUnreadNotifications !== 0 && (
+                {notificationData?.meta?.totalUnreadNotifications >= 0 && (
                   <div className="absolute -top-4 -right-4 bg-[#DE3024] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                     {notificationData?.meta?.totalUnreadNotifications}
                   </div>
