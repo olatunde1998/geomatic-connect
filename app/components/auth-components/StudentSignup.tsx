@@ -60,7 +60,7 @@ export default function StudentSignup() {
         const response = await RegisterRequest(body);
         toast.success(response?.message);
         setTimeout(() => {
-          router.push("/verify-email");
+          router.push("/login");
         }, 5000);
       } catch (emailError: any) {
         console.error("Error sending email:", emailError);
