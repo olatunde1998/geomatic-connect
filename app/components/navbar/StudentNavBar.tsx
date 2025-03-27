@@ -8,7 +8,7 @@ import Logout from "@/app/components/auth-components/Logout";
 import { GetUserProfileRequest } from "@/app/services/users.request";
 import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
-import { Bell, Mail, LogOut, Settings } from "lucide-react";
+import { Bell, LogOut, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import { useRouter } from "next/navigation";
