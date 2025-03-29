@@ -27,7 +27,11 @@ const schema = yup.object().shape({
     .min(6, "Password must be at least 6 characters")
     .max(32, "Password must not exceed 32 characters"),
   state: yup.string().required("State is required"),
-  mobileNumber: yup.number().required("Mobile number is required"),
+  mobileNumber: yup
+    .string()
+    .required("Mobile number is required")
+    .min(7, "Password must be at least 7 characters")
+    .max(14, "Password must not exceed 14 characters"),
 });
 
 export default function StudentSignup() {
@@ -143,9 +147,9 @@ export default function StudentSignup() {
             <div className="mt-4">
               <PhoneInput
                 placeholder="Enter phone number"
-                international={true}
-                countryCallingCodeEditable={false}
+                international={false}
                 defaultCountry="NG"
+                countries={["NG"]}
                 onChange={(value: any) => {
                   setValue("mobileNumber", value || "");
                   trigger("mobileNumber");

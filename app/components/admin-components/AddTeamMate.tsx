@@ -30,7 +30,11 @@ const schema = yup.object().shape({
     .email("Invalid Email format"),
   state: yup.string().required("State is required"),
   professionalId: yup.string().required("Professional ID is required"),
-  mobileNumber: yup.string().required("Mobile number is required"),
+  mobileNumber: yup
+    .string()
+    .required("Mobile number is required")
+    .min(7, "Password must be at least 7 characters")
+    .max(14, "Password must not exceed 14 characters"),
 });
 
 export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
@@ -264,9 +268,9 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
               </label>
               <PhoneInput
                 placeholder="Enter phone number"
-                international={true}
-                countryCallingCodeEditable={false}
+                international={false}
                 defaultCountry="NG"
+                countries={["NG"]}
                 onChange={(value: any) => {
                   setValue("mobileNumber", value || "");
                   trigger("mobileNumber");
