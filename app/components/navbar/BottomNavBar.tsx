@@ -17,6 +17,13 @@ export default function BottomNavBar() {
         href: "/subscribe",
       };
     }
+    if (basePath === "admin-dashboard" && item.key === "support") {
+      return {
+        ...item,
+        name: "Requests",
+        href: "/requests",
+      };
+    }
     return item;
   });
   return (
