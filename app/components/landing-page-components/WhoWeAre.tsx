@@ -44,7 +44,7 @@ export default function WhoWeAre() {
             </div>
             <Link
               href="/signup"
-              className="bg-[#014751] dark:bg-muted dark:hover:bg-primary-foreground p-4 text-sm font-normal text-[#FFFFFF] rounded-md"
+              className="bg-[#014751] hover:bg-[#014751]/90 dark:bg-muted dark:hover:bg-primary-foreground p-4 text-sm font-normal text-[#FFFFFF] rounded-md"
             >
               Create free account
             </Link>

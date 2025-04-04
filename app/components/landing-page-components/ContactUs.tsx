@@ -29,7 +29,7 @@ export default function ContactUs() {
             <a
               href="https://api.whatsapp.com/send/?phone=2348133642798&text=Welcome+to+Geomatic+Connect%2C+please+ask+me+any+question+regarding+our+products+and+services&type=phone_number&app_absent=0"
               target="_blank"
-              className="p-3 lg:p-4 bg-[#014751] dark:bg-muted dark:hover:bg-primary-foreground text-[#FFFFFF] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center cursor-pointer text-sm"
+              className="p-3 lg:p-4 bg-[#014751] hover:bg-[#014751]/90 dark:bg-muted dark:hover:bg-primary-foreground text-[#FFFFFF] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center cursor-pointer text-sm"
             >
               Contact Us
             </a>

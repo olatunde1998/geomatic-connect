@@ -14,16 +14,25 @@ export default function Faq() {
         {/* =====Overlay with color and opacity==== */}
         <div className="absolute inset-0 bg-[#014751] dark:bg-primary-foreground dark:opacity-100 opacity-80 rounded-tl-[32px] rounded-br-[32px]"></div>
         {/* ====Section One (CONTENT)==== */}
-        <div className="relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          className="relative"
+        >
           <p className="text-center text-xl uppercase  font-extrabold md:text-3xl xl:text-4xl text-[#FFFFFF]">
             faq<span className="lowercase">s</span>
           </p>
           <p className="text-center text-md lg:text-lg mt-3 text-[#FFFFFF]">
             Frequently Asked Questions About Us!
           </p>
-          {faqData.map((faq: any) => (
-            <div
-              key={faq.id}
+          {faqData.map((faq: any, index) => (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.5 }}
+              key={index}
               onClick={() => setActiveFaq(activeFaq === faq.id ? null : faq.id)}
               className={`${
                 activeFaq === faq.id
@@ -55,9 +64,9 @@ export default function Faq() {
               <div className="cursor-pointer">
                 {activeFaq === faq.id ? <Minus /> : <Plus />}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </main>
     </>
   );

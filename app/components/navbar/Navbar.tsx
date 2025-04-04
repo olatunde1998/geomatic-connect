@@ -77,7 +77,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed w-full z-20 top-0 left-0 border-b bg-[#F6F8FD] dark:bg-primary-foreground py-2.5 backdrop-blur-10">
+      <nav className="fixed w-full z-20 top-0 left-0 bg-[#F6F8FD] dark:bg-primary-foreground py-2.5 backdrop-blur-10 border-b-[0.5px] backdrop-blur-10 backdrop-blur-md">
         <div className="max-w-[1200px] mx-auto p-2 pr-4 md:px-2 flex justify-between items-center">
           {/* =======Company LOGO ==== */}
           <Link href="/" className="flex items-center">
@@ -122,7 +122,7 @@ export default function Navbar() {
             </p>
             <Link
               href="/signup"
-              className="bg-[#014751] dark:bg-muted dark:hover:bg-background dark:border px-3 py-2 text-sm font-normal text-[#FFFFFF] rounded-md"
+              className="bg-[#014751] hover:bg-[#014751]/90 dark:bg-muted dark:hover:bg-background dark:border px-3 py-2 text-sm font-normal text-[#FFFFFF] rounded-md"
             >
               Create free account
             </Link>
