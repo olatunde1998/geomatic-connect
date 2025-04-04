@@ -72,7 +72,7 @@ export default function Chatbot({ toggleChat }: ChatBotProps) {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.2 }}
-          className="fixed bottom-20 right-4 z-50 w-[95%] md:w-[500px]"
+          className="fixed bottom-20 right-2 z-50 w-[95%] md:w-[500px]"
         >
           <Card className="border-2">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
@@ -105,7 +105,7 @@ export default function Chatbot({ toggleChat }: ChatBotProps) {
                     <div
                       className={`inline-block p-4 rounded-lg ${
                         message.role === "user"
-                          ? "bg-primary text-primary-foreground"
+                          ? "bg-[#014751] text-primary-foreground"
                           : "bg-muted"
                       }`}
                     >
