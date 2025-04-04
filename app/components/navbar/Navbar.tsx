@@ -1,23 +1,21 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
-import { IoSparklesSharp } from "react-icons/io5";
-import { Modal } from "@/app/components/modals/Modal";
-import Chatbot from "@/app/components/chatbot/ChatBot";
+import { useRouter } from "next/navigation";
 // import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 const routes = [
   {
-    name: "How it Works",
-    href: "about-id",
-  },
-  {
     name: "FAQs",
     href: "faq-id",
+  },
+  {
+    name: "How it Works",
+    href: "about-id",
   },
   {
     name: "Contact us",
@@ -38,41 +36,13 @@ const mobileRoutes = [
 
 export default function Navbar() {
   const [dropNav, setDropNav] = useState(false);
-  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
-  const [showActions, setShowActions] = useState(false);
-
-  // Refs
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const viewRef = useRef<HTMLSpanElement | null>(null);
-
-  // Handle click outside of dropdown to close it
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        viewRef.current &&
-        !dropdownRef.current.contains(event.target as Node) &&
-        !viewRef.current.contains(event.target as Node)
-      ) {
-        setShowActions(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const router = useRouter();
 
   const handleSmoothScroll = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  };
-
-  // toggleChat handler
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
   };
 
   return (
@@ -97,6 +67,12 @@ export default function Navbar() {
             id="navbar-sticky"
           >
             <ul className="p-2 md:p-0 mt-2 font-medium rounded-lg md:space-x-4 md:mt-0 md:border-0 hidden md:flex flex-row">
+              <li
+                className="block py-1 pl-2 pr-3"
+                onClick={() => router.push("/blog")}
+              >
+                <span className="cursor-pointer">Blog</span>
+              </li>
               {routes.map((route, index) => (
                 <li
                   key={index}
@@ -114,12 +90,6 @@ export default function Navbar() {
             >
               Login
             </Link>
-            <p
-              onClick={() => toggleChat()}
-              className="hidden bg-[#F2F6F6] dark:bg-background dark:hover:bg-muted dark:border dark:border-muted border-[0.2px] border-[#014751] px-3 py-2 font-medium cursor-pointer rounded-md mx-4 hover:text-[#014751] dark:hover:text-accent-foreground lg:flex items-center gap-3"
-            >
-              <IoSparklesSharp /> <span>Ask AI</span>
-            </p>
             <Link
               href="/signup"
               className="bg-[#014751] hover:bg-[#014751]/90 dark:bg-muted dark:hover:bg-background dark:border px-3 py-2 text-sm font-normal text-[#FFFFFF] rounded-md"
@@ -131,12 +101,6 @@ export default function Navbar() {
 
           {/* ======= Menu button ======*/}
           <div className="flex md:hidden">
-            <p
-              onClick={() => toggleChat()}
-              className="md:hidden bg-[#F2F6F6] dark:bg-background dark:hover:bg-muted dark:border dark:border-muted border-[0.2px] border-[#014751] px-3 py-2 font-medium cursor-pointer rounded-sm mx-4 hover:text-[#014751] flex items-center gap-3"
-            >
-              <IoSparklesSharp /> <span>Ask AI</span>
-            </p>
             {!dropNav && (
               <HiMenu
                 className="text-lg transition"
@@ -193,10 +157,6 @@ export default function Navbar() {
           </AnimatePresence>
         </section>
       </nav>
-      {/* === MODALS === */}
-      <Modal show={isChatOpen} onClose={() => setIsChatOpen(false)}>
-        <Chatbot toggleChat={toggleChat} />
-      </Modal>
     </>
   );
 }
