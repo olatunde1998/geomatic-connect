@@ -13,6 +13,7 @@ export default auth((req) => {
     "/verify-email",
     "/forgot-password",
     "/reset-password",
+    "/blog",
   ];
   const isPublicPage = publicPages.includes(pathname);
 
