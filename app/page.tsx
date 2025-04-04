@@ -9,7 +9,7 @@ import Pricing from "@/app/components/landing-page-components/Pricing";
 import Faq from "@/app/components/landing-page-components/Faq";
 import ContactUs from "@/app/components/landing-page-components/ContactUs";
 import { Footer } from "@/app/components/landing-page-components/Footer";
-import { FaWhatsapp } from "react-icons/fa";
+import Chatbot from "@/app/components/chatbot/ChatBot";
 
 export const metadata: Metadata = {
   title: "Home | Geomatic Connect",
@@ -78,18 +78,9 @@ export default function Home() {
           </div>
         </div>
 
-        {/* === CHAT-BOT (Whatsapp) === */}
-        <div className="fixed bottom-[40px] right-[20px] z-[1000] rounded-full">
-          <a
-            href="https://api.whatsapp.com/send/?phone=2348133642798&text=Welcome+to+Geomatic+Connect%2C+please+ask+me+any+question+regarding+our+products+and+services&type=phone_number&app_absent=0"
-            target="_blank"
-          >
-            <span className="bg-[#019734] p-2.5 rounded-full flex items-center">
-              <FaWhatsapp color="#FFFFFF" size={42} className="" />
-            </span>
-          </a>
-        </div>
-
+        {/* === AI CHAT-BOT === */}
+        <Chatbot />
+        
         {/* === FOOTER SECTION === */}
         <div className="bg-[#014751]  w-full text-sm lg:flex flex-col items-center relative">
           {/* === Background Image === */}
