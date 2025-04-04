@@ -2,7 +2,7 @@
 export const monthlyPricingData = [
   {
     id: 1,
-    headings: "Basic Pack",
+    headings: "Starter Pack",
     subHeadings:
       "This  package can be used for free and just join and register on this platform",
     amount: 1500,
@@ -20,7 +20,7 @@ export const monthlyPricingData = [
   },
   {
     id: 2,
-    headings: "Premium Pack",
+    headings: "Professional Pack",
     subHeadings:
       "This package is an offer that we recommend, Because it has the cheapest price",
     amount: 1999,
@@ -38,7 +38,7 @@ export const monthlyPricingData = [
   },
   {
     id: 3,
-    headings: "Scale Pack",
+    headings: "Enterprise Pack",
     subHeadings:
       "This  package can be used for free and just join and register on this platform",
     amount: 2999,
@@ -59,7 +59,7 @@ export const monthlyPricingData = [
 export const yearlyPricingData = [
   {
     id: 1,
-    headings: "Basic Pack",
+    headings: "Starter Pack",
     subHeadings:
       "This  package can be used for free and just join and register on this platform",
     amount: 10000,
@@ -77,7 +77,7 @@ export const yearlyPricingData = [
   },
   {
     id: 2,
-    headings: "Premium Pack",
+    headings: "Professional Pack",
     subHeadings:
       "This package is an offer that we recommend, Because it has the cheapest price",
     amount: 15000,
@@ -95,7 +95,7 @@ export const yearlyPricingData = [
   },
   {
     id: 3,
-    headings: "Scale Pack",
+    headings: "Enterprise Pack",
     subHeadings:
       "This  package can be used for free and just join and register on this platform",
     amount: 20000,
