@@ -1,11 +1,11 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import { HiMenu, HiX } from "react-icons/hi";
-import { motion, AnimatePresence } from "framer-motion";
 import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiMenu, HiX } from "react-icons/hi";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 // import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 const routes = [
@@ -31,6 +31,10 @@ const mobileRoutes = [
   {
     name: "Sign Up",
     href: "/signup",
+  },
+  {
+    name: "Blog",
+    href: "/blog",
   },
 ];
 
