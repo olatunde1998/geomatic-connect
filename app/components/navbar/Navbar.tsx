@@ -47,7 +47,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed w-full z-20 top-0 left-0 bg-[#F6F8FD] dark:bg-primary-foreground py-2.5 backdrop-blur-10 border-b-[0.5px] backdrop-blur-10 backdrop-blur-md">
+      <nav className="fixed w-full z-20 top-0 left-0 bg-[#F6F8FD] dark:bg-primary-foreground py-2 md:py-2.5 backdrop-blur-10 border-b-[0.5px] backdrop-blur-10 backdrop-blur-md">
         <div className="max-w-[1200px] mx-auto p-2 pr-4 md:px-2 flex justify-between items-center">
           {/* =======Company LOGO ==== */}
           <Link href="/" className="flex items-center">
@@ -100,10 +100,10 @@ export default function Navbar() {
           </div>
 
           {/* ======= Menu button ======*/}
-          <div className="flex md:hidden">
+          <div className="flex md:hidden bg-[#F2F6F6] border border-slate-200 p-2 rounded-lg">
             {!dropNav && (
               <HiMenu
-                className="text-lg transition"
+                className="text-lg transition text-[#014751]"
                 size={32}
                 onClick={() => {
                   setDropNav(true);
@@ -113,7 +113,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/*====== Mobile view ======*/}
+        {/*====== Mobile Side view ======*/}
         <section className="md:hidden text-black">
           <AnimatePresence>
             {dropNav && (
@@ -135,7 +135,7 @@ export default function Navbar() {
                     />
                   </a>
                   <HiX
-                    className="text-lg transition mt-2"
+                    className="text-lg transition mt-2 text-[#014751]"
                     size={32}
                     onClick={() => {
                       setDropNav(false);
