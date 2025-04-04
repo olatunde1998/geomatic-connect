@@ -1,4 +1,5 @@
-import { CreditCard, Home, BellRing, FileText, Settings } from "lucide-react";
+import { CreditCard, Home, BellRing, Settings, PencilLine } from "lucide-react";
+import { FaQ } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { MdOutlinePayment, MdSupportAgent } from "react-icons/md";
 
@@ -142,3 +143,30 @@ export const bottomRouteLinks = [
   },
 ];
 
+// Bottom Navbar Route Links
+export const bottomLinks = [
+  {
+    name: "Home",
+    href: "/",
+    key: "home",
+    icon: GoHome,
+  },
+  {
+    name: "Blog",
+    href: "/blog",
+    key: "billing",
+    icon: PencilLine,
+  },
+  {
+    name: "FAQs",
+    href: "faq-id",
+    icon: FaQ,
+    key: "faq",
+  },
+  {
+    name: "Support",
+    href: "contactUs-id",
+    icon: MdSupportAgent,
+    key: "support",
+  },
+];

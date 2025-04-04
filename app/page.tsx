@@ -10,6 +10,7 @@ import Faq from "@/app/components/landing-page-components/Faq";
 import ContactUs from "@/app/components/landing-page-components/ContactUs";
 import { Footer } from "@/app/components/landing-page-components/Footer";
 import Chatbot from "@/app/components/chatbot/ChatBot";
+import BottomNav from "@/app/components/navbar/BottomNav";
 
 export const metadata: Metadata = {
   title: "Home | Geomatic Connect",
@@ -19,79 +20,82 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between pt-16 bg-[#F6F8FD]">
-      <div className="w-full  flex-col items-center text-sm lg:flex">
-        {/* === HERO SECTION === */}
-        <div className="bg-[#F2F6F6 bg-primary-foreground lg:pt-8 w-full text-sm">
-          <div className="max-w-[1300px] mx-auto text-sm md:px-6">
-            <Navbar />
-            {/* <Hero /> */}
-            <HeroTwo />
+    <>
+      <main className="flex min-h-screen flex-col items-center justify-between pt-16 bg-[#F6F8FD]">
+        <div className="w-full  flex-col items-center text-sm lg:flex">
+          {/* === HERO SECTION === */}
+          <div className="bg-[#F2F6F6 bg-primary-foreground lg:pt-8 w-full text-sm">
+            <div className="max-w-[1300px] mx-auto text-sm md:px-6">
+              <Navbar />
+              {/* <Hero /> */}
+              <HeroTwo />
+            </div>
           </div>
-        </div>
-        {/* === WHO WE ARE SECTION === */}
-        <div
-          id="whoWeAre-id"
-          className="w-full text-sm  max-w-[1200px] mx-auto px-6 pb-16 md:px-10 md:pt-16 lg:py-20"
-        >
-          <WhoWeAre />
-        </div>
+          {/* === WHO WE ARE SECTION === */}
+          <div
+            id="whoWeAre-id"
+            className="w-full text-sm  max-w-[1200px] mx-auto px-6 pb-16 md:px-10 md:pt-16 lg:py-20"
+          >
+            <WhoWeAre />
+          </div>
 
-        {/* === HOW IT WORKS SECTION === */}
-        <div
-          id="about-id"
-          className="w-full text-sm bg-[#014751] dark:bg-primary-foreground dark:opacity-100 opacity-80"
-        >
-          <div className="max-w-[1200px] mx-auto text-sm px-6 md:px-10 py-10">
-            <HowItWorks />
+          {/* === HOW IT WORKS SECTION === */}
+          <div
+            id="about-id"
+            className="w-full text-sm bg-[#014751] dark:bg-primary-foreground dark:opacity-100 opacity-80"
+          >
+            <div className="max-w-[1200px] mx-auto text-sm px-6 md:px-10 py-10">
+              <HowItWorks />
+            </div>
           </div>
-        </div>
 
-        {/* === Testimonial === */}
-        <div
-          id="testimonial-id"
-          className="w-full  flex-col items-center text-sm lg:flex"
-        >
-          <div className="w-full max-w-[1200px] text-sm ">
-            <Testimonial />
+          {/* === Testimonial === */}
+          <div
+            id="testimonial-id"
+            className="w-full  flex-col items-center text-sm lg:flex"
+          >
+            <div className="w-full max-w-[1200px] text-sm ">
+              <Testimonial />
+            </div>
           </div>
-        </div>
 
-        {/* === PRICING SECTION === */}
-        <div id="pricing-id" className="bg-[#F2F6F6] w-full text-sm">
-          <div className="max-w-[1200px] mx-auto text-sm md:px-6">
-            <Pricing />
+          {/* === PRICING SECTION === */}
+          <div id="pricing-id" className="bg-[#F2F6F6] w-full text-sm">
+            <div className="max-w-[1200px] mx-auto text-sm md:px-6">
+              <Pricing />
+            </div>
           </div>
-        </div>
 
-        {/* === FAQs === */}
-        <div id="faq-id" className="w-full text-sm pb-20 md:py-20">
-          <div className="w-full max-w-[1150px] mx-auto">
-            <Faq />
+          {/* === FAQs === */}
+          <div id="faq-id" className="w-full text-sm pb-20 md:py-20">
+            <div className="w-full max-w-[1150px] mx-auto">
+              <Faq />
+            </div>
           </div>
-        </div>
 
-        {/* === CONTACT US SECTION === */}
-        <div id="contactUs-id" className="bg-[#F2F6F6] text-sm w-full">
-          <div className="max-w-[1200px] mx-auto text-sm ">
-            <ContactUs />
+          {/* === CONTACT US SECTION === */}
+          <div id="contactUs-id" className="bg-[#F2F6F6] text-sm w-full">
+            <div className="max-w-[1200px] mx-auto text-sm ">
+              <ContactUs />
+            </div>
           </div>
-        </div>
 
-        {/* === AI CHAT-BOT === */}
-        <Chatbot />
-        
-        {/* === FOOTER SECTION === */}
-        <div className="bg-[#014751]  w-full text-sm lg:flex flex-col items-center relative">
-          {/* === Background Image === */}
-          <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe-refine.png)] "></div>
-          {/* ===Overlay with color and opacity=== */}
-          <div className="absolute inset-0 bg-[#014751] dark:bg-primary-foreground dark:opacity-100 opacity-80 dark:rounded-none rounded-tl-[32px] rounded-br-[32px]"></div>
-          <div className="relative w-full max-w-[1200px] text-sm">
-            <Footer />
+          {/* === AI CHAT-BOT === */}
+          <Chatbot />
+
+          {/* === FOOTER SECTION === */}
+          <div className="bg-[#014751] pb-24 md:pb-0  w-full text-sm lg:flex flex-col items-center relative">
+            {/* === Background Image === */}
+            <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe-refine.png)] "></div>
+            {/* ===Overlay with color and opacity=== */}
+            <div className="absolute inset-0 bg-[#014751] dark:bg-primary-foreground dark:opacity-100 opacity-80 dark:rounded-none rounded-tl-[32px] rounded-br-[32px]"></div>
+            <div className="relative w-full max-w-[1200px] text-sm">
+              <Footer />
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <BottomNav />
+    </>
   );
 }
