@@ -1,17 +1,18 @@
 import Image from "next/image";
 import { MdStar } from "react-icons/md";
-import Testimonial from "@/public/images/testimonial.jpg";
 
 interface TestimonialCardProps {
   imageUrl: any;
   fullName: string;
   location: string;
+  testimonial: string;
 }
 
 export default function TestimonialCard({
   fullName,
   imageUrl,
   location,
+  testimonial,
 }: TestimonialCardProps) {
   return (
     <>
@@ -47,8 +48,7 @@ export default function TestimonialCard({
           </div>
 
           <p className="mt-10 text-base md:text-lg text-gray-500 font-light leading-[28px]">
-            “The services are totally great! they offered many options for me to
-            stay that suit my budget. Also, the connection is outstanding.”
+            {testimonial}
           </p>
         </div>
       </div>
