@@ -41,13 +41,13 @@ export default function BlogHome({ token }: BlogHomeProps) {
               <Plus className="w-4 h-4 md:w-5 md:h-5" />
             </div>
           </div>
-          {/* <section>
+          <section>
             <div className="mt-8 rounded-2xl bg-white border border-slate-200">
               <CreateBlog />
             </div>
-          </section> */}
+          </section>
 
-          <section>
+          {/* <section>
             <BlogCard
               headings="How to Land a High-Paying Remote Job"
               content="Learn the top strategies for landing a high-paying remote job that you actually love."
@@ -68,7 +68,7 @@ export default function BlogHome({ token }: BlogHomeProps) {
                 </div>
               ))}
             </div>
-          </section>
+          </section> */}
         </div>
       </main>
 
