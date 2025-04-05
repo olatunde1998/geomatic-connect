@@ -1,31 +1,56 @@
 import { formats, generateSlug, modules } from "@/utils/utils";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import parse from "html-react-parser";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import Quill from "quill";
+import "quill/dist/quill.snow.css";
 import { Plus } from "lucide-react";
 
+type BlogData = {
+  title: string;
+  slug: string;
+  description: string;
+  content: string;
+};
 export default function CreateBlog() {
-  const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState("");
-  const [description, setDescription] = useState("");
-  const [content, setContent] = useState("");
-  function handleTitle(e: any) {
-    const newTitle = e.target.value;
-    setTitle(newTitle);
-    const autoSlug = generateSlug(newTitle);
-    setSlug(autoSlug);
-  }
-  async function handleSubmit(e: any) {
-    e.preventDefault();
-    const newBlog = {
-      title,
-      slug,
-      description,
-      content,
-    };
-    console.log(newBlog);
-  }
+  const [blogData, setBlogData] = useState<BlogData>({
+    title: "",
+    slug: "",
+    description: "",
+    content: "",
+  });
+  const quillRef = useRef<Quill | null>(null);
+  const editorContainerRef = useRef<HTMLDivElement | null>(null);
+
+  // Initialize Quill editor
+  useEffect(() => {
+    if (editorContainerRef.current && !quillRef.current) {
+      quillRef.current = new Quill(editorContainerRef.current, {
+        theme: "snow",
+        modules,
+        formats,
+      });
+
+      quillRef.current.on("text-change", () => {
+        const html = quillRef.current?.root.innerHTML || "";
+        setBlogData((prev) => ({ ...prev, content: html }));
+      });
+    }
+  }, []);
+
+  // Generate slug whenever the title changes
+  useEffect(() => {
+    const newSlug = generateSlug(blogData.title);
+    setBlogData((prev) => ({ ...prev, slug: newSlug }));
+  }, [blogData.title]);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setBlogData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  
   return (
     <>
       <div>
@@ -35,9 +60,9 @@ export default function CreateBlog() {
             <h2 className="text-3xl font-bold border-b border-gray-400 pb-2 mb-5 ">
               Blog Editor
             </h2>
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                {/* Title */}
+                {/* ======Title======= */}
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="title"
@@ -47,9 +72,9 @@ export default function CreateBlog() {
                   </label>
                   <div className="mt-2">
                     <input
-                      onChange={handleTitle}
+                      onChange={handleChange}
                       type="text"
-                      value={title}
+                      value={blogData.title}
                       name="title"
                       id="title"
                       autoComplete="given-name"
@@ -58,7 +83,7 @@ export default function CreateBlog() {
                     />
                   </div>
                 </div>
-                {/* Slug */}
+                {/* =====Slug===== */}
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="slug"
@@ -68,9 +93,8 @@ export default function CreateBlog() {
                   </label>
                   <div className="mt-2">
                     <input
-                      onChange={(e) => setSlug(e.target.value)}
                       type="text"
-                      value={slug}
+                      value={blogData.slug}
                       name="slug"
                       id="slug"
                       autoComplete="slug"
@@ -79,7 +103,7 @@ export default function CreateBlog() {
                     />
                   </div>
                 </div>
-                {/* Description */}
+                {/* ===== Description ====== */}
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="description"
@@ -89,14 +113,15 @@ export default function CreateBlog() {
                   </label>
                   <textarea
                     id="description"
+                    name="description"
                     rows={4}
-                    onChange={(e) => setDescription(e.target.value)}
-                    value={description}
+                    onChange={handleChange}
+                    value={blogData.description}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500 "
                     placeholder="Write your thoughts here..."
                   ></textarea>
                 </div>
-                {/* Content */}
+                {/* ====== Content ===== */}
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="content"
@@ -104,15 +129,7 @@ export default function CreateBlog() {
                   >
                     Blog Content
                   </label>
-                  <>
-                    {/* <ReactQuill
-                      theme="snow"
-                      value={content}
-                      onChange={setContent}
-                      modules={modules}
-                      formats={formats}
-                    /> */}
-                  </>
+                  <div ref={editorContainerRef} style={{ height: "200px" }} />
                 </div>
               </div>
               <button
@@ -136,7 +153,7 @@ export default function CreateBlog() {
                   Blog Title
                 </h2>
                 <div className="mt-2">
-                  <p className="text-2xl font-bold">{title}</p>
+                  <p className="text-2xl font-bold">{blogData.title}</p>
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -144,20 +161,20 @@ export default function CreateBlog() {
                   Blog Slug
                 </h2>
                 <div className="mt-2">
-                  <p>{slug}</p>
+                  <p>{blogData.slug}</p>
                 </div>
               </div>
               <div className="sm:col-span-2">
                 <h2 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Blog Description
                 </h2>
-                <p>{description}</p>
+                <p>{blogData.description}</p>
               </div>
               <div className="sm:col-span-full">
                 <h2 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Blog Content
                 </h2>
-                {parse(content)}
+                {parse(blogData.content)}
               </div>
             </div>
           </div>
