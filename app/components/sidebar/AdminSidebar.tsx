@@ -1,15 +1,14 @@
 "use client";
-import { adminNavItems } from "@/utils/sidebarLinks";
-import { cn } from "@/utils/utils";
 import { ChevronRight, LogOut, Settings } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { adminNavItems } from "@/utils/sidebarLinks";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { cn } from "@/utils/utils";
+import Link from "next/link";
 
 export function AdminSidebar() {
   const [showSignOutProfile, setShowSignOutProfile] = useState(false);
-  const [showLogOut, setShowLogOut] = useState(false);
   const pathname = usePathname();
   const addSignOutProfileRef = useRef(null);
   console.log(pathname);

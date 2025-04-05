@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/app/components/navbar/Navbar";
 import BottomNav from "@/app/components/navbar/BottomNav";
-import BlogHome from "../components/landing-page-components/BlogHome";
+import BlogHome from "@/app/components/landing-page-components/BlogHome";
 
 export const metadata: Metadata = {
   title: "Blog | Geomatic Connect",
@@ -19,7 +19,7 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="w-full max-w-5xl">
-          <BlogHome />
+            <BlogHome />
           </div>
         </div>
       </main>

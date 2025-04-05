@@ -3,16 +3,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-import { Modal } from "@/app/components/modals/Modal";
-import Logout from "@/app/components/auth-components/Logout";
+import { Bell, CreditCard, LogOut, PencilLine, Settings } from "lucide-react";
 import { GetUserProfileRequest } from "@/app/services/users.request";
+import Logout from "@/app/components/auth-components/Logout";
+import GeomaticLogo from "@/public/images/geomatic-logo.svg";
+import { adminMobileRoutes } from "@/utils/sidebarLinks";
+import { motion, AnimatePresence } from "framer-motion";
+import { Modal } from "@/app/components/modals/Modal";
 import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
-import { Bell, LogOut, Settings } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import { useRouter } from "next/navigation";
-import { adminMobileRoutes } from "@/utils/sidebarLinks";
 // import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 export default function AdminNavBar({ session }: { session: any }) {
@@ -77,14 +77,22 @@ export default function AdminNavBar({ session }: { session: any }) {
             </div>
             <div className="hidden lg:flex items-center gap-x-2 text-sm md:text-base cursor-pointer font-light w-fit">
               <Link
-                href={`/admin-dashboard/billing`}
-                className="text-[#33A852]"
+                href={`/admin-dashboard/blog`}
+                className="text-[#33A852] flex items-center gap-2"
               >
+                <PencilLine className="size-4" />
+                Blog
+              </Link>
+              <Link
+                href={`/admin-dashboard/billing`}
+                className="text-[#33A852] mx-4 flex items-center gap-2"
+              >
+                <CreditCard className="size-4" />
                 Billings
               </Link>
               <Link
                 href={`/admin-dashboard/requests`}
-                className="text-[#33A852] ml-4"
+                className="text-[#33A852]"
               >
                 Requests
               </Link>

@@ -1,5 +1,5 @@
 "use client";
-import { bottomRouteLinks } from "@/utils/sidebarLinks";
+import { bottomRouteLinks, adminBottomRouteLinks } from "@/utils/sidebarLinks";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import React from "react";
@@ -8,8 +8,11 @@ export default function BottomNavBar() {
   const pathname = usePathname();
   const basePath = pathname.split("/")[1] || "";
 
+  const linksToUse =
+    basePath === "admin-dashboard" ? adminBottomRouteLinks : bottomRouteLinks;
+
   // modified list based on whether the user is in company-dashboard
-  const updatedLinks = bottomRouteLinks.map((item) => {
+  const updatedLinks = linksToUse.map((item) => {
     if (basePath === "company-dashboard" && item.key === "billing") {
       return {
         ...item,
@@ -17,15 +20,9 @@ export default function BottomNavBar() {
         href: "/subscribe",
       };
     }
-    if (basePath === "admin-dashboard" && item.key === "support") {
-      return {
-        ...item,
-        name: "Requests",
-        href: "/requests",
-      };
-    }
     return item;
   });
+
   return (
     <div className="fixed bottom-0 left-0 w-full flex items-center justify-between bg-white/50 backdrop-blur-md border-t border-slate-200 px-7 py-3 md:hidden">
       {updatedLinks.map((item, index) => {

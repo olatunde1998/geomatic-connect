@@ -115,6 +115,34 @@ export const studentMobileRoutes = [
   },
 ];
 
+// Admin Bottom Navbar Route Links
+export const adminBottomRouteLinks = [
+  {
+    name: "Home",
+    href: "",
+    key: "home",
+    icon: GoHome,
+  },
+  {
+    name: "Billing",
+    href: "/billing",
+    key: "billing",
+    icon: MdOutlinePayment,
+  },
+  {
+    name: "Blog",
+    href: "/blog",
+    key: "blog",
+    icon: PencilLine,
+  },
+  {
+    name: "Requests",
+    href: "/requests",
+    key: "requests",
+    icon: MdSupportAgent,
+  },
+];
+
 // Bottom Navbar Route Links
 export const bottomRouteLinks = [
   {
