@@ -8,6 +8,7 @@ import { blogData } from "@/utils/BlogData";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import AddBlog from "./AddBlog";
+import CreateBlog from "./CreateBlog";
 
 interface BlogHomeProps {
   token: any;
@@ -40,27 +41,34 @@ export default function BlogHome({ token }: BlogHomeProps) {
               <Plus className="w-4 h-4 md:w-5 md:h-5" />
             </div>
           </div>
+          {/* <section>
+            <div className="mt-8 rounded-2xl bg-white border border-slate-200">
+              <CreateBlog />
+            </div>
+          </section> */}
 
-          <BlogCard
-            headings="How to Land a High-Paying Remote Job"
-            content="Learn the top strategies for landing a high-paying remote job that you actually love."
-            imageUrl={GetStarted}
-            createdAt="February 18, 2025"
-            readTime="7 min read"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8 py-8 px-6 rounded-2xl bg-white border border-slate-200">
-            {blogData.map((item, index) => (
-              <div key={index}>
-                <BlogSmallCard
-                  headings={item.headings}
-                  content={item.content}
-                  imageUrl={item.imageUrl}
-                  createdAt={item.createdAt}
-                  readTime={item.readTime}
-                />
-              </div>
-            ))}
-          </div>
+          <section>
+            <BlogCard
+              headings="How to Land a High-Paying Remote Job"
+              content="Learn the top strategies for landing a high-paying remote job that you actually love."
+              imageUrl={GetStarted}
+              createdAt="February 18, 2025"
+              readTime="7 min read"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8 py-8 px-6 rounded-2xl bg-white border border-slate-200">
+              {blogData.map((item, index) => (
+                <div key={index}>
+                  <BlogSmallCard
+                    headings={item.headings}
+                    content={item.content}
+                    imageUrl={item.imageUrl}
+                    createdAt={item.createdAt}
+                    readTime={item.readTime}
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
       </main>
 
