@@ -31,3 +31,43 @@ export function formatTimestamp(timestamp: string): string {
   const formattedDate = new Intl.DateTimeFormat("en-NG", options).format(date);
   return formattedDate.replace(",", "").replace(" ", " at ");
 }
+
+// FUNCTION TO GENERATE SLUG
+export function generateSlug(title: string) {
+  const slug = title
+    .toLowerCase() // Convert the title to lowercase
+    .replace(/\s+/g, "-") // Replace spaces with dashes
+    .replace(/[^\w\-]+/g, "") // Remove non-word characters except dashes
+    .replace(/\-\-+/g, "-") // Replace multiple consecutive dashes with a single dash
+    .replace(/^\-+/, "") // Remove dashes from the beginning
+    .replace(/\-+$/, ""); // Remove dashes from the end
+  return slug;
+}
+
+// REACT QUILL Functions
+//Custom Tool Bar
+export const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    ["link", "color", "image"],
+    [{ "code-block": true }],
+    ["clean"],
+  ],
+};
+export const formats = [
+  "header",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "link",
+  "indent",
+  "image",
+  "code-block",
+  "color",
+];
