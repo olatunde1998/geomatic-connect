@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import BottomNav from "@/app/components/navbar/BottomNav";
 import BlogHome from "@/app/components/landing-page-components/BlogHome";
 
 export const metadata: Metadata = {
@@ -15,7 +14,6 @@ export default async function BlogHomePage() {
           <BlogHome />
         </div>
       </main>
-      <BottomNav />
     </>
   );
 }
