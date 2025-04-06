@@ -62,7 +62,7 @@ export default function BlogDetails({ blogSlug }: BlogDetailsProps) {
               <p>Feb 5, 2025</p>{" "}
               <div className="text-base w-1 h-1 rounded-full bg-slate-300" />
               <Link href="#" className="underline text-blue-400">
-                Ebenezer Don
+                Rasheed Olatunde
               </Link>
             </div>
             <div
