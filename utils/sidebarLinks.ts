@@ -182,18 +182,18 @@ export const bottomLinks = [
   {
     name: "Blog",
     href: "/blog",
-    key: "billing",
+    key: "blog",
     icon: PencilLine,
   },
   {
     name: "FAQs",
-    href: "faq-id",
+    href: "#",
     icon: FaQ,
     key: "faq",
   },
   {
     name: "Support",
-    href: "contactUs-id",
+    href: "#",
     icon: MdSupportAgent,
     key: "support",
   },
