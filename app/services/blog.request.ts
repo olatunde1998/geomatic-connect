@@ -23,15 +23,16 @@ export const CreateBlogRequest = async (body: any) => {
 };
 
 // GET(READ) BLOGS
-export const GetBlogs = async (token: any, pageParam = 1, limit: number) => {
+export const GetBlogsRequest = async (pageNumber = 1, limit: number) => {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASEURL}/api/blogs?pageNumber=${pageParam}&limit=${limit}`,
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/blogs`,
       {
         maxBodyLength: Infinity,
+        params: { pageNumber, limit },
         headers: {
           Accept: "application/vnd.connect.v1+json",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -44,10 +45,10 @@ export const GetBlogs = async (token: any, pageParam = 1, limit: number) => {
 };
 
 // GET BLOG  REQUEST
-export const GetBlogRequest = async (blogId: any) => {
+export const GetBlogRequest = async (blogSlug: any) => {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASEURL}/api/blogs/${blogId}`,
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/blogs/${blogSlug}`,
       {
         maxBodyLength: Infinity,
         headers: {
