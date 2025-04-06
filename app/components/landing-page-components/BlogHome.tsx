@@ -1,8 +1,21 @@
-import GetStarted from "@/public/images/get-started.webp";
+"use client";
 import { BlogCard, BlogSmallCard } from "@/app/components/cards/BlogCard";
-import { blogData } from "@/utils/BlogData";
+import { GetBlogsRequest } from "@/app/services/blog.request";
+import GetStarted from "@/public/images/get-started.webp";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { formatDate } from "@/utils/utils";
+import Link from "next/link";
 
 export default function BlogHome() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [limit] = useState(6);
+
+  const { data: blogsData, isLoading } = useQuery({
+    queryKey: ["getBlogsApi", currentPage],
+    queryFn: () => GetBlogsRequest(currentPage, limit),
+  });
+
   return (
     <div className="px-6 pb-20">
       <p className="w-full py-6 border-b border-slate-200">
@@ -10,14 +23,30 @@ export default function BlogHome() {
         <span className="text-2xl">Blog</span> Insights for your job search
         journey
       </p>
-      <BlogCard
-        headings="How to Land a High-Paying Remote Job"
-        content="Learn the top strategies for landing a high-paying remote job that you actually love."
-        imageUrl={GetStarted}
-        createdAt="February 18, 2025"
-        readTime="7 min read"
-      />
+      <Link href={`/blog/how-to-land-a-high-paying-remote-job`}>
+        <BlogCard
+          headings="How to Land a High-Paying Remote Job"
+          content="Learn the top strategies for landing a high-paying remote job that you actually love."
+          imageUrl={GetStarted}
+          createdAt="February 18, 2025"
+          readTime="7 min read"
+        />
+      </Link>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8 py-8 px-6 rounded-2xl bg-white">
+        {blogsData?.data?.map((item: any, index: number) => (
+          <Link href={`/blog/${item.slug}`} key={index}>
+            <BlogSmallCard
+              headings={item.title}
+              content={item.subTitle}
+              imageUrl={GetStarted}
+              createdAt={formatDate(item.createdAt)}
+              readTime={item.readTime}
+            />
+          </Link>
+        ))}
+      </div>
+
+      {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8 py-8 px-6 rounded-2xl bg-white">
         {blogData.map((item, index) => (
           <div key={index}>
             <BlogSmallCard
@@ -29,7 +58,7 @@ export default function BlogHome() {
             />
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
