@@ -152,11 +152,17 @@ export const bottomRouteLinks = [
     icon: GoHome,
   },
   {
-    name: "Billing",
-    href: "/billing",
-    key: "billing",
-    icon: MdOutlinePayment,
+    name: "Blog",
+    href: "/blog",
+    key: "blog",
+    icon: PencilLine,
   },
+  // {
+  //   name: "Billing",
+  //   href: "/billing",
+  //   key: "billing",
+  //   icon: MdOutlinePayment,
+  // },
   {
     name: "Settings",
     href: "/settings",
