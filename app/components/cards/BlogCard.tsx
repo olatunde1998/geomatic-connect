@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface BlogCardProps {
   headings: string;
@@ -26,33 +27,40 @@ export function BlogCard({
 }: BlogCardProps) {
   return (
     <>
-      <div>
-        <div className="border border-slate-200 px-6 py-8 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-10 mt-8 md:mt-16 rounded-2xl bg-white">
-          <div>
-            <Image
-              src={imageUrl}
-              width={500}
-              height={500}
-              priority
-              placeholder="blur"
-              alt="Blog Image"
-              className="rounded-2xl"
-            />
-          </div>
-          <div>
-            <p>
-              <span>{createdAt}</span> <span>•</span>
-              <span>{readTime}</span>
-            </p>
-            <p className="text-[#014751] font-semibold text-3xl my-6">
-              {/* How to Land a High-Paying Remote Job */}
-              {headings}
-            </p>
-            <p className="text-[#828282] text-lg">{content}</p>
-            <p className="flex items-center gap-3 text-[#014751] text-base mt-8 cursor-pointer">
-              Read article <ArrowRight className="size-4" />
-            </p>
-          </div>
+      <div className="cursor-pointer border border-slate-200 px-6 py-8 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-10 mt-8 md:mt-16 rounded-2xl bg-white">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          whileHover={{
+            scale: 1.05,
+            boxShadow: "0px 0px 8px rgb(255, 255, 255)",
+          }}
+          animate={{ x: 0 }}
+          transition={{ type: "spring", duration: 3 }}
+        >
+          <Image
+            src={imageUrl}
+            width={500}
+            height={500}
+            priority
+            placeholder="blur"
+            alt="Blog Image"
+            className="rounded-2xl"
+          />
+        </motion.div>
+        <div>
+          <p>
+            <span>{createdAt}</span> <span>•</span>
+            <span>{readTime}</span>
+          </p>
+          <p className="text-[#014751] font-semibold text-3xl my-6">
+            {headings}
+          </p>
+          <p className="text-[#828282] text-lg">{content}</p>
+          <p className="flex items-center gap-3 text-[#014751] text-base mt-8 cursor-pointer">
+            Read article <ArrowRight className="size-4" />
+          </p>
         </div>
       </div>
     </>
@@ -68,8 +76,18 @@ export function BlogSmallCard({
 }: BlogSmallCardProps) {
   return (
     <>
-      <div className="border border-slate-200 px-4 py-4 grid grid-cols-1 rounded-2xl bg-white h-full">
-        <div>
+      <div className="cursor-pointer border border-slate-200 px-4 py-4 grid grid-cols-1 rounded-2xl bg-white h-full">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          whileHover={{
+            scale: 1.05,
+            boxShadow: "0px 0px 8px rgb(255, 255, 255)",
+          }}
+          animate={{ x: 0 }}
+          transition={{ type: "spring", duration: 3 }}
+        >
           <Image
             src={imageUrl}
             width={500}
@@ -79,7 +97,7 @@ export function BlogSmallCard({
             alt="Blog Image"
             className="rounded-2xl mb-3"
           />
-        </div>
+        </motion.div>
         <div className="grid grid-cols-1  mt-3">
           <p>
             <span>{createdAt}</span> <span>•</span>
