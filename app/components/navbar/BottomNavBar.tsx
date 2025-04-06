@@ -27,7 +27,13 @@ export default function BottomNavBar() {
     <div className="fixed bottom-0 left-0 w-full flex items-center justify-between bg-white/50 backdrop-blur-md border-t border-slate-200 px-7 py-3 md:hidden">
       {updatedLinks.map((item, index) => {
         const Icon = item.icon;
-        const linkHref = basePath ? `/${basePath}${item.href}` : item.href;
+        const linkHref =
+          item.key === "blog" &&
+          (basePath === "company-dashboard" || basePath === "student-dashboard")
+            ? item.href
+            : basePath
+              ? `/${basePath}${item.href}`
+              : item.href;
         return (
           <Link
             href={linkHref}
