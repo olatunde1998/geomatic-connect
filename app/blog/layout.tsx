@@ -55,7 +55,6 @@ export default async function BlogLayout({
         <Navbar />
         {children}
         <Analytics />
-        <BottomNavBar />
       </div>
     </>
   );
