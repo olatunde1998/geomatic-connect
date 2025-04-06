@@ -1,8 +1,8 @@
-import BottomNavBar from "@/app/components/navbar/BottomNavBar";
-import { Analytics } from "@vercel/analytics/next";
+import BottomNav from "@/app/components/navbar/BottomNav";
 import { Geist, Geist_Mono } from "next/font/google";
+import Navbar from "@/app/components/navbar/Navbar";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import Navbar from "../components/navbar/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,6 +54,7 @@ export default async function BlogLayout({
       >
         <Navbar />
         {children}
+        <BottomNav />
         <Analytics />
       </div>
     </>

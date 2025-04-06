@@ -9,6 +9,7 @@ import Pricing from "@/app/components/landing-page-components/Pricing";
 import Faq from "@/app/components/landing-page-components/Faq";
 import ContactUs from "@/app/components/landing-page-components/ContactUs";
 import { Footer } from "@/app/components/landing-page-components/Footer";
+import BottomNav from "@/app/components/navbar/BottomNav";
 import Chatbot from "@/app/components/chatbot/ChatBot";
 
 export const metadata: Metadata = {
@@ -94,6 +95,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <BottomNav />
     </>
   );
 }

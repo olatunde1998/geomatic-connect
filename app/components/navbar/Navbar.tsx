@@ -152,7 +152,9 @@ export default function Navbar() {
                       key={index}
                       className="block py-2 pl-1.5 mx-4 pr-3 border-b border-slate-200"
                     >
-                      <Link href={route.href}>{route.name}</Link>
+                      <Link href={route.href} className="w-full block">
+                        {route.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>

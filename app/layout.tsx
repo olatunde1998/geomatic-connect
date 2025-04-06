@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import SessionProviderPage from "@/app/providers/session-providers";
-import BottomNav from "@/app/components/navbar/BottomNav";
 // import { ThemeProvider } from "@/app/providers/theme-provider";
 
 const geistSans = Geist({
@@ -71,7 +70,6 @@ export default function RootLayout({
             disableTransitionOnChange
           > */}
           {children}
-          <BottomNav />
           {/* </ThemeProvider> */}
         </SessionProviderPage>
         <Analytics />
