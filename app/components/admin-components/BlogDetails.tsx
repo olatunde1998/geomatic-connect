@@ -1,36 +1,53 @@
 "use client";
+import { ArrowLeft, Facebook, Linkedin, Share2 } from "lucide-react";
 import { GetBlogRequest } from "@/app/services/blog.request";
+import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronRight } from "lucide-react";
+import { RiTwitterXFill } from "react-icons/ri";
+import { IoIosLink } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import parse from "html-react-parser";
+import Link from "next/link";
 
 interface BlogDetailsProps {
-  blogId?: any;
+  blogSlug?: string;
 }
 
-export default function BlogDetails({ blogId }: BlogDetailsProps) {
+export default function BlogDetails({ blogSlug }: BlogDetailsProps) {
   const router = useRouter();
+  const [showActions, setShowActions] = useState(false);
+  const shareRef = useRef<HTMLDivElement | null>(null);
 
   const { data: blogDetailData } = useQuery({
     queryKey: ["getSingleBlogApi"],
-    queryFn: () => GetBlogRequest(blogId),
+    queryFn: () => GetBlogRequest(blogSlug),
   });
+
+  // Share dropdown Handler
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        shareRef.current &&
+        !shareRef.current.contains(event.target as Node)
+      ) {
+        setShowActions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
-      <div className="mt-24 mb-10 items-center justify-between bg-[#ECF1F7] dark:bg-muted flex p-2 gap-3  lg:my-20 xl:my-10">
-        <div className="flex items-center">
-          <p
-            onClick={() => router.back()}
-            className="py-2 cursor-pointer text-base md:text-xl font-bold text-gray-400"
-          >
-            Blog
-          </p>
-          <ChevronRight size={24} className="mx-0.5" />
-          <p className="py-2 cursor-text text-base  md:text-xl font-bold">
-            Blog Details
-          </p>
+      <div className="rounded-lg mt-20 mb-10 md:mt-24 lg:mt-20 xl:my-10 items-center justify-between bg-[#ECF1F7] flex p-2 px-6 gap-3">
+        <div
+          onClick={() => router.back()}
+          className="cursor-pointer hover:text-[#014751] hover:border-[#014751] hover:border rounded-2xl flex items-center gap-2 border border-slate-300 w-fit p-1.5 px-3 text-sm"
+        >
+          <ArrowLeft size={14} />
+          Back to Blog
         </div>
       </div>
       {/* ================Body section ===========  */}
@@ -40,27 +57,69 @@ export default function BlogDetails({ blogId }: BlogDetailsProps) {
           <h2 className="text-3xl font-bold border-b border-gray-400 pb-2 mb-5 ">
             Blog View
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-            <div className="sm:col-span-2">
-              <h2 className="block text-sm font-medium leading-6 text-gray-900 mb-2 ">
-                Blog Title
-              </h2>
-              <div className="mt-2">
-                <p className="text-2xl font-bold">
-                  {blogDetailData?.data?.title}
-                </p>
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-2 text-sm">
+              <p>Feb 5, 2025</p>{" "}
+              <div className="text-base w-1 h-1 rounded-full bg-slate-300" />
+              <Link href="#" className="underline text-blue-400">
+                Ebenezer Don
+              </Link>
+            </div>
+            <div
+              onClick={() => setShowActions((prevState) => !prevState)}
+              className="relative cursor-pointer"
+            >
+              <p className="flex items-center cursor-pointer gap-2 border text-sm border-slate-200 bg-white rounded-2xl px-3 py-1">
+                <Share2 className="size-4" />
+                Share
+              </p>
+              <div
+                ref={shareRef}
+                className={`${
+                  showActions === true ? "block" : "hidden"
+                } bg-white py-3 px-2 shadow-md rounded-lg text-sm border border-[#213f7d0f] w-[200px] space-y-2 absolute right-[-1px] lg:right-[-18px] z-[1] top-[50px]`}
+              >
+                <Link
+                  href="#"
+                  className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3  w-full"
+                >
+                  <RiTwitterXFill size={18} />
+                  Share on X
+                </Link>
+                <Link
+                  href="#"
+                  className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
+                >
+                  <Linkedin size={18} />
+                  Share on LinkedIn
+                </Link>
+                <Link
+                  href="#"
+                  className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
+                >
+                  <Facebook size={18} />
+                  Share on Facebook
+                </Link>
+                <Link
+                  href="#"
+                  className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
+                >
+                  <IoIosLink size={18} />
+                  Copy Link
+                </Link>
               </div>
             </div>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div className="sm:col-span-2">
-              <h2 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Blog Description
+              <h2 className="text-2xl md:text-3xl font-bold mt-2">
+                {blogDetailData?.data?.title}
               </h2>
+            </div>
+            <div className="sm:col-span-2">
               <p>{blogDetailData?.data?.subTitle}</p>
             </div>
             <div className="sm:col-span-full">
-              <h2 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Blog Content
-              </h2>
               {typeof blogDetailData?.data?.content === "string" ? (
                 parse(blogDetailData.data.content)
               ) : (
