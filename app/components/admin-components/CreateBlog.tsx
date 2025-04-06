@@ -252,9 +252,14 @@ export default function CreateBlog() {
 
           {/*========Blog View======= */}
           <div className="w-full max-w-3xl p-7 bg-white border border-gray-200 rounded-lg mx-auto">
-            <h2 className="text-3xl font-bold border-b border-gray-400 pb-2 mb-5 ">
-              Blog View
-            </h2>
+            <div className="flex items-center justify-between pb-2 mb-5 border-b border-gray-400">
+              <h2 className="text-3xl font-bold">Blog View</h2>
+              <div className="flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-[150px] cursor-pointer  px-2 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]">
+                <p className="text-[#FFFFFF] text-sm md:text-md">Preveiw Blog</p>
+                <Plus className="w-4 h-4 md:w-5 md:h-5" />
+              </div>
+            </div>
+
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div className="sm:col-span-2">
                 <h2 className="block text-sm font-medium leading-6 text-gray-900 mb-2 ">
