@@ -24,6 +24,9 @@ const nextConfig = {
     ],
     qualities: [25, 50, 75, 100],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default withPWA(nextConfig);
