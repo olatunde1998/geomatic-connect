@@ -22,7 +22,8 @@ const nextConfig = {
         port: "",
       },
     ],
+    qualities: [25, 50, 75, 100],
   },
 };
 
-export default  withPWA(nextConfig)
+export default withPWA(nextConfig);

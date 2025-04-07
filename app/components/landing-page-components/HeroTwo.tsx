@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeroImage from "@/public/images/prototype.png";
-// import FssLogo from "@/public/images/fss-logo.png";
+import FssLogo from "@/public/images/fss-logo.png";
 import NISLogo from "@/public/images/nis-logo.png";
 import GeosysLogo from "@/public/images/geosys-logo.png";
 import GeoinfotechLogo from "@/public/images/geoinfotech.gif";
@@ -74,7 +74,7 @@ export default function HeroTwo() {
                 <div className="relative flex items-center justify-center animate md:relative left-0 ">
                   {/* ====part one==== */}
                   <div className="w-[150%] flex items-center justify-around">
-                    {/* <div className="w-[80px] h-[80px] mx-6">
+                    <div className="w-[80px] h-[80px] mx-6">
                       <Image
                         src={FssLogo}
                         width={70}
@@ -82,8 +82,9 @@ export default function HeroTwo() {
                         priority
                         alt="FSS logo"
                         className="w-auto h-auto"
+                        quality={100}
                       />
-                    </div> */}
+                    </div>
 
                     <div className="w-[80px] h-[80px] mx-6">
                       <Image
@@ -128,7 +129,7 @@ export default function HeroTwo() {
                   </div>
                   {/* =====part two==== */}
                   <div className="w-[150%] flex items-center justify-around">
-                    {/* <div className=" w-[80px] h-[80px] flex items-center justify-center mx-6">
+                    <div className=" w-[80px] h-[80px] flex items-center justify-center mx-6">
                       <Image
                         src={FssLogo}
                         width={70}
@@ -136,8 +137,9 @@ export default function HeroTwo() {
                         priority
                         alt="FSS logo"
                         className="w-auto h-auto"
+                        quality={100}
                       />
-                    </div> */}
+                    </div>
                     <div className="w-[80px] h-[80px]  mx-6">
                       <Image
                         src={NISLogo}

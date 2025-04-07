@@ -55,6 +55,7 @@ export default function Testimonial() {
                   width={100}
                   height={100}
                   priority
+                  quality={100}
                   className="w-[79px] h-[36px] lg:w-[158px] lg:h-[60px] object-cover"
                 />
               </div>

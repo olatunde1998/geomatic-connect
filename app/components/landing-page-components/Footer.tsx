@@ -27,6 +27,7 @@ export const Footer = () => {
             width={200}
             height={150}
             priority
+            quality={100}
             className="object-cover md:h-[70px] md:w-[150px]"
           />
         </div>
