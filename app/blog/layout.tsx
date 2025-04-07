@@ -52,7 +52,9 @@ export default async function BlogLayout({
       <div
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
+        <div className="max-w-[1300px] mx-auto text-sm md:px-6">
+          <Navbar />
+        </div>
         {children}
         <BottomNav />
         <Analytics />

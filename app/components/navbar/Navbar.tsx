@@ -1,8 +1,9 @@
 "use client";
 import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
 import { motion, AnimatePresence } from "framer-motion";
+import { Bookmark, PencilLine } from "lucide-react";
 import { HiMenu, HiX } from "react-icons/hi";
-import { useRouter } from "next/navigation";
+import { FaQ } from "react-icons/fa6";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,15 +13,18 @@ const routes = [
   {
     name: "FAQs",
     href: "faq-id",
+    icon: FaQ,
   },
   {
     name: "How it Works",
     href: "about-id",
+    icon: Bookmark,
   },
-  {
-    name: "Contact us",
-    href: "contactUs-id",
-  },
+  // {
+  //   name: "Contact us",
+  //   href: "contactUs-id",
+  //   icon: FaQ,
+  // },
 ];
 
 const mobileRoutes = [
@@ -40,7 +44,6 @@ const mobileRoutes = [
 
 export default function Navbar() {
   const [dropNav, setDropNav] = useState(false);
-  const router = useRouter();
 
   const handleSmoothScroll = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -71,22 +74,27 @@ export default function Navbar() {
             className="items-center justify-between hidden w-full md:flex md:w-auto"
             id="navbar-sticky"
           >
-            <ul className="p-2 md:p-0 mt-2 font-medium rounded-lg md:space-x-4 md:mt-0 md:border-0 hidden md:flex flex-row">
-              <li
-                className="block py-1 pl-2 pr-3"
-                onClick={() => router.push("/blog")}
+            <ul className="p-2 md:p-0 mt-2 lg:mr-10 font-medium rounded-lg md:space-x-5 lg:space-x-8 md:mt-0 md:border-0 hidden md:flex flex-row">
+              <Link
+                href="/blog"
+                className="flex items-center gap-2 hover:bg-white w-fit px-2.5 py-1.5 rounded-lg"
               >
-                <span className="cursor-pointer">Blog</span>
-              </li>
-              {routes.map((route, index) => (
-                <li
-                  key={index}
-                  className="block py-1 pl-2 pr-3"
-                  onClick={() => handleSmoothScroll(`${route.href}`)}
-                >
-                  <span className="cursor-pointer">{route.name}</span>
-                </li>
-              ))}
+                <PencilLine className="size-4" />
+                Blog
+              </Link>
+              {routes.map((route, index) => {
+                const Icon = route.icon;
+                return (
+                  <li
+                    key={index}
+                    className="flex items-center gap-2 hover:bg-white w-fit px-2.5 py-1.5 rounded-lg"
+                    onClick={() => handleSmoothScroll(`${route.href}`)}
+                  >
+                    <Icon className="size-4 text-gray-600" />
+                    <span className="cursor-pointer">{route.name}</span>
+                  </li>
+                );
+              })}
             </ul>
 
             <Link
