@@ -28,14 +28,14 @@ export default function BlogHome({ token }: BlogHomeProps) {
       <main className="flex min-h-screen flex-col pt-24 lg:pt-32">
         <div className="pb-20">
           <div className="border-b border-slate-200 md:flex items-center justify-between">
-            <p>
+            <p className="text-sm">
               <span className="text-3xl">./</span>{" "}
               <span className="text-2xl">Blog</span> Insights for your job
               search journey
             </p>
             <div
               onClick={() => setShowAddBlog(true)}
-              className="my-4 flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-full md:w-[200px] lg:w-[200px] cursor-pointer  px-3.5 py-4 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+              className="my-4 flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-full md:w-[150px] cursor-pointer  px-3.5 py-4 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
             >
               <p className="text-[#FFFFFF] text-sm md:text-md">Create Blog</p>
               <Plus className="w-4 h-4 md:w-5 md:h-5" />

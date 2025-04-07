@@ -1,10 +1,12 @@
 import { formats, generateSlug, modules } from "@/utils/utils";
 import { CreateBlogRequest } from "@/app/services/blog.request";
 import React, { useEffect, useRef, useState } from "react";
+import { Modal } from "@/app/components/modals/Modal";
 import parse from "html-react-parser";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import { Plus } from "lucide-react";
+import { Plus, Share2, X } from "lucide-react";
+import Link from "next/link";
 
 type BlogData = {
   authorName: string;
@@ -15,6 +17,7 @@ type BlogData = {
   readTime: string;
 };
 export default function CreateBlog() {
+  const [showPreview, setShowPreview] = useState(false);
   const [blogData, setBlogData] = useState<BlogData>({
     slug: "",
     authorName: "",
@@ -135,7 +138,7 @@ export default function CreateBlog() {
         <div className="grid grid-cols-1 md:grid-cols-2 py-4 px-3 gap-4">
           {/* ========Blog Editor======== */}
           <div className="w-full max-w-3xl p-5 bg-white border border-gray-200 rounded-lg mx-auto">
-            <h2 className="text-3xl font-bold border-b border-gray-400 pb-2 mb-5 ">
+            <h2 className="text-lg lg:text-2xl font-bold border-b border-gray-400 pb-2 mb-5 ">
               Blog Editor
             </h2>
             <form
@@ -149,7 +152,7 @@ export default function CreateBlog() {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="authorName"
-                    className="block text-sm font-medium leading-6 text-gray-900 mb-2 "
+                    className="block text-sm font-medium leading-6 text-gray-900 mb-2"
                   >
                     Author
                   </label>
@@ -163,8 +166,8 @@ export default function CreateBlog() {
                       name="authorName"
                       id="authorName"
                       autoComplete="given-name"
-                      className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
-                      placeholder="Type authorName here..."
+                      className="block w-full rounded-md border border-[#cbd5e1] py-2 px-4 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-inset focus:ring-green-600 focus:ring-1 focus:outline-none  sm:text-sm sm:leading-6"
+                      placeholder="Type Author Name here..."
                     />
                   </div>
                 </div>
@@ -184,7 +187,7 @@ export default function CreateBlog() {
                       name="title"
                       id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border border-[#cbd5e1] py-2 px-4 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-inset focus:ring-green-600 focus:ring-1 focus:outline-none sm:text-sm sm:leading-6"
                       placeholder="Type the Course title"
                     />
                   </div>
@@ -204,8 +207,9 @@ export default function CreateBlog() {
                       name="slug"
                       id="slug"
                       autoComplete="slug"
-                      className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
-                      placeholder="Type the Course title"
+                      readOnly
+                      className="block w-full rounded-md bg-slate-100 cursor-not-allowed border border-[#cbd5e1] py-2 px-4 text-gray-900 shadow-sm placeholder:text-gray-400 focus:outline-none sm:text-sm sm:leading-6"
+                      placeholder="blug--slug"
                     />
                   </div>
                 </div>
@@ -225,7 +229,7 @@ export default function CreateBlog() {
                       setBlogData({ ...blogData, subTitle: e.target.value })
                     }
                     value={blogData.subTitle}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500 "
+                    className="block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-inset focus:ring-green-600 focus:ring-1 focus:outline-none "
                     placeholder="Write your thoughts here..."
                   ></textarea>
                 </div>
@@ -253,10 +257,16 @@ export default function CreateBlog() {
           {/*========Blog View======= */}
           <div className="w-full max-w-3xl p-7 bg-white border border-gray-200 rounded-lg mx-auto">
             <div className="flex items-center justify-between pb-2 mb-5 border-b border-gray-400">
-              <h2 className="text-3xl font-bold">Blog View</h2>
-              <div className="flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-[150px] cursor-pointer  px-2 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]">
-                <p className="text-[#FFFFFF] text-sm md:text-md">Preveiw Blog</p>
-                <Plus className="w-4 h-4 md:w-5 md:h-5" />
+              <h2 className="text-lg lg:text-2xl font-bold">
+                Blog View
+              </h2>
+              <div
+                onClick={() => setShowPreview(true)}
+                className="flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-[150px] cursor-pointer  px-2 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+              >
+                <p className="text-[#FFFFFF] text-sm md:text-md">
+                  Preveiw Blog
+                </p>
               </div>
             </div>
 
@@ -266,7 +276,7 @@ export default function CreateBlog() {
                   Blog Title
                 </h2>
                 <div className="mt-2">
-                  <p className="text-2xl font-bold">{blogData.title}</p>
+                  <p className="text-xl font-bold">{blogData.title}</p>
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -293,6 +303,49 @@ export default function CreateBlog() {
           </div>
         </div>
       </div>
+      <Modal show={showPreview} onClose={() => setShowPreview(false)}>
+        <div className="w-full md:w-[672px] lg:w-[768px] p-7 bg-white border border-gray-200 rounded-lg">
+          <h2 className="flex justify-between text-2xl lg:text-3xl font-bold border-b border-gray-400 pb-2 mb-5 ">
+            Blog View
+            <X
+              onClick={() => setShowPreview(false)}
+              className="hover:bg-slate-100 cursor-pointer h-fit w-fit p-1.5 rounded-md"
+            />
+          </h2>
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-2 text-sm">
+              <p>Feb 5, 2025</p>
+              <div className="text-base w-1 h-1 rounded-full bg-slate-300" />
+              <Link href="#" className="underline text-blue-400">
+                Rasheed Olatunde
+              </Link>
+            </div>
+            <div className="cursor-pointer">
+              <p className="flex items-center cursor-pointer gap-2 border text-sm border-slate-200 bg-white rounded-2xl px-3 py-1">
+                <Share2 className="size-4" />
+                Share
+              </p>
+            </div>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+            <div className="sm:col-span-2">
+              <h2 className="text-2xl md:text-3xl font-bold mt-2">
+                {blogData?.title}
+              </h2>
+            </div>
+            <div className="sm:col-span-2">
+              <p>{blogData?.subTitle}</p>
+            </div>
+            <div className="sm:col-span-full">
+              {typeof blogData?.content === "string" ? (
+                parse(blogData.content)
+              ) : (
+                <p>No content available</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 }
