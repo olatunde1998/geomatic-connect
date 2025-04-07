@@ -3,7 +3,7 @@ import DamilarePic from "@/public/images/damilare-img.jpg";
 import RasheedPic from "@/public/images/student-pic.jpeg";
 import AdaezePic from "@/public/images/adaeze-img.jpeg";
 import TrustPilot from "@/public/images/trustpilot.png";
-import Facebook from "@/public/images/facebook.png" ;
+// import Facebook from "@/public/images/facebook.png" ;
 import Google from "@/public/images/google-2.png";
 
 //Testimonial section data
@@ -48,13 +48,13 @@ export const testimonialIntegration = [
     name: "Google",
     imageUrl: Google,
   },
+  // {
+  //   id: 2,
+  //   name: "Facebook",
+  //   imageUrl: Facebook,
+  // },
   {
     id: 2,
-    name: "Facebook",
-    imageUrl: Facebook,
-  },
-  {
-    id: 3,
     name: "TrustPilot",
     imageUrl: TrustPilot,
   },
