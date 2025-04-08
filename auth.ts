@@ -76,6 +76,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   pages: {
     signIn: "/login",
-    error: "/login?error=Configuration",
+    error: "/login?error=auth",
   },
 });
