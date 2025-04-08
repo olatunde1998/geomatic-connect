@@ -16,26 +16,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     credentials({
       name: "Credentials",
       async authorize(credentials) {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASEURL}/auth/login`,
-          {
-            method: "POST",
-            body: JSON.stringify(credentials),
-            headers: { "Content-Type": "application/json" },
+        try {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BASEURL}/auth/login`,
+            {
+              method: "POST",
+              body: JSON.stringify(credentials),
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+
+          const user = await response.json();
+
+          if (response.ok && user?.data) {
+            return {
+              _id: user.data._id,
+              role: user.data.role,
+              email: user.data.email,
+              token: user.token,
+            };
           }
-        );
-        const user = await response.json();
-        // If no error and we have user data, return it
-        if (response.ok && user?.data) {
-          return {
-            _id: user.data._id,
-            role: user.data.role,
-            email: user.data.email,
-            token: user.token,
-          };
+          throw new Error(user.message || "Authentication failed");
+        } catch (error) {
+          console.error("Auth error:", error);
+          return null;
         }
-        // Return null if user data could not be retrieved
-        return null;
       },
     }),
   ],
@@ -47,7 +52,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   callbacks: {
     async redirect({ url, baseUrl }) {
-      return url.startsWith(baseUrl) ? url : baseUrl;
+      const prodBaseUrl = process.env.NEXTAUTH_URL || baseUrl;
+      return url.startsWith(prodBaseUrl) ? url : prodBaseUrl;
     },
 
     jwt({ token, user }) {
@@ -70,6 +76,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   pages: {
     signIn: "/login",
-    error: "/not-found",
+    error: "/login?error=Configuration",
   },
 });
