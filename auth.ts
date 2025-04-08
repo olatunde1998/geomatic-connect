@@ -52,8 +52,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   callbacks: {
     async redirect({ url, baseUrl }) {
-      const prodBaseUrl = process.env.NEXTAUTH_URL || baseUrl;
-      return url.startsWith(prodBaseUrl) ? url : prodBaseUrl;
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
     },
 
     jwt({ token, user }) {
@@ -76,6 +77,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   pages: {
     signIn: "/login",
-    error: "/login?error=auth",
+    error: "/not-found",
   },
+  debug: process.env.NODE_ENV === "development",
 });
