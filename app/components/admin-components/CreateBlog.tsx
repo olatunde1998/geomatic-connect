@@ -262,7 +262,7 @@ export default function CreateBlog() {
               </h2>
               <div
                 onClick={() => setShowPreview(true)}
-                className="flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-[150px] cursor-pointer  px-2 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                className="flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-[120px] md:w-[150px] lg:w-[120px] cursor-pointer  px-2 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
               >
                 <p className="text-[#FFFFFF] text-sm md:text-md">
                   Preveiw Blog

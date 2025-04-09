@@ -54,9 +54,10 @@ export default function BlogDetails({ blogSlug }: BlogDetailsProps) {
       <section className="mt-8">
         {/*========Blog View======= */}
         <div className="w-full max-w-3xl p-7 bg-white border border-gray-200 rounded-lg">
-          <h2 className="text-3xl font-bold border-b border-gray-400 pb-2 mb-5 ">
-            Blog View
-          </h2>
+          <div className="flex justify-between items-center border-b border-gray-400 pb-2 mb-5">
+            <h2 className="text-3xl font-bold ">Blog View</h2>
+            <p className="cursor-pointer p-3">Edit</p>
+          </div>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2 text-sm">
               <p>Feb 5, 2025</p>{" "}
