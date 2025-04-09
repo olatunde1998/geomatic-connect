@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { RiTwitterXFill } from "react-icons/ri";
 import { IoIosLink } from "react-icons/io";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import parse from "html-react-parser";
 import Link from "next/link";
 
@@ -17,6 +17,7 @@ export default function BlogDetails({ blogSlug }: BlogDetailsProps) {
   const router = useRouter();
   const [showActions, setShowActions] = useState(false);
   const shareRef = useRef<HTMLDivElement | null>(null);
+  const pathname = usePathname();
 
   const { data: blogDetailData } = useQuery({
     queryKey: ["getSingleBlogApi"],
@@ -56,7 +57,9 @@ export default function BlogDetails({ blogSlug }: BlogDetailsProps) {
         <div className="w-full max-w-3xl p-7 bg-white border border-gray-200 rounded-lg">
           <div className="flex justify-between items-center border-b border-gray-400 pb-2 mb-5">
             <h2 className="text-3xl font-bold ">Blog View</h2>
-            <p className="cursor-pointer p-3">Edit</p>
+            {pathname.includes("/admin-dashboard") && (
+              <p className="cursor-pointer p-3">Edit</p>
+            )}
           </div>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2 text-sm">
