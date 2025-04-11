@@ -68,7 +68,7 @@ export const GetBlogRequest = async (blogSlug: any) => {
 export const UpdateBlogRequest = async (blogId: any, token: any, body: any) => {
   try {
     const response = await axios.put(
-      `${process.env.NEXT_PUBLIC_BASEURL}/api/blog/${blogId}`,
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/blogs/${blogId}`,
       body,
       {
         headers: {
