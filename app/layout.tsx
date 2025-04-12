@@ -58,9 +58,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#F2F6F6" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased ${
-          process.env.NODE_ENV == "development" ? "debug-screens" : ""
-        }`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProviderPage>
           {/* <ThemeProvider
