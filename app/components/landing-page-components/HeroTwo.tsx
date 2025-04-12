@@ -1,16 +1,15 @@
+"use client";
+import HeroImage from "@/public/images/prototype.png";
+import { companionData } from "@/utils/CompanionData";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import HeroImage from "@/public/images/prototype.png";
-import FssLogo from "@/public/images/fss-logo.png";
-import NISLogo from "@/public/images/nis-logo.png";
-import GeosysLogo from "@/public/images/geosys-logo.png";
-import GeoinfotechLogo from "@/public/images/geoinfotech.gif";
-// import HeroImageTwo from "@/public/images/hero-refine.png";
 // import HeroImageThree from "@/public/images/prototype-2.png";
 
 export default function HeroTwo() {
+  const duplicatedData = [...companionData, ...companionData, ...companionData];
   return (
-    <section className="">
+    <section>
       <section className="leading-normal pt-16">
         <div className="text-center px-4">
           <h2 className="text-[40px] md:text-[42px] lg:text-[58px] font-bold text-[#000000] dark:text-accent-foreground">
@@ -61,125 +60,36 @@ export default function HeroTwo() {
       </div>
 
       {/* ===Hiring Companies=== */}
-
       <div className="mt-10 md:mt-20 mb-10">
         <section>
           <div className="px-[20px] py-[10px] text-center max-w-[1500px] mx-auto lg:py-[10px]">
-            <h2 className="text-2xl text-left leading-10 font-bold mb-[40px] md:text-[32px] lg:text-4xl lg:text-center lg:max-w-[700px] xl:max-w-[850px] font-sans mx-auto md:leading-10 lg:leading-[52px]">
+            <h2 className="text-xl text-left leading-8 font-bold mb-[40px] md:text-[32px] lg:text-4xl lg:text-center lg:max-w-[700px] xl:max-w-[850px] font-sans mx-auto md:leading-10 lg:leading-[52px]">
               Our students are getting hired by top companies. We can help you
               too.
             </h2>
             <div className="h-[80px] mx-auto md:h-[80px]">
               <div className="w-full relative overflow-hidden pt-10">
                 <div className="relative flex items-center justify-center animate md:relative left-0 ">
-                  {/* ====part one==== */}
                   <div className="w-[150%] flex items-center justify-around">
-                    <div className="w-[80px] h-[80px] mx-6">
-                      <Image
-                        src={FssLogo}
-                        width={70}
-                        height={70}
-                        priority
-                        alt="FSS logo"
-                        className="w-auto h-auto"
-                        quality={100}
-                      />
-                    </div>
-
-                    <div className="w-[80px] h-[80px] mx-6">
-                      <Image
-                        src={NISLogo}
-                        width={70}
-                        height={70}
-                        priority
-                        alt="NIS Logo"
-                        className="w-auto h-auto"
-                      />
-                    </div>
-                    <div className=" w-[80px] h-[80px] mx-6">
-                      <Image
-                        src={GeosysLogo}
-                        width={70}
-                        height={70}
-                        priority
-                        alt="geosys logo"
-                        className="w-auto h-auto"
-                      />
-                    </div>
-                    <div className="w-[80px] h-[80px]  mx-6">
-                      <Image
-                        src={NISLogo}
-                        width={70}
-                        height={70}
-                        priority
-                        alt="NIS logo"
-                        className="w-auto h-auto"
-                      />
-                    </div>
-                    <div className="w-[80px] h-[80px] mx-6">
-                      <Image
-                        src={GeoinfotechLogo}
-                        width={70}
-                        height={70}
-                        priority
-                        alt="geoinfotech logo"
-                        className="w-auto h-auto"
-                      />
-                    </div>
-                  </div>
-                  {/* =====part two==== */}
-                  <div className="w-[150%] flex items-center justify-around">
-                    <div className=" w-[80px] h-[80px] flex items-center justify-center mx-6">
-                      <Image
-                        src={FssLogo}
-                        width={70}
-                        height={70}
-                        priority
-                        alt="FSS logo"
-                        className="w-auto h-auto"
-                        quality={100}
-                      />
-                    </div>
-                    <div className="w-[80px] h-[80px]  mx-6">
-                      <Image
-                        src={NISLogo}
-                        width={70}
-                        height={70}
-                        priority
-                        alt="NIS logo"
-                        className="w-auto h-auto"
-                      />
-                    </div>
-                    <div className="w-[80px] h-[80px] flex items-center justify-center mx-6">
-                      <Image
-                        src={GeosysLogo}
-                        width={70}
-                        height={70}
-                        priority
-                        alt="geosys logo"
-                        className="w-auto h-auto"
-                      />
-                    </div>
-                    <div className="w-[80px] h-[80px]  mx-6">
-                      <Image
-                        src={NISLogo}
-                        width={70}
-                        height={70}
-                        priority
-                        alt="NIS logo"
-                        className="w-auto h-auto"
-                      />
-                    </div>
-                    <div className=" w-[80px] h-[80px]  mx-6">
-                      <Image
-                        src={GeoinfotechLogo}
-                        width={70}
-                        height={70}
-                        priority
-                        alt="geoinfotech logo"
-                        className="w-auto h-auto"
-                      />
-                    </div>
+                    {duplicatedData.map((item, index) => (
+                      <motion.div
+                        whileHover={{
+                          scale: 1.3,
+                        }}
+                        key={index}
+                        className="w-[50px] h-[50px] md:w-[80px] md:h-[80px] mx-6 py-4 cursor-pointer"
+                      >
+                        <Image
+                          src={item?.imageUrl}
+                          width={70}
+                          height={70}
+                          priority
+                          alt="FSS logo"
+                          className="w-auto h-auto"
+                          quality={100}
+                        />
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
               </div>
