@@ -19,7 +19,14 @@ export default function HowItWorks() {
   return (
     <>
       <main className="w-full md:grid md:grid-cols-2 md:gap-32">
-        <div className="text-[#FFFFFF] lg:mt-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          animate={{ x: 0 }}
+          transition={{ type: "spring", duration: 3 }}
+          className="text-[#FFFFFF] lg:mt-10"
+        >
           <p className="text-2xl md:text-left font-bold md:text-3xl xl:text-4xl w-[250px] md:w-[100%]">
             {name}
           </p>
@@ -28,13 +35,18 @@ export default function HowItWorks() {
             {content}
           </p>
           {data.map((item, index) => (
-            <p
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              animate={{ x: 0 }}
+              transition={{ type: "spring", duration: 3 }}
               key={index}
               className="mt-4 flex items-center font-normal gap-2 md:text-left text-base text-[#F0F0F0] lg:w-[500px]"
             >
               <Check color="#6CB92B" className="size-5 font-bold" />
               {item.content}
-            </p>
+            </motion.p>
           ))}
           <div className="mt-10 flex space-x-6 mb-8">
             <motion.button
@@ -61,7 +73,7 @@ export default function HowItWorks() {
               </Link>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         <div className="w-full h-fit md:h-[350px] lg:w-[400px] xl:w-[550px] xl:h-[350px] mt-12 lg:mt-16">
           <ReactPlayer
