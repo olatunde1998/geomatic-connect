@@ -1,7 +1,7 @@
 import { AdminSidebar } from "@/app/components/sidebar/AdminSidebar";
 import BottomNavBar from "@/app/components/navbar/BottomNavBar";
 import AdminNavBar from "@/app/components/navbar/AdminNavBar";
-import { Analytics } from "@vercel/analytics/next";
+// import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { auth } from "@/auth";
@@ -63,7 +63,7 @@ export default async function AdminLayout({
             </div>
             <main className="px-6 md:pl-52 lg:pl-60 xl:pl-72 md:pr-12 overflow-x-auto pb-28 md:pb-10">
               {children}
-              <Analytics />
+              {/* <Analytics /> */}
             </main>
             <BottomNavBar />
           </div>
