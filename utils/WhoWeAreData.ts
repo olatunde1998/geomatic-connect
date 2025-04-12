@@ -39,16 +39,16 @@ export const whoWeAreAnalyticsData = [
   {
     id: 1,
     totalCount: "10+",
-    title: "Project Completed",
+    title: "Project",
   },
   {
     id: 2,
     totalCount: "50+",
-    title: "Company work with",
+    title: "Company",
   },
   {
     id: 3,
     totalCount: "60+",
-    title: "Students connected",
+    title: "Students",
   },
 ];
