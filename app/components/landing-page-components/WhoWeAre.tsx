@@ -9,24 +9,26 @@ export default function WhoWeAre() {
     <main>
       <section className="grid md:grid-cols-2 md:gap-10 lg:gap-24">
         {/* ==== Section One ==== */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          animate={{ x: 0 }}
+          transition={{ type: "spring", duration: 3 }}
+        >
           <h2 className="capitalize text-2xl md:text-3xl font-bold text-[#014751] mt-10">
             Who we are?
           </h2>
           <div className="w-24 h-1 bg-[#FFC957]" />
           <div className="text-[#747578] max-w-[400px] mt-6 mb-10 md:my-10 leading-8 text-base ">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.2 }}
-              animate={{ x: 0 }}
-              transition={{ type: "spring", duration: 3 }}
+            <p
+             
               className="text-base leading-8 md:text-base md:leading-8"
             >
               We are a company that prioritizes students satisfaction so that we
               can become a favorite company for all companies that use our
               services
-            </motion.p>
+            </p>
             <hr className="my-10 bg-[#014751] h-[2px]" />
             <div className="flex items-center justify-between gap-6 mb-16">
               {whoWeAreAnalyticsData.map((item, index) => (
@@ -63,7 +65,7 @@ export default function WhoWeAre() {
               </Link>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* ==== Steps Section ==== */}
         <div className="grid grid-cols-2 gap-4 xl:gap-6">
