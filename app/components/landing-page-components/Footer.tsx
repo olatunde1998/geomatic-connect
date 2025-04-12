@@ -1,15 +1,17 @@
 "use client";
-import { RiFacebookCircleFill } from "react-icons/ri";
-import { BsGithub } from "react-icons/bs";
-import { FaTwitter } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
-import { BsYoutube } from "react-icons/bs";
-import Image from "next/image";
 import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
+import { footerData } from "@/utils/FooterData";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export const Footer = () => {
+  const router = useRouter();
   const today: Date = new Date();
   const currentYear: number = today.getFullYear();
+
+  const { name: quickLinksTitle, quickLinks } = footerData.quickLinksData;
+  const { name: servicesTitle, services } = footerData.servicesData;
+  const { socialMedia } = footerData.socialMediaData;
 
   const handleSmoothScroll = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -17,6 +19,7 @@ export const Footer = () => {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
+
   return (
     <div className="px-6 text-white py-10">
       <section className="mb-2 md:flex justify-between pb-10 md:mb-20">
@@ -33,49 +36,52 @@ export const Footer = () => {
         </div>
         <div className="text-[20px] md:flex md:justify-end md:gap-32 md:w-2/3 lg:w-1/2">
           <div>
-            <p className="font-bold mb-8"> Quick Links</p>
+            <p className="font-bold mb-8">{quickLinksTitle}</p>
             <ul className="cursor-pointer space-y-4 font-light text-base lg:text-lg">
-              <li onClick={() => handleSmoothScroll(`about-id`)}>About </li>
-              <li onClick={() => handleSmoothScroll(`contactUs-id`)}>
-                Contact Us{" "}
-              </li>
-              <li onClick={() => handleSmoothScroll(`testimonial-id`)}>
-                Testimonial
-              </li>
-              <li>Community </li>
+              {quickLinks.map((link) => (
+                <li
+                  key={link.id}
+                  onClick={() =>
+                    link.href.startsWith("/") || link.href === "#"
+                      ? router.push(link.href)
+                      : handleSmoothScroll(link.href)
+                  }
+                >
+                  {link.name}
+                </li>
+              ))}
             </ul>
           </div>
           <div className="my-10 md:my-0">
-            <p className="font-bold mb-8"> Services</p>
+            <p className="font-bold mb-8">{servicesTitle}</p>
             <ul className="cursor-pointer space-y-4 font-light text-base lg:text-lg">
-              <li onClick={() => handleSmoothScroll(`faq-id`)}>Faq </li>
-              <li onClick={() => handleSmoothScroll(`whoWeAre-id`)}>
-                Our Services
-              </li>
-              <li onClick={() => handleSmoothScroll(`pricing-id`)}>Pricing </li>
-              <li>Career Paths</li>
+              {services.map((link) => (
+                <li
+                  key={link.id}
+                  onClick={() =>
+                    link.href.startsWith("/") || link.href === "#"
+                      ? router.push(link.href)
+                      : handleSmoothScroll(link.href)
+                  }
+                >
+                  {link.name}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
       </section>
       <section>
         <div className="cursor-pointer lg:flex justify-between items-center border-t-[.23px] border-white pt-8">
-          <div className="flex">
-            <span className="w-[40px] h-[40px] rounded-full border-2 border-white flex items-center justify-center  md:w-[40px] md:h-[40px]">
-              <BsGithub size={20} />
-            </span>
-            <span className="w-[40px] h-[40px]  rounded-full border-2 border-white flex items-center justify-center mx-2">
-              <FaTwitter size={20} />
-            </span>
-            <span className="w-[40px] h-[40px]  rounded-full border-2 border-white flex items-center justify-center">
-              <FaLinkedinIn size={20} />
-            </span>
-            <span className="w-[40px] h-[40px]  rounded-full border-2 border-white flex items-center justify-center mx-2">
-              <RiFacebookCircleFill size={20} />
-            </span>
-            <span className="w-[40px] h-[40px]  rounded-full border-2 border-white flex items-center justify-center mx-2">
-              <BsYoutube size={20} />
-            </span>
+          <div className="flex gap-2">
+            {socialMedia.map((item, index) => (
+              <span
+                key={index}
+                className="w-[40px] h-[40px] rounded-full border-2 border-white flex items-center justify-center md:w-[40px] md:h-[40px]"
+              >
+                <item.iconUrl size={20} />
+              </span>
+            ))}
           </div>
           <div className="mt-6 lg:flex gap-2">
             <div className="flex gap-4">
