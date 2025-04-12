@@ -1,5 +1,7 @@
-import Image from "next/image";
+"use client";
 import Contact from "@/public/images/contact.png";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function ContactUs() {
@@ -26,19 +28,31 @@ export default function ContactUs() {
             We&apos;ll Connect You With in 48hours.
           </div>
           <div className="lg:flex gap-3 h-fit mt-6 xl:ml-28">
-            <a
+            <motion.a
+              whileHover={{
+                scale: 1.03,
+                boxShadow: "0px 0px 8px rgb(255, 255, 255)",
+              }}
               href="https://api.whatsapp.com/send/?phone=2348133642798&text=Welcome+to+Geomatic+Connect%2C+please+ask+me+any+question+regarding+our+products+and+services&type=phone_number&app_absent=0"
               target="_blank"
               className="p-3 lg:p-4 bg-[#014751] hover:bg-[#014751]/90 dark:bg-muted dark:hover:bg-primary-foreground text-[#FFFFFF] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center cursor-pointer text-sm"
             >
               Contact Us
-            </a>
-            <Link
-              href="/signup"
-              className="p-3 lg:p-4 mt-2 md:mt-3 lg:mt-0 bg-[#FFFFFF] text-xs border-[1.3px] border-[#014751] text-[#014751] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center font-semibold cursor-pointer"
+            </motion.a>
+            <motion.div
+              whileHover={{
+                scale: 1.03,
+                boxShadow: "0px 0px 8px rgb(255, 255, 255)",
+              }}
+              className="w-fit"
             >
-              Register Now
-            </Link>
+              <Link
+                href="/signup"
+                className="p-3 lg:p-4 mt-2 md:mt-3 lg:mt-0 bg-[#FFFFFF] text-xs border-[1.3px] border-[#014751] text-[#014751] rounded-xl w-[150px] md:w-[180px] text-center flex items-center justify-center font-semibold cursor-pointer"
+              >
+                Register Now
+              </Link>
+            </motion.div>
           </div>
         </section>
       </main>
