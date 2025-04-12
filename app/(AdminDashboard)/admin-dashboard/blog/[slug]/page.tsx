@@ -12,7 +12,7 @@ export default async function BlogDetailsPage({ params }: { params: any }) {
   }
   return (
     <>
-      <main className="min-h-screen p-6 lg:p-12 xl:p-20 xl:px-2">
+      <main className="min-h-screen lg:p-12 xl:p-20 xl:px-2">
         <BlogDetails blogSlug={blogSlug} token={token} />
       </main>
     </>
