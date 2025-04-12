@@ -39,7 +39,7 @@ export default function HeroTwo() {
             learn in-demand skills and advance your career.
           </p>
         </div>
-        <div className="md:flex justify-center gap-4">
+        <div className="flex flex-col items-center justify-center md:flex-row gap-4">
           <motion.div
             whileHover={{
               scale: 1.03,
@@ -66,7 +66,14 @@ export default function HeroTwo() {
 
       {/* ===Hero Image section === */}
       <div className="lg:mt-10">
-        <div className="  relative w-[80%] mx-auto mt-10 h-[250px] md:w-[90%] md:h-[450px] lg:w-[80%] lg:h-[610.44px] xl:h-[710px] shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          animate={{ x: 0 }}
+          transition={{ type: "spring", duration: 3 }}
+          className="relative w-[80%] mx-auto mt-10 h-[250px] md:w-[90%] md:h-[450px] lg:w-[80%] lg:h-[610.44px] xl:h-[710px] shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]"
+        >
           <Image
             src={HeroImage}
             alt="application prototype picture"
@@ -74,7 +81,7 @@ export default function HeroTwo() {
             priority
             className="rounded-lg border-[0.5px] border-slate-300"
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* ===Hiring Companies=== */}
