@@ -4,13 +4,19 @@ import { companionData } from "@/utils/CompanionData";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-// import HeroImageThree from "@/public/images/prototype-2.png";
 
 export default function HeroTwo() {
   const duplicatedData = [...companionData, ...companionData, ...companionData];
   return (
     <section>
-      <section className="leading-normal pt-16">
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        animate={{ x: 0 }}
+        transition={{ type: "spring", duration: 3 }}
+        className="leading-normal pt-16"
+      >
         <div className="text-center px-4">
           <h2 className="text-[40px] md:text-[42px] lg:text-[58px] font-bold text-[#000000] dark:text-accent-foreground">
             Learn in-demand skills <br />{" "}
@@ -34,17 +40,29 @@ export default function HeroTwo() {
           </p>
         </div>
         <div className="md:flex justify-center gap-4">
-          <Link
-            href="/signup"
-            className="bg-[#F51767] hover:bg-[#BB2058] text-white font-bold uppercase w-[250px] p-5 cursor-pointer mx-auto md:mx-0 rounded-full text-center flex items-center justify-center"
+          <motion.div
+            whileHover={{
+              scale: 1.03,
+            }}
+            className="w-fit"
           >
-            Create free account
-          </Link>
-          <p className="uppercase w-[250px] p-4 mx-auto cursor-pointer text-[#F51767] font-bold md:mx-0 rounded-full text-center flex items-center justify-center">
+            <Link
+              href="/signup"
+              className="bg-[#F51767] hover:bg-[#BB2058] text-white font-bold uppercase w-[250px] p-5 cursor-pointer mx-auto md:mx-0 rounded-full text-center flex items-center justify-center"
+            >
+              Create free account
+            </Link>
+          </motion.div>
+          <motion.p
+            whileHover={{
+              scale: 1.03,
+            }}
+            className="uppercase w-[250px] p-4 mx-auto cursor-pointer text-[#F51767] font-bold md:mx-0 rounded-full text-center flex items-center justify-center"
+          >
             Or take our career quiz
-          </p>
+          </motion.p>
         </div>
-      </section>
+      </motion.section>
 
       {/* ===Hero Image section === */}
       <div className="lg:mt-10">
@@ -62,7 +80,14 @@ export default function HeroTwo() {
       {/* ===Hiring Companies=== */}
       <div className="mt-10 md:mt-20 mb-10">
         <section>
-          <div className="px-[20px] py-[10px] text-center max-w-[1500px] mx-auto lg:py-[10px]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            animate={{ x: 0 }}
+            transition={{ type: "spring", duration: 3 }}
+            className="px-[20px] py-[10px] text-center max-w-[1500px] mx-auto lg:py-[10px]"
+          >
             <h2 className="text-xl text-left leading-8 font-bold mb-[40px] md:text-[32px] lg:text-4xl lg:text-center lg:max-w-[700px] xl:max-w-[850px] font-sans mx-auto md:leading-10 lg:leading-[52px]">
               Our students are getting hired by top companies. We can help you
               too.
@@ -94,7 +119,7 @@ export default function HeroTwo() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
       </div>
     </section>
