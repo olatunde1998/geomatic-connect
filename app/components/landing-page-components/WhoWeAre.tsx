@@ -13,7 +13,7 @@ export default function WhoWeAre() {
           </h2>
           <div className="w-24 h-1 bg-[#FFC957]" />
           <div className="text-[#747578] max-w-[400px] mt-6 mb-10 md:my-10 leading-8 text-base ">
-            <p className="text-sm leading-8 md:text-base md:leading-8">
+            <p className="text-base leading-8 md:text-base md:leading-8">
               We are a company that prioritizes students satisfaction so that we
               can become a favorite company for all companies that use our
               services
@@ -28,7 +28,7 @@ export default function WhoWeAre() {
                   <h3 className="text-2xl md:text-3xl font-bold">
                     {item.totalCount}
                   </h3>
-                  <p className="text-xs md:text-sm text-center lg:whitespace-nowrap">
+                  <p className="text-base text-center lg:whitespace-nowrap">
                     {item.title}
                   </p>
                 </div>
