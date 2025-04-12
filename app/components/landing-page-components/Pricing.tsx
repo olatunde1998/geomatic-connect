@@ -16,7 +16,14 @@ export default function Pricing() {
     <>
       <main className="py-10 pb-20 px- w-full">
         {/* ====Section One ==== */}
-        <div className="text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          animate={{ x: 0 }}
+          transition={{ type: "spring", duration: 3 }}
+          className="text-center"
+        >
           <p className="text-lg md:text-2xl">Our Pricing</p>
           <p className="text-2xl font-bold md:text-3xl xl:text-4xl text-[#014751] mt-3 w-[280px] md:w-[400px] lg:w-[450px] mx-auto">
             We Provide Various Offer Packages For You
@@ -43,7 +50,7 @@ export default function Pricing() {
               Yearly
             </p>
           </div>
-        </div>
+        </motion.div>
         {/* ====Section Two ==== */}
         <section>
           <div className="mt-10 px-6 md:px-2 space-y-10 md:mt-14 md:space-y-0 flex flex-col items-center md:grid md:grid-cols-2 md:gap-3 lg:gap-10 lg:grid-cols-3 justify-center place-items-center">
