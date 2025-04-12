@@ -8,7 +8,11 @@ import {
 import { motion } from "framer-motion";
 
 export default function Testimonial() {
-  const duplicatedData = [...testimonialData, ...testimonialData];
+  const duplicatedData = [
+    ...testimonialData,
+    ...testimonialData,
+    ...testimonialData,
+  ];
   return (
     <>
       <motion.main
@@ -18,28 +22,41 @@ export default function Testimonial() {
         className="py-14 px-6 xl:py-20 w-full"
       >
         {/* ====Section One ==== */}
-        <div className="text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          animate={{ x: 0 }}
+          transition={{ type: "spring", duration: 3 }}
+          className="text-center"
+        >
           <p className="text-2xl font-extrabold md:text-3xl xl:text-4xl text-[#014751]">
             Testimonials
           </p>
           <p className="text-base md:text-base text-[#747578] lg:text-lg w-[250px] lg:w-[300px] mx-auto mt-3">
             What Do Happy Clients Say About Working With Us?
           </p>
-        </div>
+        </motion.div>
         <section>
-          <div className="mx-auto mt-16 flex gap-3 xl:gap-6">
+          <div className="mx-auto mt-10 md:mt-12 flex gap-3 xl:gap-6">
             <div className="w-full relative overflow-hidden">
               <div className="relative gap-6 flex items-center justify-center animate md:relative left-0 ">
                 <div className="gap-6 flex items-center justify-around">
                   {duplicatedData.map((item, index) => (
-                    <div key={index}>
+                    <motion.div
+                      whileHover={{
+                        scale: 1.03,
+                      }}
+                      key={index}
+                      className="md:py-4 cursor-pointer"
+                    >
                       <TestimonialCard
                         imageUrl={item.imageUrl}
                         location={item.location}
                         fullName={item.fullName}
                         testimonial={item.testimonial}
                       />
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
