@@ -1,6 +1,7 @@
 "use client";
 import { howItWorksData } from "@/utils/HowItWorksData";
 import ReactPlayer from "react-player";
+import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import Link from "next/link";
 
@@ -36,18 +37,29 @@ export default function HowItWorks() {
             </p>
           ))}
           <div className="mt-10 flex space-x-6 mb-8">
-            <button
+            <motion.button
+              whileHover={{
+                scale: 1.03,
+              }}
               onClick={() => handleSmoothScroll("contactUs-id")}
               className="dark:bg-muted dark:hover:bg-background dark:border-muted-foreground dark:border-[0.2px] hover:bg-[#014751] border-[1.3px] shadow-xl border-[#FFFFFF] p-3 lg:p-3.5 font-bold text-[#FFFFFF] rounded-md w-[130px] lg:w-[150px] text-xs"
             >
               {buttonOne}
-            </button>
-            <Link
-              href="/signup"
-              className="border-[#6CB92B] border-[1.3px] shadow-xl bg-[#FFFFFF] p-3 lg:p-3 items-center flex justify-center font-bold text-[#014751] rounded-md w-[150px] md:w-[180px] lg:w-[160px] text-xs"
+            </motion.button>
+
+            <motion.div
+              whileHover={{
+                scale: 1.03,
+              }}
+              className="w-fit"
             >
-              {buttonTwo}
-            </Link>
+              <Link
+                href="/signup"
+                className="border-[#6CB92B] border-[1.3px] shadow-xl bg-[#FFFFFF] p-3 lg:p-3 items-center flex justify-center font-bold text-[#014751] rounded-md w-[150px] md:w-[180px] lg:w-[160px] text-xs"
+              >
+                {buttonTwo}
+              </Link>
+            </motion.div>
           </div>
         </div>
 
