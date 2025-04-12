@@ -103,12 +103,20 @@ export default function Navbar() {
             >
               Login
             </Link>
-            <Link
-              href="/signup"
-              className="bg-[#014751] hover:bg-[#014751]/90 dark:bg-muted dark:hover:bg-background dark:border px-3 py-2 text-sm font-normal text-[#FFFFFF] rounded-md"
+            <motion.div
+              whileHover={{
+                scale: 1.03,
+                boxShadow: "0px 0px 8px rgb(255, 255, 255)",
+              }}
+              className="w-fit"
             >
-              Create free account
-            </Link>
+              <Link
+                href="/signup"
+                className="bg-[#014751] hover:bg-[#014751]/90 dark:bg-muted dark:hover:bg-background dark:border px-3 py-2 text-sm font-normal text-[#FFFFFF] rounded-md"
+              >
+                Create free account
+              </Link>
+            </motion.div>
             <div className="ml-4">{/* <ModeToggle /> */}</div>
           </div>
 
