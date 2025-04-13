@@ -1,11 +1,13 @@
 import { formats, generateSlug, modules } from "@/utils/utils";
 import { CreateBlogRequest } from "@/app/services/blog.request";
+import { LoaderCircle, Plus, Share2, X } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { Modal } from "@/app/components/modals/Modal";
+import { toast } from "react-toastify";
 import parse from "html-react-parser";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import { Plus, Share2, X } from "lucide-react";
 import Link from "next/link";
 
 type BlogData = {
@@ -16,8 +18,13 @@ type BlogData = {
   content: string;
   readTime: string;
 };
-export default function CreateBlog() {
+export default function CreateBlog({
+  setShowCreateBlog,
+}: {
+  setShowCreateBlog: any;
+}) {
   const [showPreview, setShowPreview] = useState(false);
+  const [isCreating, setIsCreating] = useState(false);
   const [blogData, setBlogData] = useState<BlogData>({
     slug: "",
     authorName: "",
@@ -29,6 +36,7 @@ export default function CreateBlog() {
 
   const editorRef = useRef<HTMLDivElement>(null);
   const quillInstance = useRef<any>(null);
+  const queryClient = useQueryClient();
 
   // Initialize Quill
   useEffect(() => {
@@ -67,34 +75,20 @@ export default function CreateBlog() {
     input.setAttribute("accept", "image/*");
     input.click();
 
-    input.onchange = async () => {
+    input.onchange = () => {
       const file = input.files?.[0];
       if (!file) return;
 
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "geomatic-connect"); // from Cloudinary dashboard
-
-      try {
-        const res = await fetch(
-          `https://api.cloudinary.com/v1_1/dgfjxhoae/image/upload`,
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
-        const data = await res.json();
-        const imageUrl = data.secure_url;
-
-        // Insert the image into the editor
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64 = reader.result;
         const quill = quillInstance.current;
         const range = quill?.getSelection();
         if (range) {
-          quill?.insertEmbed(range.index, "image", imageUrl);
+          quill?.insertEmbed(range.index, "image", base64);
         }
-      } catch (err) {
-        console.error("Image upload failed", err);
-      }
+      };
+      reader.readAsDataURL(file);
     };
   };
 
@@ -111,24 +105,64 @@ export default function CreateBlog() {
   // At the bottom of your CreateBlog component
   const handleSubmit = async () => {
     if (!blogData.title || !blogData.subTitle || !blogData.content) {
-      alert("Please fill out all fields");
+      toast.error("Please fill out all fields");
       return;
     }
+
+    setIsCreating(true);
+
+    // Parse the HTML content and update base64 images
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(blogData.content, "text/html");
+    const imgTags = doc.querySelectorAll("img");
+
+    for (const img of imgTags) {
+      const src = img.getAttribute("src");
+      if (src?.startsWith("data:")) {
+        const formData = new FormData();
+        formData.append("file", src);
+        formData.append("upload_preset", "geomatic-connect");
+
+        try {
+          const res = await fetch(
+            `https://api.cloudinary.com/v1_1/dgfjxhoae/image/upload`,
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+          const data = await res.json();
+          img.setAttribute("src", data.secure_url);
+        } catch (error) {
+          console.error("Failed to upload image to Cloudinary:", error);
+        }
+      }
+    }
+
+    // Serialize HTML back to string
+    const updatedContent = doc.body.innerHTML;
+
     try {
-      const response = await CreateBlogRequest(blogData);
-      console.log("Blog submitted!", response);
-      alert("Blog created successfully!");
+      const response = await CreateBlogRequest({
+        ...blogData,
+        content: updatedContent,
+      });
+      toast.success(response?.message);
+      queryClient.invalidateQueries({ queryKey: ["getBlogsApi"] });
+      // Clear blog data
       setBlogData({
         slug: "",
         authorName: "",
         title: "",
         subTitle: "",
         content: "",
-        readTime: "",
+        readTime: "7 min read",
       });
-      // quillRef.current?.root.innerHTML = "";
-    } catch (err) {
-      console.error(err, "this is error here===");
+      setShowCreateBlog(false);
+    } catch (err: any) {
+      toast.error(err?.response.message);
+    } finally {
+      setIsCreating(false);
     }
   };
 
@@ -246,10 +280,23 @@ export default function CreateBlog() {
               </div>
               <button
                 type="submit"
-                className="inline-flex items-center mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                disabled={isCreating}
+                className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
               >
-                <Plus className="w-5 h-5 mr-2" />
-                <span>Create Blog Post</span>
+                {isCreating ? (
+                  <>
+                    <LoaderCircle
+                      style={{ animationDuration: "0.4s" }}
+                      className="size-4 animate-spin mx-auto"
+                    />
+                    Uploading...
+                  </>
+                ) : (
+                  <>
+                    <Plus className="w-5 h-5 mr-2" />
+                    Create Blog Post
+                  </>
+                )}
               </button>
             </form>
           </div>
@@ -257,9 +304,7 @@ export default function CreateBlog() {
           {/*========Blog View======= */}
           <div className="w-full max-w-3xl p-7 bg-white border border-gray-200 rounded-lg mx-auto">
             <div className="flex items-center justify-between pb-2 mb-5 border-b border-gray-400">
-              <h2 className="text-lg lg:text-2xl font-bold">
-                Blog View
-              </h2>
+              <h2 className="text-lg lg:text-2xl font-bold">Blog View</h2>
               <div
                 onClick={() => setShowPreview(true)}
                 className="flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-[120px] md:w-[150px] lg:w-[120px] cursor-pointer  px-2 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
