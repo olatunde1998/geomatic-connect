@@ -88,10 +88,10 @@ export const UpdateBlogRequest = async (blogId: any, token: any, body: any) => {
 };
 
 // DELETE  BLOG  REQUEST
-export const DeleteNotificationRequest = async (blogId: any, token: any) => {
+export const DeleteBlogRequest = async (blogId: any, token: any) => {
   try {
     const response = await axios.delete(
-      `${process.env.NEXT_PUBLIC_BASEURL}/api/notifications/${blogId}`,
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/blogs/${blogId}`,
       {
         maxBodyLength: Infinity,
         headers: {
@@ -100,7 +100,8 @@ export const DeleteNotificationRequest = async (blogId: any, token: any) => {
         },
       }
     );
-    return response.data;
+    const data = response.data;
+    return data;
   } catch (error) {
     throw error;
   }
