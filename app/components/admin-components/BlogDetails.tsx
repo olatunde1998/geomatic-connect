@@ -53,7 +53,8 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
     ? getShortTitle(blogDetailData.data.title)
     : "Geomatic Connect Blog";
 
-  const fullUrl = `${process.env.NEXT_PUBLIC_APP_URL}${pathname}`;
+  const cleanPath = pathname.replace(/^\/admin-dashboard/, "");
+  const fullUrl = `${process.env.NEXT_PUBLIC_APP_URL}${cleanPath}`;
   const encodedUrl = encodeURIComponent(fullUrl);
 
   // Delete A Blog Request Logic
