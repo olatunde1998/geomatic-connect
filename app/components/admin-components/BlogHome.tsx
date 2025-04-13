@@ -3,8 +3,6 @@ import { BlogCard, BlogSmallCard } from "@/app/components/cards/BlogCard";
 import { GetBlogsRequest } from "@/app/services/blog.request";
 import GetStarted from "@/public/images/get-started.webp";
 import { useQuery } from "@tanstack/react-query";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ArrowLeft, Plus } from "lucide-react";
 import { formatDate } from "@/utils/utils";
 import CreateBlog from "./CreateBlog";
@@ -55,7 +53,7 @@ export default function BlogHome({ token }: BlogHomeProps) {
 
           {showCreateBlog ? (
             <div className="mt-8 rounded-2xl bg-white border border-slate-200">
-              <CreateBlog />
+              <CreateBlog setShowCreateBlog={setShowCreateBlog} />
             </div>
           ) : (
             <section className="w-full max-w-5xl text-sm">
@@ -87,7 +85,6 @@ export default function BlogHome({ token }: BlogHomeProps) {
           )}
         </div>
       </main>
-      <ToastContainer />
     </>
   );
 }
