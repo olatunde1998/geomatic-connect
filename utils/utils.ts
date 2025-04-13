@@ -16,6 +16,17 @@ export const formatDate = (dateString: string) => {
   return date.toLocaleDateString("en-US", options);
 };
 
+// Short Date Format
+export const formatDateShort = (dateString: string) => {
+  const date = new Date(dateString);
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short", // 'Feb' instead of 'February'
+    day: "numeric", // '5' instead of '05'
+  };
+  return date.toLocaleDateString("en-US", options);
+};
+
 // FUNCTION TO FORMAT DATE AND TIME
 export function formatTimestamp(timestamp: string): string {
   const date = new Date(timestamp);
