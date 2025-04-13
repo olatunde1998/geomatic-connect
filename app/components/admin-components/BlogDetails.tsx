@@ -1,11 +1,13 @@
 "use client";
 import { ArrowLeft, Facebook, Linkedin, Share2 } from "lucide-react";
-import { GetBlogRequest } from "@/app/services/blog.request";
+import { DeleteBlogRequest, GetBlogRequest } from "@/app/services/blog.request";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { RiTwitterXFill } from "react-icons/ri";
+import { formatDateShort } from "@/utils/utils";
 import { IoIosLink } from "react-icons/io";
+import { toast } from "react-toastify";
 import parse from "html-react-parser";
 import EditBlog from "./EditBlog";
 import Link from "next/link";
@@ -19,13 +21,17 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
   const router = useRouter();
   const [showActions, setShowActions] = useState(false);
   const [showEditBlog, setShowEditBlog] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const shareRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
+  const queryClient = useQueryClient();
 
   const { data: blogDetailData } = useQuery({
     queryKey: ["getSingleBlogApi"],
     queryFn: () => GetBlogRequest(blogSlug),
   });
+  const blogId = blogDetailData?.data?._id;
 
   // Share dropdown Handler
   useEffect(() => {
@@ -43,6 +49,23 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
     };
   }, []);
 
+  // Delete A Blog Request Logic
+  const deleteBlogHandler = async () => {
+    setIsDeleting(true);
+    try {
+      const response = await DeleteBlogRequest(blogId, token);
+      await queryClient.invalidateQueries({
+        queryKey: ["getBlogsApi"],
+      });
+      toast.success(response.message);
+    } catch (error: any) {
+      toast.error(error?.response?.message);
+      toast.error(error?.message);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <>
       <div className="rounded-lg mt-20 mb-10 md:mt-24 lg:mt-20 xl:my-10 items-center justify-between bg-[#ECF1F7] flex p-2 px-6 gap-3">
@@ -56,7 +79,11 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
       </div>
       {/* ================Body section ===========  */}
       {showEditBlog ? (
-        <EditBlog blogDetailData={blogDetailData} token={token} />
+        <EditBlog
+          blogDetailData={blogDetailData}
+          token={token}
+          setShowEditBlog={setShowEditBlog}
+        />
       ) : (
         <section className="mt-8">
           {/*========Blog View======= */}
@@ -74,7 +101,7 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
             </div>
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2 text-sm">
-                <p>Feb 5, 2025</p>{" "}
+                <p>{formatDateShort(blogDetailData?.data?.createdAt)}</p>
                 <div className="text-base w-1 h-1 rounded-full bg-slate-300" />
                 <Link href="#" className="underline text-blue-400">
                   {blogDetailData?.data?.authorName}
@@ -143,6 +170,15 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
               </div>
             </div>
           </div>
+          <button
+            onClick={() => deleteBlogHandler()}
+            disabled={isDeleting}
+            className="flex p-2 mt-8 md:p-3 justify-center items-center gap-[8px] text-white w-[120px] md:w-[150px] lg:w-[120px] cursor-pointer  px-2 py-3 font-light shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316] rounded-sm"
+          >
+            <span className="text-[#FFFFFF] text-sm md:text-md">
+              {isDeleting ? "Deleting...." : "Delete Blog"}
+            </span>
+          </button>
         </section>
       )}
     </>
