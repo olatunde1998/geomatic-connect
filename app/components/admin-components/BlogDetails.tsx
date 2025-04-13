@@ -5,7 +5,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { RiTwitterXFill } from "react-icons/ri";
-import { formatDateShort } from "@/utils/utils";
+import { formatDateShort, getShortTitle } from "@/utils/utils";
 import { IoIosLink } from "react-icons/io";
 import { toast } from "react-toastify";
 import parse from "html-react-parser";
@@ -48,6 +48,13 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const shareText = blogDetailData?.data?.title
+    ? getShortTitle(blogDetailData.data.title)
+    : "Geomatic Connect Blog";
+
+  const fullUrl = `${process.env.NEXT_PUBLIC_APP_URL}${pathname}`;
+  const encodedUrl = encodeURIComponent(fullUrl);
 
   // Delete A Blog Request Logic
   const deleteBlogHandler = async () => {
@@ -122,33 +129,39 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
                   } bg-white py-3 px-2 shadow-md rounded-lg text-sm border border-[#213f7d0f] w-[200px] space-y-2 absolute right-[-1px] lg:right-[-18px] z-[1] top-[50px]`}
                 >
                   <Link
-                    href="#"
+                    href={`https://twitter.com/intent/tweet?text=${shareText}&url=${encodedUrl}`}
                     className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3  w-full"
                   >
                     <RiTwitterXFill size={18} />
                     Share on X
                   </Link>
                   <Link
-                    href="#"
+                    href={`https://www.linkedin.com/feed/?shareActive=true&shareUrl=${encodedUrl}`}
                     className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
                   >
                     <Linkedin size={18} />
                     Share on LinkedIn
                   </Link>
                   <Link
-                    href="#"
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
                     className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
                   >
                     <Facebook size={18} />
                     Share on Facebook
                   </Link>
-                  <Link
-                    href="#"
+                  <div
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigator.clipboard.writeText(
+                        decodeURIComponent(fullUrl)
+                      );
+                      toast.success("Link copied to clipboard!");
+                    }}
                     className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
                   >
                     <IoIosLink size={18} />
                     Copy Link
-                  </Link>
+                  </div>
                 </div>
               </div>
             </div>
