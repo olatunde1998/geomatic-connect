@@ -3,6 +3,7 @@ import BottomNavBar from "@/app/components/navbar/BottomNavBar";
 import AdminNavBar from "@/app/components/navbar/AdminNavBar";
 // import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 import type { Metadata } from "next";
 import { auth } from "@/auth";
 
@@ -69,6 +70,7 @@ export default async function AdminLayout({
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
