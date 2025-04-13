@@ -55,6 +55,16 @@ export function generateSlug(title: string) {
   return slug;
 }
 
+// FUNCTION TO Shortening word
+export function getShortTitle(title: string) {
+  const splitBy = title.split(/[:–.]/); // Split by colon, dash, or period
+  if (splitBy.length > 1) {
+    return splitBy[0];
+  }
+  const words = title.trim().split(" ");
+  return words.slice(0, 5).join(" "); // Fallback: first 5 words
+}
+
 // REACT QUILL Functions
 //Custom Tool Bar
 export const modules = {
