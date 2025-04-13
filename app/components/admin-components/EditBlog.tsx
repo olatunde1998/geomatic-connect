@@ -1,11 +1,13 @@
-import { formats, generateSlug, modules } from "@/utils/utils";
+import { formatDateShort, formats, generateSlug, modules } from "@/utils/utils";
 import { UpdateBlogRequest } from "@/app/services/blog.request";
+import { LoaderCircle, Plus, Share2, X } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { Modal } from "@/app/components/modals/Modal";
+import { toast } from "react-toastify";
 import parse from "html-react-parser";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import { Plus, Share2, X } from "lucide-react";
 import Link from "next/link";
 
 interface BlogDetailDataProps {
@@ -17,6 +19,7 @@ interface BlogDetailDataProps {
     subTitle: string;
     content: string;
     readTime?: string;
+    createdAt: string;
   };
 }
 
@@ -27,17 +30,21 @@ type BlogData = {
   subTitle: string;
   content: string;
   readTime: string;
+  createdAt: string;
 };
 
 export default function EditBlog({
   blogDetailData,
   token,
+  setShowEditBlog,
 }: {
   blogDetailData: BlogDetailDataProps;
   token: string;
+  setShowEditBlog: any;
 }) {
   const blogId = blogDetailData?.data?._id;
   const [showPreview, setShowPreview] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [blogData, setBlogData] = useState<BlogData>({
     slug: "",
     authorName: "",
@@ -45,11 +52,12 @@ export default function EditBlog({
     subTitle: "",
     content: "",
     readTime: "7 min read",
+    createdAt: "",
   });
 
   const editorRef = useRef<HTMLDivElement>(null);
   const quillInstance = useRef<any>(null);
-
+  const queryClient = useQueryClient();
   // Initialize Quill
   useEffect(() => {
     if (editorRef.current && !quillInstance.current) {
@@ -99,6 +107,7 @@ export default function EditBlog({
         subTitle: blogDetailData.data.subTitle || "",
         content: blogDetailData.data.content || "",
         readTime: blogDetailData.data.readTime || "7 min read",
+        createdAt: blogDetailData.data.createdAt,
       });
     }
   }, [blogDetailData]);
@@ -114,30 +123,16 @@ export default function EditBlog({
       const file = input.files?.[0];
       if (!file) return;
 
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "geomatic-connect"); // from Cloudinary dashboard
-
-      try {
-        const res = await fetch(
-          `https://api.cloudinary.com/v1_1/dgfjxhoae/image/upload`,
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
-        const data = await res.json();
-        const imageUrl = data.secure_url;
-
-        // Insert the image into the editor
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64 = reader.result;
         const quill = quillInstance.current;
         const range = quill?.getSelection();
         if (range) {
-          quill?.insertEmbed(range.index, "image", imageUrl);
+          quill?.insertEmbed(range.index, "image", base64 as string);
         }
-      } catch (err) {
-        console.error("Image upload failed", err);
-      }
+      };
+      reader.readAsDataURL(file);
     };
   };
 
@@ -154,20 +149,52 @@ export default function EditBlog({
   // At the bottom of your CreateBlog component
   const handleSubmit = async () => {
     if (!blogData.title || !blogData.subTitle || !blogData.content) {
-      alert("Please fill out all fields");
+      toast.error("Please fill out all fields");
       return;
     }
+
+    setIsUpdating(true);
+
     try {
-      try {
-        const response = await UpdateBlogRequest(blogId, token, blogData);
-        console.log("Blog submitted!", response);
-        alert("Blog updated successfully!");
-      } catch (err) {
-        console.error(err, "this is error here===");
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(blogData.content, "text/html");
+      const images = doc.querySelectorAll("img");
+
+      for (let img of images) {
+        const src = img.getAttribute("src");
+        if (src && src.startsWith("data:image/")) {
+          // Upload to Cloudinary
+          const formData = new FormData();
+          formData.append("file", src);
+          formData.append("upload_preset", "geomatic-connect");
+
+          const res = await fetch(
+            `https://api.cloudinary.com/v1_1/dgfjxhoae/image/upload`,
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+          const data = await res.json();
+          img.setAttribute("src", data.secure_url);
+        }
       }
-      // quillRef.current?.root.innerHTML = "";
-    } catch (err) {
-      console.error(err, "this is error here===");
+
+      const updatedContent = doc.body.innerHTML;
+
+      const updatedBlog = {
+        ...blogData,
+        content: updatedContent,
+      };
+
+      const response = await UpdateBlogRequest(blogId, token, updatedBlog);
+      toast.success(response.message);
+      queryClient.invalidateQueries({ queryKey: ["getSingleBlogApi"] });
+      setShowEditBlog(false);
+    } catch (err: any) {
+      toast.error(err?.response.message);
+    } finally {
+      setIsUpdating(false);
     }
   };
 
@@ -285,10 +312,23 @@ export default function EditBlog({
               </div>
               <button
                 type="submit"
-                className="inline-flex items-center mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                disabled={isUpdating}
+                className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
               >
-                <Plus className="w-5 h-5 mr-2" />
-                <span>Update Blog Post</span>
+                {isUpdating ? (
+                  <>
+                    <LoaderCircle
+                      style={{ animationDuration: "0.4s" }}
+                      className="size-4 animate-spin mx-auto"
+                    />
+                    Updating...
+                  </>
+                ) : (
+                  <>
+                    <Plus className="w-5 h-5 mr-2" />
+                    Update Blog Post
+                  </>
+                )}
               </button>
             </form>
           </div>
@@ -356,10 +396,13 @@ export default function EditBlog({
           </h2>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2 text-sm">
-              <p>Feb 5, 2025</p>
+              <p>
+      
+                {formatDateShort(blogData?.createdAt)}
+              </p>
               <div className="text-base w-1 h-1 rounded-full bg-slate-300" />
               <Link href="#" className="underline text-blue-400">
-                {blogData.authorName || "Rasheed Olatunde"}
+                {blogData.authorName}
               </Link>
             </div>
             <div className="cursor-pointer">
