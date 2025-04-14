@@ -1,6 +1,6 @@
-import { formats, generateSlug, modules } from "@/utils/utils";
+import { formatDateShort, formats, generateSlug, modules } from "@/utils/utils";
 import { CreateBlogRequest } from "@/app/services/blog.request";
-import { LoaderCircle, Plus, Share2, X } from "lucide-react";
+import { LoaderCircle, Plus, Share2, Trash, Upload, X } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Modal } from "@/app/components/modals/Modal";
@@ -8,12 +8,13 @@ import { toast } from "react-toastify";
 import parse from "html-react-parser";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import Link from "next/link";
+import Image from "next/image";
 
 type BlogData = {
-  authorName: string;
-  title: string;
   slug: string;
+  authorName: string;
+  banner: string;
+  title: string;
   subTitle: string;
   content: string;
   readTime: string;
@@ -25,13 +26,16 @@ export default function CreateBlog({
 }) {
   const [showPreview, setShowPreview] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [userImage, setUserImage] = useState<string | undefined>(undefined);
   const [blogData, setBlogData] = useState<BlogData>({
     slug: "",
     authorName: "",
+    banner: "",
     title: "",
     subTitle: "",
     content: "",
-    readTime: "7 min read",
+    readTime: "3 min read",
   });
 
   const editorRef = useRef<HTMLDivElement>(null);
@@ -92,6 +96,28 @@ export default function CreateBlog({
     };
   };
 
+  // File Upload For  Banner logic
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files[0]) {
+      const file = files[0];
+      console.log(files[0].type, "this is the file type");
+
+      const fileType = files[0].type;
+      if (
+        fileType === "image/jpg" ||
+        fileType === "image/png" ||
+        fileType === "image/jpeg" ||
+        fileType === "image/webp"
+      ) {
+        setUserImage(URL.createObjectURL(files[0]));
+        setSelectedFile(file);
+      } else {
+        toast.error("Unsupported file type. Please upload a JPG, PNG, or JPEG");
+      }
+    }
+  };
+
   // Handle title change and slug generation
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const title = e.target.value;
@@ -102,14 +128,43 @@ export default function CreateBlog({
     }));
   };
 
-  // At the bottom of your CreateBlog component
+  // CreateBlog Handler Logic
   const handleSubmit = async () => {
-    if (!blogData.title || !blogData.subTitle || !blogData.content) {
+    if (
+      !blogData.title ||
+      !blogData.subTitle ||
+      !blogData.content ||
+      !selectedFile
+    ) {
       toast.error("Please fill out all fields");
       return;
     }
 
     setIsCreating(true);
+
+    // First upload the banner image
+    let bannerUrl = "";
+    if (selectedFile) {
+      try {
+        const bannerFormData = new FormData();
+        bannerFormData.append("file", selectedFile);
+        bannerFormData.append("upload_preset", "geomatic-connect");
+
+        const bannerRes = await fetch(
+          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_NAME}/image/upload`,
+          {
+            method: "POST",
+            body: bannerFormData,
+          }
+        );
+        const bannerData = await bannerRes.json();
+        bannerUrl = bannerData.secure_url;
+      } catch (error) {
+        toast.error("Failed to upload banner image");
+        setIsCreating(false);
+        return;
+      }
+    }
 
     // Parse the HTML content and update base64 images
     const parser = new DOMParser();
@@ -125,7 +180,7 @@ export default function CreateBlog({
 
         try {
           const res = await fetch(
-            `https://api.cloudinary.com/v1_1/dgfjxhoae/image/upload`,
+            `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_NAME}/image/upload`,
             {
               method: "POST",
               body: formData,
@@ -146,6 +201,7 @@ export default function CreateBlog({
       const response = await CreateBlogRequest({
         ...blogData,
         content: updatedContent,
+        banner: bannerUrl,
       });
       toast.success(response?.message);
       queryClient.invalidateQueries({ queryKey: ["getBlogsApi"] });
@@ -153,10 +209,11 @@ export default function CreateBlog({
       setBlogData({
         slug: "",
         authorName: "",
+        banner: "",
         title: "",
         subTitle: "",
         content: "",
-        readTime: "7 min read",
+        readTime: "3 min read",
       });
       setShowCreateBlog(false);
     } catch (err: any) {
@@ -205,6 +262,58 @@ export default function CreateBlog({
                     />
                   </div>
                 </div>
+
+                {/* =====Blog Banner ===== */}
+                <section className="sm:col-span-2">
+                  <div className="border-[0.5px] border-slate-300 shadow-sm dark:border-muted px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white  mt-6">
+                    <p className="text-sm font-medium flex items-center justify-between">
+                      Blog Banner{" "}
+                      {userImage && (
+                        <Trash
+                          onClick={() => setUserImage(undefined)}
+                          className="size-4 text-red-400 cursor-pointer"
+                        />
+                      )}
+                    </p>
+                    <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white dark:bg-background rounded-2xl  border-[0.6px] border-slate-300 shadow-sm dark:border-muted mt-4 cursor-pointer">
+                      <label
+                        htmlFor="bannerInput"
+                        className="w-full p-3 flex justify-between tracking-wide cursor-pointer"
+                      >
+                        {userImage ? (
+                          <div className="rounded-xl relative mx-auto w-full">
+                            <Image
+                              src={userImage}
+                              alt="Blog Banner"
+                              width={100}
+                              height={100}
+                              className="rounded-xl w-full h-full max-h-40"
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex w-full items-center justify-between gap-2">
+                            <p className="w-full text-center">Upload image</p>
+                            <input
+                              type="file"
+                              name="banner_Image"
+                              id="bannerInput"
+                              accept=".png,  .jpg, .jpeg, .webp"
+                              className="hidden input-field"
+                              onChange={handleFileChange}
+                            />
+                            <div className="border-slate-800 border-[1.3px] border-dashed rounded-full relative mx-auto flex items-center justify-center w-[45px] h-[45px]">
+                              <Upload
+                                size={24}
+                                className="rounded-full w-[45px] h-[24px]"
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </label>
+                    </div>
+                  </div>
+                </section>
+
                 {/* ======Title======= */}
                 <div className="sm:col-span-2">
                   <label
@@ -359,11 +468,9 @@ export default function CreateBlog({
           </h2>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2 text-sm">
-              <p>Feb 5, 2025</p>
+              <p>{formatDateShort(new Date().toISOString())}</p>
               <div className="text-base w-1 h-1 rounded-full bg-slate-300" />
-              <Link href="#" className="underline text-blue-400">
-                Rasheed Olatunde
-              </Link>
+              <p className="underline text-blue-400"> {blogData?.authorName}</p>
             </div>
             <div className="cursor-pointer">
               <p className="flex items-center cursor-pointer gap-2 border text-sm border-slate-200 bg-white rounded-2xl px-3 py-1">
