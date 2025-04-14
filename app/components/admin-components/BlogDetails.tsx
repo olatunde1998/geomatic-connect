@@ -67,7 +67,7 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
       });
       toast.success(response.message);
     } catch (error: any) {
-      toast.error(error?.response?.message);
+      toast.error(error?.response?.data?.message);
       toast.error(error?.message);
     } finally {
       setIsDeleting(false);
@@ -184,15 +184,17 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
               </div>
             </div>
           </div>
-          <button
-            onClick={() => deleteBlogHandler()}
-            disabled={isDeleting}
-            className="flex p-2 mt-8 md:p-3 justify-center items-center gap-[8px] text-white w-[120px] md:w-[150px] lg:w-[120px] cursor-pointer  px-2 py-3 font-light shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316] rounded-sm"
-          >
-            <span className="text-[#FFFFFF] text-sm md:text-md">
-              {isDeleting ? "Deleting...." : "Delete Blog"}
-            </span>
-          </button>
+          {pathname.includes("/admin-dashboard") && (
+            <button
+              onClick={() => deleteBlogHandler()}
+              disabled={isDeleting}
+              className="flex p-2 mt-8 md:p-3 justify-center items-center gap-[8px] text-white w-[120px] md:w-[150px] lg:w-[120px] cursor-pointer  px-2 py-3 font-light shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316] rounded-sm"
+            >
+              <span className="text-[#FFFFFF] text-sm md:text-md">
+                {isDeleting ? "Deleting...." : "Delete Blog"}
+              </span>
+            </button>
+          )}
         </section>
       )}
     </>
