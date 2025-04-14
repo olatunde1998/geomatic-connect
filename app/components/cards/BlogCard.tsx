@@ -93,7 +93,6 @@ export function BlogSmallCard({
             width={500}
             height={500}
             priority
-            placeholder="blur"
             alt="Blog Image"
             className="rounded-2xl mb-3"
           />
