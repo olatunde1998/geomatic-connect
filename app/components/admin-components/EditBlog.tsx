@@ -1,6 +1,6 @@
 import { formatDateShort, formats, generateSlug, modules } from "@/utils/utils";
 import { UpdateBlogRequest } from "@/app/services/blog.request";
-import { LoaderCircle, Plus, Share2, X } from "lucide-react";
+import { LoaderCircle, Plus, Share2, Trash, Upload, X } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Modal } from "@/app/components/modals/Modal";
@@ -9,12 +9,14 @@ import parse from "html-react-parser";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import Link from "next/link";
+import Image from "next/image";
 
 interface BlogDetailDataProps {
   data: {
     _id: any;
     slug: string;
     authorName: string;
+    banner: string;
     title: string;
     subTitle: string;
     content: string;
@@ -25,6 +27,7 @@ interface BlogDetailDataProps {
 
 type BlogData = {
   authorName: string;
+  banner: string;
   title: string;
   slug: string;
   subTitle: string;
@@ -45,19 +48,23 @@ export default function EditBlog({
   const blogId = blogDetailData?.data?._id;
   const [showPreview, setShowPreview] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [userImage, setUserImage] = useState<string | undefined>(undefined);
   const [blogData, setBlogData] = useState<BlogData>({
     slug: "",
     authorName: "",
+    banner: "",
     title: "",
     subTitle: "",
     content: "",
-    readTime: "7 min read",
+    readTime: "3 min read",
     createdAt: "",
   });
 
   const editorRef = useRef<HTMLDivElement>(null);
   const quillInstance = useRef<any>(null);
   const queryClient = useQueryClient();
+
   // Initialize Quill
   useEffect(() => {
     if (editorRef.current && !quillInstance.current) {
@@ -103,10 +110,11 @@ export default function EditBlog({
       setBlogData({
         slug: blogDetailData.data.slug || "",
         authorName: blogDetailData.data.authorName || "",
+        banner: blogDetailData.data.banner || "",
         title: blogDetailData.data.title || "",
         subTitle: blogDetailData.data.subTitle || "",
         content: blogDetailData.data.content || "",
-        readTime: blogDetailData.data.readTime || "7 min read",
+        readTime: blogDetailData.data.readTime || "3 min read",
         createdAt: blogDetailData.data.createdAt,
       });
     }
@@ -136,6 +144,30 @@ export default function EditBlog({
     };
   };
 
+  // File Upload For  Banner logic
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files[0]) {
+      const file = files[0];
+      console.log(files[0].type, "this is the file type");
+
+      const fileType = files[0].type;
+      if (
+        fileType === "image/jpg" ||
+        fileType === "image/png" ||
+        fileType === "image/jpeg" ||
+        fileType === "image/webp"
+      ) {
+        setUserImage(URL.createObjectURL(files[0]));
+        setSelectedFile(file);
+      } else {
+        toast.error(
+          "Unsupported file type. Please upload a JPG, PNG, WEBP, or JPEG"
+        );
+      }
+    }
+  };
+
   // Handle title change and slug generation
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const title = e.target.value;
@@ -155,6 +187,30 @@ export default function EditBlog({
 
     setIsUpdating(true);
 
+    // Handle banner image 
+    let bannerUrl = blogData.banner;
+    if (selectedFile) {
+      try {
+        const bannerFormData = new FormData();
+        bannerFormData.append("file", selectedFile);
+        bannerFormData.append("upload_preset", "geomatic-connect");
+
+        const bannerRes = await fetch(
+          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_NAME}/image/upload`,
+          {
+            method: "POST",
+            body: bannerFormData,
+          }
+        );
+        const bannerData = await bannerRes.json();
+        bannerUrl = bannerData.secure_url;
+      } catch (error) {
+        toast.error("Failed to upload banner image");
+        setIsUpdating(false);
+        return;
+      }
+    }
+
     try {
       const parser = new DOMParser();
       const doc = parser.parseFromString(blogData.content, "text/html");
@@ -169,7 +225,7 @@ export default function EditBlog({
           formData.append("upload_preset", "geomatic-connect");
 
           const res = await fetch(
-            `https://api.cloudinary.com/v1_1/dgfjxhoae/image/upload`,
+            `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_NAME}/image/upload`,
             {
               method: "POST",
               body: formData,
@@ -185,6 +241,7 @@ export default function EditBlog({
       const updatedBlog = {
         ...blogData,
         content: updatedContent,
+        banner: bannerUrl,
       };
 
       const response = await UpdateBlogRequest(blogId, token, updatedBlog);
@@ -237,6 +294,62 @@ export default function EditBlog({
                     />
                   </div>
                 </div>
+
+                {/* =====Blog Banner ===== */}
+                <section className="sm:col-span-2">
+                  <div className="border-[0.5px] border-slate-300 shadow-sm dark:border-muted px-4 pt-3 pb-6 md:pt-6 md:pb-6 rounded-xl bg-white  mt-6">
+                    <p className="text-sm font-medium flex items-center justify-between">
+                      Blog Banner{" "}
+                      {userImage ||
+                        (blogData?.banner && (
+                          <Trash
+                            onClick={() => {
+                              setUserImage(undefined);
+                              setSelectedFile(null);
+                              setBlogData((prev) => ({ ...prev, banner: "" }));
+                            }}
+                            className="size-4 text-red-400 cursor-pointer"
+                          />
+                        ))}
+                    </p>
+                    <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white dark:bg-background rounded-2xl  border-[0.6px] border-slate-300 shadow-sm dark:border-muted mt-4 cursor-pointer">
+                      <label
+                        htmlFor="bannerInput"
+                        className="w-full p-3 flex justify-between tracking-wide cursor-pointer"
+                      >
+                        {userImage || blogData?.banner ? (
+                          <div className="rounded-xl relative mx-auto w-full">
+                            <Image
+                              src={blogData?.banner || (userImage as string)}
+                              alt="Blog Banner"
+                              width={100}
+                              height={100}
+                              className="rounded-xl w-full h-full max-h-40"
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex w-full items-center justify-between gap-2">
+                            <p className="w-full text-center">Upload image</p>
+                            <input
+                              type="file"
+                              name="banner_Image"
+                              id="bannerInput"
+                              accept=".png,  .jpg, .jpeg, .webp"
+                              className="hidden input-field"
+                              onChange={handleFileChange}
+                            />
+                            <div className="border-slate-800 border-[1.3px] border-dashed rounded-full relative mx-auto flex items-center justify-center w-[45px] h-[45px]">
+                              <Upload
+                                size={24}
+                                className="rounded-full w-[45px] h-[24px]"
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </label>
+                    </div>
+                  </div>
+                </section>
                 {/* ======Title======= */}
                 <div className="sm:col-span-2">
                   <label
@@ -396,10 +509,7 @@ export default function EditBlog({
           </h2>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2 text-sm">
-              <p>
-      
-                {formatDateShort(blogData?.createdAt)}
-              </p>
+              <p>{formatDateShort(blogData?.createdAt)}</p>
               <div className="text-base w-1 h-1 rounded-full bg-slate-300" />
               <Link href="#" className="underline text-blue-400">
                 {blogData.authorName}
