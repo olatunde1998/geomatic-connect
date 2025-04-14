@@ -2,32 +2,32 @@
 export const faqData = [
   {
     id: 1,
-    question: "How do I register?",
+    question: "What is Geomatic Connect and who can use it?",
     answer:
-      "Yes. To register, simply click on the 'Create free account' button on our website. You will be prompted to enter your email address and create a password. Once you have completed the registration form, you will receive a confirmation email to verify your account. After verifying your email, you can log in and start using our services.",
+      "Geomatic Connect is a platform that connects students from higher institutions with companies offering internship opportunities like SIWES, SWEP, and professional training programs. Both students seeking placements and companies looking for qualified candidates can use the platform.",
   },
   {
     id: 2,
-    question: "Do you offer a free trial?",
+    question: "How do I get started as a student?",
     answer:
-      "Yes. In fact, we go one step further. You may use our freemium plan without payment for personal or commercial purposes but only on the condition that you include a link to Icons& in your work. Please note that freemium plan do come with limitations such as smaller sizes, select file types, and variety.",
+      "Simply click the 'Create free account' button to register. Once registered and verified, you can explore companies, send placement requests, Access to Community Channel, and track your internship progress—all in one place.",
   },
   {
     id: 3,
-    question: "How does Geomatics Connect work?",
+    question: "Are there any free plans available?",
     answer:
-      "Geomatics Connect offers personalized one-on-one coaching, structured job application guidance, detailed feedback mechanisms, and access to a supportive community. Mentees receive tailored advice and resources to enhance their job search strategy and improve their chances of securing a job offer",
+      "Yes! Our Freemium Package is completely free and lets you access essential features like connecting with limited companies, send placement requests, and tracking your requests.",
   },
   {
     id: 4,
-    question: "Which plan do I need?",
+    question: "Can companies register to find students?",
     answer:
-      "Purchasing each asset's specific plan (Basic, Growth or Scale) unlocks all options and removes the attribution requirement. Alternatively, you can purchase the Full Set plan to receive all assets and use them without crediting us. Please make sure you've read our Licensing Agreement before purchasing.",
+      "Absolutely. Companies can sign up to list internship openings, browse student profiles, and connect with potential interns directly through our platform. It simplifies recruitment and helps companies find the right fit faster.",
   },
   {
     id: 5,
-    question: "Do you offer student or company discounts?",
+    question: "Where can I learn more about careers in geomatics?",
     answer:
-      "Yes. We are happy to help companies and students. Chat with us to get started.",
+      "Visit our blog for valuable articles, expert tips, and career advice tailored to students and professionals in the geomatics field. From success stories to practical guides, it’s your go-to resource for career growth.",
   },
 ];
