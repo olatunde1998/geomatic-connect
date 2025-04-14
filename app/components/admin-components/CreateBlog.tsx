@@ -265,7 +265,7 @@ export default function CreateBlog({
 
                 {/* =====Blog Banner ===== */}
                 <section className="sm:col-span-2">
-                  <div className="border-[0.5px] border-slate-300 shadow-sm dark:border-muted px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white  mt-6">
+                  <div className="border-[0.5px] border-slate-300 shadow-sm dark:border-muted px-4 pt-3 pb-6 md:pt-6 md:pb-6 rounded-xl bg-white mt-6">
                     <p className="text-sm font-medium flex items-center justify-between">
                       Blog Banner{" "}
                       {userImage && (
