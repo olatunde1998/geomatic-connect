@@ -94,7 +94,7 @@ export function BlogSmallCard({
             height={500}
             priority
             alt="Blog Image"
-            className="rounded-2xl mb-3"
+            className="rounded-2xl mb-3 max-h-40 object-cover"
           />
         </motion.div>
         <div className="grid grid-cols-1  mt-3">
