@@ -51,6 +51,7 @@ const schema = yup.object().shape({
     .required("Institution is required")
     .min(3, "Institution must be greater than 3 characters"),
   state: yup.string(),
+  accomodation: yup.string(),
 });
 
 export default function UsersDetails({ token, userId }: UsersDetailsProps) {
@@ -85,9 +86,10 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
       setValue("companyAddress", userProfileData.data.companyAddress);
       setValue("institutionName", userProfileData.data.institutionName);
       setValue("state", userProfileData.data.state);
+      setValue("accomodation", userProfileData.data.accomodation);
     }
   }, [userProfileData, setValue]);
-
+  
   // Submit handler for the form
   const onSubmitHandler = async (data: any) => {
     setIsUpdating(true);
@@ -103,6 +105,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
       formData.append("phoneNumber", data?.mobileNumber);
       formData.append("companyAddress", data?.companyAddress);
       formData.append("institutionName", data?.institutionName);
+      formData.append("accomodation", data?.accomodation);
 
       // Only append files if they are selected
       if (selectedFile) {
@@ -329,21 +332,45 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                 </div>
               )}
             </section>
-            {/* ===  State   === */}
-            <div>
-              <span className="text-sm text-gray-500 font-normal">State</span>
-              <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
-                <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
-                  <input
-                    type="text"
-                    {...register("state")}
-                    disabled
-                    placeholder="State"
-                    className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm cursor-not-allowed"
-                  />
+            <section
+              className={`${userProfileData?.data?.companyName ? "md:grid md:grid-cols-2 gap-3 space-y-6 md:space-y-0" : ""}`}
+            >
+              {/* ===  State   === */}
+              <div>
+                <span className="text-sm text-gray-500 font-normal">State</span>
+                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
+                  <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                    <input
+                      type="text"
+                      {...register("state")}
+                      disabled
+                      placeholder="State"
+                      className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm cursor-not-allowed"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+
+              {/* ===  Accomodation   === */}
+              {userProfileData?.data?.companyName && (
+                <div>
+                  <span className="text-sm text-gray-500 font-normal">
+                    Accomodation
+                  </span>
+                  <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
+                    <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                      <input
+                        type="text"
+                        {...register("accomodation")}
+                        disabled
+                        placeholder="accomodation"
+                        className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm cursor-not-allowed"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </section>
 
             {/* === Description  === */}
             <div>
