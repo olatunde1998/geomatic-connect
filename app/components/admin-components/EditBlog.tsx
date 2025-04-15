@@ -324,7 +324,7 @@ export default function EditBlog({
                               alt="Blog Banner"
                               width={100}
                               height={100}
-                              className="rounded-xl w-full h-full max-h-40"
+                              className="rounded-xl w-full h-full max-h-40 object-cover"
                             />
                           </div>
                         ) : (
