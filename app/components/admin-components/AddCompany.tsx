@@ -4,7 +4,7 @@ import ReactSelect from "@/app/components/inputs/ReactSelect";
 import { useQueryClient } from "@tanstack/react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PhoneInput from "react-phone-number-input";
-import { stateData } from "@/utils/FilterData";
+import { accomodationData, stateData } from "@/utils/FilterData";
 import "react-phone-number-input/style.css";
 import { useForm } from "react-hook-form";
 import { Upload, X } from "lucide-react";
@@ -29,6 +29,7 @@ const schema = yup.object().shape({
     .required("Email is required")
     .email("Invalid Email format"),
   state: yup.string().required("State is required"),
+  accomodation: yup.string().required("Accomodation is required"),
   professionalId: yup.string().required("Professional ID is required"),
   mobileNumber: yup
     .string()
@@ -66,12 +67,14 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
         fileType === "image/jpg" ||
         fileType === "image/png" ||
         fileType === "image/jpeg" ||
-        fileType === "image/webp" 
+        fileType === "image/webp"
       ) {
         setUserImage(URL.createObjectURL(files[0]));
         setSelectedFile(file);
       } else {
-        toast.error("Unsupported file type. Please upload a JPG, PNG, WEBP or JPEG");
+        toast.error(
+          "Unsupported file type. Please upload a JPG, PNG, WEBP or JPEG"
+        );
       }
     }
   };
@@ -86,6 +89,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
       formData.append("email", data?.email);
       formData.append("aboutMe", data?.aboutMe);
       formData.append("state", data?.state);
+      formData.append("accomodation", data?.accomodation);
       formData.append("professionalId", data?.professionalId);
       formData.append("phoneNumber", data?.mobileNumber);
       formData.append("password", "987654321");
@@ -285,6 +289,36 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
               />
             </div>
 
+            {/* ======= Accomodation ===== */}
+            <div>
+              <label
+                htmlFor="state"
+                className="text-sm text-gray-500 font-normal"
+              >
+                Accomodation Avalability
+              </label>
+              <div
+                className={`${
+                  errors.accomodation
+                    ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
+                    : ""
+                } mt-2 rounded-md cursor-pointer  w-full`}
+              >
+                <ReactSelect
+                  options={accomodationData}
+                  placeholder="Your Location"
+                  padding={"4px"}
+                  borderRadius={"5px"}
+                  border={errors.accomodation ? "" : "1px solid #6C748B"}
+                  backgroundColor={errors.accomodation ? "#FEF3F2" : "#ffffff"}
+                  onChange={(option: any) => {
+                    setValue("accomodation", option?.value || "");
+                    trigger("accomodation");
+                  }}
+                />
+              </div>
+            </div>
+
             <div className="mt-3">
               <span className="text-sm text-gray-500 font-normal">
                 About Company
@@ -319,7 +353,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
                       <input
                         type="file"
                         name="company_Image"
-                        id="companyInput" 
+                        id="companyInput"
                         accept=".png,  .jpg, .jpeg, .webp"
                         className="hidden input-field"
                         onChange={handleFileChange}
