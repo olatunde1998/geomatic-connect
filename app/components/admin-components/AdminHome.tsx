@@ -1,23 +1,23 @@
 "use client";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
 import UsersList from "@/app/components/admin-components/UsersList";
 import StatisticsCard from "@/app/components/cards/StatisticsCard";
-import { Plus } from "lucide-react";
-import { useState } from "react";
-import { Sheet } from "@/app/components/sheets/Sheet";
-import AddUser from "./AddUser";
 import { GetUsersRequest } from "@/app/services/users.request";
+import { Sheet } from "@/app/components/sheets/Sheet";
 import { useQuery } from "@tanstack/react-query";
 import Trash from "@/app/components/trash/Trash";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useDebounce } from "use-debounce";
+import AddCompany from "./AddCompany";
+import { Plus } from "lucide-react";
+import { useState } from "react";
 
 interface AdminHomeProps {
   token: any;
 }
 export default function AdminHome({ token }: AdminHomeProps) {
-  const [showAddUser, setShowAddUser] = useState(false);
+  const [showAddCompany, setShowAddCompany] = useState(false);
   const [search, setSearch] = useState("");
   const [debouncedSearch] = useDebounce(search, 500);
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,7 +41,7 @@ export default function AdminHome({ token }: AdminHomeProps) {
             </p>
           </div>
           <div
-            onClick={() => setShowAddUser(true)}
+            onClick={() => setShowAddCompany(true)}
             className="my-4 flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-full md:w-[200px] lg:w-[200px] cursor-pointer  px-3.5 py-4 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
           >
             <p className="text-[#FFFFFF] text-sm md:text-md">Create user</p>
@@ -96,9 +96,9 @@ export default function AdminHome({ token }: AdminHomeProps) {
       </main>
 
       {/*============ SHEETS ============ */}
-      {/* === Add User === */}
-      <Sheet show={showAddUser} onClose={() => setShowAddUser(false)}>
-        <AddUser setShowAddUser={setShowAddUser} />
+      {/* === Add Company === */}
+      <Sheet show={showAddCompany} onClose={() => setShowAddCompany(false)}>
+        <AddCompany setShowAddCompany={setShowAddCompany} />
       </Sheet>
 
       <ToastContainer />
