@@ -127,6 +127,13 @@ export default function StudentDetails({
                   </p>
                 </div>
 
+                <div className="mt-8 font-sans text-md flex gap-4 items-center">
+                  <p className="text-lg font-bold">Accomodation: </p>
+                  <p className="leading-8 font-light">
+                    {userData?.data?.accomodation === true ? "Yes" : "No"}
+                  </p>
+                </div>
+
                 <div className="mt-8 font-sans text-md">
                   <p className="text-lg font-bold">Achievement: </p>
                   <p className="leading-8 font-light">
