@@ -38,7 +38,7 @@ export default function BlogHome() {
             <BlogSmallCard
               headings={item.title}
               content={item.subTitle}
-              imageUrl={GetStarted}
+              imageUrl={item.banner}
               createdAt={formatDate(item.createdAt)}
               readTime={item.readTime}
             />
