@@ -46,9 +46,17 @@ export const institutionData = [
   { id: 2, label: "Federal University of Tech, Minna", value: "FUTMINNA" },
   { id: 3, label: "Federal University of Tech, Akure", value: "FUTA" },
   { id: 4, label: "Ahmadu Bello University, Zaria", value: "ABU-Zaria" },
-  { id: 5, label: "Lead City University, Ibadan", value: "Lead City University" },
+  {
+    id: 5,
+    label: "Lead City University, Ibadan",
+    value: "Lead City University",
+  },
   { id: 6, label: "Nigeria Army University, Biu", value: "NAUB" },
-  { id: 7, label: "The Bells University of Tech, Ota", value: "The bells University" },
+  {
+    id: 7,
+    label: "The Bells University of Tech, Ota",
+    value: "The bells University",
+  },
   { id: 8, label: "Ajayi Crowther University", value: "ACU" },
 ];
 
@@ -66,4 +74,11 @@ export const purposeOfRequestData = [
   { id: 2, label: "Industrial Training (IT)", value: "IT Training" },
   { id: 3, label: "SIWES Training", value: "SIWES Training" },
   { id: 4, label: "Internship Training", value: "Internship Training" },
+];
+
+// Accomodation data
+export const accomodationData = [
+  { id: 0, label: "Select Accomodation", value: "" },
+  { id: 1, label: "Yes", value: true },
+  { id: 2, label: "No", value: false },
 ];
