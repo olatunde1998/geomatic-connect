@@ -1,7 +1,7 @@
 "use client";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Image from "next/image";
 import UserAvatar from "@/public/images/profile-pic.png";
 import { GetUserByIdRequest } from "@/app/services/request.request";
@@ -493,6 +493,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
           </span>
         </button>
       </div>
+      <ToastContainer />
     </>
   );
 }
