@@ -1,10 +1,10 @@
 "use client";
+import { accomodationData, stateData } from "@/utils/FilterData";
 import { RegisterRequest } from "@/app/services/auth.request";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
 import { useQueryClient } from "@tanstack/react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PhoneInput from "react-phone-number-input";
-import { accomodationData, stateData } from "@/utils/FilterData";
 import "react-phone-number-input/style.css";
 import { useForm } from "react-hook-form";
 import { Upload, X } from "lucide-react";
@@ -29,7 +29,10 @@ const schema = yup.object().shape({
     .required("Email is required")
     .email("Invalid Email format"),
   state: yup.string().required("State is required"),
-  accomodation: yup.string().required("Accomodation is required"),
+  accomodation: yup
+    .mixed<true | false>()
+    .oneOf([true, false], "Accomodation is required")
+    .required("Accomodation is required"),
   professionalId: yup.string().required("Professional ID is required"),
   mobileNumber: yup
     .string()
@@ -58,17 +61,13 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
   // Uploading avatar(profile image) logic
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
+    const isValidFileType = (type: string) =>
+      ["image/jpg", "image/png", "image/jpeg", "image/webp"].includes(type);
+
     if (files && files[0]) {
       const file = files[0];
-      console.log(files[0].type, "this is the file type");
 
-      const fileType = files[0].type;
-      if (
-        fileType === "image/jpg" ||
-        fileType === "image/png" ||
-        fileType === "image/jpeg" ||
-        fileType === "image/webp"
-      ) {
+      if (isValidFileType(file.type)) {
         setUserImage(URL.createObjectURL(files[0]));
         setSelectedFile(file);
       } else {
@@ -101,12 +100,10 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
       }
 
       const response = await RegisterRequest(formData);
-      console.log(response?.message, "this is message");
       toast.success(response?.message);
       await queryClient.invalidateQueries({ queryKey: ["getUsersApi"] });
       setShowAddCompany(false);
     } catch (error: any) {
-      console.log(error.response.message, "this is the error here===");
       toast.error(error.response?.data?.message || "An error occurred");
     } finally {
       setIsSaving(false);
@@ -292,7 +289,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
             {/* ======= Accomodation ===== */}
             <div>
               <label
-                htmlFor="state"
+                htmlFor="accomodation"
                 className="text-sm text-gray-500 font-normal"
               >
                 Accomodation Avalability
@@ -306,13 +303,13 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
               >
                 <ReactSelect
                   options={accomodationData}
-                  placeholder="Your Location"
+                  placeholder="Your Accomodation"
                   padding={"4px"}
                   borderRadius={"5px"}
                   border={errors.accomodation ? "" : "1px solid #6C748B"}
                   backgroundColor={errors.accomodation ? "#FEF3F2" : "#ffffff"}
                   onChange={(option: any) => {
-                    setValue("accomodation", option?.value || "");
+                    setValue("accomodation", option?.value);
                     trigger("accomodation");
                   }}
                 />
