@@ -5,60 +5,90 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 import UserAvatar from "@/public/images/profile-pic.png";
 import { GetUserByIdRequest } from "@/app/services/request.request";
-import { ChevronRight, LoaderCircle } from "lucide-react";
+import { ChevronRight, LoaderCircle, Upload } from "lucide-react";
 import { useRouter } from "next/navigation";
 import {
   DeleteUserRequest,
   UpdateUserProfileRequest,
 } from "@/app/services/users.request";
-import { ToastContainer } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import ReactSelect from "../inputs/ReactSelect";
+import { accomodationData } from "@/utils/FilterData";
 
 interface UsersDetailsProps {
   token?: any;
   userId?: any;
 }
 
-const schema = yup.object().shape({
-  fullName: yup
-    .string()
-    .required("Full Name is required")
-    .min(3, "Full Name must be greater than 3 letters"),
-  companyName: yup
-    .string()
-    .required("Company Name is required")
-    .min(3, "Company Name must be greater than 3 letters"),
-  email: yup
-    .string()
-    .required("Email is required")
-    .email("Invalid Email format"),
-  aboutMe: yup
-    .string()
-    .required("About is required")
-    .min(3, "About must be greater than 3 words"),
-  mobileNumber: yup
-    .number()
-    .required("Mobile is required")
-    .min(3, " must be greater than 8 letters"),
-  companyAddress: yup
-    .string()
-    .required("Address is required")
-    .min(3, "Address must be greater than 3 words"),
-  institutionName: yup
-    .string()
-    .required("Institution is required")
-    .min(3, "Institution must be greater than 3 characters"),
-  state: yup.string(),
-  accomodation: yup.string(),
-});
+const getValidationSchema = (userData: any) => {
+  const shouldValidateFullName = userData?.fullName;
+  const shouldValidateInstitution = userData?.institutionName;
+  const shouldValidateAccomodation = userData?.accomodation;
+  const shouldValidateCompanyAddress = userData?.companyAddress;
+  const shouldValidateCompanyName = userData?.companyName;
+
+  return yup.object().shape({
+    ...(shouldValidateFullName && {
+      fullName: yup
+        .string()
+        .required("Full Name is required")
+        .min(3, "Full Name must be greater than 3 letters"),
+    }),
+
+    ...(shouldValidateInstitution && {
+      institutionName: yup
+        .string()
+        .required("Institution is required")
+        .min(3, "Institution must be greater than 3 characters"),
+    }),
+
+    ...(shouldValidateAccomodation && {
+      accomodation: yup
+        .boolean()
+        .typeError("Accomodation is required")
+        .required("Accomodation is required"),
+    }),
+
+    ...(shouldValidateCompanyAddress && {
+      companyAddress: yup
+        .string()
+        .required("Address is required")
+        .min(10, "Address must be at least 10 characters long"),
+    }),
+
+    ...(shouldValidateCompanyName && {
+      companyName: yup
+        .string()
+        .required("Company Name is required")
+        .min(3, "Company Name must be greater than 3 letters"),
+    }),
+
+    email: yup
+      .string()
+      .required("Email is required")
+      .email("Invalid Email format"),
+
+    aboutMe: yup
+      .string()
+      .required("About is required")
+      .min(10, "About must be at least 10 characters long"),
+
+    mobileNumber: yup
+      .string()
+      .required("Mobile is required")
+      .matches(/^\d{8,}$/, "Mobile number must be at least 8 digits"),
+
+    state: yup.string(),
+  });
+};
 
 export default function UsersDetails({ token, userId }: UsersDetailsProps) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [selectedDocument, setSelectedDocument] = useState<File | null>(null);
+  const [userImage, setUserImage] = useState<string | undefined>(undefined);
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -73,50 +103,73 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm({ resolver: yupResolver(schema) });
-
+    reset,
+    watch,
+    trigger,
+  } = useForm({
+    resolver: yupResolver(getValidationSchema(userProfileData?.data)),
+  });
+  const accomodationValue = watch("accomodation");
+  console.log(userProfileData?.data, "this is data hereo=====");
   // Default values when userProfileData is available
   useEffect(() => {
     if (userProfileData) {
-      setValue("fullName", userProfileData.data.fullName);
-      setValue("companyName", userProfileData.data.companyName);
-      setValue("aboutMe", userProfileData.data.aboutMe);
-      setValue("email", userProfileData.data.email);
-      setValue("mobileNumber", userProfileData.data.phoneNumber);
-      setValue("companyAddress", userProfileData.data.companyAddress);
-      setValue("institutionName", userProfileData.data.institutionName);
-      setValue("state", userProfileData.data.state);
-      setValue("accomodation", userProfileData.data.accomodation);
+      reset({
+        fullName: userProfileData.data.fullName,
+        companyName: userProfileData.data.companyName,
+        aboutMe: userProfileData.data.aboutMe,
+        email: userProfileData.data.email,
+        mobileNumber: userProfileData.data.phoneNumber,
+        companyAddress: userProfileData.data.companyAddress,
+        institutionName: userProfileData.data.institutionName,
+        accomodation: userProfileData.data.accomodation,
+        state: userProfileData.data.state,
+      });
     }
-  }, [userProfileData, setValue]);
-  
+  }, [userProfileData, reset]);
+
+  // Uploading avatar(profile image) logic
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    const isValidFileType = (type: string) =>
+      ["image/jpg", "image/png", "image/jpeg", "image/webp"].includes(type);
+
+    if (files && files[0]) {
+      const file = files[0];
+      if (isValidFileType(file.type)) {
+        setUserImage(URL.createObjectURL(files[0]));
+        setSelectedFile(file);
+      } else {
+        toast.error(
+          "Unsupported file type. Please upload a JPG, PNG, WEBP or JPEG"
+        );
+      }
+    }
+  };
+
   // Submit handler for the form
   const onSubmitHandler = async (data: any) => {
     setIsUpdating(true);
-    console.log(selectedFile, "this is the file selected===");
-    console.log(selectedDocument, "this is the document selected===");
 
     try {
       const formData = new FormData();
-      formData.append("fullName", data?.fullName);
-      formData.append("companyName", data?.companyName);
-      formData.append("aboutMe", data.aboutMe);
-      formData.append("email", data?.email);
-      formData.append("phoneNumber", data?.mobileNumber);
-      formData.append("companyAddress", data?.companyAddress);
-      formData.append("institutionName", data?.institutionName);
-      formData.append("accomodation", data?.accomodation);
+      const appendIfExists = (formData: FormData, key: string, value: any) => {
+        if (value !== undefined && value !== null) {
+          formData.append(key, value.toString());
+        }
+      };
 
-      // Only append files if they are selected
-      if (selectedFile) {
-        formData.append("avatarImage", selectedFile);
-      }
-      if (selectedDocument) {
-        formData.append("documentFile", selectedDocument);
-      }
+      appendIfExists(formData, "aboutMe", data.aboutMe);
+      appendIfExists(formData, "email", data.email);
+      appendIfExists(formData, "phoneNumber", data.mobileNumber);
+      appendIfExists(formData, "fullName", data.fullName);
+      appendIfExists(formData, "institutionName", data.institutionName);
+      appendIfExists(formData, "companyAddress", data.companyAddress);
+      appendIfExists(formData, "companyName", data.companyName);
+      appendIfExists(formData, "accomodation", data.accomodation);
+      if (selectedFile) formData.append("avatarImage", selectedFile);
 
       const response = await UpdateUserProfileRequest(userId, token, formData);
-      console.log(response, "this is response here====");
       toast.success(response?.message);
       queryClient.invalidateQueries({ queryKey: ["getAllUserDetailsApi"] });
       queryClient.invalidateQueries({ queryKey: ["getUsersApi"] });
@@ -149,7 +202,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <div className="bg-[#FFFFFF] w-full pt-20 md:pb-20 max-w-3xl">
+        <div className="bg-[#FFFFFF] w-full pt-20 md:pb-10 max-w-3xl">
           <div>
             <div className="flex items-center justify-between border-b border-slate-300 pb-6">
               <div className="flex items-center">
@@ -173,28 +226,45 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                 {userProfileData?.data?.fullName ||
                   userProfileData?.data?.companyName}
               </p>
-              <div className="items-center flex flex-col justify-center md:flex-row md:flex md:items-center md:justify-start mt-6 max-w-[400px]">
-                {userProfileData?.data?.avatarImage ? (
-                  <div className="relative rounded-full mr-10 w-[80px] h-[80px] md:w-[100px] md:h-[100px] flex items-center justify-center">
-                    <Image
-                      src={userProfileData?.data?.avatarImage}
-                      fill
-                      alt="user avatar"
-                      className="rounded-full"
-                    />
-                  </div>
-                ) : (
-                  <div className="mb-4  mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[100px] md:mb-0 md:mr-6">
-                    <Image
-                      src={UserAvatar}
-                      width={100}
-                      height={100}
-                      className="w-full h-full"
-                      alt="avatar picture"
-                    />
-                  </div>
-                )}
-              </div>
+              <label
+                htmlFor="avatarInput"
+                className="w-fit p-3 flex  justify-between tracking-wide cursor-pointer"
+              >
+                <input
+                  type="file"
+                  name="user_Image"
+                  id="avatarInput"
+                  accept=".png,  .jpg, .jpeg, .webp"
+                  className="hidden input-field"
+                  onChange={handleFileChange}
+                />
+                <div className="items-center flex flex-col justify-center md:flex-row md:flex md:items-center md:justify-start mt-6 max-w-[400px]">
+                  {userImage || userProfileData?.data?.avatarImage ? (
+                    <div className="relative cursor-pointer">
+                      <div className="rounded-full mr-10 w-[80px] h-[80px] md:w-[100px] md:h-[100px]">
+                        <Image
+                          src={userImage || userProfileData?.data?.avatarImage}
+                          fill
+                          alt="user avatar"
+                          className="rounded-full"
+                        />
+                      </div>
+                      <Upload className="relative left-28 bottom-4 bg-white rounded-full w-[32px] h-[32px] p-2" />
+                    </div>
+                  ) : (
+                    <div className="mb-4  mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[100px] md:mb-0 md:mr-6">
+                      <Image
+                        src={UserAvatar}
+                        width={100}
+                        height={100}
+                        className="w-full h-full"
+                        alt="avatar picture"
+                      />
+                      <Upload className="relative left-20 bottom-10 bg-white rounded-full w-[32px] h-[32px] p-2" />
+                    </div>
+                  )}
+                </div>
+              </label>
             </div>
             <div className="flex flex-col justify-between items-end">
               <div className="flex flex-col gap-6 items-end justify-end md:flex-row md:items-center">
@@ -218,7 +288,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                 >
                   {isUpdating ? (
                     <span className="flex space-x-4 gap-3">
-                      <LoaderCircle /> Updating
+                      <LoaderCircle className="animate-spin" /> Updating...
                     </span>
                   ) : (
                     "Update"
@@ -226,7 +296,8 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                 </button>
               </div>
               <p className="text-xs mt-2.5 md:text-base">
-                Subscription Plan: {userProfileData?.data?.subscription}
+                <span className="font-bold text-lg"> Plan:</span>{" "}
+                {userProfileData?.data?.subscription}
               </p>
             </div>
           </div>
@@ -238,7 +309,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                 <span className="text-sm text-gray-500 font-normal">Name</span>
                 <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
                   <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
-                    {userProfileData?.data?.fullName ? (
+                    {userProfileData?.data?.fullName && (
                       <input
                         type="text"
                         placeholder="Full name"
@@ -247,7 +318,8 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                           errors.fullName && "border-[1.3px] border-red-500"
                         } w-full border border-slate rounded-sm p-3 focus:outline-none text-sm`}
                       />
-                    ) : (
+                    )}{" "}
+                    {userProfileData?.data?.companyName && (
                       <input
                         type="text"
                         placeholder="Company name"
@@ -351,20 +423,41 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                 </div>
               </div>
 
-              {/* ===  Accomodation   === */}
+              {/* ======= Accomodation ===== */}
               {userProfileData?.data?.companyName && (
                 <div>
-                  <span className="text-sm text-gray-500 font-normal">
-                    Accomodation
-                  </span>
+                  <label
+                    htmlFor="accomodation"
+                    className="text-sm text-gray-500 font-normal"
+                  >
+                    Accomodation Avalability
+                  </label>
                   <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
-                    <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
-                      <input
-                        type="text"
-                        {...register("accomodation")}
-                        disabled
-                        placeholder="accomodation"
-                        className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm cursor-not-allowed"
+                    <div
+                      className={`${
+                        errors.accomodation
+                          ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
+                          : ""
+                      } mt-2 rounded-md cursor-pointer  w-full`}
+                    >
+                      <ReactSelect
+                        options={accomodationData}
+                        placeholder="Your Accomodation"
+                        padding={"4px"}
+                        borderRadius={"5px"}
+                        border={
+                          errors.accomodation ? "" : "border border-slate"
+                        }
+                        backgroundColor={
+                          errors.accomodation ? "#FEF3F2" : "#ffffff"
+                        }
+                        value={accomodationData.find(
+                          (option) => option.value === accomodationValue
+                        )}
+                        onChange={(option: any) => {
+                          setValue("accomodation", option?.value);
+                          trigger("accomodation");
+                        }}
                       />
                     </div>
                   </div>
@@ -386,22 +479,20 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
               </div>
             </div>
           </section>
-
-          {/* === Submit Button === */}
-          <div className="flex items-center gap-6">
-            <button
-              onClick={() => deleteUserHandler()}
-              disabled={isDeleting}
-              className="w-[150px] mt-10 px-1.5 py-1.5 md:px-3 md:py-3 font-light text-white shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316] rounded-sm"
-            >
-              <span className="text-sm md:text-base">
-                {isDeleting ? "Deleting...." : "Delete User"}
-              </span>
-            </button>
-          </div>
         </div>
       </form>
-      <ToastContainer />
+      {/* === Submit Button === */}
+      <div className="flex items-center gap-6">
+        <button
+          onClick={() => deleteUserHandler()}
+          disabled={isDeleting}
+          className="w-[150px] mt-8 px-1.5 py-1.5 md:px-3 md:py-3 md:mt-0 font-light text-white shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316] rounded-sm"
+        >
+          <span className="text-sm md:text-base">
+            {isDeleting ? "Deleting...." : "Delete User"}
+          </span>
+        </button>
+      </div>
     </>
   );
 }
