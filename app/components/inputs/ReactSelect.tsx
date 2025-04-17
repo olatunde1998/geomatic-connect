@@ -32,16 +32,16 @@ const customStyles = (
   }),
 });
 
-export default function ReactSelect({ options, placeholder, onChange, padding="10px", backgroundColor = "#ffffff", borderRadius="none", border="1px solid #cbd5e1 " }: any) {
+export default function ReactSelect({ options, placeholder, onChange, value, padding="10px", backgroundColor = "#ffffff", borderRadius="none", border="1px solid #cbd5e1 " }: any) {
   return (
     <Select
       options={options}
       styles={customStyles(padding, backgroundColor, borderRadius, border)}
       onChange={(option) => {
-        onChange(option); 
+        onChange(option);
       }}
       placeholder={placeholder}
-      
+      value={value}
     />
   );
 }
