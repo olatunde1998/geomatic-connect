@@ -68,20 +68,18 @@ export default function Settings({ token, userId }: SettingsProps) {
   // Uploading avatar(profile image) logic
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
+    const isValidFileType = (type: string) =>
+      ["image/jpg", "image/png", "image/jpeg", "image/webp"].includes(type);
+
     if (files && files[0]) {
       const file = files[0];
-      console.log(files[0].type, "this is the file type");
-
-      const fileType = files[0].type;
-      if (
-        fileType === "image/jpg" ||
-        fileType === "image/png" ||
-        fileType === "image/jpeg"
-      ) {
+      if (isValidFileType(file.type)) {
         setUserImage(URL.createObjectURL(files[0]));
         setSelectedFile(file);
       } else {
-        toast.error("Unsupported file type. Please upload a JPG, PNG, or JPEG");
+        toast.error(
+          "Unsupported file type. Please upload a JPG, PNG, WEBP or JPEG"
+        );
       }
     }
   };
@@ -89,8 +87,6 @@ export default function Settings({ token, userId }: SettingsProps) {
   // Submit handler for the form
   const onSubmitHandler = async (data: any) => {
     setIsUpdating(true);
-    console.log(selectedFile, "this is the file selected===");
-    console.log(selectedDocument, "this is the document selected===");
 
     try {
       const formData = new FormData();
@@ -111,7 +107,6 @@ export default function Settings({ token, userId }: SettingsProps) {
       queryClient.invalidateQueries({ queryKey: ["getUserProfileApi"] });
       queryClient.invalidateQueries({ queryKey: ["getUsersApi"] });
     } catch (error: any) {
-      console.log(error?.response?.data?.message);
       toast.error(error?.response?.message);
     } finally {
       setIsUpdating(false);
@@ -193,7 +188,7 @@ export default function Settings({ token, userId }: SettingsProps) {
                       type="file"
                       name="user_Image"
                       id="avatarInput"
-                      accept=".png,  .jpg, .jpeg"
+                      accept=".png,  .jpg, .jpeg, .webp"
                       className="hidden input-field"
                       onChange={handleFileChange}
                     />
@@ -201,7 +196,7 @@ export default function Settings({ token, userId }: SettingsProps) {
                     {userImage || userProfileData?.data?.avatarImage ? (
                       <div className="border-2 border-slate-800 rounded-full relative mx-auto w-[45px]">
                         <Image
-                          src={userProfileData?.data?.avatarImage || userImage}
+                          src={userImage || userProfileData?.data?.avatarImage}
                           alt="user avatar"
                           width={100}
                           height={100}
@@ -229,7 +224,7 @@ export default function Settings({ token, userId }: SettingsProps) {
             >
               {isUpdating ? (
                 <span className="flex space-x-4 gap-3">
-                  <LoaderCircle /> Updating
+                  <LoaderCircle className="animate-spin" /> Updating...
                 </span>
               ) : (
                 "Save Now"
