@@ -99,7 +99,7 @@ export default function Hero() {
             transition={{ type: "spring", duration: 3 }}
             className="px-[20px] py-[10px] text-center max-w-[1500px] mx-auto lg:py-[10px]"
           >
-            <h2 className="text-xl text-left leading-8 font-bold mb-[40px] md:text-[32px] lg:text-4xl lg:text-center lg:max-w-[700px] xl:max-w-[850px] font-sans mx-auto md:leading-10 lg:leading-[52px]">
+            <h2 className="text-xl text-left leading-8 font-bold mb-[40px] md:text-[32px] lg:text-4xl md:text-center lg:max-w-[700px] xl:max-w-[850px] font-sans mx-auto md:leading-10 lg:leading-[52px]">
               Our students are getting hired by top companies. We can help you
               too.
             </h2>
