@@ -3,8 +3,8 @@ import { BlogCard, BlogSmallCard } from "@/app/components/cards/BlogCard";
 import { GetBlogsRequest } from "@/app/services/blog.request";
 import GetStarted from "@/public/images/get-started.webp";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import { formatDate } from "@/utils/utils";
+import { useState } from "react";
 import Link from "next/link";
 
 export default function BlogHome() {
@@ -45,20 +45,6 @@ export default function BlogHome() {
           </Link>
         ))}
       </div>
-
-      {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8 py-8 px-6 rounded-2xl bg-white">
-        {blogData.map((item, index) => (
-          <div key={index}>
-            <BlogSmallCard
-              headings={item.headings}
-              content={item.content}
-              imageUrl={item.imageUrl}
-              createdAt={item.createdAt}
-              readTime={item.readTime}
-            />
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 }
