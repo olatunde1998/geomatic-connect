@@ -20,7 +20,7 @@ export default function WhoWeAre() {
             Who we are?
           </h2>
           <div className="w-24 h-1 bg-[#FFC957]" />
-          <div className="text-[#747578] max-w-[400px] mt-6 mb-10 md:my-10 leading-8 text-base ">
+          <div className="text-[#747578] max-w-[400px] mt-6 mb-14 md:my-10 leading-8 text-base">
             <p
              
               className="text-base leading-8 md:text-base md:leading-8"
@@ -68,7 +68,7 @@ export default function WhoWeAre() {
         </motion.div>
 
         {/* ==== Steps Section ==== */}
-        <div className="grid grid-cols-2 gap-4 xl:gap-6">
+        <div className="grid grid-cols-2 gap-6 md:gap-4 xl:gap-6">
           {whoWeAreData.map((item, index) => (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
