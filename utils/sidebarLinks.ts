@@ -193,13 +193,13 @@ export const bottomLinks = [
   },
   {
     name: "FAQs",
-    href: "#",
+    href: "/",
     icon: FaQ,
     key: "faq",
   },
   {
     name: "Support",
-    href: "#",
+    href: "/",
     icon: MdSupportAgent,
     key: "support",
   },
