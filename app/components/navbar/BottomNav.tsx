@@ -1,6 +1,6 @@
 "use client";
-import { bottomLinks } from "@/utils/sidebarLinks";
 import { usePathname, useRouter } from "next/navigation";
+import { bottomLinks } from "@/utils/sidebarLinks";
 import React from "react";
 
 export default function BottomNav() {
