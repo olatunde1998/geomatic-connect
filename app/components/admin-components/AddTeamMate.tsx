@@ -57,20 +57,18 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
   // Uploading avatar(profile image) logic
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
+    const isValidFileType = (type: string) =>
+      ["image/jpg", "image/png", "image/jpeg", "image/webp"].includes(type);
     if (files && files[0]) {
       const file = files[0];
-      console.log(files[0].type, "this is the file type");
 
-      const fileType = files[0].type;
-      if (
-        fileType === "image/jpg" ||
-        fileType === "image/png" ||
-        fileType === "image/jpeg"
-      ) {
+      if (isValidFileType(file.type)) {
         setUserImage(URL.createObjectURL(files[0]));
         setSelectedFile(file);
       } else {
-        toast.error("Unsupported file type. Please upload a JPG, PNG, or JPEG");
+        toast.error(
+          "Unsupported file type. Please upload a JPG, PNG, WEBP or JPEG"
+        );
       }
     }
   };
@@ -87,8 +85,8 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
       formData.append("state", data?.state);
       formData.append("professionalId", data?.professionalId);
       formData.append("phoneNumber", data?.mobileNumber);
-      formData.append("password", "987654321");
       formData.append("role", "Admin");
+      // formData.append("password", "987654321");
 
       // Only append files if they are selected
       if (selectedFile) {
@@ -96,7 +94,6 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
       }
 
       const response = await RegisterRequest(formData);
-      console.log(response?.message, "this is message");
       toast.success(response?.message);
       await queryClient.invalidateQueries({ queryKey: ["getUsersApi"] });
       setShowAddTeamMate(false);
@@ -319,7 +316,7 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
                         type="file"
                         name="user_Image"
                         id="teamMateAvatarInput"
-                        accept=".png,  .jpg, .jpeg"
+                        accept=".png,  .jpg, .jpeg, .webp"
                         className="hidden input-field"
                         onChange={handleFileChange}
                       />
