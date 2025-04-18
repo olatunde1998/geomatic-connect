@@ -8,13 +8,14 @@ import Logout from "@/app/components/auth-components/Logout";
 import { GetUserProfileRequest } from "@/app/services/users.request";
 import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
-import { Bell, LogOut, Settings } from "lucide-react";
+import { Bell, LogOut, PencilLine, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import { useRouter } from "next/navigation";
 import { studentMobileRoutes } from "@/utils/sidebarLinks";
 import SubscribeModal from "@/app/components/student-components/SubscribeModal";
 import { GetUserNotifications } from "@/app/services/notifications.request";
+import { MdOutlinePriceChange } from "react-icons/md";
 // import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 export default function StudentNavBar({ session }: { session: any }) {
@@ -55,23 +56,6 @@ export default function StudentNavBar({ session }: { session: any }) {
     };
   }, []);
 
-  // Trigger subscription modal
-  // useEffect(() => {
-  //   const MAX_COUNT = 3;
-  //   const INTERVAL = 60000;
-  //   let count = 0;
-
-  //   const showModal = () => {
-  //     if (count < MAX_COUNT) {
-  //       setShowSubscribe(true);
-  //       count += 1;
-  //       setTimeout(showModal, INTERVAL);
-  //     }
-  //   };
-  //   const timeoutId = setTimeout(showModal, INTERVAL);
-  //   return () => clearTimeout(timeoutId);
-  // }, []);
-
   return (
     <>
       <nav className="bg-white dark:bg-background fixed px-6 z-[1000] lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent ">
@@ -99,25 +83,25 @@ export default function StudentNavBar({ session }: { session: any }) {
             </div>
             <div className="hidden lg:flex items-center gap-x-2 text-sm md:text-base cursor-pointer font-light w-fit">
               <Link
-                href={`/student-dashboard/billing`}
-                className="text-[#33A852]"
+                href={`/student-dashboard/blog`}
+                className="text-[#33A852] flex items-center gap-2"
               >
-                Pricing
+                <PencilLine className="size-4" />
+                Blog
+              </Link>
+              <Link
+                href={`/student-dashboard/billing`}
+                className="text-[#33A852] mx-6 flex items-center gap-2"
+              >
+                <MdOutlinePriceChange className="size-5" />
+                Billing
               </Link>
               <Link
                 href={`/student-dashboard/notifications`}
-                className="text-[#33A852] ml-4"
+                className="text-[#33A852]"
               >
                 Notifications
               </Link>
-              <p
-                onClick={() => {
-                  setShowSubscribe(true);
-                }}
-                className="text-[#33A852] underline ml-3"
-              >
-                See more Profiles
-              </p>
 
               <div className="flex items-center space-x-3 ml-4">
                 {/* <ModeToggle /> */}
