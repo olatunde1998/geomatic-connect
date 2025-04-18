@@ -28,8 +28,7 @@ export default function BottomNavBar() {
       {updatedLinks.map((item, index) => {
         const Icon = item.icon;
         const linkHref =
-          item.key === "blog" &&
-          (basePath === "company-dashboard" || basePath === "student-dashboard")
+          item.key === "blog" && basePath === "company-dashboard"
             ? item.href
             : basePath
               ? `/${basePath}${item.href}`
