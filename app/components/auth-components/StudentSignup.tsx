@@ -159,7 +159,7 @@ export default function StudentSignup() {
                   errors.mobileNumber
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                     : "bg-[#FFFFFF]"
-                } phone-input input-phone-number bg-[#FFFFFF] border border-[#FFFFFF]`}
+                } phone-input input-phone-number bg-[#FFFFFF] border border-[#FFFFFF] text-[#000000]`}
               />
             </div>
 
@@ -190,7 +190,7 @@ export default function StudentSignup() {
                     errors.password
                       ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                       : ""
-                  } dark:bg-[#FFFFFF] pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+                  } dark:bg-[#FFFFFF] pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full text-[#000000]`}
                 />
               </div>
               <span
