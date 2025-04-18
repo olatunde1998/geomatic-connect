@@ -32,7 +32,7 @@ export default function Home() {
           {/* === WHO WE ARE SECTION === */}
           <div
             id="whoWeAre-id"
-            className="w-full text-sm  max-w-[1200px] mx-auto px-6 pb-16 md:px-10 md:pt-16 lg:py-20"
+            className="w-full text-sm  max-w-[1200px] mx-auto px-6 pb-24 md:px-10 md:pt-16 lg:py-20"
           >
             <WhoWeAre />
           </div>
