@@ -1,14 +1,22 @@
 import credentials from "next-auth/providers/credentials";
-import NextAuth from "next-auth";
-// import Google from "next-auth/providers/google";
+import Google from "next-auth/providers/google";
 // import GithubProvider from "next-auth/providers/github";
+import NextAuth from "next-auth";
+import axios from "axios";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
-    // Google({
-    //   clientId: process.env.GOOGLE_CLIENT_ID as string,
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    // }),
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
+    }),
     // GithubProvider({
     //   clientId: process.env.GITHUB_CLIENT_ID as string,
     //   clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
@@ -51,27 +59,62 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
 
   callbacks: {
-    async redirect({ url, baseUrl }) {
-      if (url.startsWith("/")) return `${baseUrl}${url}`;
-      if (new URL(url).origin === baseUrl) return url;
-      return baseUrl;
-    },
+    async jwt({ token, user, account, profile }) {
+      // Initial sign in
+      if (account && user) {
+        if (account.provider === "google") {
+          try {
+            const response = await axios.post(
+              `${process.env.NEXT_PUBLIC_BASEURL}/auth/google-login`,
+              {
+                email: profile?.email || user.email,
+                name: profile?.name || user.name,
+                picture: profile?.picture || user.image,
+                googleId: profile?.sub,
+              }
+            );
 
-    jwt({ token, user }) {
-      if (user) {
-        token._id = user._id as string;
-        token.role = user.role as string;
-        token.email = user.email as string;
-        token.role = user.role as string;
-        token.token = user.token as string;
+            const savedUser = response.data?.data;
+
+            return {
+              ...token,
+              _id: savedUser._id,
+              role: savedUser.role,
+              email: savedUser.email,
+              token: response.data.token,
+            };
+          } catch (error) {
+            console.error("Error saving Google user to DB:", error);
+            return token;
+          }
+        }
+
+        // Handle credentials provider
+        if (account.provider === "credentials") {
+          return {
+            ...token,
+            _id: user._id,
+            role: user.role,
+            email: user.email,
+            token: user.token,
+          };
+        }
       }
       return token;
     },
     async session({ session, token }) {
-      session.user.token = token.token as string;
-      session.user._id = token._id as string;
-      session.user.role = token.role as string;
+      if (session.user) {
+        session.user._id = token._id as string;
+        session.user.role = token.role as string;
+        session.user.token = token.token as string;
+      }
       return session;
+    },
+
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      else if (new URL(url).origin === baseUrl) return url;
+      return `${baseUrl}/dashboard-redirect`;
     },
   },
 
