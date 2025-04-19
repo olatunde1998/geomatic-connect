@@ -91,7 +91,7 @@ export default function LoginHome() {
                 src={GoogleImage}
                 width={100}
                 height={100}
-                alt="doctor pics"
+                alt="google brand logo"
                 className="w-[24px] h-[24px]"
               />
             </div>
@@ -100,13 +100,21 @@ export default function LoginHome() {
           </div>
 
           {/* ======= Github Authentication container ====== */}
-          <div className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium">
+          <div
+            onClick={() =>
+              signIn("github", {
+                callbackUrl: "/dashboard-redirect",
+                redirect: true,
+              })
+            }
+            className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
+          >
             <div>
               <Image
                 src={GithubImage}
                 width={100}
                 height={100}
-                alt="doctor pics"
+                alt="github brand logo"
                 className="w-[24px] h-[24px]"
               />
             </div>
