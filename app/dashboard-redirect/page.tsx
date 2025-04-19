@@ -44,7 +44,9 @@ export default function DashboardRedirect() {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <p>Verifying your session and redirecting...</p>
+      <p className="animate-pulse text-lg font-medium">
+        Verifying your session and redirecting...
+      </p>
     </div>
   );
 }
