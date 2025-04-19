@@ -1,6 +1,6 @@
 import credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
-// import GithubProvider from "next-auth/providers/github";
+import GithubProvider from "next-auth/providers/github";
 import NextAuth from "next-auth";
 import axios from "axios";
 
@@ -17,10 +17,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         },
       },
     }),
-    // GithubProvider({
-    //   clientId: process.env.GITHUB_CLIENT_ID as string,
-    //   clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
-    // }),
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    }),
     credentials({
       name: "Credentials",
       async authorize(credentials) {
