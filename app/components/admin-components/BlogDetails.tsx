@@ -2,10 +2,10 @@
 import { ArrowLeft, Facebook, Linkedin, Share2 } from "lucide-react";
 import { DeleteBlogRequest, GetBlogRequest } from "@/app/services/blog.request";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { formatDateShort, getShortTitle } from "@/utils/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { RiTwitterXFill } from "react-icons/ri";
-import { formatDateShort, getShortTitle } from "@/utils/utils";
 import { IoIosLink } from "react-icons/io";
 import { toast } from "react-toastify";
 import parse from "html-react-parser";
