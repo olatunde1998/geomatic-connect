@@ -246,6 +246,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                           src={userImage || userProfileData?.data?.avatarImage}
                           fill
                           alt="user avatar"
+                          sizes="(max-width: 768px) 100vw, 700px"
                           className="rounded-full"
                         />
                       </div>
