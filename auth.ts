@@ -1,6 +1,6 @@
 import credentials from "next-auth/providers/credentials";
-import Google from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
 import NextAuth from "next-auth";
 import axios from "axios";
 
@@ -20,6 +20,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID as string,
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+      authorization: {
+        params: {
+          scope: "read:user user:email",
+        },
+      },
+      async profile(profile) {
+        return {
+          id: profile.id.toString(),
+          name: profile.name || profile.login,
+          email:
+            profile.email ||
+            `${profile.id}+${profile.login}@users.noreply.github.com`,
+          image: profile.avatar_url,
+          _id: "",
+          role: "User",
+          token: "",
+        };
+      },
     }),
     credentials({
       name: "Credentials",
@@ -85,6 +103,38 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             };
           } catch (error) {
             console.error("Error saving Google user to DB:", error);
+            return token;
+          }
+        }
+
+        // Handle GitHub provider
+        if (account.provider === "github") {
+          try {
+            // Make sure we have an email (GitHub might not return it immediately)
+            const email =
+              user.email ||
+              `${profile?.id}+${profile?.login}@users.noreply.github.com`;
+            const response = await axios.post(
+              `${process.env.NEXT_PUBLIC_BASEURL}/auth/github-login`,
+              {
+                // email: profile?.email || user.email,
+                email,
+                name: profile?.name || profile?.login || user.name,
+                picture: profile?.avatar_url || user.image,
+                githubId: profile?.id,
+              }
+            );
+            if (response.data?.data) {
+              return {
+                ...token,
+                _id: response.data.data._id,
+                role: response.data.data.role,
+                email: response.data.data.email,
+                token: response.data.token,
+              };
+            }
+          } catch (error) {
+            console.error("Error saving GitHub user to DB:", error);
             return token;
           }
         }
