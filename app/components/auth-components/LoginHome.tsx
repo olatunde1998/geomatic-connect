@@ -30,46 +30,6 @@ export default function LoginHome() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  // const signUpWithGoogle = async () => {
-  //   try {
-  //     // Redirect to the Google OAuth endpoint
-  //     window.location.href = `${process.env.NEXT_PUBLIC_BASEURL}/auth/google`;
-  //     console.log(window.location.href, "this is here ====");
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error("Google Login Failed");
-  //   }
-  // };
-
-  // const signUpWithGoogle = async () => {
-  //   try {
-  //     const result = await signIn("google", {
-  //       redirect: false,
-  //       callbackUrl: "/"
-  //     });
-
-  //     if (result?.error) {
-  //       toast.error("Google Login Failed");
-  //       return;
-  //     }
-
-  //     const session = await getSession();
-
-  //     console.log(session, "this is session here===")
-
-  //     if (session?.user?.role === "Admin") {
-  //       router.push("/admin-dashboard");
-  //     } else if (session?.user?.role === "User") {
-  //       router.push("/student-dashboard");
-  //     } else if (session?.user?.role === "Company") {
-  //       router.push("/company-dashboard");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error("Google Login Failed");
-  //   }
-  // };
-
   // REACT HOOK FORM LOGIC
   const {
     register,
@@ -80,12 +40,11 @@ export default function LoginHome() {
   // Handle Login Form Submission LOGIC
   const onSubmitHandler = async (params: any) => {
     setIsLoading(true);
-
     const response = await signIn("credentials", {
       email: params.email,
       password: params.password,
       redirect: false,
-      callbackUrl: "/",
+      callbackUrl: "/dashboard-redirect",
     });
 
     // Error Handling
@@ -94,26 +53,23 @@ export default function LoginHome() {
       setIsLoading(false);
       return;
     }
-
-    // No Errors
-    console.log(response, "login response ==");
-
     setIsLoading(false);
     toast.success("Login Successfully");
 
     const session = await getSession();
-    // return;
-    return setTimeout(() => {
-      if (session?.user?.role === "Admin") {
-        return router.push("/admin-dashboard");
-      }
-      if (session?.user?.role === "User") {
-        return router.push("/student-dashboard/");
-      }
-      if (session?.user?.role === "Company") {
-        return router.push("/company-dashboard");
-      }
-    }, 1000);
+
+    if (session?.user?.token) {
+      router.push(response?.url || "/dashboard-redirect");
+    } else {
+      setTimeout(async () => {
+        const refreshedSession = await getSession();
+        if (refreshedSession?.user?.token) {
+          router.push("/dashboard-redirect");
+        } else {
+          toast.error("Session not available");
+        }
+      }, 1000);
+    }
   };
 
   return (
@@ -125,6 +81,9 @@ export default function LoginHome() {
 
           {/* ======= Google Authentication container ====== */}
           <div
+            onClick={() =>
+              signIn("google", { callbackUrl: "/dashboard-redirect" })
+            }
             className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
           >
             <div>
@@ -141,9 +100,7 @@ export default function LoginHome() {
           </div>
 
           {/* ======= Github Authentication container ====== */}
-          <div
-            className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
-          >
+          <div className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium">
             <div>
               <Image
                 src={GithubImage}
