@@ -1,5 +1,4 @@
 import { X } from "lucide-react";
-// import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -7,8 +6,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import SuccessMessage from "./SuccessMessage";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
-import { purposeOfRequestData, trackPeriodData } from "@/utils/FilterData";
+import {
+  institutionData,
+  purposeOfRequestData,
+  trackPeriodData,
+} from "@/utils/FilterData";
 import { StudentSendRequestToAdmin } from "@/app/services/request.request";
+import { useRouter } from "next/navigation";
 
 interface SendRequestProps {
   setShowSendRequest?: any;
@@ -52,6 +56,7 @@ export default function SendRequest({
   const [isSaving, setIsSaving] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
   const [responseData, setResponseData] = useState<any[]>([]);
+  const router = useRouter();
 
   // REACT HOOK FORM LOGIC
   const {
@@ -64,6 +69,17 @@ export default function SendRequest({
 
   // Send Request submission Logic
   const onSubmitHandler = async (data: any) => {
+    if (!userData?.data?.institutionName) {
+      toast.error(
+        "Hold on! You need to complete your profile before you can make a request."
+      );
+      setTimeout(async () => {
+        if (!userData?.data?.institutionName) {
+          router.push("/student-dashboard/settings");
+        }
+      }, 5000);
+      return;
+    }
     setIsSaving(true);
     const body = {
       studentId: userData?.data?._id,
@@ -129,7 +145,7 @@ export default function SendRequest({
                   />
                 </div>
               </div>
-              {/* === Institution Input === */}
+              {/* === Institution Dropdown Input === */}
               <div>
                 <label
                   htmlFor="institutionName"
@@ -141,17 +157,20 @@ export default function SendRequest({
                   className={`${
                     errors.institutionName
                       ? "border-[1.3px] border-red-500"
-                      : "border-[1.3px] border-slate-300"
-                  } flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100`}
+                      : ""
+                  } flex flex-col w-full`}
                 >
-                  <input
-                    className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black cursor-not-allowed"
-                    type="text"
-                    readOnly={true}
+                  <ReactSelect
+                    options={institutionData}
                     placeholder="Institution name"
-                    {...register("institutionName")}
-                    maxLength={40}
-                    value={userData?.data?.institutionName}
+                    value={institutionData.find(
+                      (option) =>
+                        option.value === userData?.data?.institutionName
+                    )}
+                    onChange={(option: any) => {
+                      setValue("institutionName", option?.value || "");
+                      trigger("institutionName"); // Trigger validation
+                    }}
                   />
                 </div>
               </div>
