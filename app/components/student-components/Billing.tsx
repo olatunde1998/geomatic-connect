@@ -196,7 +196,17 @@ export default function Billing({ token, userId }: BillingProps) {
                       Most Popular
                     </p>
                     <p className="font-bold text-base text-[#575D72]">
-                      {planMethod}
+                      {planMethod === "Starter Monthly"
+                        ? "Starter"
+                        : planMethod === "Professional Monthly"
+                          ? "Professional"
+                          : planMethod === "Enterprise Monthly"
+                            ? "Enterprise"
+                            : planMethod === "Starter Yearly"
+                              ? "Starter"
+                              : planMethod === "Professional Yearly"
+                                ? "Professional"
+                                : "Enterprise"}
                     </p>
                     <div className="flex gap-2 items-baseline my-8 text-[#575D72]">
                       <p className="font-bold text-lg md:text-2xl">₦{amount}</p>
