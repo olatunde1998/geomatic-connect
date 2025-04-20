@@ -1,19 +1,21 @@
 "use client";
+import SubscribeModal from "@/app/components/student-components/SubscribeModal";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import ReactSelect from "@/app/components/inputs/ReactSelect";
+import { institutionData, stateData } from "@/utils/FilterData";
 import {
   GetUserProfileRequest,
   UpdateUserProfileRequest,
 } from "@/app/services/users.request";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LoaderCircle, Upload } from "lucide-react";
 import { Modal } from "@/app/components/modals/Modal";
-import SubscribeModal from "@/app/components/student-components/SubscribeModal";
 
 interface SettingsProps {
   token?: String;
@@ -37,6 +39,11 @@ const schema = yup.object().shape({
     .number()
     .required("Mobile is required")
     .min(3, " must be greater than 8 letters"),
+  institutionName: yup
+    .string()
+    .required("Institution is required")
+    .min(3, " must be greater than 10 letters"),
+  state: yup.string().required("State is required"),
 });
 
 export default function Settings({ token, userId }: SettingsProps) {
@@ -62,7 +69,11 @@ export default function Settings({ token, userId }: SettingsProps) {
     handleSubmit,
     formState: { errors },
     setValue,
+    watch,
+    trigger,
   } = useForm({ resolver: yupResolver(schema) });
+  const institutionNameValue = watch("institutionName");
+  const stateValue = watch("state");
 
   // Default values when userProfileData is available
   useEffect(() => {
@@ -71,6 +82,8 @@ export default function Settings({ token, userId }: SettingsProps) {
       setValue("aboutMe", userProfileData.data.aboutMe);
       setValue("email", userProfileData.data.email);
       setValue("mobileNumber", userProfileData.data.phoneNumber);
+      setValue("institutionName", userProfileData.data.institutionName);
+      setValue("state", userProfileData.data.state);
     }
   }, [userProfileData, setValue]);
 
@@ -127,6 +140,8 @@ export default function Settings({ token, userId }: SettingsProps) {
       formData.append("aboutMe", data.aboutMe);
       formData.append("email", data?.email);
       formData.append("phoneNumber", data?.mobileNumber);
+      formData.append("state", data?.state);
+      formData.append("institutionName", data?.institutionName);
 
       // Only append files if they are selected
       if (selectedFile) {
@@ -193,6 +208,29 @@ export default function Settings({ token, userId }: SettingsProps) {
                 />
               </label>
             </div>
+            {/* === Institution Dropdown Input === */}
+            <div className="mt-3">
+              <label htmlFor="institutionName" className="text-sm font-medium">
+                Institution
+              </label>
+              <div
+                className={`${
+                  errors.institutionName ? "border-[1.3px] border-red-500" : ""
+                } flex flex-col w-full`}
+              >
+                <ReactSelect
+                  options={institutionData}
+                  placeholder="Institution name"
+                  value={institutionData.find(
+                    (option) => option.value === institutionNameValue
+                  )}
+                  onChange={(option: any) => {
+                    setValue("institutionName", option?.value || "");
+                    trigger("institutionName"); // Trigger validation
+                  }}
+                />
+              </div>
+            </div>
             {/* ====About Me === */}
             <div className="mt-3">
               <span className="text-sm font-medium">About Me</span>
@@ -212,6 +250,29 @@ export default function Settings({ token, userId }: SettingsProps) {
             </div>
           </div>
           <div>
+            {/* === State Dropdown Input === */}
+            <section>
+              <label htmlFor="state" className="text-sm font-medium">
+                Your Location
+              </label>
+              <div
+                className={`${
+                  errors.state ? "border-[1.3px] border-red-500" : ""
+                } flex flex-col w-full`}
+              >
+                <ReactSelect
+                  options={stateData}
+                  placeholder="Your Location"
+                  value={stateData.find(
+                    (option) => option.value === stateValue
+                  )}
+                  onChange={(option: any) => {
+                    setValue("state", option?.value || "");
+                    trigger("state"); // Trigger validation
+                  }}
+                />
+              </div>
+            </section>
             {/* =====Profile Picture ===== */}
             <section>
               <div className="border-[0.5px] border-slate-300 dark:border-muted px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white dark:bg-background max-w-[540px] mt-6">
@@ -331,6 +392,7 @@ export default function Settings({ token, userId }: SettingsProps) {
       <Modal show={showSubscribe} onClose={() => setShowSubscribe(false)}>
         <SubscribeModal setShowSubscribe={setShowSubscribe} />
       </Modal>
+      <ToastContainer />
     </>
   );
 }
