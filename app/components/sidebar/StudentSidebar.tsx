@@ -13,7 +13,6 @@ export function StudentSidebar({ session }: { session: any }) {
   const userId = session?.user?._id;
   const token = session?.user?.token;
   const [showSignOutProfile, setShowSignOutProfile] = useState(false);
-  const [showLogOut, setShowLogOut] = useState(false);
   const pathname = usePathname();
   const addSignOutProfileRef = useRef(null);
   console.log(pathname);
