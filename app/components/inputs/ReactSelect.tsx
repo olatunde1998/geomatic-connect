@@ -15,7 +15,7 @@ const customStyles = (
     padding,
     borderRadius,
     border,
-    fontSize: "15px",
+    fontSize: "14px",
     borderColor: state.isFocused ? "transparent" : provided.borderColor,
     boxShadow: state.isFocused ? "0 0 0 1px #16a34a" : "none",
   }),
@@ -29,6 +29,10 @@ const customStyles = (
       : "white",
     fontSize: "14px",
     lineHeight: "20px",
+  }),
+  placeholder: (provided: any) => ({
+    ...provided,
+    color: "#94A3B8",
   }),
 });
 
