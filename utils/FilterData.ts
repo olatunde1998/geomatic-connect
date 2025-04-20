@@ -60,7 +60,7 @@ export const institutionData = [
   {
     id: 4,
     label: "Ahmadu Bello University, Zaria",
-    value: "Federal University of Tech, Akure",
+    value: "Ahmadu Bello University, Zaria",
   },
   {
     id: 5,
@@ -79,8 +79,8 @@ export const institutionData = [
   },
   {
     id: 8,
-    label: "Ajayi Crowther University",
-    value: "Ajayi Crowther University",
+    label: "Ajayi Crowther University, Oyo",
+    value: "Ajayi Crowther University, Oyo",
   },
 ];
 
