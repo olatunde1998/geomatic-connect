@@ -1,4 +1,12 @@
-import { CreditCard, Home, BellRing, Settings, PencilLine } from "lucide-react";
+import {
+  CreditCard,
+  Home,
+  BellRing,
+  PencilLine,
+  LayoutGrid,
+  ChartNoAxesCombined,
+  User,
+} from "lucide-react";
 import { FaQ } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { MdOutlinePayment, MdSupportAgent } from "react-icons/md";
@@ -40,6 +48,11 @@ export const companyNavItems = [
 ];
 
 export const studentNavItems = [
+  {
+    name: "Overview",
+    href: "/student-dashboard/overview",
+    icon: LayoutGrid,
+  },
   {
     name: "Home",
     href: "/student-dashboard",
@@ -164,16 +177,16 @@ export const bottomRouteLinks = [
   //   icon: MdOutlinePayment,
   // },
   {
+    name: "Overview",
+    href: "/overview",
+    key: "overview",
+    icon: ChartNoAxesCombined,
+  },
+  {
     name: "Settings",
     href: "/settings",
     key: "settings",
-    icon: Settings,
-  },
-  {
-    name: "Support",
-    href: "/support",
-    key: "support",
-    icon: MdSupportAgent,
+    icon: User,
   },
 ];
 
