@@ -160,9 +160,7 @@ export default function UsersList({
         </span>
       ),
       header: () => (
-        <span className="text-[#101828] dark:text-accent-foreground">
-          FullName/Company
-        </span>
+        <span className="text-[#101828] dark:text-accent-foreground">Name</span>
       ),
     }),
     columnHelper.accessor("createdAt", {
@@ -189,8 +187,8 @@ export default function UsersList({
             info?.row?.original?.role === "Admin"
               ? "bg-[#D1FADF] text-[#079455] w-fit px-3"
               : info?.row?.original?.role === "User"
-              ? "bg-[#F9EDC4] text-[#D0AA25] w-fit px-3"
-              : "bg-[#EDEDF1] text-[#6C748B] w-fit px-3"
+                ? "bg-[#F9EDC4] text-[#D0AA25] w-fit px-3"
+                : "bg-[#EDEDF1] text-[#6C748B] w-fit px-3"
           } text-center p-1 rounded-2xl flex items-center space-x-2 justify-center
           `}
           onClick={() => handleRowClick(info?.row?.original?._id)}
@@ -200,8 +198,8 @@ export default function UsersList({
               info?.row?.original?.role === "Admin"
                 ? "text-[#079455]"
                 : info?.row?.original?.role === "User"
-                ? "text-[#D0AA25]"
-                : "text-[#6C748B]"
+                  ? "text-[#D0AA25]"
+                  : "text-[#6C748B]"
             }`}
           >
             <Check size={10} />
