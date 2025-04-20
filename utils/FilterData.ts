@@ -3,7 +3,7 @@ export const stateData = [
   { id: 0, label: "All State", value: "" },
   { id: 1, label: "Abia", value: "Abia State" },
   { id: 2, label: "Adamawa", value: "Adamawa State" },
-  { id: 3, label: "Akwa Ibom", value: "Akwa-ibom State" },
+  { id: 3, label: "Akwa Ibom", value: "Akwa-Ibom State" },
   { id: 4, label: "Anambra", value: "Anambra State" },
   { id: 5, label: "Bauchi", value: "Bauchi State" },
   { id: 6, label: "Bayelsa", value: "Bayelsa State" },
