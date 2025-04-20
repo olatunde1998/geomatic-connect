@@ -13,7 +13,7 @@ export default function BottomNavBar() {
 
   // modified list based on whether the user is in company-dashboard
   const updatedLinks = linksToUse.map((item) => {
-    if (basePath === "company-dashboard" && item.key === "billing") {
+    if (basePath === "company-dashboard" && item.key === "overview") {
       return {
         ...item,
         name: "Subscribe",
