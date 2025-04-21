@@ -1,14 +1,16 @@
 "use client";
 import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
+import LineTrendChart from "@/app/components/charts/LineTrendChart";
 import StatisticsCard from "@/app/components/cards/StatisticsCard";
 import { GetUsersRequest } from "@/app/services/users.request";
+import { Calendar, Gift, Mail, Zap } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Trash from "@/app/components/trash/Trash";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { chartData } from "@/utils/chartData";
 import { useDebounce } from "use-debounce";
 import { useState } from "react";
-import { Calendar, Gift, Mail, Zap } from "lucide-react";
 import Link from "next/link";
 
 interface OverviewHomeProps {
@@ -60,11 +62,11 @@ export default function OverviewHome({ token }: OverviewHomeProps) {
                   value={userData?.meta?.totalCompanies}
                 />
                 <StatisticsCard
-                  title={"Interview Rate"}
+                  title={"Approved Applications"}
                   value={userData?.meta?.totalStudents}
                 />
                 <StatisticsCard
-                  title={"Offer Rate"}
+                  title={"Declined Applications"}
                   value={userData?.meta?.totalAdmins}
                 />
               </div>
@@ -87,9 +89,10 @@ export default function OverviewHome({ token }: OverviewHomeProps) {
               <span className="cursor-pointer">30 Days</span>
             </div>
           </div>
+          <LineTrendChart data={chartData} />
         </section>
 
-        <section className="py-10">
+        <section className="pt-6 pb-10">
           <div>
             <p className="font-bold text-lg">Recent Activity</p>
             <div className="grid grid-cols-1 gap-6 mt-6">
@@ -137,7 +140,7 @@ export default function OverviewHome({ token }: OverviewHomeProps) {
           </div>
         </section>
 
-        <section className="py-10">
+        <section className="pt-6 pb-10">
           <div>
             <p className="font-bold text-lg">Account Details</p>
             <div className="mt-6">
