@@ -76,7 +76,7 @@ export default function OverviewHome({ token }: OverviewHomeProps) {
         <section>
           <div className="space-y-4 md:space-y-0 md:flex items-center justify-between">
             <div>
-              <p className="font-bold text-lg">Daily application activity</p>
+              <p className="font-bold text-lg">MoM application activity</p>
               <p className="text-sm text-gray-500 font-normal">
                 Average: 0.0 applications per day
               </p>
