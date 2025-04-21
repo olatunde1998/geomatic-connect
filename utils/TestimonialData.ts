@@ -1,7 +1,8 @@
 import MustophaPic from "@/public/images/mustopha-img.jpeg";
-import DamilarePic from "@/public/images/damilare-img.jpg";
+// import DamilarePic from "@/public/images/damilare-img.jpg";
 import RasheedPic from "@/public/images/student-pic.jpeg";
 import AdaezePic from "@/public/images/adaeze-img.jpeg";
+import RodahPic from "@/public/images/rodah-img.png";
 import TrustPilot from "@/public/images/trustpilot.png";
 import Facebook from "@/public/images/facebook.png" ;
 import Google from "@/public/images/google-2.png";
@@ -34,7 +35,7 @@ export const testimonialData = [
   },
   {
     id: 4,
-    imageUrl: DamilarePic,
+    imageUrl: RodahPic,
     location: "Ede, Osun State",
     fullName: "Damilare Tijani",
     testimonial:
