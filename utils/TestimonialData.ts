@@ -2,7 +2,7 @@ import MustophaPic from "@/public/images/mustopha-img.jpeg";
 // import DamilarePic from "@/public/images/damilare-img.jpg";
 import RasheedPic from "@/public/images/student-pic.jpeg";
 import AdaezePic from "@/public/images/adaeze-img.jpeg";
-import RodahPic from "@/public/images/rodah-img.png";
+import RhodaPic from "@/public/images/rhoda-img.png";
 import TrustPilot from "@/public/images/trustpilot.png";
 import Facebook from "@/public/images/facebook.png" ;
 import Google from "@/public/images/google-2.png";
@@ -35,9 +35,9 @@ export const testimonialData = [
   },
   {
     id: 4,
-    imageUrl: RodahPic,
-    location: "Ede, Osun State",
-    fullName: "Damilare Tijani",
+    imageUrl: RhodaPic,
+    location: "Ikeja, Lagos State",
+    fullName: "Rhoda Ajekiigbe",
     testimonial:
       "Geomatic Connect made my internship search so much easier. The platform's user-friendly interface and extensive resources helped me find the perfect opportunity that matched my skills.",
   },
