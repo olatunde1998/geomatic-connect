@@ -13,7 +13,7 @@ export default async function UsersDetailsPage({ params }: { params: any }) {
   const token = session?.user?.token;
   const userId = params?._id;
 
-  if (!session?.user) {
+  if (!session?.user || !token) {
     redirect("/login");
   }
 

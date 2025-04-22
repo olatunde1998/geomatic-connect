@@ -7,7 +7,7 @@ export default async function BlogDetailsPage({ params }: { params: any }) {
   const blogSlug = params?.slug;
   const token = session?.user?.token;
 
-  if (!blogSlug) {
+  if (!blogSlug || !token) {
     redirect("/login");
   }
   return (
