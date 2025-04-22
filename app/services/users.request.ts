@@ -2,7 +2,7 @@ import axios from "axios";
 
 // GET(READ) ALL USERS REQUEST
 export const GetUsersRequest = async (
-  token: any,
+  token: string,
   pageNumber = 1,
   limit: number,
   search: string
@@ -23,7 +23,7 @@ export const GetUsersRequest = async (
 };
 
 // GET USER PROFILE REQUEST
-export const GetUserProfileRequest = async (userID: any, token: any) => {
+export const GetUserProfileRequest = async (userID: string, token: string) => {
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_BASEURL}/api/users/profile/${userID}`,
     {
@@ -41,8 +41,8 @@ export const GetUserProfileRequest = async (userID: any, token: any) => {
 // UPDATE USER PROFILE
 
 export const UpdateUserProfileRequest = async (
-  userId: any,
-  token: any,
+  userId: string,
+  token: string,
   body: any
 ) => {
   try {
@@ -68,7 +68,7 @@ export const UpdateUserProfileRequest = async (
 };
 
 // DELETE USER REQUEST
-export const DeleteUserRequest = async (userId: any, token: any) => {
+export const DeleteUserRequest = async (userId: string, token: string) => {
   try {
     const response = await axios.delete(
       `${process.env.NEXT_PUBLIC_BASEURL}/api/users/${userId}`,
