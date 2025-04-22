@@ -46,7 +46,7 @@ export const VerifyPaymentRequest = async (
 export const GetAllSubscriptions = async (
   pageNumber = 1,
   limit: number,
-  token: any,
+  token: string,
   search: string
 ) => {
   const response = await axios.get(

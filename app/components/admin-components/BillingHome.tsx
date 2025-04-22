@@ -9,7 +9,7 @@ import Trash from "@/app/components/trash/Trash";
 import { useDebounce } from "use-debounce";
 
 interface BillingHomeProps {
-  token: any;
+  token: string;
 }
 
 export default function BillingHome({ token }: BillingHomeProps) {
