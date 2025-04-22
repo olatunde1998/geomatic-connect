@@ -2,7 +2,7 @@ import axios from "axios";
 
 // GET(READ) USER NOTIFICATIONS
 export const GetUserNotifications = async (
-  token: any,
+  token: string,
   pageParam = 1,
   limit: number
 ) => {
@@ -31,7 +31,7 @@ export const GetUserNotifications = async (
 // UPDATE USER NOTIFICATIONS
 export const UpdateUserNotificationRequest = async (
   notificationId: any,
-  token: any,
+  token: string,
   body: any
 ) => {
   try {
@@ -56,7 +56,10 @@ export const UpdateUserNotificationRequest = async (
 };
 
 // DELETE USER NOTIFICATION  REQUEST
-export const DeleteNotificationRequest = async (notificationId: any, token: any) => {
+export const DeleteNotificationRequest = async (
+  notificationId: any,
+  token: string
+) => {
   try {
     const response = await axios.delete(
       `${process.env.NEXT_PUBLIC_BASEURL}/api/notifications/${notificationId}`,

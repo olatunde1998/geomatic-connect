@@ -18,8 +18,8 @@ import { LoaderCircle, Upload } from "lucide-react";
 import { Modal } from "@/app/components/modals/Modal";
 
 interface SettingsProps {
-  token?: String;
-  userId?: String;
+  token: string;
+  userId: string;
 }
 
 const schema = yup.object().shape({
