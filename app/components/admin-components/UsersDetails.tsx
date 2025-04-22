@@ -18,8 +18,8 @@ import ReactSelect from "../inputs/ReactSelect";
 import { accomodationData } from "@/utils/FilterData";
 
 interface UsersDetailsProps {
-  token?: any;
-  userId?: any;
+  token: string;
+  userId: string;
 }
 
 const getValidationSchema = (userData: any) => {

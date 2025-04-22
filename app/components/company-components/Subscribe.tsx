@@ -11,8 +11,8 @@ import {
 import { GetUserByIdRequest } from "@/app/services/request.request";
 
 interface SubscribeProps {
-  token?: String;
-  userId?: String;
+  token: string;
+  userId: string;
   setSelectedBillingCycleTab?: any;
   selectedBillingCycleTab?: any;
 }

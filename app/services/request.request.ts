@@ -2,7 +2,7 @@ import axios from "axios";
 
 // GET(READ) REQUEST
 export const GetAllNotifications = async (
-  token: any,
+  token: string,
   pageParam = 1,
   limit: number
 ) => {
@@ -57,7 +57,7 @@ export const GetCompaniesRequest = async (
 };
 
 // GET(READ) ALL STUDENTS REQUEST
-export const GetStudentsRequest = async (token: any) => {
+export const GetStudentsRequest = async (token: string) => {
   try {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASEURL}/api/users/students`,
@@ -81,7 +81,7 @@ export const GetStudentsRequest = async (token: any) => {
 };
 
 // GET USER BY ID REQUEST
-export const GetUserByIdRequest = async (userId: any, token: any) => {
+export const GetUserByIdRequest = async (userId: string, token: string) => {
   try {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASEURL}/api/users/${userId}`,

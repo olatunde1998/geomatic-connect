@@ -13,7 +13,7 @@ export default async function SubscribePage() {
   const session = await auth();
   const token = session?.user?.token;
   const userId = session?.user?._id;
-  if (!session?.user) {
+  if (!session?.user || !token || !userId) {
     redirect("/login");
   }
   return (

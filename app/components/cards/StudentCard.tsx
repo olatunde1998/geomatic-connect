@@ -16,8 +16,8 @@ import UserAvatar from "@/public/images/profile-pic.png";
 import Trash from "@/app/components/trash/Trash";
 
 interface StudentCardProps {
-  token: any;
-  companyId: any;
+  token: string;
+  companyId: string;
   selectedState: string;
   search: string;
 }

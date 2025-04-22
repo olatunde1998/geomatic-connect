@@ -11,7 +11,7 @@ import UserAvatar from "@/public/images/profile-pic.png";
 import Trash from "@/app/components/trash/Trash";
 
 interface CompanyCardProps {
-  token: any;
+  token: string;
   setSelectedCompanyId?: any;
   selectedCompanyId?: any;
   showSendRequest?: any;
