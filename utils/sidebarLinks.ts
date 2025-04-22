@@ -1,6 +1,5 @@
 import {
   CreditCard,
-  Home,
   BellRing,
   PencilLine,
   LayoutGrid,
@@ -15,7 +14,7 @@ export const adminNavItems = [
   {
     name: "Home",
     href: "/admin-dashboard",
-    icon: Home,
+    icon: LayoutGrid,
   },
   {
     name: "Requests",
@@ -33,7 +32,7 @@ export const companyNavItems = [
   {
     name: "Home",
     href: "/company-dashboard",
-    icon: Home,
+    icon: LayoutGrid,
   },
   {
     name: "Notifications",
@@ -49,14 +48,14 @@ export const companyNavItems = [
 
 export const studentNavItems = [
   {
-    name: "Overview",
-    href: "/student-dashboard/overview",
+    name: "Home",
+    href: "/student-dashboard",
     icon: LayoutGrid,
   },
   {
-    name: "Home",
-    href: "/student-dashboard",
-    icon: Home,
+    name: "Overview",
+    href: "/student-dashboard/overview",
+    icon: ChartNoAxesCombined,
   },
   {
     name: "Notifications",
