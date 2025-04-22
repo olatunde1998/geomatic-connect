@@ -65,7 +65,7 @@ export const GetBlogRequest = async (blogSlug: any) => {
 };
 
 // UPDATE BLOG
-export const UpdateBlogRequest = async (blogId: any, token: any, body: any) => {
+export const UpdateBlogRequest = async (blogId: string, token: string, body: any) => {
   try {
     const response = await axios.put(
       `${process.env.NEXT_PUBLIC_BASEURL}/api/blogs/${blogId}`,
@@ -88,7 +88,7 @@ export const UpdateBlogRequest = async (blogId: any, token: any, body: any) => {
 };
 
 // DELETE  BLOG  REQUEST
-export const DeleteBlogRequest = async (blogId: any, token: any) => {
+export const DeleteBlogRequest = async (blogId: string, token: string) => {
   try {
     const response = await axios.delete(
       `${process.env.NEXT_PUBLIC_BASEURL}/api/blogs/${blogId}`,
