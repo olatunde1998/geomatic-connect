@@ -16,7 +16,7 @@ import MessageDetails from "@/app/components/student-components/MessageDetails";
 import DeleteNotification from "@/app/components/student-components/DeleteNotification";
 
 interface NotificationProps {
-  token?: String;
+  token: string;
   setSelectedBillingCycleTab?: any;
   selectedBillingCycleTab?: any;
 }
