@@ -30,7 +30,7 @@ export default function MessageDetails({
                 </h3>
                 <button
                   onClick={() => setShowMessage(false)}
-                  className="rounded-md gap-6 hover:bg-slate-100 p-2"
+                  className="rounded-md gap-6 hover:bg-slate-100 p-2 cursor-pointer"
                 >
                   <X className="size-5" />
                 </button>
