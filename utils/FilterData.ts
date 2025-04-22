@@ -44,43 +44,68 @@ export const stateData = [
 export const institutionData = [
   {
     id: 1,
-    label: "Federal School of Surveying, Oyo",
-    value: "Federal School of Surveying, Oyo",
+    label: "Abubakar Tafawa Balewa University, Bauchi",
+    value: "Abubakar Tafawa Balewa University, Bauchi",
   },
   {
     id: 2,
-    label: "Federal University of Tech, Minna",
-    value: "Federal University of Tech, Minna",
-  },
-  {
-    id: 3,
-    label: "Federal University of Tech, Akure",
-    value: "Federal University of Tech, Akure",
-  },
-  {
-    id: 4,
     label: "Ahmadu Bello University, Zaria",
     value: "Ahmadu Bello University, Zaria",
   },
   {
+    id: 3,
+    label: "Federal School of Surveying, Oyo",
+    value: "Federal School of Surveying, Oyo",
+  },
+  {
+    id: 4,
+    label: "Federal University of Tech, Minna",
+    value: "Federal University of Tech, Minna",
+  },
+  {
     id: 5,
+    label: "Federal University of Tech, Akure",
+    value: "Federal University of Tech, Akure",
+  },
+  {
+    id: 6,
+    label: "Ladoke Akintola University of Technology, Ogbomoso",
+    value: "Ladoke Akintola University of Technology, Ogbomoso",
+  },
+  {
+    id: 7,
     label: "Lead City University, Ibadan",
     value: "Lead City University, Ibadan",
   },
   {
-    id: 6,
+    id: 8,
     label: "Nigeria Army University, Biu",
     value: "Nigeria Army University, Biu",
   },
   {
-    id: 7,
+    id: 9,
+    label: "Obafemi Awolowo University, Ile Ife",
+    value: "Obafemi Awolowo University, Ile Ife",
+  },
+  {
+    id: 10,
     label: "The Bells University of Tech, Ota",
     value: "The Bells University of Tech, Ota",
   },
   {
-    id: 8,
-    label: "Ajayi Crowther University, Oyo",
-    value: "Ajayi Crowther University, Oyo",
+    id: 11,
+    label: "University of Ilorin, Ilorin",
+    value: "University of Ilorin, Ilorin",
+  },
+  {
+    id: 12,
+    label: "University of Lagos, Akoka, Lagos",
+    value: "University of Lagos, Akoka, Lagos",
+  },
+  {
+    id: 13,
+    label: "University of Nigeria, Nsukka, Enugu",
+    value: "University of Nigeria, Nsukka, Enugu",
   },
 ];
 
