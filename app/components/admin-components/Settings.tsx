@@ -16,8 +16,8 @@ import { Sheet } from "@/app/components/sheets/Sheet";
 import AddTeamMate from "./AddTeamMate";
 
 interface SettingsProps {
-  token?: String;
-  userId?: String;
+  token: string;
+  userId: string;
 }
 
 const schema = yup.object().shape({

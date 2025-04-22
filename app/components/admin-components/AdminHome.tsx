@@ -14,7 +14,7 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 
 interface AdminHomeProps {
-  token: any;
+  token: string;
 }
 export default function AdminHome({ token }: AdminHomeProps) {
   const [showAddCompany, setShowAddCompany] = useState(false);

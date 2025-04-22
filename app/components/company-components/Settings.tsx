@@ -14,8 +14,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { LoaderCircle, Upload } from "lucide-react";
 
 interface SettingsProps {
-  token?: String;
-  userId?: String;
+  token: string;
+  userId: string;
 }
 
 const schema = yup.object().shape({
