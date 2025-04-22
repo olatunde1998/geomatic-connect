@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -64,8 +64,18 @@ export default function SendRequest({
     handleSubmit,
     formState: { errors },
     setValue,
+    watch,
     trigger,
   } = useForm({ resolver: yupResolver(schema) });
+
+  const institutionNameValue = watch("institutionName");
+
+  // Default values when userData is available
+  useEffect(() => {
+    if (userData) {
+      setValue("institutionName", userData?.data?.institutionName);
+    }
+  }, [userData, setValue]);
 
   // Send Request submission Logic
   const onSubmitHandler = async (data: any) => {
@@ -112,7 +122,12 @@ export default function SendRequest({
           <div>
             <div className="text-primary mb-8  flex items-center justify-between border-b border-slate-300 pb-8">
               <p className="text-xl text-[#33A852]">Make a Request</p>
-              <X color="#33A852" onClick={() => setShowSendRequest(false)} />
+              <button
+                onClick={() => setShowSendRequest(false)}
+                className="rounded-md gap-6 hover:bg-slate-100 p-2 cursor-pointer"
+              >
+                <X color="#33A852" />
+              </button>
             </div>
           </div>
 
@@ -158,19 +173,19 @@ export default function SendRequest({
                     errors.institutionName
                       ? "border-[1.3px] border-red-500"
                       : ""
-                  } flex flex-col w-full`}
+                  } ${!!userData?.data?.institutionName ? "cursor-not-allowed" : "cursor-pointer"} flex flex-col w-full`}
                 >
                   <ReactSelect
                     options={institutionData}
                     placeholder="Institution name"
                     value={institutionData.find(
-                      (option) =>
-                        option.value === userData?.data?.institutionName
+                      (option) => option.value === institutionNameValue
                     )}
                     onChange={(option: any) => {
                       setValue("institutionName", option?.value || "");
                       trigger("institutionName"); // Trigger validation
                     }}
+                    isDisabled={!!userData?.data?.institutionName}
                   />
                 </div>
               </div>
