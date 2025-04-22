@@ -1,15 +1,15 @@
 "use client";
 import { useState } from "react";
-import RequestsList from "@/app/components/admin-components/RequestsList";
-import StatisticsCard from "@/app/components/cards/StatisticsCard";
-import { GetAllNotifications } from "@/app/services/request.request";
-import { useQuery } from "@tanstack/react-query";
 import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
+import RequestsList from "@/app/components/admin-components/RequestsList";
+import { GetAllNotifications } from "@/app/services/request.request";
+import StatisticsCard from "@/app/components/cards/StatisticsCard";
+import { useQuery } from "@tanstack/react-query";
 import Trash from "@/app/components/trash/Trash";
 // import { useDebounce } from "use-debounce";
 
 interface RequestsHomeProps {
-  token: any;
+  token: string;
 }
 export default function RequestsHome({ token }: RequestsHomeProps) {
   const [currentPage, setCurrentPage] = useState(1);

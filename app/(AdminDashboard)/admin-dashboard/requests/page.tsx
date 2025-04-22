@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default async function RequestsPage() {
   const session = await auth();
   const token = session?.user?.token;
-  if (!session?.user) {
+  if (!session?.user || !token) {
     redirect("/login");
   }
   return (
