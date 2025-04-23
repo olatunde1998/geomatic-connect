@@ -37,7 +37,7 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
               <input
                 type="text"
                 onChange={(e: any) => setSearch(e.target.value)}
-                className="border border-[#cbd5e1] w-full p-4 cursor-text placeholder:text-xs focus:border-green-600 focus:ring-0 focus:outline-none"
+                className="border border-[#cbd5e1] w-full p-4 cursor-text placeholder:text-sm focus:border-green-600 focus:ring-0 focus:outline-none"
                 placeholder="Search by student name"
               />
             </div>
