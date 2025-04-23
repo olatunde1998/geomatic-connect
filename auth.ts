@@ -80,6 +80,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async jwt({ token, user, account, profile }) {
       // Initial sign in
       if (account && user) {
+        // Handle Google provider
         if (account.provider === "google") {
           try {
             const response = await axios.post(
@@ -110,20 +111,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         // Handle GitHub provider
         if (account.provider === "github") {
           try {
-            // Make sure we have an email (GitHub might not return it immediately)
             const email =
               user.email ||
               `${profile?.id}+${profile?.login}@users.noreply.github.com`;
+
             const response = await axios.post(
               `${process.env.NEXT_PUBLIC_BASEURL}/auth/github-login`,
               {
-                // email: profile?.email || user.email,
                 email,
                 name: profile?.name || profile?.login || user.name,
                 picture: profile?.avatar_url || user.image,
-                githubId: profile?.id,
+                githubId: profile?.id?.toString(),
               }
             );
+
             if (response.data?.data) {
               return {
                 ...token,
