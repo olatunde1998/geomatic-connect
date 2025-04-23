@@ -1,7 +1,7 @@
 "use client";
 import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
+import { StatisticsCard } from "@/app/components/cards/StatisticsCard";
 import UsersList from "@/app/components/admin-components/UsersList";
-import StatisticsCard from "@/app/components/cards/StatisticsCard";
 import { GetUsersRequest } from "@/app/services/users.request";
 import { Sheet } from "@/app/components/sheets/Sheet";
 import { useQuery } from "@tanstack/react-query";
