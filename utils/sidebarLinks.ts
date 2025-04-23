@@ -1,6 +1,5 @@
 import {
   CreditCard,
-  BellRing,
   PencilLine,
   LayoutGrid,
   ChartNoAxesCombined,
@@ -9,6 +8,7 @@ import {
 import { FaQ } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { MdOutlinePayment, MdSupportAgent } from "react-icons/md";
+import { RiMessage2Line } from "react-icons/ri";
 
 export const adminNavItems = [
   {
@@ -19,7 +19,7 @@ export const adminNavItems = [
   {
     name: "Requests",
     href: "/admin-dashboard/requests",
-    icon: BellRing,
+    icon: RiMessage2Line,
   },
   {
     name: "Billing",
@@ -37,7 +37,7 @@ export const companyNavItems = [
   {
     name: "Notifications",
     href: "/company-dashboard/notifications",
-    icon: BellRing,
+    icon: RiMessage2Line,
   },
   {
     name: "Subscribe",
@@ -60,7 +60,7 @@ export const studentNavItems = [
   {
     name: "Notifications",
     href: "/student-dashboard/notifications",
-    icon: BellRing,
+    icon: RiMessage2Line,
   },
   {
     name: "Billing",
