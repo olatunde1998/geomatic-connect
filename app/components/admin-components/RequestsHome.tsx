@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { StatisticsSkeleton } from "@/app/components/skeletons/StatisticsSkeleton";
 import RequestsList from "@/app/components/admin-components/RequestsList";
+import { StatisticsCard } from "@/app/components/cards/StatisticsCard";
 import { GetAllNotifications } from "@/app/services/request.request";
-import StatisticsCard from "@/app/components/cards/StatisticsCard";
 import { useQuery } from "@tanstack/react-query";
 import Trash from "@/app/components/trash/Trash";
 // import { useDebounce } from "use-debounce";
