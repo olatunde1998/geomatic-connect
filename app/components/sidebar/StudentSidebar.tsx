@@ -51,7 +51,7 @@ export function StudentSidebar({ session }: { session: any }) {
                 className={cn(
                   "group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#F9FAFB] dark:hover:bg-muted",
                   pathname === item.href
-                    ? "bg-gray-200 dark:bg-muted"
+                    ? "bg-[#ECF1F7] dark:bg-muted"
                     : "bg-transparent"
                 )}
               >
