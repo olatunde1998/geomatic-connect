@@ -5,13 +5,13 @@ import Link from "next/link";
 import { BiHide, BiShow } from "react-icons/bi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { getSession, signIn } from "next-auth/react";
 import GoogleImage from "@/public/images/google.png";
 import GithubImage from "@/public/images/github.png";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
 
 const schema = yup.object().shape({
   email: yup
@@ -44,7 +44,7 @@ export default function LoginHome() {
       email: params.email,
       password: params.password,
       redirect: false,
-      callbackUrl: "/dashboard-redirect",
+      callbackUrl: "/redirect",
     });
 
     // Error Handling
@@ -59,12 +59,12 @@ export default function LoginHome() {
     const session = await getSession();
 
     if (session?.user?.token) {
-      router.push(response?.url || "/dashboard-redirect");
+      router.push(response?.url || "/redirect");
     } else {
       setTimeout(async () => {
         const refreshedSession = await getSession();
         if (refreshedSession?.user?.token) {
-          router.push("/dashboard-redirect");
+          router.push("/redirect");
         } else {
           toast.error("Session not available");
         }
@@ -81,9 +81,7 @@ export default function LoginHome() {
 
           {/* ======= Google Authentication container ====== */}
           <div
-            onClick={() =>
-              signIn("google", { callbackUrl: "/dashboard-redirect" })
-            }
+            onClick={() => signIn("google", { callbackUrl: "/redirect" })}
             className="mt-4 py-1 rounded-lg flex items-center justify-center cursor-pointer bg-white text-black font-medium"
           >
             <div>
@@ -103,7 +101,7 @@ export default function LoginHome() {
           <div
             onClick={() =>
               signIn("github", {
-                callbackUrl: "/dashboard-redirect",
+                callbackUrl: "/redirect",
                 redirect: true,
               })
             }
