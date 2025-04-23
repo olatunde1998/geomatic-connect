@@ -42,9 +42,10 @@ export default function Redirect() {
   }, [router]);
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <p className="animate-pulse text-lg font-medium">
-        Verifying your session and redirecting...
+    <div className="flex justify-center items-cente h-screen bg-[#011727]">
+      <p className="animate-pulse text-lg font-medium text-[#ffffff] pt-14">
+        Just a moment while we get things ready for you...
+        {/* Verifying your credentials. Redirecting you shortly... */}
       </p>
     </div>
   );
