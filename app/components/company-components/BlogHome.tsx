@@ -1,7 +1,6 @@
 "use client";
 import { BlogCard, BlogSmallCard } from "@/app/components/cards/BlogCard";
 import { GetBlogsRequest } from "@/app/services/blog.request";
-import GetStarted from "@/public/images/get-started.webp";
 import { useQuery } from "@tanstack/react-query";
 import { formatDate } from "@/utils/utils";
 import { useState } from "react";
@@ -26,17 +25,17 @@ export default function BlogHome() {
         </p>
 
         <section className="w-full max-w-5xl text-sm">
-          <Link
-            href={`/company-dashboard/blog/how-to-land-a-high-paying-remote-job`}
-          >
-            <BlogCard
-              headings="How to Land a High-Paying Remote Job"
-              content="Learn the top strategies for landing a high-paying remote job that you actually love."
-              imageUrl={GetStarted}
-              createdAt="February 18, 2025"
-              readTime="7 min read"
-            />
-          </Link>
+          {blogsData?.data?.[0] && (
+            <Link href={`/company-dashboard/blog/${blogsData.data[0].slug}`}>
+              <BlogCard
+                headings={blogsData.data[0].title}
+                content={blogsData.data[0].subTitle}
+                imageUrl={blogsData.data[0].banner}
+                createdAt={formatDate(blogsData.data[0].createdAt)}
+                readTime={blogsData.data[0].readTime}
+              />
+            </Link>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8 py-8 lg:px-6 rounded-2xl bg-white">
             {blogsData?.data?.map((item: any, index: number) => (
               <Link href={`/company-dashboard/blog/${item.slug}`} key={index}>
