@@ -59,10 +59,10 @@ export default function RequestDetails({
   return (
     <div>
       {showSuccessMessage === false ? (
-        <div className="bg-[#FFFFFF] w-full  md:pt-10 md:pb-16 p-10">
+        <div className="bg-[#FFFFFF] max-w-[350px] md:max-w-none  lg:w-full p-6  md:pt-10 md:pb-16 md:p-10">
           <div>
             <div className="mb-8 flex items-center justify-between border-b border-slate-300 pb-8">
-              <p className="text-xl">Forward a Request</p>
+              <p className="text-base md:text-xl">Forward a Request</p>
 
               <button
                 onClick={() => setShowSendRequest(false)}
@@ -73,10 +73,10 @@ export default function RequestDetails({
             </div>
           </div>
 
-          <div className="my-10 rounded-md md:px-6 py-6 bg-gray-100 flex justify-between">
+          <div className="my-10 rounded-md px-2 md:px-6 py-6 bg-gray-100 flex justify-between">
             <div>
-              <p className="font-bold text-center md:text-left">
-                {notification?.studentId?.fullName} Avatar
+              <p className="font-bold text-center text-sm md:text-left">
+                {notification?.studentId?.fullName}
               </p>
               <div className="items-center flex flex-col justify-center md:flex-row md:flex md:items-center md:justify-start mt-6 max-w-[400px]">
                 {notification?.studentId?.avatarImage ? (
@@ -112,14 +112,14 @@ export default function RequestDetails({
                 }}
                 rel="noopener noreferrer"
                 target="_blank"
-                className="font-semibold text-right mt-2 inline-block text-[#33A852] underline"
+                className="font-semibold text-sm text-right mt-2 inline-block text-[#33A852] underline"
               >
                 View Document
               </a>
               <button
                 disabled={isForwarding}
                 onClick={() => handleForwardRequest()}
-                className="w-full px-2 py-1 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer rounded-sm"
+                className="w-full px-2 py-2 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer rounded-sm"
               >
                 <span className="text-sm md:text-base">
                   {isForwarding ? "Forwarding...." : "Forward Request"}
@@ -219,13 +219,13 @@ export default function RequestDetails({
                 notification?.status !== "Approved"
                   ? "cursor-not-allowed disabled:opacity-50"
                   : "cursor-pointer"
-              } w-full mt-10 px-1 py-1.5 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] rounded-sm`}
+              } w-full mt-10 px-1 py-2 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] rounded-sm`}
             >
               <span className="text-sm md:text-base">Approve Request</span>
             </button>
             <button
               onClick={() => setShowConfirmDecline(true)}
-              className="w-full mt-10 px-1.5 py-1.5 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316] rounded-sm"
+              className="w-full mt-10 px-1.5 py-2 md:px-3.5 md:py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#D92D20] to-[#F97316] rounded-sm"
             >
               <span className="text-sm md:text-base">Decline Request</span>
             </button>
