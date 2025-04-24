@@ -1,5 +1,5 @@
 import { shimmer, toBase64 } from "@/app/components/skeletons/Shimmer";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock4 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -52,9 +52,12 @@ export function BlogCard({
           />
         </motion.div>
         <div>
-          <p>
+          <p className="flex items-center gap-3">
             <span>{createdAt}</span> <span>•</span>
-            <span>{readTime}</span>
+            <span className="flex items-center gap-1">
+              <Clock4 className="size-3"/>
+              {readTime}
+            </span>
           </p>
           <p className="text-[#014751] font-semibold text-3xl my-6">
             {headings}
@@ -102,9 +105,12 @@ export function BlogSmallCard({
           />
         </motion.div>
         <div className="grid grid-cols-1  mt-3">
-          <p>
+          <p className="flex items-center gap-3">
             <span>{createdAt}</span> <span>•</span>
-            <span>{readTime}</span>
+            <span className="flex items-center gap-1">
+              <Clock4 className="size-3" />
+              {readTime}
+            </span>
           </p>
           <p className="text-[#014751] font-semibold text-xl my-3">
             {headings}
