@@ -10,7 +10,8 @@ import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Bell, LogOut, PencilLine, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import GeomaticLogo from "@/public/images/geomatic-logo.svg";
+// import GeomaticLogo from "@/public/images/geomatic-logo.svg";
+import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
 import { useRouter } from "next/navigation";
 import { studentMobileRoutes } from "@/utils/sidebarLinks";
 import SubscribeModal from "@/app/components/student-components/SubscribeModal";
@@ -59,21 +60,20 @@ export default function StudentNavBar({ session }: { session: any }) {
   return (
     <>
       <nav className="bg-white dark:bg-background fixed px-6 z-[1000] lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent ">
-        <div className="flex justify-between items-center lg:block ">
+        <div className="flex justify-between items-center lg:block">
           <div className="lg:flex justify-between items-center">
             <div className="flex items-center">
-              <span onClick={() => router.back()} className="font-bold">
-                <div className="flex items-center">
-                  <Image
-                    src={GeomaticLogo}
-                    alt="profile image"
-                    width={100}
-                    height={100}
-                    priority
-                    className="w-[80px] h-[40px] md:w-[150px] md:h-[50px] object-contain md:object-cover"
-                  />
-                </div>
-              </span>
+              <div onClick={() => router.back()} className="">
+                <Image
+                  src={GeomaticLogo}
+                  alt="Geomatic Brand Logo"
+                  width={200}
+                  height={100}
+                  priority
+                  quality={100}
+                  className="w-[80px] h-[50px] md:w-[150px] md:h-[56px] lg:w-[138px] xl:w-[150px]  object-conver md:object-cover"
+                />
+              </div>
               <div className="border-l border-slate-300 dark:border-muted pl-3 ml-3 space-y-3 hidden md:inline-block">
                 <p className="text-xs font-light">
                   Hi {userData?.data?.fullName ?? "Geomatician"}
