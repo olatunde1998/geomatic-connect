@@ -1,6 +1,7 @@
+import { shimmer, toBase64 } from "@/app/components/skeletons/Shimmer";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface BlogCardProps {
   headings: string;
@@ -45,8 +46,9 @@ export function BlogCard({
             height={500}
             priority
             placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(500, 500))}`}
             alt="Blog Image"
-            className="rounded-2xl"
+            className="rounded-2xl max-h-64 object-cover"
           />
         </motion.div>
         <div>
@@ -93,6 +95,8 @@ export function BlogSmallCard({
             width={500}
             height={500}
             priority
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(500, 500))}`}
             alt="Blog Image"
             className="rounded-2xl mb-3 max-h-40 object-cover"
           />
