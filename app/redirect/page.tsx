@@ -43,7 +43,7 @@ export default function Redirect() {
 
   return (
     <div className="flex justify-center items-cente h-screen bg-[#011727]">
-      <p className="animate-pulse text-lg font-medium text-[#ffffff] pt-14">
+      <p className="animate-pulse text-lg text-center font-medium text-[#ffffff] pt-14 px-6">
         Just a moment while we get things ready for you...
         {/* Verifying your credentials. Redirecting you shortly... */}
       </p>
