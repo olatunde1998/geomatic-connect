@@ -1,5 +1,4 @@
 import MustophaPic from "@/public/images/mustopha-img.jpeg";
-// import DamilarePic from "@/public/images/damilare-img.jpg";
 import RasheedPic from "@/public/images/student-pic.jpeg";
 import AdaezePic from "@/public/images/adaeze-img.jpeg";
 import RhodaPic from "@/public/images/rhoda-img.png";
@@ -12,7 +11,7 @@ export const testimonialData = [
   {
     id: 1,
     imageUrl: RasheedPic,
-    location: "UI Ibadan, Oyo State",
+    location: "FSSO, Oyo State",
     fullName: "Rasheed Olatunde",
     testimonial:
       "Geomatic Connect has been a game-changer for my internship search. The platform connected me with top companies, and I landed a fantastic opportunity that boosted my career.",
@@ -20,7 +19,7 @@ export const testimonialData = [
   {
     id: 2,
     imageUrl: AdaezePic,
-    location: "Victoria Island, Lagos State",
+    location: "FUTMINNA, Niger State",
     fullName: "Adaeze Ugwu",
     testimonial:
       "I can't thank Geomatic Connect enough for their support during my internship search. The platform's resources and guidance helped me secure a position that aligns perfectly with my career goals.",
@@ -28,7 +27,7 @@ export const testimonialData = [
   {
     id: 3,
     imageUrl: MustophaPic,
-    location: "Sango Ota, Ogun State",
+    location: "NAUB, Borno State",
     fullName: "Mustopha Iyiola",
     testimonial:
       "Thanks to Geomatic Connect, I secured a placement that provided me with invaluable industry experience. I highly recommend this platform to anyone looking for internship opportunities.",
@@ -36,7 +35,7 @@ export const testimonialData = [
   {
     id: 4,
     imageUrl: RhodaPic,
-    location: "Ikeja, Lagos State",
+    location: "UNILAG, Lagos State",
     fullName: "Rhoda Ajekiigbe",
     testimonial:
       "Geomatic Connect made my internship search so much easier. The platform's user-friendly interface and extensive resources helped me find the perfect opportunity that matched my skills.",
