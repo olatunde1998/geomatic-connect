@@ -82,7 +82,7 @@ export default function CompanyCard({
                         width={100}
                         height={100}
                         priority
-                        className="w-[100px] h-[100px] rounded-full object-cover"
+                        className="w-[100px] h-[100px] rounded-full object-cover border-[1.3px] border-slate-200"
                       />
                     ) : (
                       <Image
