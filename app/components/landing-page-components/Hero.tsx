@@ -34,7 +34,7 @@ export default function Hero() {
             </span>
           </h2>
 
-          <p className="text-base md:text-lg leading-8  my-6 md:max-w-[500px] lg:max-w-[700px] mx-auto text-[#373F49] dark:text-muted-foreground">
+          <p className="text-base font-semibold md:text-lg leading-8  my-9 md:max-w-[500px] lg:max-w-[600px] mx-auto text-[#56616e] dark:text-muted-foreground">
             The most efficient and supportive way for you to get connected,
             learn in-demand skills and advance your career.
           </p>
@@ -48,7 +48,7 @@ export default function Hero() {
           >
             <Link
               href="/signup"
-              className="bg-[#F51767] hover:bg-[#BB2058] text-white font-bold uppercase w-[250px] p-5 cursor-pointer mx-auto md:mx-0 rounded-full text-center flex items-center justify-center"
+              className="bg-[#014751] hover:bg-[#014751]/90 text-white font-bold uppercase w-[250px] p-5 cursor-pointer mx-auto md:mx-0 rounded-full text-center flex items-center justify-center"
             >
               Create free account
             </Link>
@@ -60,7 +60,7 @@ export default function Hero() {
           >
             <Link
               href="/blog"
-              className="uppercase w-[250px] p-4 mx-auto cursor-pointer text-[#F51767] font-bold md:mx-0 rounded-full text-center flex items-center justify-center"
+              className="uppercase w-[250px] p-4 mx-auto cursor-pointer text-[#014751] font-bold md:mx-0 rounded-full text-center flex items-center justify-center"
             >
               Or Explore career tips
             </Link>
@@ -76,14 +76,14 @@ export default function Hero() {
           viewport={{ once: false, amount: 0.2 }}
           animate={{ x: 0 }}
           transition={{ type: "spring", duration: 3 }}
-          className="relative w-[80%] mx-auto mt-10 h-[250px] md:w-[90%] md:h-[450px] lg:w-[80%] lg:h-[610.44px] xl:h-[710px] shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]"
+          className="relative  w-[80%] mx-auto mt-16 h-[250px] md:w-[90%] md:h-[450px] lg:w-[80%] lg:h-[610.44px] xl:h-[710px] shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]"
         >
           <Image
             src={HeroImage}
             alt="application prototype picture"
             fill
             priority
-            className="rounded-lg border-[0.5px] border-slate-300"
+            className="rounded-lg border-[0.5px] border-slate-300 object-contain"
           />
         </motion.div>
       </div>
