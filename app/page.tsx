@@ -23,7 +23,7 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between pt-16 bg-[#F6F8FD]">
         <div className="w-full  flex-col items-center text-sm lg:flex">
           {/* === HERO SECTION === */}
-          <div className="bg-[#F2F6F6 bg-primary-foreground lg:pt-8 w-full text-sm">
+          <div className="bg-primary-foreground lg:pt-8 w-full text-sm h-full  bg-[linear-gradient(to_top_left,#F2F6F6_0%,transparent_100%),linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:24rem_18rem]">
             <div className="max-w-[1300px] mx-auto text-sm md:px-6">
               <Navbar />
               <Hero />
@@ -46,7 +46,6 @@ export default function Home() {
               <HowItWorks />
             </div>
           </div>
-
           {/* === Testimonial === */}
           <div
             id="testimonial-id"
@@ -56,31 +55,26 @@ export default function Home() {
               <Testimonial />
             </div>
           </div>
-
           {/* === PRICING SECTION === */}
           <div id="pricing-id" className="bg-[#F2F6F6] w-full text-sm">
             <div className="max-w-[1200px] mx-auto text-sm md:px-6">
               <Pricing />
             </div>
           </div>
-
           {/* === FAQs === */}
           <div id="faq-id" className="w-full text-sm pb-20 md:py-20">
             <div className="w-full max-w-[1150px] mx-auto">
               <Faq />
             </div>
           </div>
-
           {/* === CONTACT US SECTION === */}
           <div id="contactUs-id" className="bg-[#F2F6F6] text-sm w-full">
             <div className="max-w-[1200px] mx-auto text-sm ">
               <ContactUs />
             </div>
           </div>
-
           {/* === AI CHAT-BOT === */}
           <Chatbot />
-
           {/* === FOOTER SECTION === */}
           <div className="bg-[#014751] pb-24 md:pb-0  w-full text-sm lg:flex flex-col items-center relative">
             {/* === Background Image === */}
