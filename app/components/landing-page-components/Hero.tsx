@@ -18,23 +18,23 @@ export default function Hero() {
         className="leading-normal pt-16"
       >
         <div className="text-center px-4">
-          <h2 className="text-[40px] md:text-[42px] lg:text-[58px] font-bold text-[#000000] dark:text-accent-foreground">
+          <h2 className="text-[36px] md:text-[42px] lg:text-[58px] font-bold  text-[#000000] dark:text-accent-foreground">
             Learn in-demand skills <br />{" "}
-            <span className="text-[#F51767] inline-block animate-fadeSpring1">
+            <span className="text-[#F51767] inline-block animate-fadeSpring1 text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
               Get hired.
             </span>
-            <span className="text-[#F51767] inline-block animate-fadeSpring2">
+            <span className="text-[#F51767] inline-block animate-fadeSpring2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
               Get promoted.
             </span>
-            <span className="text-[#F51767] inline-block animate-fadeSpring3">
+            <span className="text-[#F51767] inline-block animate-fadeSpring3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
               Be your own boss.
             </span>
-            <span className="text-[#F51767] inline-block animate-fadeSpring4">
+            <span className="text-[#F51767] inline-block animate-fadeSpring4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
               Fulfill your dreams.
             </span>
           </h2>
 
-          <p className="text-base font-semibold md:text-lg leading-8  my-9 md:max-w-[500px] lg:max-w-[600px] mx-auto text-[#56616e] dark:text-muted-foreground">
+          <p className="text-base font-semibold px-3 md:text-lg leading-8  my-9 md:max-w-[500px] lg:max-w-[600px] mx-auto text-[#56616e] dark:text-muted-foreground">
             The most efficient and supportive way for you to get connected,
             learn in-demand skills and advance your career.
           </p>

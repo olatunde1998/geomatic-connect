@@ -23,7 +23,7 @@ export default function WhoWeAre() {
           <div className="text-[#747578] max-w-[400px] mt-6 mb-14 md:my-10 leading-8 text-base">
             <p
              
-              className="text-base leading-8 md:text-base md:leading-8"
+              className="text-sm leading-8 md:text-base md:leading-8"
             >
               We are a company that prioritizes students satisfaction so that we
               can become a favorite company for all companies that use our
@@ -44,7 +44,7 @@ export default function WhoWeAre() {
                   <h3 className="text-2xl md:text-3xl font-bold">
                     {item.totalCount}
                   </h3>
-                  <p className="text-base text-center lg:whitespace-nowrap">
+                  <p className="text-sm text-center lg:whitespace-nowrap">
                     {item.title}
                   </p>
                 </motion.div>
@@ -83,7 +83,7 @@ export default function WhoWeAre() {
               key={index}
               className="bg-[#F2F6F6] dark:hover:bg-muted border border-slate-300 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] py-6 px-3.5 lg:p-6 rounded-lg max-w-[250px]"
             >
-              <p className=" text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
+              <p className="text-[#FFC957] w-fit border border-[#014751] p-2 rounded-sm bg-white">
                 <item.iconUrl size={32} />
               </p>
               <p className="font-semibold mt-8 mb-4 text-xl text-[#014751]">

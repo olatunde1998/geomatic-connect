@@ -31,7 +31,7 @@ export default function HowItWorks() {
             {name}
           </p>
           <div className="w-24 h-1 bg-[#FFC957]" />
-          <p className="mt-4 md:text-left  text-base font-normal text-[#F0F0F0] lg:w-[500px] my-10 !leading-8">
+          <p className="mt-4 md:text-left  text-sm md:text-base font-normal text-[#F0F0F0] lg:w-[500px] my-10 !leading-8">
             {content}
           </p>
           {data.map((item, index) => (
@@ -42,7 +42,7 @@ export default function HowItWorks() {
               animate={{ x: 0 }}
               transition={{ type: "spring", duration: 3 }}
               key={index}
-              className="mt-4 flex items-center font-normal gap-2 md:text-left text-base text-[#F0F0F0] lg:w-[500px]"
+              className="mt-4 flex items-center font-normal gap-2 md:text-left text-sm md:text-base text-[#F0F0F0] lg:w-[500px]"
             >
               <Check color="#6CB92B" className="size-5 font-bold" />
               {item.content}
@@ -54,7 +54,7 @@ export default function HowItWorks() {
                 scale: 1.03,
               }}
               onClick={() => handleSmoothScroll("contactUs-id")}
-              className="dark:bg-muted dark:hover:bg-background dark:border-muted-foreground dark:border-[0.2px] hover:bg-[#014751] border-[1.3px] shadow-xl border-[#FFFFFF] p-3 lg:p-3.5 font-bold text-[#FFFFFF] rounded-md w-[130px] lg:w-[150px] text-xs"
+              className="dark:bg-muted dark:hover:bg-background dark:border-muted-foreground dark:border-[0.2px] hover:bg-[#014751] border-[1.3px] shadow-xl border-[#FFFFFF] p-3 lg:p-3 font-bold text-[#FFFFFF] rounded-md w-[130px] lg:w-[150px] text-xs"
             >
               {buttonOne}
             </motion.button>
