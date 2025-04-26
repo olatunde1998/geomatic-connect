@@ -32,7 +32,6 @@ export const howItWorksData = {
         content: "Make Request to your desire Company",
       },
     ],
-    buttonOne: "Contact Us",
-    buttonTwo: "Create free account",
+    button: "Create free account",
   },
 };
