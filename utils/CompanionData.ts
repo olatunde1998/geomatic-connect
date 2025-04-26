@@ -1,4 +1,4 @@
-import GeoinfotechLogo from "@/public/images/geoinfotech.gif";
+import GeoinfotechLogo from "@/public/images/geoinfotech.png";
 import GeosysLogo from "@/public/images/geosys-logo.png";
 import FssLogo from "@/public/images/fss-logo.png";
 import NISLogo from "@/public/images/nis-logo.png";
