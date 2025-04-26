@@ -29,7 +29,7 @@ export default function WhoWeAre() {
               can become a favorite company for all companies that use our
               services
             </p>
-            <hr className="my-10 bg-[#014751] h-[2px]" />
+            <hr className="my-10 bg-[#014751] h-[1.5px]" />
             <div className="flex items-center justify-between gap-6 mb-16">
               {whoWeAreAnalyticsData.map((item, index) => (
                 <motion.div
