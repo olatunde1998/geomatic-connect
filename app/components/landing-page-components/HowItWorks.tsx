@@ -6,15 +6,7 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 
 export default function HowItWorks() {
-  const { name, content, data, buttonOne, buttonTwo } =
-    howItWorksData.howItWork;
-
-  const handleSmoothScroll = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+  const { name, content, data, button } = howItWorksData.howItWork;
 
   return (
     <>
@@ -49,16 +41,6 @@ export default function HowItWorks() {
             </motion.p>
           ))}
           <div className="mt-10 flex space-x-6 mb-8">
-            <motion.button
-              whileHover={{
-                scale: 1.03,
-              }}
-              onClick={() => handleSmoothScroll("contactUs-id")}
-              className="dark:bg-muted dark:hover:bg-background dark:border-muted-foreground dark:border-[0.2px] hover:bg-[#014751] border-[1.3px] shadow-xl border-[#FFFFFF] p-3 lg:p-3 font-bold text-[#FFFFFF] rounded-md w-[130px] lg:w-[150px] text-xs"
-            >
-              {buttonOne}
-            </motion.button>
-
             <motion.div
               whileHover={{
                 scale: 1.03,
@@ -67,9 +49,9 @@ export default function HowItWorks() {
             >
               <Link
                 href="/signup"
-                className="border-[#6CB92B] border-[1.3px] shadow-xl bg-[#FFFFFF] p-3 lg:p-3 items-center flex justify-center font-bold text-[#014751] rounded-md w-[150px] md:w-[180px] lg:w-[160px] text-xs"
+                className="border-[#6CB92B] border-[1.3px] shadow-xl bg-[#FFFFFF] p-4 items-center flex justify-center font-bold text-[#014751] rounded-md w-fit text-xs"
               >
-                {buttonTwo}
+                {button}
               </Link>
             </motion.div>
           </div>
