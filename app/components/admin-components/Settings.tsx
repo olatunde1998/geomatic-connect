@@ -117,7 +117,7 @@ export default function Settings({ token, userId }: SettingsProps) {
     <>
       <div className="md:flex items-center md:space-x-4">
         <div className="w-full font-sans text-md ">
-          <p className="text-2xl font-bold mb-2">Settings</p>
+          <p className="text-2xl font-bold mb-2">Profile</p>
           <p className="text-gray-500">Manage the settings of your account</p>
         </div>
         <div
