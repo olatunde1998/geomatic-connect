@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Modal } from "@/app/components/modals/Modal";
 import { toast } from "react-toastify";
-import parse from "html-react-parser";
+// import parse from "html-react-parser";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import Link from "next/link";
@@ -487,9 +487,16 @@ export default function EditBlog({
                 <h2 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Blog Content
                 </h2>
-
-                {typeof blogData.content === "string" ? (
+                {/* {typeof blogData.content === "string" ? (
                   parse(blogData.content)
+                ) : (
+                  <p>No content available</p>
+                )} */}
+                {typeof blogData?.content === "string" ? (
+                  <div
+                    className="ql-editor"
+                    dangerouslySetInnerHTML={{ __html: blogData.content }}
+                  />
                 ) : (
                   <p>No content available</p>
                 )}
@@ -532,8 +539,16 @@ export default function EditBlog({
               <p>{blogData?.subTitle}</p>
             </div>
             <div className="sm:col-span-full">
-              {typeof blogData?.content === "string" ? (
+              {/* {typeof blogData?.content === "string" ? (
                 parse(blogData.content)
+              ) : (
+                <p>No content available</p>
+              )} */}
+              {typeof blogData?.content === "string" ? (
+                <div
+                  className="ql-editor"
+                  dangerouslySetInnerHTML={{ __html: blogData.content }}
+                />
               ) : (
                 <p>No content available</p>
               )}
