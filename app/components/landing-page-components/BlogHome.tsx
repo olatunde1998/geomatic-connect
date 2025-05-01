@@ -37,7 +37,7 @@ export default function BlogHome() {
         </Link>
       )}
       {isLoading ? (
-        <div className="mt-10 px-10 space-y-6">
+        <div className="mt-10 md:px-10 space-y-6">
           {skeletonArray.map((_, index) => (
             <BlogSkeleton key={index} />
           ))}
