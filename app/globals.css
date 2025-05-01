@@ -110,6 +110,11 @@
   color: #94A3B8;
 }
 
+/* Quill's inline styles */
+.ql-editor img {
+  border-radius: 16px;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
