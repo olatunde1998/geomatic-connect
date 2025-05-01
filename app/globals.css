@@ -112,7 +112,10 @@
 
 /* Quill's inline styles */
 .ql-editor img {
+box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
+  padding: 1rem;
+  background-color: white;
 }
 
 @layer base {
