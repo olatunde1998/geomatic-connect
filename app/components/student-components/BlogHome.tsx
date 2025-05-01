@@ -1,5 +1,6 @@
 "use client";
 import { BlogCard, BlogSmallCard } from "@/app/components/cards/BlogCard";
+import { BlogSkeleton } from "@/app/components/skeletons/BlogSkeleton";
 import { GetBlogsRequest } from "@/app/services/blog.request";
 import { useQuery } from "@tanstack/react-query";
 import { formatDate } from "@/utils/utils";
@@ -9,6 +10,7 @@ import Link from "next/link";
 export default function BlogHome() {
   const [currentPage, setCurrentPage] = useState(1);
   const [limit] = useState(6);
+  const skeletonArray = [1, 2, 3, 4, 5, 6];
 
   const { data: blogsData, isLoading } = useQuery({
     queryKey: ["getBlogsApi", currentPage],
@@ -36,19 +38,28 @@ export default function BlogHome() {
               />
             </Link>
           )}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8 py-8 lg:px-6 rounded-2xl bg-white">
-            {blogsData?.data?.map((item: any, index: number) => (
-              <Link href={`/student-dashboard/blog/${item.slug}`} key={index}>
-                <BlogSmallCard
-                  headings={item.title}
-                  content={item.subTitle}
-                  imageUrl={item.banner}
-                  createdAt={formatDate(item.createdAt)}
-                  readTime={item.readTime}
-                />
-              </Link>
-            ))}
-          </div>
+          
+          {isLoading ? (
+            <div className="mt-10 space-y-6">
+              {skeletonArray.map((_, index) => (
+                <BlogSkeleton key={index} />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8 py-8 lg:px-6 rounded-2xl bg-white">
+              {blogsData?.data?.map((item: any, index: number) => (
+                <Link href={`/student-dashboard/blog/${item.slug}`} key={index}>
+                  <BlogSmallCard
+                    headings={item.title}
+                    content={item.subTitle}
+                    imageUrl={item.banner}
+                    createdAt={formatDate(item.createdAt)}
+                    readTime={item.readTime}
+                  />
+                </Link>
+              ))}
+            </div>
+          )}
         </section>
       </div>
     </>
