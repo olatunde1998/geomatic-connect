@@ -45,7 +45,7 @@ export default function BlogHome() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8 py-8 lg:px-6 rounded-2xl bg-white">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mt-8 py-8 lg:px-6 rounded-2xl bg-white">
               {blogsData?.data?.map((item: any, index: number) => (
                 <Link href={`/company-dashboard/blog/${item.slug}`} key={index}>
                   <BlogSmallCard
