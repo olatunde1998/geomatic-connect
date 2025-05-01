@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { RiTwitterXFill } from "react-icons/ri";
 import { IoIosLink } from "react-icons/io";
 import { toast } from "react-toastify";
-import parse from "html-react-parser";
+// import parse from "html-react-parser";
 import EditBlog from "./EditBlog";
 import Link from "next/link";
 
@@ -176,8 +176,18 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
                 <p>{blogDetailData?.data?.subTitle}</p>
               </div>
               <div className="sm:col-span-full">
-                {typeof blogDetailData?.data?.content === "string" ? (
+                {/* {typeof blogDetailData?.data?.content === "string" ? (
                   parse(blogDetailData.data.content)
+                ) : (
+                  <p>No content available</p>
+                )} */}
+                {typeof blogDetailData?.data?.content === "string" ? (
+                  <div
+                    className="ql-editor"
+                    dangerouslySetInnerHTML={{
+                      __html: blogDetailData?.data?.content,
+                    }}
+                  />
                 ) : (
                   <p>No content available</p>
                 )}
