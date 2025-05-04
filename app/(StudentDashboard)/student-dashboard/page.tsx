@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import StudentHome from "@/app/components/student-components/StudentHome";
-import TawkChat from "@/app/components/chatbot/TawkChat";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -28,7 +27,6 @@ export default async function Home() {
         </Link>
       </p>
       <StudentHome session={session} />
-      <TawkChat />
     </main>
   );
 }
