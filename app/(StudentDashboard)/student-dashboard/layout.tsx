@@ -1,6 +1,7 @@
 import { StudentSidebar } from "@/app/components/sidebar/StudentSidebar";
 import StudentNavBar from "@/app/components/navbar/StudentNavBar";
 import BottomNavBar from "@/app/components/navbar/BottomNavBar";
+import TawkChat from "@/app/components/chatbot/TawkChat";
 // import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
@@ -63,6 +64,7 @@ export default async function StudentLayout({
             {/* <Analytics /> */}
           </main>
           <BottomNavBar />
+          <TawkChat />
         </div>
       </div>
     </div>

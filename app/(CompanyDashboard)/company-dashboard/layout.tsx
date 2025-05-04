@@ -1,6 +1,7 @@
 import { CompanySidebar } from "@/app/components/sidebar/CompanySidebar";
 import CompanyNavBar from "@/app/components/navbar/CompanyNavBar";
 import BottomNavBar from "@/app/components/navbar/BottomNavBar";
+import TawkChat from "@/app/components/chatbot/TawkChat";
 // import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
@@ -63,6 +64,7 @@ export default async function CompanyLayout({
             {/* <Analytics /> */}
           </main>
           <BottomNavBar />
+          <TawkChat />
         </div>
       </div>
     </div>
