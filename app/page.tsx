@@ -9,7 +9,6 @@ import Faq from "@/app/components/landing-page-components/Faq";
 import ContactUs from "@/app/components/landing-page-components/ContactUs";
 import { Footer } from "@/app/components/landing-page-components/Footer";
 import BottomNav from "@/app/components/navbar/BottomNav";
-import Chatbot from "@/app/components/chatbot/ChatBot";
 
 export const metadata: Metadata = {
   title: "Home | Geomatic Connect",
@@ -40,7 +39,7 @@ export default function Home() {
           {/* === HOW IT WORKS SECTION === */}
           <div
             id="about-id"
-            className="w-full text-sm bg-[#014751] dark:bg-primary-foreground dark:opacity-100 opacity-80"
+            className="w-full text-sm bg-[#014751] dark:bg-primary-foreground dark:opacity-100 opacity-95"
           >
             <div className="max-w-[1200px] mx-auto text-sm px-6 md:px-10 py-10">
               <HowItWorks />
@@ -73,8 +72,6 @@ export default function Home() {
               <ContactUs />
             </div>
           </div>
-          {/* === AI CHAT-BOT === */}
-          <Chatbot />
           {/* === FOOTER SECTION === */}
           <div className="bg-[#014751] pb-24 md:pb-0  w-full text-sm lg:flex flex-col items-center relative">
             {/* === Background Image === */}
