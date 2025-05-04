@@ -1,7 +1,8 @@
 import BottomNav from "@/app/components/navbar/BottomNav";
+import TawkChat from "@/app/components/chatbot/TawkChat";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/app/components/navbar/Navbar";
-import { Analytics } from "@vercel/analytics/next";
+// import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 
 const geistSans = Geist({
@@ -57,7 +58,8 @@ export default async function BlogLayout({
         </div>
         {children}
         <BottomNav />
-        <Analytics />
+        <TawkChat />
+        {/* <Analytics /> */}
       </div>
     </>
   );
