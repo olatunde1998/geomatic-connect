@@ -1,5 +1,5 @@
 "use client";
-import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
+import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bookmark, PencilLine } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -21,11 +21,6 @@ const routes = [
     href: "about-id",
     icon: Bookmark,
   },
-  // {
-  //   name: "Contact us",
-  //   href: "contactUs-id",
-  //   icon: FaQ,
-  // },
 ];
 
 const mobileRoutes = [
@@ -158,6 +153,7 @@ export default function Navbar() {
                       width={80}
                       height={80}
                       priority
+                      className="w-[109px] h-[46px] object-cover"
                     />
                   </a>
                   <HiX
