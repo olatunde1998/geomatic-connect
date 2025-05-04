@@ -9,6 +9,7 @@ import Faq from "@/app/components/landing-page-components/Faq";
 import ContactUs from "@/app/components/landing-page-components/ContactUs";
 import { Footer } from "@/app/components/landing-page-components/Footer";
 import BottomNav from "@/app/components/navbar/BottomNav";
+import TawkChat from "@/app/components/chatbot/TawkChat";
 
 export const metadata: Metadata = {
   title: "Home | Geomatic Connect",
@@ -84,6 +85,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <TawkChat />
       <BottomNav />
     </>
   );
