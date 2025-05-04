@@ -2,6 +2,7 @@
 import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bookmark, PencilLine } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { HiMenu, HiX } from "react-icons/hi";
 import { FaQ } from "react-icons/fa6";
 import { useState } from "react";
@@ -44,6 +45,7 @@ const mobileRoutes = [
 
 export default function Navbar() {
   const [dropNav, setDropNav] = useState(false);
+  const pathname = usePathname();
 
   const handleSmoothScroll = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -74,7 +76,9 @@ export default function Navbar() {
             className="items-center justify-between hidden w-full md:flex md:w-auto"
             id="navbar-sticky"
           >
-            <ul className="p-2 md:p-0 mt-2 lg:mr-10 font-medium rounded-lg md:space-x-5 lg:space-x-8 md:mt-0 md:border-0 hidden md:flex flex-row">
+            <ul
+              className={`${pathname !== "/blog" && "lg:mr-10"}p-2 md:p-0 mt-2  font-medium rounded-lg md:space-x-5 lg:space-x-8 md:mt-0 md:border-0 hidden md:flex flex-row`}
+            >
               <Link
                 href="/blog"
                 className="flex items-center gap-2 hover:bg-white w-fit px-2.5 py-1.5 rounded-lg"
@@ -82,19 +86,20 @@ export default function Navbar() {
                 <PencilLine className="size-4" />
                 Blog
               </Link>
-              {routes.map((route, index) => {
-                const Icon = route.icon;
-                return (
-                  <li
-                    key={index}
-                    className="flex items-center gap-2 hover:bg-white w-fit px-2.5 py-1.5 rounded-lg"
-                    onClick={() => handleSmoothScroll(`${route.href}`)}
-                  >
-                    <Icon className="size-4 text-gray-600" />
-                    <span className="cursor-pointer">{route.name}</span>
-                  </li>
-                );
-              })}
+              {pathname !== "/blog" &&
+                routes.map((route, index) => {
+                  const Icon = route.icon;
+                  return (
+                    <li
+                      key={index}
+                      className="flex items-center gap-2 hover:bg-white w-fit px-2.5 py-1.5 rounded-lg"
+                      onClick={() => handleSmoothScroll(`${route.href}`)}
+                    >
+                      <Icon className="size-4 text-gray-600" />
+                      <span className="cursor-pointer">{route.name}</span>
+                    </li>
+                  );
+                })}
             </ul>
 
             <Link
