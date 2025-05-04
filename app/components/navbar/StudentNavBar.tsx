@@ -11,7 +11,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { Bell, LogOut, PencilLine, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 // import GeomaticLogo from "@/public/images/geomatic-logo.svg";
-import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
+import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
 import { useRouter } from "next/navigation";
 import { studentMobileRoutes } from "@/utils/sidebarLinks";
 import SubscribeModal from "@/app/components/student-components/SubscribeModal";
@@ -71,7 +71,7 @@ export default function StudentNavBar({ session }: { session: any }) {
                   height={100}
                   priority
                   quality={100}
-                  className="w-[80px] h-[50px] md:w-[150px] md:h-[56px] lg:w-[138px] xl:w-[150px]  object-conver md:object-cover"
+                  className="w-[109px] h-[46px] md:w-[150px] md:h-[56px] lg:w-[138px] xl:w-[150px] object-cover"
                 />
               </div>
               <div className="border-l border-slate-300 dark:border-muted pl-3 ml-3 space-y-3 hidden md:inline-block">
@@ -219,6 +219,7 @@ export default function StudentNavBar({ session }: { session: any }) {
                       width={80}
                       height={80}
                       priority
+                      className="w-[109px] h-[46px] object-cover"
                     />
                   </a>
                   <HiX
