@@ -1,5 +1,5 @@
 "use client";
-import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
+import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2w.png";
 import { footerData } from "@/utils/FooterData";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -23,15 +23,15 @@ export const Footer = () => {
   return (
     <div className="px-6 text-white py-10">
       <section className="mb-2 md:flex justify-between pb-10 md:mb-20">
-        <div className="hidden md:block w-[120px] md:w-[150px] h-[100px]">
+        <div className="w-[130px] md:w-[150px] h-[100px]">
           <Image
             src={GeomaticLogo}
             alt="Geomatic brand logo"
             width={200}
-            height={150}
+            height={100}
             priority
             quality={100}
-            className="object-cover md:h-[70px] md:w-[150px]"
+            className="w-[130px] h-[46px] md:h-[70px] md:w-[150px] object-cover"
           />
         </div>
         <div className="text-[20px] md:flex md:justify-end md:gap-32 md:w-2/3 lg:w-1/2">
