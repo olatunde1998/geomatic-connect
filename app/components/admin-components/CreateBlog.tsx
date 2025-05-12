@@ -1,9 +1,18 @@
 import { formatDateShort, formats, generateSlug, modules } from "@/utils/utils";
 import { CreateBlogRequest } from "@/app/services/blog.request";
-import { LoaderCircle, Plus, Share2, Trash, Upload, X } from "lucide-react";
+import {
+  LoaderCircle,
+  Plus,
+  Share2,
+  Sparkles,
+  Trash,
+  Upload,
+  X,
+} from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Modal } from "@/app/components/modals/Modal";
+import { AIGenerateBlog } from "./AIGenerateBlog";
 import { toast } from "react-toastify";
 import parse from "html-react-parser";
 import Quill from "quill";
@@ -26,6 +35,7 @@ export default function CreateBlog({
 }) {
   const [showPreview, setShowPreview] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
+  const [showAIGenerator, setShowAIGenerator] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [userImage, setUserImage] = useState<string | undefined>(undefined);
   const [blogData, setBlogData] = useState<BlogData>({
@@ -71,6 +81,13 @@ export default function CreateBlog({
       });
     }
   }, []);
+
+  // Add this useEffect to your CreateBlog component to update Quill when blogData changes
+  useEffect(() => {
+    if (quillInstance.current && blogData.content) {
+      quillInstance.current.root.innerHTML = blogData.content;
+    }
+  }, [blogData.content]);
 
   // Image upload handler
   const imageHandler = () => {
@@ -229,9 +246,17 @@ export default function CreateBlog({
         <div className="grid grid-cols-1 md:grid-cols-2 py-4 px-3 gap-4">
           {/* ========Blog Editor======== */}
           <div className="w-full max-w-3xl p-5 bg-white border border-gray-200 rounded-lg mx-auto">
-            <h2 className="text-lg lg:text-2xl font-bold border-b border-gray-400 pb-2 mb-5 ">
-              Blog Editor
-            </h2>
+            <div className="flex items-center justify-between pb-2 mb-5 border-b border-gray-400">
+              <h2 className="text-lg lg:text-2xl font-bold"> Blog Editor</h2>
+              <button
+                onClick={() => setShowAIGenerator(!showAIGenerator)}
+                className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+              >
+                Build with AI
+                <Sparkles className="w-4 h-4" />
+              </button>
+            </div>
+
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -394,10 +419,7 @@ export default function CreateBlog({
               >
                 {isCreating ? (
                   <>
-                    <LoaderCircle
-                      style={{ animationDuration: "0.4s" }}
-                      className="size-4 animate-spin mx-auto"
-                    />
+                    <LoaderCircle className="size-4 animate-spin duration-500 mx-auto" />
                     Uploading...
                   </>
                 ) : (
@@ -416,7 +438,7 @@ export default function CreateBlog({
               <h2 className="text-lg lg:text-2xl font-bold">Blog View</h2>
               <div
                 onClick={() => setShowPreview(true)}
-                className="flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-[120px] md:w-[150px] lg:w-[120px] cursor-pointer  px-2 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                className="flex p-2 md:p-3 justify-center items-center gap-[8px] rounded text-white w-[120px] md:w-[150px] lg:w-[120px] cursor-pointer font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
               >
                 <p className="text-[#FFFFFF] text-sm md:text-md">
                   Preveiw Blog
@@ -457,6 +479,14 @@ export default function CreateBlog({
           </div>
         </div>
       </div>
+      <Modal show={showAIGenerator} onClose={() => setShowAIGenerator(false)}>
+        <div className="w-full max-w-3xl p-5 bg-white border border-gray-200 rounded-lg mx-auto mb-4">
+          <AIGenerateBlog
+            setBlogData={setBlogData}
+            setShowAIGenerator={setShowAIGenerator}
+          />
+        </div>
+      </Modal>
       <Modal show={showPreview} onClose={() => setShowPreview(false)}>
         <div className="w-full md:w-[672px] lg:w-[768px] p-7 bg-white border border-gray-200 rounded-lg">
           <h2 className="flex justify-between text-2xl lg:text-3xl font-bold border-b border-gray-400 pb-2 mb-5 ">
