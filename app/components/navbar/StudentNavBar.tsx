@@ -10,7 +10,6 @@ import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Bell, LogOut, PencilLine, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-// import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
 import { useRouter } from "next/navigation";
 import { studentMobileRoutes } from "@/utils/sidebarLinks";

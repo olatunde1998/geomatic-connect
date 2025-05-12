@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import { Bell, CreditCard, LogOut, PencilLine, Settings } from "lucide-react";
+import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
 import { GetUserProfileRequest } from "@/app/services/users.request";
 import Logout from "@/app/components/auth-components/Logout";
-import GeomaticLogo from "@/public/images/geomatic-logo.svg";
 import { adminMobileRoutes } from "@/utils/sidebarLinks";
 import { motion, AnimatePresence } from "framer-motion";
 import { Modal } from "@/app/components/modals/Modal";
@@ -57,11 +57,12 @@ export default function AdminNavBar({ session }: { session: any }) {
               >
                 <Image
                   src={GeomaticLogo}
-                  alt="profile image"
-                  width={100}
+                  alt="Geomatic Brand Logo"
+                  width={200}
                   height={100}
                   priority
-                  className="w-[80px] h-[40px] md:w-[150px] md:h-[50px] object-contain md:object-cover"
+                  quality={100}
+                  className="w-[109px] h-[46px] md:w-[150px] md:h-[56px] lg:w-[138px] xl:w-[150px] object-cover"
                 />
               </div>
 
@@ -195,6 +196,7 @@ export default function AdminNavBar({ session }: { session: any }) {
                       width={80}
                       height={80}
                       priority
+                      className="w-[109px] h-[46px] object-cover"
                     />
                   </a>
                   <HiX

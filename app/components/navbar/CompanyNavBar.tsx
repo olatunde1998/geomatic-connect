@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Bell, LogOut, PencilLine, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import GeomaticLogo from "@/public/images/geomatic-logo.svg";
+import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
 import { useRouter } from "next/navigation";
 import { companyMobileRoutes } from "@/utils/sidebarLinks";
 import { GetUserProfileRequest } from "@/app/services/users.request";
@@ -64,11 +64,12 @@ export default function CompanyNavBar({ session }: { session: any }) {
                 <div className="flex items-center">
                   <Image
                     src={GeomaticLogo}
-                    alt="profile image"
-                    width={100}
+                    alt="Geomatic Brand Logo"
+                    width={200}
                     height={100}
                     priority
-                    className="w-[80px] h-[40px] md:w-[150px] md:h-[50px] object-contain md:object-cover"
+                    quality={100}
+                    className="w-[109px] h-[46px] md:w-[150px] md:h-[56px] lg:w-[138px] xl:w-[150px] object-cover"
                   />
                 </div>
               </span>
@@ -218,6 +219,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
                       width={80}
                       height={80}
                       priority
+                      className="w-[109px] h-[46px] object-cover"
                     />
                   </a>
                   <HiX
