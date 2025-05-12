@@ -1,6 +1,6 @@
 import { streamText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
-import { initialMessage } from "@/lib/data";
+import { initialMessage, blogInitialMessage } from "@/lib/data";
 
 const openai = createOpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   const { messages } = await request.json();
   const stream = await streamText({
     model: openai("gpt-4o-mini"),
-    messages: [initialMessage, ...messages],
+    messages: [blogInitialMessage, ...messages],
     temperature: 1,
   });
   return stream.toDataStreamResponse();
