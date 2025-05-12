@@ -70,10 +70,7 @@ export default function Notification({ token }: NotificationProps) {
         </div>
         {isLoading ? (
           <div className="pt-[80px] pb-[150px]">
-            <LoaderCircle
-              style={{ animationDuration: "0.4s" }}
-              className="size-12 animate-spin mx-auto mt-8"
-            />
+            <LoaderCircle className="size-12 animate-spin duration-500 mx-auto mt-8" />
           </div>
         ) : notificationData?.data?.length === 0 ? (
           <div className="gap-2 md:mb-24">
