@@ -187,7 +187,7 @@ export default function EditBlog({
 
     setIsUpdating(true);
 
-    // Handle banner image 
+    // Handle banner image
     let bannerUrl = blogData.banner;
     if (selectedFile) {
       try {
@@ -430,10 +430,7 @@ export default function EditBlog({
               >
                 {isUpdating ? (
                   <>
-                    <LoaderCircle
-                      style={{ animationDuration: "0.4s" }}
-                      className="size-4 animate-spin mx-auto"
-                    />
+                    <LoaderCircle className="size-4 animate-spin duration-500 mx-auto" />
                     Updating...
                   </>
                 ) : (
