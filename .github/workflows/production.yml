@@ -23,7 +23,7 @@ jobs:
       - name: Trigger Amplify Deployment
         id: deploy
         run: |
-          APP_ID=${{ secrets.AWS_APP_ID }}
+          APP_ID="d2cdj4auu5gali"
           BRANCH_NAME="main"  # Update as needed
 
           JOB_ID=$(aws amplify start-deployment \
