@@ -1,0 +1,58 @@
+name: Deploy to AWS Amplify (main)
+
+on:
+  push:
+    branches: [main] # Change this to the branch you use for main
+
+jobs:
+  deploy:
+    name: Trigger Amplify Deployment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Trigger Amplify Deployment
+        id: deploy
+        run: |
+          APP_ID=${{ secrets.AWS_APP_ID }}
+          BRANCH_NAME="main"  # Update as needed
+
+          JOB_ID=$(aws amplify start-deployment \
+            --app-id "$APP_ID" \
+            --branch-name "$BRANCH_NAME" \
+            --query 'jobSummary.jobId' \
+            --output text)
+
+          echo "Triggered Amplify deployment with Job ID: $JOB_ID"
+
+          # Monitor the job status
+          while true; do
+            STATUS=$(aws amplify get-job \
+              --app-id "$APP_ID" \
+              --branch-name "$BRANCH_NAME" \
+              --job-id "$JOB_ID" \
+              --query 'job.summary.status' \
+              --output text)
+
+            echo "Current Status: $STATUS"
+
+            if [[ "$STATUS" == "SUCCEED" ]]; then
+              echo "✅ Deployment succeeded."
+              break
+            elif [[ "$STATUS" == "FAILED" || "$STATUS" == "CANCELLED" ]]; then
+              echo "❌ Deployment failed."
+              exit 1
+            else
+              echo "⏳ Deployment in progress..."
+              sleep 10
+            fi
+          done
