@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import GeomaticLogo from "@/public/images/geomatic-logo-white.png";
+import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,11 +20,9 @@ export default function LeftContainer() {
         className={`absolute inset-0 bg-center bg-no-repeat bg-cover ${
           isLoading ? "bg-gray-200" : "bg-[url(/images/image2.jpg)]"
         }`}
-      ></div>
-
+      />
       {/* =====Overlay with color and opacity==== */}
-      <div className="absolute inset-0 bg-[#F1F4EA] opacity-80"></div>
-
+      <div className="absolute inset-0 bg-[#F1F4EA] opacity-80" />
       {/* ====Content==== */}
       <section className="h-screen absolute">
         <Link href="/" className="flex items-center">
