@@ -31,7 +31,7 @@ export const Footer = () => {
             height={100}
             priority
             quality={100}
-            className="w-[130px] h-[46px] md:h-[70px] md:w-[150px] object-cover"
+            className="w-[130px] h-[46px] -ml-4 md:h-[70px] md:w-[150px] object-cover md:ml-0"
           />
         </div>
         <div className="text-[20px] md:flex md:justify-end md:gap-32 md:w-2/3 lg:w-1/2">
