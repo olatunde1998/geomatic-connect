@@ -58,20 +58,20 @@ export default function Billing({ token, userId }: BillingProps) {
   const yearlyPlans = [
     {
       planMethod: "Starter Yearly",
-      amount: 10000,
+      amount: 16500,
       color: "#12B76A",
       paymentPlanId: 129899,
     },
     {
       planMethod: "Professional Yearly",
-      amount: 15000,
+      amount: 22000,
       color: "#F59E0B",
       popular: true,
       paymentPlanId: 129900,
     },
     {
       planMethod: "Enterprise Yearly",
-      amount: 20000,
+      amount: 33000,
       color: "#AA0BF5",
       paymentPlanId: 129901,
     },
