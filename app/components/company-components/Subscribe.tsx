@@ -1,14 +1,15 @@
 "use client";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import PackageInfo from "@/app/components/landing-page-components/PackageInfo";
+import { GetUserByIdRequest } from "@/app/services/request.request";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   AcceptPaymentRequest,
   VerifyPaymentRequest,
 } from "@/app/services/payment.request";
-import { GetUserByIdRequest } from "@/app/services/request.request";
 
 interface SubscribeProps {
   token: string;
@@ -230,6 +231,11 @@ export default function Subscribe({ token, userId }: SubscribeProps) {
               )}
             </motion.div>
           )}
+        </div>
+
+        {/* ==== Packge info ==== */}
+        <div>
+          <PackageInfo />
         </div>
       </section>
       <ToastContainer />
