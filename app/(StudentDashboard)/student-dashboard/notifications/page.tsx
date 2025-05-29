@@ -20,9 +20,10 @@ export default async function NotificationPage() {
       <div className="w-full font-sans text-md ">
         <p className="text-2xl font-bold mb-2">Notification</p>
         <p className="max-w-[550px] leading-8 font-light">
-          All paid plans allow using assets with no time limit and link to us.
-          Unused downloads are transferred to the next period. Each account is
-          for one user only.
+          Stay updated with real-time notifications on application requests.
+          Geomatic Connect keeps you informed and engaged throughout your
+          training journey. All alerts are personalized and available anytime in
+          your dashboard.
         </p>
       </div>
       <section className="h-fit border mt-8 rounded-md">
