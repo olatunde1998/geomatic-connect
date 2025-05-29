@@ -5,11 +5,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Modal } from "@/app/components/modals/Modal";
 import { toast } from "react-toastify";
-// import parse from "html-react-parser";
+import parse from "html-react-parser";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 interface BlogDetailDataProps {
   data: {
@@ -423,23 +423,42 @@ export default function EditBlog({
                   <div ref={editorRef} style={{ height: "200px" }} />
                 </div>
               </div>
-              <button
-                type="submit"
-                disabled={isUpdating}
-                className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
-              >
-                {isUpdating ? (
-                  <>
-                    <LoaderCircle className="size-4 animate-spin duration-500 mx-auto" />
-                    Updating...
-                  </>
-                ) : (
-                  <>
-                    <Plus className="w-5 h-5 mr-2" />
-                    Update Blog Post
-                  </>
-                )}
-              </button>
+              <div className="xl:flex items-center justify-between">
+                <button
+                  type="submit"
+                  disabled={isUpdating}
+                  className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                >
+                  {isUpdating ? (
+                    <>
+                      <LoaderCircle className="size-4 animate-spin duration-500 mx-auto" />
+                      Updating...
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="w-5 h-5 mr-2" />
+                      Update Blog Post
+                    </>
+                  )}
+                </button>
+                <button
+                  type="submit"
+                  disabled={isUpdating}
+                  className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                >
+                  {isUpdating ? (
+                    <>
+                      <LoaderCircle className="size-4 animate-spin duration-500 mx-auto" />
+                      Publishing...
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="w-5 h-5 mr-2" />
+                      Publish Blog Post
+                    </>
+                  )}
+                </button>
+              </div>
             </form>
           </div>
 
@@ -484,16 +503,8 @@ export default function EditBlog({
                 <h2 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Blog Content
                 </h2>
-                {/* {typeof blogData.content === "string" ? (
+                {typeof blogData.content === "string" ? (
                   parse(blogData.content)
-                ) : (
-                  <p>No content available</p>
-                )} */}
-                {typeof blogData?.content === "string" ? (
-                  <div
-                    className="ql-editor"
-                    dangerouslySetInnerHTML={{ __html: blogData.content }}
-                  />
                 ) : (
                   <p>No content available</p>
                 )}
@@ -504,8 +515,8 @@ export default function EditBlog({
       </div>
       <Modal show={showPreview} onClose={() => setShowPreview(false)}>
         <div className="w-full md:w-[672px] lg:w-[768px] p-7 bg-white border border-gray-200 rounded-lg">
-          <h2 className="flex justify-between text-2xl lg:text-3xl font-bold border-b border-gray-400 pb-2 mb-5 ">
-            Blog View
+          <h2 className="flex justify-between text-2xl font-bold border-b border-gray-400 pb-2 mb-5 ">
+            Geomatic Blog
             <X
               onClick={() => setShowPreview(false)}
               className="hover:bg-slate-100 cursor-pointer h-fit w-fit p-1.5 rounded-md"
@@ -536,16 +547,8 @@ export default function EditBlog({
               <p>{blogData?.subTitle}</p>
             </div>
             <div className="sm:col-span-full">
-              {/* {typeof blogData?.content === "string" ? (
-                parse(blogData.content)
-              ) : (
-                <p>No content available</p>
-              )} */}
               {typeof blogData?.content === "string" ? (
-                <div
-                  className="ql-editor"
-                  dangerouslySetInnerHTML={{ __html: blogData.content }}
-                />
+                parse(blogData.content)
               ) : (
                 <p>No content available</p>
               )}

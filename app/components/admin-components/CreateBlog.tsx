@@ -412,23 +412,43 @@ export default function CreateBlog({
                   <div ref={editorRef} style={{ height: "200px" }} />
                 </div>
               </div>
-              <button
-                type="submit"
-                disabled={isCreating}
-                className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
-              >
-                {isCreating ? (
-                  <>
-                    <LoaderCircle className="size-4 animate-spin duration-500 mx-auto" />
-                    Uploading...
-                  </>
-                ) : (
-                  <>
-                    <Plus className="w-5 h-5 mr-2" />
-                    Create Blog Post
-                  </>
-                )}
-              </button>
+              <div className="xl:flex items-center justify-between">
+                <button
+                  type="submit"
+                  disabled={isCreating}
+                  className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                >
+                  {isCreating ? (
+                    <>
+                      <LoaderCircle className="size-4 animate-spin duration-500 mx-auto" />
+                      Creating...
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="w-5 h-5 mr-2" />
+                      Create Blog Post
+                    </>
+                  )}
+                </button>
+
+                <button
+                  type="submit"
+                  disabled={isCreating}
+                  className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                >
+                  {isCreating ? (
+                    <>
+                      <LoaderCircle className="size-4 animate-spin duration-500 mx-auto" />
+                      Publishing...
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="w-5 h-5 mr-2" />
+                      Publish Blog Post
+                    </>
+                  )}
+                </button>
+              </div>
             </form>
           </div>
 
