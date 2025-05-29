@@ -35,6 +35,7 @@ export default function CreateBlog({
 }) {
   const [showPreview, setShowPreview] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
   const [showAIGenerator, setShowAIGenerator] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [userImage, setUserImage] = useState<string | undefined>(undefined);
@@ -146,7 +147,7 @@ export default function CreateBlog({
   };
 
   // CreateBlog Handler Logic
-  const handleSubmit = async () => {
+  const handleSubmit = async (mode: "create" | "publish") => {
     if (
       !blogData.title ||
       !blogData.subTitle ||
@@ -157,7 +158,12 @@ export default function CreateBlog({
       return;
     }
 
-    setIsCreating(true);
+    // Set only one state based on mode
+    if (mode === "create") {
+      setIsCreating(true);
+    } else {
+      setIsPublishing(true);
+    }
 
     // First upload the banner image
     let bannerUrl = "";
@@ -179,6 +185,7 @@ export default function CreateBlog({
       } catch (error) {
         toast.error("Failed to upload banner image");
         setIsCreating(false);
+        setIsPublishing(false);
         return;
       }
     }
@@ -219,6 +226,7 @@ export default function CreateBlog({
         ...blogData,
         content: updatedContent,
         banner: bannerUrl,
+        active: mode === "publish",
       });
       toast.success(response?.message);
       queryClient.invalidateQueries({ queryKey: ["getBlogsApi"] });
@@ -234,9 +242,10 @@ export default function CreateBlog({
       });
       setShowCreateBlog(false);
     } catch (err: any) {
-      toast.error(err?.response.message);
+      toast.error(err?.response?.message);
     } finally {
       setIsCreating(false);
+      setIsPublishing(false);
     }
   };
 
@@ -260,7 +269,6 @@ export default function CreateBlog({
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                handleSubmit();
               }}
             >
               <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -416,27 +424,29 @@ export default function CreateBlog({
                 <button
                   type="submit"
                   disabled={isCreating}
+                  onClick={() => handleSubmit("create")}
                   className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
                 >
                   {isCreating ? (
                     <>
                       <LoaderCircle className="size-4 animate-spin duration-500 mx-auto" />
-                      Creating...
+                      Saving...
                     </>
                   ) : (
                     <>
                       <Plus className="w-5 h-5 mr-2" />
-                      Create Blog Post
+                      Save Draft
                     </>
                   )}
                 </button>
 
                 <button
                   type="submit"
-                  disabled={isCreating}
+                  disabled={isPublishing}
+                  onClick={() => handleSubmit("publish")}
                   className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
                 >
-                  {isCreating ? (
+                  {isPublishing ? (
                     <>
                       <LoaderCircle className="size-4 animate-spin duration-500 mx-auto" />
                       Publishing...
