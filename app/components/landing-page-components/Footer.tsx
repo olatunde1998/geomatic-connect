@@ -90,7 +90,7 @@ export const Footer = () => {
               <p>Cookies</p>
             </div>
             <p className="font-bold mt-4 lg:ml-8 lg:mt-0">
-              Copyright © {currentYear}, geodevcodes.
+              Copyright © {currentYear}, geomatic connect.
             </p>
           </div>
         </div>
