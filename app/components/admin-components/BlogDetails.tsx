@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { RiTwitterXFill } from "react-icons/ri";
 import { IoIosLink } from "react-icons/io";
 import { toast } from "react-toastify";
-// import parse from "html-react-parser";
+import parse from "html-react-parser";
 import EditBlog from "./EditBlog";
 import Link from "next/link";
 
@@ -32,7 +32,7 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
     queryFn: () => GetBlogRequest(blogSlug),
   });
   const blogId = blogDetailData?.data?._id;
-
+console.log(blogDetailData, "this is blogDetailData heer==");
   // Share dropdown Handler
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -97,7 +97,7 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
           {/*========Blog View======= */}
           <div className="w-full max-w-3xl p-7 bg-white border border-gray-200 rounded-lg">
             <div className="flex justify-between items-center border-b border-gray-400 pb-2 mb-5">
-              <h2 className="text-3xl font-bold ">Blog View</h2>
+              <h2 className="text-xl font-bold ">Geomatic Blog</h2>
               {pathname.includes("/admin-dashboard") && (
                 <p
                   onClick={() => setShowEditBlog((prev) => !prev)}
@@ -176,18 +176,8 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
                 <p>{blogDetailData?.data?.subTitle}</p>
               </div>
               <div className="sm:col-span-full">
-                {/* {typeof blogDetailData?.data?.content === "string" ? (
-                  parse(blogDetailData.data.content)
-                ) : (
-                  <p>No content available</p>
-                )} */}
                 {typeof blogDetailData?.data?.content === "string" ? (
-                  <div
-                    className="ql-editor"
-                    dangerouslySetInnerHTML={{
-                      __html: blogDetailData?.data?.content,
-                    }}
-                  />
+                  parse(blogDetailData.data.content)
                 ) : (
                   <p>No content available</p>
                 )}
