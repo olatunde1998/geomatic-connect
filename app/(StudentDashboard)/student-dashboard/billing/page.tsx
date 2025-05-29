@@ -20,10 +20,10 @@ export default async function BillingPage() {
       <div className="w-full font-sans text-md ">
         <p className="text-2xl font-bold mb-2">Pricing</p>
         <p className="max-w-[550px] leading-8 font-light">
-          All paid plans allow using assets with no time limit and link to us.
-          Unused downloads are transferred to the next period. Each account is
-          for one user only. If you&apos;re a team of 5+, contact us for
-          white-glove service and pass to the VIP lounge for free
+          All paid plans on Geomatic Connect provide unlimited access to
+          internship and practical training opportunities. Each account is
+          intended for individual use only. For dedicated support and priority
+          features, reach out to our team for exclusive assistance.
         </p>
       </div>
       <section className="h-fit border mt-8 p-6 rounded-md">
