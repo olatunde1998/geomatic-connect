@@ -62,7 +62,7 @@ export const yearlyPricingData = [
     headings: "Starter Pack",
     subHeadings:
       "This  package can be used for free and just join and register on this platform",
-    amount: 10000,
+    amount: 16500,
     billingCycle: "year",
     benefit: [
       "5 requests per month",
@@ -80,7 +80,7 @@ export const yearlyPricingData = [
     headings: "Professional Pack",
     subHeadings:
       "This package is an offer that we recommend, Because it has the cheapest price",
-    amount: 15000,
+    amount: 22000,
     billingCycle: "year",
     benefit: [
       "10 requests per month",
@@ -98,7 +98,7 @@ export const yearlyPricingData = [
     headings: "Enterprise Pack",
     subHeadings:
       "This  package can be used for free and just join and register on this platform",
-    amount: 20000,
+    amount: 33000,
     billingCycle: "year",
     benefit: [
       "Access to Unlimited Requests",
