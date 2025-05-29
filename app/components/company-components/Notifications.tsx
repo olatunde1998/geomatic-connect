@@ -1,19 +1,20 @@
 "use client";
+import DeleteNotification from "@/app/components/student-components/DeleteNotification";
+import MessageDetails from "@/app/components/student-components/MessageDetails";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Modal } from "@/app/components/modals/Modal";
+import { Clock, LoaderCircle } from "lucide-react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Clock, LoaderCircle } from "lucide-react";
 import { X } from "lucide-react";
 import { useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   GetUserNotifications,
   UpdateUserNotificationRequest,
 } from "@/app/services/notifications.request";
 import Trash from "@/app/components/trash/Trash";
 import { formatTimestamp } from "@/utils/utils";
-import { Modal } from "@/app/components/modals/Modal";
-import MessageDetails from "@/app/components/student-components/MessageDetails";
-import DeleteNotification from "@/app/components/student-components/DeleteNotification";
+import { redirect } from "next/navigation";
 
 interface NotificationProps {
   token: string;
@@ -31,7 +32,11 @@ export default function Notification({ token }: NotificationProps) {
   // refetch data with Invalidate
   const queryClient = useQueryClient();
 
-  const { data: notificationData, isLoading } = useQuery({
+  const {
+    data: notificationData,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["getUserNotificationApi", currentPage],
     queryFn: () => GetUserNotifications(token, currentPage, limit),
   });
@@ -61,6 +66,10 @@ export default function Notification({ token }: NotificationProps) {
       });
     }
   };
+
+  if (isError) {
+    redirect("/login");
+  }
 
   return (
     <>
