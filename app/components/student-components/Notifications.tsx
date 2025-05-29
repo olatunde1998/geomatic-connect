@@ -40,13 +40,16 @@ export default function Notification({ token }: NotificationProps) {
     queryKey: ["getUserNotificationApi", currentPage],
     queryFn: () => GetUserNotifications(token, currentPage, limit),
   });
+  
   // Update Submission Handler
   const updateNotificationHandler = async (
     notificationId: any,
     read: boolean,
     messageInfo: any
   ) => {
-    setShowMessage(true);
+    if (messageInfo.status !== "None") {
+      setShowMessage(true);
+    }
     setMessageData(messageInfo);
     const body = {
       read: read === false ? true : false,
@@ -126,7 +129,9 @@ export default function Notification({ token }: NotificationProps) {
                         className={`${
                           item.status === "Success"
                             ? "bg-[#33A852]"
-                            : "bg-[#D92D20]"
+                            : item.status === "None"
+                              ? "hidden"
+                              : "bg-[#D92D20]"
                         } bg-[#33A852] text-[#FFFFFF] rounded-lg w-fit py-1 px-2 text-sm`}
                       >
                         {item.status} Payment
