@@ -1,14 +1,11 @@
-import { CircleCheckBig, Plus } from "lucide-react";
+import { CircleCheckBig } from "lucide-react";
 
 interface SuccessMessageProps {
-  // setShowSendRequest: (value: boolean) => void;
   setShowSendRequest: React.Dispatch<React.SetStateAction<boolean>>;
-  responseData: any;
 }
 
 export default function SuccessMessage({
   setShowSendRequest,
-  responseData,
 }: SuccessMessageProps) {
   return (
     <div>
@@ -19,12 +16,12 @@ export default function SuccessMessage({
           </div>
         </div>
         <p className="text-center text-xl mt-4 text-[#12B76A]">
-          Request Sent Successfully!
+          Application Sent Successfully!
         </p>
         <p className="text-md text-gray-500 max-w-[320px] mx-auto mt-8 text-center">
-          Congratulations on submitting your request for skilled engineers!
-          We&apos;re eager to help you find the right team for your project. Our
-          team will contact you shortly.
+          Congratulations on submitting your application. We&apos;re eager to
+          connect you with the best opportunities. Our team will contact you
+          shortly.
         </p>
       </div>
 
