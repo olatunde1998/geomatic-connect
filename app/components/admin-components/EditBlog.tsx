@@ -48,6 +48,7 @@ export default function EditBlog({
   const blogId = blogDetailData?.data?._id;
   const [showPreview, setShowPreview] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [userImage, setUserImage] = useState<string | undefined>(undefined);
   const [blogData, setBlogData] = useState<BlogData>({
@@ -179,13 +180,18 @@ export default function EditBlog({
   };
 
   // At the bottom of your CreateBlog component
-  const handleSubmit = async () => {
+  const handleSubmit = async (mode: "create" | "publish") => {
     if (!blogData.title || !blogData.subTitle || !blogData.content) {
       toast.error("Please fill out all fields");
       return;
     }
 
-    setIsUpdating(true);
+    // Set only one state based on mode
+    if (mode === "create") {
+      setIsUpdating(true);
+    } else {
+      setIsPublishing(true);
+    }
 
     // Handle banner image
     let bannerUrl = blogData.banner;
@@ -207,6 +213,7 @@ export default function EditBlog({
       } catch (error) {
         toast.error("Failed to upload banner image");
         setIsUpdating(false);
+        setIsPublishing(false);
         return;
       }
     }
@@ -242,6 +249,7 @@ export default function EditBlog({
         ...blogData,
         content: updatedContent,
         banner: bannerUrl,
+        active: mode === "publish",
       };
 
       const response = await UpdateBlogRequest(blogId, token, updatedBlog);
@@ -249,9 +257,10 @@ export default function EditBlog({
       queryClient.invalidateQueries({ queryKey: ["getSingleBlogApi"] });
       setShowEditBlog(false);
     } catch (err: any) {
-      toast.error(err?.response.message);
+      toast.error(err?.response?.message);
     } finally {
       setIsUpdating(false);
+      setIsPublishing(false);
     }
   };
 
@@ -267,7 +276,6 @@ export default function EditBlog({
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                handleSubmit();
               }}
             >
               <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -427,6 +435,7 @@ export default function EditBlog({
                 <button
                   type="submit"
                   disabled={isUpdating}
+                  onClick={() => handleSubmit("create")}
                   className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
                 >
                   {isUpdating ? (
@@ -443,10 +452,11 @@ export default function EditBlog({
                 </button>
                 <button
                   type="submit"
-                  disabled={isUpdating}
+                  disabled={isPublishing}
+                  onClick={() => handleSubmit("publish")}
                   className="flex justify-center items-center gap-1 mt-4 sm:mt-6 text-sm text-center text-white rounded-[8px] cursor-pointer  px-3.5 py-3 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
                 >
-                  {isUpdating ? (
+                  {isPublishing ? (
                     <>
                       <LoaderCircle className="size-4 animate-spin duration-500 mx-auto" />
                       Publishing...
