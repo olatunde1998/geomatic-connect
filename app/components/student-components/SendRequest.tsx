@@ -1,18 +1,19 @@
+import { StudentSendRequestToAdmin } from "@/app/services/request.request";
+import ReactSelect from "@/app/components/inputs/ReactSelect";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import SuccessMessage from "./SuccessMessage";
-import ReactSelect from "@/app/components/inputs/ReactSelect";
 import {
   institutionData,
   purposeOfRequestData,
   trackPeriodData,
 } from "@/utils/FilterData";
-import { StudentSendRequestToAdmin } from "@/app/services/request.request";
 import { useRouter } from "next/navigation";
+import ReactConfetti from "react-confetti";
 
 interface SendRequestProps {
   setShowSendRequest?: any;
@@ -104,6 +105,7 @@ export default function SendRequest({
       const response = await StudentSendRequestToAdmin(body, token);
       setResponseData(response);
       toast.success(response?.message);
+      setShowSuccessMessage(true);
     } catch (error: any) {
       toast.error(error?.response?.data?.message);
       toast.error(error?.response?.message);
@@ -273,10 +275,21 @@ export default function SendRequest({
           </form>
         </div>
       ) : (
-        <SuccessMessage
-          setShowSendRequest={setShowSendRequest}
-          responseData={responseData}
-        />
+        <>
+          <SuccessMessage setShowSendRequest={setShowSendRequest} />
+          <ReactConfetti
+            gravity={0.1}
+            height={738}
+            initialVelocityX={2}
+            initialVelocityY={2}
+            numberOfPieces={200}
+            opacity={1}
+            recycle
+            run
+            width={2560}
+            wind={0}
+          />
+        </>
       )}
     </div>
   );
