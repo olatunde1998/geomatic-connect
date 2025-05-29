@@ -62,7 +62,7 @@ export const yearlyPricingData = [
     headings: "Starter Pack",
     subHeadings:
       "This  package can be used for free and just join and register on this platform",
-    amount: 16500,
+    amount: 17000,
     billingCycle: "year",
     benefit: [
       "5 requests per month",

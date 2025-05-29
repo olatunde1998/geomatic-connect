@@ -59,7 +59,7 @@ export default function Subscribe({ token, userId }: SubscribeProps) {
   const yearlyPlans = [
     {
       planMethod: "Starter Yearly",
-      amount: 16500,
+      amount: 17000,
       color: "#12B76A",
       paymentPlanId: 129899,
     },
