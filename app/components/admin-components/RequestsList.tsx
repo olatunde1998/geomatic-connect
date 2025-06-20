@@ -292,8 +292,8 @@ RequestsListProps) {
               info?.row?.original?.status === "Pending"
                 ? "bg-[#f3392f] text-[#FFFFFF] px-3 w-fit"
                 : info?.row?.original?.status === "Not Interested"
-                ? " bg-[#ecdb1d] text-[#766c17] px-3 w-fit"
-                : " bg-[#D1FADF] text-[#079455] px-3 w-fit"
+                  ? " bg-[#ecdb1d] text-[#766c17] px-3 w-fit"
+                  : " bg-[#D1FADF] text-[#079455] px-3 w-fit"
             } text-center p-1 rounded-2xl 
             `}
         >
@@ -470,7 +470,6 @@ RequestsListProps) {
           requestId={selectedRequestId}
         />
       </Modal>
-      <ToastContainer />
     </>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { getSession } from "next-auth/react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useEffect } from "react";
 
 export default function Redirect() {

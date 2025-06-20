@@ -6,7 +6,7 @@ import { Sheet } from "@/app/components/sheets/Sheet";
 import SendRequest from "./SendRequest";
 import { GetUserByIdRequest } from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
-import { ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import { GetUserProfileRequest } from "@/app/services/users.request";
 import { ChevronRight } from "lucide-react";
@@ -164,7 +164,6 @@ export default function StudentDetails({
           token={token}
         />
       </Sheet>
-      <ToastContainer />
     </>
   );
 }

@@ -239,7 +239,6 @@ export default function Settings({ token, userId }: SettingsProps) {
       <Sheet show={showAddTeamMate} onClose={() => setShowAddTeamMate(false)}>
         <AddTeamMate setShowAddTeamMate={setShowAddTeamMate} />
       </Sheet>
-      <ToastContainer />
     </>
   );
 }

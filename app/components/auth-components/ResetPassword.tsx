@@ -171,7 +171,6 @@ export default function ResetPassword({ token }: ResetPasswordProps) {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

@@ -6,7 +6,7 @@ import { GetUsersRequest } from "@/app/services/users.request";
 import { Sheet } from "@/app/components/sheets/Sheet";
 import { useQuery } from "@tanstack/react-query";
 import Trash from "@/app/components/trash/Trash";
-import { ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import { useDebounce } from "use-debounce";
 import AddCompany from "./AddCompany";
@@ -100,8 +100,6 @@ export default function AdminHome({ token }: AdminHomeProps) {
       <Sheet show={showAddCompany} onClose={() => setShowAddCompany(false)}>
         <AddCompany setShowAddCompany={setShowAddCompany} />
       </Sheet>
-
-      <ToastContainer />
     </>
   );
 }

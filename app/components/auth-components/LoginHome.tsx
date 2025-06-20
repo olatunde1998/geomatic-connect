@@ -213,7 +213,6 @@ export default function LoginHome() {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

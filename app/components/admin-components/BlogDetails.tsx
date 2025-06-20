@@ -13,7 +13,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { RiTwitterXFill } from "react-icons/ri";
 import { IoIosLink } from "react-icons/io";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import parse from "html-react-parser";
 import EditBlog from "./EditBlog";
 import Link from "next/link";
@@ -38,7 +38,7 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
     queryFn: () => GetBlogRequest(blogSlug),
   });
   const blogId = blogDetailData?.data?._id;
-  
+
   // Share dropdown Handler
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

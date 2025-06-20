@@ -2,7 +2,7 @@
 import { ResendVerifyOTPRequest } from "@/app/services/auth.request";
 import { MdOutlineMail } from "react-icons/md";
 import { ArrowLeft } from "lucide-react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -38,9 +38,12 @@ export default function ResendOTP({ userEmail }: any) {
             </p>
             <p className="text-sm md:text-base lg:text-xl font-light text-[#363944] text-center mt-3">
               We have sent a verification link to your email
-              <span className="ml-3 font-bold text-[#1F4D36]">({userEmail})</span>.
-             <br /> If you do not receive it in your inbox, please check your spam or
-              junk folder.
+              <span className="ml-3 font-bold text-[#1F4D36]">
+                ({userEmail})
+              </span>
+              .
+              <br /> If you do not receive it in your inbox, please check your
+              spam or junk folder.
             </p>
             {/* ====== Don't Receive code ======  */}
             <div className="mt-8 text-sm">

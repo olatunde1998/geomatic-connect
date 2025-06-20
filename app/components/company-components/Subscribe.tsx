@@ -238,7 +238,6 @@ export default function Subscribe({ token, userId }: SubscribeProps) {
           <PackageInfo />
         </div>
       </section>
-      <ToastContainer />
     </>
   );
 }

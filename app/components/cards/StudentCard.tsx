@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { GraduationCap, MapPin } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { Modal } from "@/app/components/modals/Modal";
 import { CardSkeleton } from "@/app/components/skeletons/CardSkeleton";
 import ApproveMessage from "@/app/components/company-components/ApproveMessage";

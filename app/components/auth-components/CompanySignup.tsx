@@ -224,7 +224,6 @@ export default function CompanySignup() {
           </button>
         </form>
       </div>
-      <ToastContainer />
     </>
   );
 }

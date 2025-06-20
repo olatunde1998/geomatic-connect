@@ -242,7 +242,6 @@ export default function Settings({ token, userId }: SettingsProps) {
           </button>
         </div>
       </form>
-      <ToastContainer />
     </>
   );
 }

@@ -13,7 +13,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Modal } from "@/app/components/modals/Modal";
 import { AIGenerateBlog } from "./AIGenerateBlog";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import parse from "html-react-parser";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";

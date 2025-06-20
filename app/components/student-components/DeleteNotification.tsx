@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useQueryClient } from "@tanstack/react-query";
 import { Dispatch, SetStateAction } from "react";
 import { CircleAlert } from "lucide-react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useState } from "react";
 
 interface DeleteNotificationProps {

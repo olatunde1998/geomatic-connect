@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useQueryClient } from "@tanstack/react-query";
 import { Upload, X } from "lucide-react";
 import { RegisterRequest } from "@/app/services/auth.request";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import ReactSelect from "@/app/components/inputs/ReactSelect";

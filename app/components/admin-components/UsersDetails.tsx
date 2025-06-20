@@ -494,7 +494,6 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
           </span>
         </button>
       </div>
-      <ToastContainer />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import SuccessMessage from "../company-components/SuccessMessage";
 import { AdminSendRequestToCompany } from "@/app/services/request.request";
 import Image from "next/image";

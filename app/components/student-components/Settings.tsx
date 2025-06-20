@@ -392,7 +392,6 @@ export default function Settings({ token, userId }: SettingsProps) {
       <Modal show={showSubscribe} onClose={() => setShowSubscribe(false)}>
         <SubscribeModal setShowSubscribe={setShowSubscribe} />
       </Modal>
-      <ToastContainer />
     </>
   );
 }

@@ -7,6 +7,13 @@ import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { auth } from "@/auth";
 
+const imageUrl = `${process.env.NEXT_PUBLIC_APP_URL}/images/opengraph-image.png`;
+const APP_NAME = "Geomatic Connect";
+const APP_DEFAULT_TITLE = "Geomatic Connect | Student";
+const APP_TITLE_TEMPLATE = "%s - Geomatic Connect";
+const APP_DESCRIPTION =
+  "Geomatic Connect  is a job platform that enables higher institution students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also helps companies find and recruit qualified candidates with ease.";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -18,30 +25,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  manifest: "/manifest.json",
+  applicationName: APP_NAME,
   title: {
-    template: "%s",
-    default: "Geomatic Connect | Student",
+    default: APP_DEFAULT_TITLE,
+    template: APP_TITLE_TEMPLATE,
   },
-  description:
-    "Geomatic Connect  is a platform that enables higher institution students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also helps companies find and recruit qualified candidates with ease.",
-  viewport: {
-    width: "device-width",
-    height: "device-height",
-    initialScale: 1,
+  description: APP_DESCRIPTION,
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: APP_DEFAULT_TITLE,
+    // startUpImage: [],
   },
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_APP_URL}`),
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: APP_NAME,
+    title: {
+      default: APP_DEFAULT_TITLE,
+      template: APP_TITLE_TEMPLATE,
+    },
+    description: APP_DESCRIPTION,
+    images: [imageUrl],
+  },
   twitter: {
     card: "summary_large_image",
     site: `${process.env.NEXT_PUBLIC_APP_URL}`,
     creator: "Geomatic Connect Teams",
-    title: "Geomatic Connect | Student",
+    title: APP_DEFAULT_TITLE,
     description:
-      "Geomatic Connect  is a platform that enables higher institution students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also helps companies find and recruit qualified candidates with ease.",
-    images: ["/images/opengraph-image.png"],
-  },
-  openGraph: {
-    images: ["/images/opengraph-image.png"],
+      "Register, Make Request and got accepted into your desired company!",
+    images: [imageUrl],
   },
 };
 

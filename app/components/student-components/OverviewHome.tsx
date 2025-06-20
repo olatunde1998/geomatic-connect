@@ -9,7 +9,7 @@ import { formatDate, formatDateShort } from "@/utils/utils";
 import { Calendar, Gift, Mail, Zap } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Trash from "@/app/components/trash/Trash";
-import { ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import { redirect } from "next/navigation";
 import { useState } from "react";
@@ -185,7 +185,6 @@ export default function OverviewHome({ token, userId }: OverviewHomeProps) {
           </div>
         )}
       </main>
-      <ToastContainer />
     </>
   );
 }

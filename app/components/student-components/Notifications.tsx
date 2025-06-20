@@ -4,7 +4,7 @@ import MessageDetails from "@/app/components/student-components/MessageDetails";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Modal } from "@/app/components/modals/Modal";
 import { Clock, LoaderCircle } from "lucide-react";
-import { ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import { X } from "lucide-react";
 import { useState } from "react";
@@ -40,7 +40,7 @@ export default function Notification({ token }: NotificationProps) {
     queryKey: ["getUserNotificationApi", currentPage],
     queryFn: () => GetUserNotifications(token, currentPage, limit),
   });
-  
+
   // Update Submission Handler
   const updateNotificationHandler = async (
     notificationId: any,
@@ -159,7 +159,6 @@ export default function Notification({ token }: NotificationProps) {
           </>
         )}
       </section>
-      <ToastContainer />
 
       {/* ===Message Details Modal ===== */}
       <Modal show={showMessage} onClose={() => setShowMessage(false)}>

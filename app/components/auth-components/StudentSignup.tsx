@@ -239,8 +239,6 @@ export default function StudentSignup() {
           </form>
         </div>
       )}
-
-      <ToastContainer />
     </>
   );
 }

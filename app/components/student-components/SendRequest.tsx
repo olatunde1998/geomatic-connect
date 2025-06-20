@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import SuccessMessage from "./SuccessMessage";
 import {
   institutionData,

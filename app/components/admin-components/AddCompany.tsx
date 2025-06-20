@@ -9,7 +9,7 @@ import "react-phone-number-input/style.css";
 import { useForm } from "react-hook-form";
 import { Upload, X } from "lucide-react";
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import Image from "next/image";
 import * as yup from "yup";
 

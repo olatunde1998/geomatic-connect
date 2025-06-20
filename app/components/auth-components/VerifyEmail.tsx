@@ -160,7 +160,6 @@ export default function VerifyEmail({ userEmail }: VerifyEmailProps) {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

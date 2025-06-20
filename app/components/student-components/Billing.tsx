@@ -237,7 +237,6 @@ export default function Billing({ token, userId }: BillingProps) {
           <PackageInfo />
         </div>
       </section>
-      <ToastContainer />
     </>
   );
 }
