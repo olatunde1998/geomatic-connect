@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { LoaderCircle, Upload } from "lucide-react";
 import { Modal } from "@/app/components/modals/Modal";
 

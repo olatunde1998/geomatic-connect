@@ -1,6 +1,6 @@
 "use client";
 import LeftContainer from "./leftContainer";
-import "react-toastify/dist/ReactToastify.css";
+
 import StudentSignup from "@/app/components/auth-components/StudentSignup";
 import Link from "next/link";
 
@@ -15,7 +15,7 @@ export default function SignUp() {
           </p>
           <p className="text-center">Register an account</p>
           <div>
-           <StudentSignup /> 
+            <StudentSignup />
           </div>
           {/* ====== Already have an account ======  */}
           <div className="mt-4 text-center text-xs flex items-center justify-center">

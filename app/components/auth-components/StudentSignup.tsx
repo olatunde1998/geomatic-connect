@@ -6,7 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PhoneInput from "react-phone-number-input";
 import { BiHide, BiShow } from "react-icons/bi";
-import "react-toastify/dist/ReactToastify.css";
+
 import "react-phone-number-input/style.css";
 import { useForm } from "react-hook-form";
 import ResendOTP from "./ResendOTP";

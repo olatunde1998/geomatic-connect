@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import PackageInfo from "@/app/components/landing-page-components/PackageInfo";
 import { GetUserByIdRequest } from "@/app/services/request.request";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {

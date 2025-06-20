@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "sonner";
+
 import { LoaderCircle, Plus, Upload } from "lucide-react";
 import { Sheet } from "@/app/components/sheets/Sheet";
 import AddTeamMate from "./AddTeamMate";

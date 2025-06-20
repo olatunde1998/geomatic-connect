@@ -16,8 +16,8 @@ import {
   AdminApproveStudentRequest,
   AdminDeclineStudentRequest,
 } from "@/app/services/request.request";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "sonner";
+
 import SendRequest from "./RequestDetails";
 import ApproveMessage from "@/app/components/company-components/ApproveMessage";
 import DeclineMessage from "@/app/components/company-components/DeclineMessage";

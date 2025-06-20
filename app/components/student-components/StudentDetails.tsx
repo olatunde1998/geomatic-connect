@@ -7,7 +7,6 @@ import SendRequest from "./SendRequest";
 import { GetUserByIdRequest } from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
 
-import "react-toastify/dist/ReactToastify.css";
 import { GetUserProfileRequest } from "@/app/services/users.request";
 import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

@@ -7,7 +7,6 @@ import { Modal } from "@/app/components/modals/Modal";
 import { stateData } from "@/utils/FilterData";
 import { useQuery } from "@tanstack/react-query";
 
-import "react-toastify/dist/ReactToastify.css";
 import { useDebounce } from "use-debounce";
 import { useState } from "react";
 

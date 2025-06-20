@@ -10,7 +10,6 @@ import { Calendar, Gift, Mail, Zap } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Trash from "@/app/components/trash/Trash";
 
-import "react-toastify/dist/ReactToastify.css";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
