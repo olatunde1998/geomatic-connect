@@ -51,6 +51,7 @@
     "remark-gfm": "^4.0.0",
     "resend": "^4.3.0",
     "sharp": "^0.34.0",
+    "sonner": "^2.0.5",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-debug-screens": "^2.2.1",
