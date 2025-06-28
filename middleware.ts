@@ -15,9 +15,12 @@ export default auth((req) => {
     "/reset-password",
     "/blog",
     "/blog/(.*)",
+    "/jobs",
   ];
   const isPublicPage =
-    publicPages.includes(pathname) || pathname.startsWith("/blog/");
+    publicPages.includes(pathname) ||
+    pathname.startsWith("/blog/") ||
+    pathname.startsWith("/jobs/");
 
   // If it's not a public page and user isn't authenticated
   if (!auth && !isPublicPage) {
