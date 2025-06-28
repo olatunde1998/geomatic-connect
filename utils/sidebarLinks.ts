@@ -4,6 +4,7 @@ import {
   LayoutGrid,
   ChartNoAxesCombined,
   User,
+  BriefcaseBusiness,
 } from "lucide-react";
 import { FaQ } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
@@ -35,6 +36,11 @@ export const companyNavItems = [
     icon: LayoutGrid,
   },
   {
+    name: "My Jobs",
+    href: "/company-dashboard/jobs",
+    icon: BriefcaseBusiness,
+  },
+  {
     name: "Notifications",
     href: "/company-dashboard/notifications",
     icon: RiMessage2Line,
@@ -53,14 +59,14 @@ export const studentNavItems = [
     icon: LayoutGrid,
   },
   {
+    name: "Jobs",
+    href: "/student-dashboard/jobs",
+    icon: BriefcaseBusiness,
+  },
+  {
     name: "Overview",
     href: "/student-dashboard/overview",
     icon: ChartNoAxesCombined,
-  },
-  {
-    name: "Notifications",
-    href: "/student-dashboard/notifications",
-    icon: RiMessage2Line,
   },
   {
     name: "Billing",
