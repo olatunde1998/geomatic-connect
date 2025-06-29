@@ -1,4 +1,4 @@
-import JobListingCard from "@/app/components/cards/JobListingCard";
+import JobHome from "@/app/components/job-listings/JobHome";
 
 export default function JobListingPage() {
   return (
@@ -7,7 +7,7 @@ export default function JobListingPage() {
       <p className="text-muted-foreground mb-6">
         List of Available job, check it out and apply!
       </p>
-      <JobListingCard />
+      <JobHome />
     </div>
   );
 }
