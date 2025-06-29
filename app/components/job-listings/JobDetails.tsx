@@ -1,19 +1,31 @@
 "use client";
+import { getJobRequest } from "@/app/services/job.request";
 import { Facebook, Linkedin, Share2 } from "lucide-react";
-import { jobListingData } from "@/utils/JobListingData";
 import { useEffect, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { RiTwitterXFill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { getShortTitle } from "@/utils/utils";
+import { useSession } from "next-auth/react";
 import { IoIosLink } from "react-icons/io";
 import parse from "html-react-parser";
 import { toast } from "sonner";
 import Link from "next/link";
 
-export default function JobDetails() {
+interface JobDetailsProps {
+  jobId: string;
+}
+export default function JobDetails({ jobId }: JobDetailsProps) {
   const [showActions, setShowActions] = useState(false);
   const shareRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
+  const { data: session } = useSession();
+  const token = session?.user?.token as string;
+
+  const { data: jobData, isLoading } = useQuery({
+    queryKey: ["getJobApi"],
+    queryFn: () => getJobRequest(token, jobId),
+  });
 
   // Share dropdown Handler
   useEffect(() => {
@@ -31,32 +43,30 @@ export default function JobDetails() {
     };
   }, []);
 
-  const shareText = jobListingData[0].jobTitle
-    ? getShortTitle(jobListingData[0].jobTitle)
-    : "Geomatic Connect Blog";
+  const shareText = jobData?.data?.jobTitle
+    ? getShortTitle(jobData.data.jobTitle)
+    : "Geomatic Connect Job";
 
   const cleanPath = pathname.replace(/^\/admin-dashboard/, "");
   const fullUrl = `${process.env.NEXT_PUBLIC_APP_URL}${cleanPath}`;
   const encodedUrl = encodeURIComponent(fullUrl);
 
-  const jobDetailData = jobListingData[0];
-
   return (
     <div className="max-w-4xl mx-aut p-4 overflow-hidden border border-slate-300 rounded-lg">
-      <h1 className="text-2xl font-bold mb-2">Job Details</h1>
-
       <header className="mt-8 border-b border-slate-300 pb-8">
         <h3 className="font-bold text-xl md:text-3xl">
-          B2B Sales Representative - Earn Big with a Leading Brand
+          {jobData?.data?.jobTitle}
         </h3>
         <span className="text-base">at</span>
         <span className="text-muted-foreground ml-2 text-base">
-          Super Speciosa
+          {jobData?.data?.companyId?.companyName}
         </span>
         <p className="flex items-center flex-wrap gap-2 mt-2 text-base text-muted-foreground">
-          <span className="font-semibold text-black/80">On-site</span>{" "}
-          <span>. Oakland Park, Florida, United States</span>{" "}
-          <span>. Full-time</span>
+          <span className="font-semibold text-black/80">
+            {jobData?.data?.jobType}
+          </span>
+          <span>. {jobData?.data?.location}</span>
+          <span>. {jobData?.data?.experienceLevel}</span>
         </p>
         <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center justify-between">
           <p className="text-sm text-muted-foreground">Posted 4 days ago</p>
@@ -116,8 +126,8 @@ export default function JobDetails() {
         </div>
       </header>
       <section className="mt-8 sm:col-span-full">
-        {typeof jobDetailData.description === "string" ? (
-          parse(jobDetailData.description)
+        {typeof jobData?.data?.jobDescription === "string" ? (
+          parse(jobData?.data?.jobDescription)
         ) : (
           <p>No content available</p>
         )}
