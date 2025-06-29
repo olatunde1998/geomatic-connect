@@ -1,10 +1,16 @@
 "use client";
-import { GetUserProfileRequest } from "@/app/services/users.request";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { institutionData, stateData } from "@/utils/FilterData";
+import { useQueryClient } from "@tanstack/react-query";
+import { CreateJobRequest } from "@/app/services/job.request";
+import {
+  accomodationData,
+  experienceData,
+  jobTypeData,
+  stateData,
+} from "@/utils/FilterData";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useRef, useState } from "react";
+import { formats, modules } from "@/utils/utils";
 import { LoaderCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -13,37 +19,23 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 
 const schema = yup.object().shape({
-  fullName: yup
+  jobTitle: yup
     .string()
-    .required("Full Name is required")
-    .min(3, "Full Name must be greater than 3 letters"),
-  aboutMe: yup
-    .string()
-    .required("About is required")
-    .min(3, "About must be greater than 50 words"),
-  email: yup
-    .string()
-    .required("Email is required")
-    .email("Invalid Email format"),
-  mobileNumber: yup
-    .number()
-    .required("Mobile is required")
-    .min(3, " must be greater than 8 letters"),
-  institutionName: yup
-    .string()
-    .required("Institution is required")
-    .min(3, " must be greater than 10 letters"),
-  state: yup.string().required("State is required"),
+    .required("Job Title is required")
+    .min(3, "Job Title must be greater than 3 letters"),
+  location: yup.string().required("Location is required"),
+  experienceLevel: yup.string().required("Experience Level is required"),
+  accomodation: yup.string().required("Accomodation  is required"),
+  jobType: yup.string().required("Job Type is required"),
 });
 
-export default function NewJobListingPage() {
-  const [isUpdating, setIsUpdating] = useState<boolean>(false);
+interface CreateJobProps {
+  userId?: string;
+  token: string;
+}
+export default function CreateJob({ userId, token }: CreateJobProps) {
+  const [isCreating, setIsCreating] = useState<boolean>(false);
   const queryClient = useQueryClient();
-
-  const { data: userProfileData } = useQuery({
-    queryKey: ["getUserProfileApi"],
-    queryFn: () => GetUserProfileRequest(userId, token),
-  });
 
   // REACT HOOK FORM LOGIC
   const {
@@ -54,20 +46,10 @@ export default function NewJobListingPage() {
     watch,
     trigger,
   } = useForm({ resolver: yupResolver(schema) });
-  const institutionNameValue = watch("institutionName");
-  const stateValue = watch("state");
-
-  // Default values when userProfileData is available
-  useEffect(() => {
-    if (userProfileData) {
-      setValue("fullName", userProfileData.data.fullName);
-      setValue("aboutMe", userProfileData.data.aboutMe);
-      setValue("email", userProfileData.data.email);
-      setValue("mobileNumber", userProfileData.data.phoneNumber);
-      setValue("institutionName", userProfileData.data.institutionName);
-      setValue("state", userProfileData.data.state);
-    }
-  }, [userProfileData, setValue]);
+  const locationValue = watch("location");
+  const experienceLevelValue = watch("experienceLevel");
+  const accommodationValue = watch("accomodation");
+  const jobTypeValue = watch("jobType");
 
   const editorRef = useRef<HTMLDivElement>(null);
   const quillInstance = useRef<any>(null);
@@ -79,56 +61,47 @@ export default function NewJobListingPage() {
         theme: "snow",
         modules: {
           toolbar: {
-            container: [
-              ["bold", "italic", "underline", "strike"],
-              ["link", "image"],
-              [{ list: "ordered" }, { list: "bullet" }],
-              ["clean"],
-            ],
-            // handlers: {
-            //   image: imageHandler,
-            // },
+            container: modules.toolbar,
           },
         },
+        formats: formats,
       });
-
-      // Update content state on change
       quillInstance.current.on("text-change", () => {
-        // setBlogData((prev) => ({
-        //   ...prev,
-        //   content: quillInstance.current!.root.innerHTML,
-        // }));
+        // Update content logic here
       });
     }
   }, []);
 
   // Submit handler for the form
   const onSubmitHandler = async (data: any) => {
-    setIsUpdating(true);
+    setIsCreating(true);
+    const jobDescription = quillInstance.current.root.innerHTML;
+    console.log(jobDescription, "this is jobDescription here====");
 
     try {
-      const formData = new FormData();
-      formData.append("fullName", data?.fullName);
-      formData.append("aboutMe", data.aboutMe);
-      formData.append("email", data?.email);
-      formData.append("phoneNumber", data?.mobileNumber);
-      formData.append("state", data?.state);
-      formData.append("institutionName", data?.institutionName);
+      const payload = {
+        companyId: userId,
+        jobTitle: data?.jobTitle,
+        experienceLevel: data?.experienceLevel,
+        accommodation: data?.accommodation,
+        location: data?.location,
+        jobType: data?.jobType,
+        jobDescription,
+      };
 
-      //   const response = await UpdateUserProfileRequest(userId, token, formData);
-      toast.success("Profile updated successfully");
-      queryClient.invalidateQueries({ queryKey: ["getUserProfileApi"] });
-      queryClient.invalidateQueries({ queryKey: ["getUsersApi"] });
+      const response = await CreateJobRequest(payload, token);
+      toast.success(response.message || "Job created successfully");
+      queryClient.invalidateQueries({ queryKey: ["getJobsApi"] });
     } catch (error: any) {
       toast.error(error?.response?.message);
     } finally {
-      setIsUpdating(false);
+      setIsCreating(false);
     }
   };
 
   return (
     <div className="max-w-md md:min-w-[600px] lg:min-w-[700px] mx-auto p-5 bg-white border border-gray-200 rounded-lg mb-4">
-      <h1 className="text-2xl font-bold mb-2">Job Listing Form</h1>
+      <h1 className="text-2xl font-bold mb-2">Create Job</h1>
       <p className="text-muted-foreground mb-6">
         This form allows you to create or edit a job listing.
       </p>
@@ -143,9 +116,9 @@ export default function NewJobListingPage() {
                 <input
                   type="text"
                   placeholder="Cadastral Surveyor"
-                  {...register("fullName")}
+                  {...register("jobTitle")}
                   className={`${
-                    errors.fullName && "border-[1.3px] border-red-500"
+                    errors.jobTitle && "border-[1.3px] border-red-500"
                   } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm`}
                 />
               </label>
@@ -153,47 +126,53 @@ export default function NewJobListingPage() {
             {/* =====Experience Level ===== */}
             <section>
               <div className="rounded-xl bg-white dark:bg-background max-w-[540px] mt-4">
-                <label htmlFor="state" className="text-sm font-medium">
+                <label
+                  htmlFor="experienceLevel"
+                  className="text-sm font-medium"
+                >
                   Experience Level
                 </label>
                 <div
                   className={`${
-                    errors.state ? "border-[1.3px] border-red-500" : ""
+                    errors.experienceLevel
+                      ? "border-[1.3px] border-red-500"
+                      : ""
                   } flex flex-col w-full`}
                 >
                   <ReactSelect
-                    options={stateData}
-                    placeholder="Your Location"
-                    value={stateData.find(
-                      (option) => option.value === stateValue
+                    options={experienceData}
+                    placeholder="Your Experience Level"
+                    value={experienceData.find(
+                      (option) => option.value === experienceLevelValue
                     )}
                     onChange={(option: any) => {
-                      setValue("state", option?.value || "");
-                      trigger("state"); // Trigger validation
+                      setValue("experienceLevel", option?.value || "");
+                      trigger("experienceLevel"); // Trigger validation
                     }}
                   />
                 </div>
               </div>
             </section>
+
             {/* === Accommodation Dropdown Input === */}
             <div className="mt-3">
-              <label htmlFor="institutionName" className="text-sm font-medium">
+              <label htmlFor="accomodation" className="text-sm font-medium">
                 Accommodation
               </label>
               <div
                 className={`${
-                  errors.institutionName ? "border-[1.3px] border-red-500" : ""
+                  errors.accomodation ? "border-[1.3px] border-red-500" : ""
                 } flex flex-col w-full`}
               >
                 <ReactSelect
-                  options={institutionData}
-                  placeholder="Institution name"
-                  value={institutionData.find(
-                    (option) => option.value === institutionNameValue
+                  options={accomodationData}
+                  placeholder="Select Accommodation"
+                  value={accomodationData.find(
+                    (option) => option.value === accommodationValue
                   )}
                   onChange={(option: any) => {
-                    setValue("institutionName", option?.value || "");
-                    trigger("institutionName"); // Trigger validation
+                    setValue("accomodation", option?.value || "");
+                    trigger("accomodation"); // Trigger validation
                   }}
                 />
               </div>
@@ -202,73 +181,48 @@ export default function NewJobListingPage() {
           <div>
             {/* === Location Requirement Input === */}
             <section>
-              <label htmlFor="state" className="text-sm font-medium">
+              <label htmlFor="location" className="text-sm font-medium">
                 Location Requirement
               </label>
               <div
                 className={`${
-                  errors.state ? "border-[1.3px] border-red-500" : ""
+                  errors.location ? "border-[1.3px] border-red-500" : ""
                 } flex flex-col w-full`}
               >
                 <ReactSelect
                   options={stateData}
                   placeholder="Your Location"
                   value={stateData.find(
-                    (option) => option.value === stateValue
+                    (option) => option.value === locationValue
                   )}
                   onChange={(option: any) => {
-                    setValue("state", option?.value || "");
-                    trigger("state"); // Trigger validation
+                    setValue("location", option?.value || "");
+                    trigger("location"); // Trigger validation
                   }}
                 />
-              </div>
-            </section>
-            {/* =====Experience Level ===== */}
-            <section>
-              <div className="rounded-xl bg-white dark:bg-background max-w-[540px] mt-4">
-                <label htmlFor="state" className="text-sm font-medium">
-                  Experience Level
-                </label>
-                <div
-                  className={`${
-                    errors.state ? "border-[1.3px] border-red-500" : ""
-                  } flex flex-col w-full`}
-                >
-                  <ReactSelect
-                    options={stateData}
-                    placeholder="Your Location"
-                    value={stateData.find(
-                      (option) => option.value === stateValue
-                    )}
-                    onChange={(option: any) => {
-                      setValue("state", option?.value || "");
-                      trigger("state"); // Trigger validation
-                    }}
-                  />
-                </div>
               </div>
             </section>
 
             {/* ===== Job Type  ===== */}
             <section>
               <div className="rounded-xl bg-white dark:bg-background max-w-[540px] mt-4">
-                <label htmlFor="state" className="text-sm font-medium">
+                <label htmlFor="jobType" className="text-sm font-medium">
                   Job Type
                 </label>
                 <div
                   className={`${
-                    errors.state ? "border-[1.3px] border-red-500" : ""
+                    errors.jobType ? "border-[1.3px] border-red-500" : ""
                   } flex flex-col w-full`}
                 >
                   <ReactSelect
-                    options={stateData}
-                    placeholder="Your Location"
-                    value={stateData.find(
-                      (option) => option.value === stateValue
+                    options={jobTypeData}
+                    placeholder="Select Job Type"
+                    value={jobTypeData.find(
+                      (option) => option.value === jobTypeValue
                     )}
                     onChange={(option: any) => {
-                      setValue("state", option?.value || "");
-                      trigger("state"); // Trigger validation
+                      setValue("jobType", option?.value || "");
+                      trigger("jobType"); // Trigger validation
                     }}
                   />
                 </div>
@@ -289,12 +243,12 @@ export default function NewJobListingPage() {
 
         <div>
           <button
-            disabled={isUpdating}
+            disabled={isCreating}
             className="w-full mt-6 rounded-md  px-3.5 py-2 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer"
           >
-            {isUpdating ? (
+            {isCreating ? (
               <span className="flex space-x-4 gap-3">
-                <LoaderCircle className="animate-spin" /> Updating...
+                <LoaderCircle className="animate-spin" /> Creating...
               </span>
             ) : (
               "Save Now"
