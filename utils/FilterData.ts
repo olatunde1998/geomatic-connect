@@ -131,3 +131,20 @@ export const accomodationData = [
   { id: 1, label: "Yes", value: true },
   { id: 2, label: "No", value: false },
 ];
+
+// Experience Level data
+export const experienceData = [
+  { id: 0, label: "Select your level", value: "" },
+  { id: 1, label: "Junior Level", value: "Junior" },
+  { id: 2, label: "Mid-Level", value: "Mid-Level" },
+  { id: 3, label: "Senior Level", value: "Senior Level" },
+];
+
+// JobType data
+export const jobTypeData = [
+  { id: 0, label: "Select Job Type", value: "" },
+  { id: 1, label: "Contract", value: "Contract" },
+  { id: 2, label: "Full-Time", value: "Full-Time" },
+  { id: 3, label: "Hybrid", value: "Hybrid" },
+  { id: 4, label: "Remote", value: "Remote" },
+];
