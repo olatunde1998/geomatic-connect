@@ -35,7 +35,6 @@ const schema = yup.object().shape({
 interface EditJobProps {
   jobData: any;
   jobId: string;
-  companyId: string;
   setShowEditJob?: any;
   token: string;
 }
@@ -43,7 +42,6 @@ interface EditJobProps {
 export default function EditJob({
   jobData,
   jobId,
-  companyId,
   setShowEditJob,
   token,
 }: EditJobProps) {
@@ -112,7 +110,6 @@ export default function EditJob({
         accommodation: data?.accommodation,
         location: data?.location,
         jobType: data?.jobType,
-        companyId,
         jobDescription,
       };
 

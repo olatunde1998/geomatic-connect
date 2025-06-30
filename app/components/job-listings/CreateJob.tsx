@@ -33,15 +33,10 @@ const schema = yup.object().shape({
 });
 
 interface CreateJobProps {
-  userId?: string;
   token: string;
   setShowCreateJob?: any;
 }
-export default function CreateJob({
-  userId,
-  token,
-  setShowCreateJob,
-}: CreateJobProps) {
+export default function CreateJob({ token, setShowCreateJob }: CreateJobProps) {
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const queryClient = useQueryClient();
 
@@ -87,7 +82,6 @@ export default function CreateJob({
         jobTitle: data?.jobTitle,
         location: data?.location,
         jobType: data?.jobType,
-        companyId: userId,
         jobDescription,
       };
 
