@@ -11,12 +11,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 interface TableProps {
   data: any;
   columns: any;
-  handlePreviousPage: any;
-  handleNextPage: any;
+  handlePreviousPage?: any;
+  handleNextPage?: any;
   currentPage: any;
   limit: any;
-  totalItems: any;
-  endCursor: any;
+  totalItems?: any;
+  endCursor?: any;
 }
 
 export const Table = ({
