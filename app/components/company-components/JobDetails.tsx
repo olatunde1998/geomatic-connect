@@ -1,5 +1,4 @@
 "use client";
-import { deleteJobRequest, getJobRequest } from "@/app/services/job.request";
 import Applicants from "@/app/components/job-listings/Applicants";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import EditJob from "@/app/components/job-listings/EditJob";
@@ -7,6 +6,11 @@ import { Rss, SquarePen, Trash2 } from "lucide-react";
 import { Modal } from "@/app/components/modals/Modal";
 import DeleteJob from "../job-listings/DeleteJob";
 import { useSession } from "next-auth/react";
+import {
+  deleteJobRequest,
+  getJobRequest,
+  updateJobRequest,
+} from "@/app/services/job.request";
 import { useState } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
@@ -27,6 +31,21 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
     queryKey: ["getJobApi"],
     queryFn: () => getJobRequest(token, jobId),
   });
+
+  // Publish Job handler
+  const updateJobHandler = async () => {
+    try {
+      const payload = {
+        active: jobData?.data?.active ? false : true,
+      };
+      const response = await updateJobRequest(jobId, token, payload);
+      toast.success(response.message || "Job updated successfully");
+      queryClient.invalidateQueries({ queryKey: ["getJobsApi"] });
+      queryClient.invalidateQueries({ queryKey: ["getJobApi"] });
+    } catch (error: any) {
+      toast.error(error?.response?.message);
+    }
+  };
 
   // Delete A Job Request Logic
   const deleteJobHandler = async () => {
@@ -73,8 +92,12 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
               >
                 <SquarePen className="size-4" /> Edit
               </p>
-              <p className="cursor-pointer bg-slate-400 text-white h-fit py-1.5 px-4 rounded-lg text-xs flex items-center gap-2">
-                <Rss className="size-4" /> Publish
+              <p
+                onClick={() => updateJobHandler()}
+                className="cursor-pointer bg-green-500 text-white h-fit py-1.5 px-4 rounded-lg text-xs flex items-center gap-2"
+              >
+                <Rss className="size-4" />
+                {jobData?.data?.active ? "Publish" : "UnPublish"}
               </p>
               <p
                 onClick={() => setShowConfirmDelete(true)}
