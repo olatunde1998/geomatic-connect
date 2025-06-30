@@ -1,8 +1,8 @@
 "use client";
-import { getJobRequest } from "@/app/services/job.request";
+import { applyToJobRequest, getJobRequest } from "@/app/services/job.request";
 import { Facebook, Linkedin, Share2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { RiTwitterXFill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { getShortTitle } from "@/utils/utils";
@@ -17,10 +17,12 @@ interface JobDetailsProps {
 }
 export default function JobDetails({ jobId }: JobDetailsProps) {
   const [showActions, setShowActions] = useState(false);
+  const [isApplying, setIsApplying] = useState(false);
   const shareRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
   const { data: session } = useSession();
   const token = session?.user?.token as string;
+  const queryClient = useQueryClient();
 
   const { data: jobData, isLoading } = useQuery({
     queryKey: ["getJobApi"],
@@ -50,6 +52,21 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
   const cleanPath = pathname.replace(/^\/admin-dashboard/, "");
   const fullUrl = `${process.env.NEXT_PUBLIC_APP_URL}${cleanPath}`;
   const encodedUrl = encodeURIComponent(fullUrl);
+
+  // Apply To Job handler
+  const applyToJobHandler = async () => {
+    setIsApplying(true);
+    try {
+      const response = await applyToJobRequest(jobId, token);
+      toast.success(response.message || "Job application successfully");
+      queryClient.invalidateQueries({ queryKey: ["getJobsApi"] });
+      queryClient.invalidateQueries({ queryKey: ["getJobApi"] });
+    } catch (error: any) {
+      toast.error(error?.response?.message);
+    } finally {
+      setIsApplying(false);
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-aut p-4 overflow-hidden border border-slate-300 rounded-lg">
@@ -119,8 +136,12 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
                 </span>
               </span>
             </button>
-            <button className="w-full md:w-fit px-3.5 py-2 font-normal text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] rounded-sm">
-              Apply Now
+            <button
+              onClick={applyToJobHandler}
+              disabled={isApplying}
+              className="w-full md:w-fit px-3.5 py-2 font-normal text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] rounded-sm"
+            >
+              {isApplying ? "Submitting..." : "Apply Now"}
             </button>
           </div>
         </div>
