@@ -141,7 +141,7 @@ export default function Applicants({ applicantsData }: ApplicantsProps) {
       ),
       header: () => (
         <span className="text-[#101828] dark:text-accent-foreground">
-          Applicant's Name
+          Applicant&apos;s Name
         </span>
       ),
     }),
