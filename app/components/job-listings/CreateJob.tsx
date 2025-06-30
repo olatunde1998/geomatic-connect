@@ -11,7 +11,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useRef, useState } from "react";
 import { formats, modules } from "@/utils/utils";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as yup from "yup";
@@ -103,11 +103,22 @@ export default function CreateJob({
   };
 
   return (
-    <div className="max-w-md md:min-w-[600px] lg:min-w-[700px] mx-auto p-5 bg-white border border-gray-200 rounded-lg mb-4">
-      <h1 className="text-2xl font-bold mb-2">Create Job</h1>
-      <p className="text-muted-foreground mb-6">
-        This form allows you to create a job listing.
-      </p>
+    <div className="max-w-md md:min-w-[600px] lg:min-w-[700px] mx-auto p-6 md:p-8 bg-white border border-gray-200 rounded-lg mb-4">
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-2xl font-bold mb-2">Create Job</h1>
+          <p className="text-muted-foreground mb-6">
+            This form allows you to create a job listing.
+          </p>
+        </div>
+        <button
+          onClick={() => setShowCreateJob(false)}
+          className="self-start rounded-md gap-6 text-gray-500 hover:text-gray-500 hover:bg-slate-100 p-2 m-2 cursor-pointer"
+        >
+          <X className="size-5" />
+        </button>
+      </div>
+
       {/* Job listing form content will go here */}
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div className="lg:grid grid-cols-2 md:gap-6 max-w-[1400px]">
