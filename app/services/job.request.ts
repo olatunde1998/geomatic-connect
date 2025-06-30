@@ -46,6 +46,30 @@ export const GetjobsRequest = async (
   }
 };
 
+// GET(READ) COMPANY JOBS
+export const getCompanyJobsRequest = async (
+  token: string,
+  pageParam = 1,
+  limit: number
+) => {
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/jobs/company-jobs?pageNumber=${pageParam}&limit=${limit}`,
+      {
+        maxBodyLength: Infinity,
+        headers: {
+          Accept: "application/vnd.connect.v1+json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.data;
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Failed to fetch jobs.");
+  }
+};
+
 // GET(READ) A JOB
 export const getJobRequest = async (token: string, jobId: string) => {
   try {
@@ -84,6 +108,30 @@ export const updateJobRequest = async (
       }
     );
     const data = response.data;
+    if (!data) return;
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+// APPLY TO A JOB REQUEST
+export const applyToJobRequest = async (jobId: string, token: string) => {
+  try {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASEURL}/api/jobs/${jobId}/apply`,
+      {},
+      {
+        headers: {
+          Accept: "application/vnd.connect.v1+json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = response.data;
+    console.log(data, "data is here");
     if (!data) return;
     return data;
   } catch (error) {
