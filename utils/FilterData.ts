@@ -126,7 +126,7 @@ export const purposeOfRequestData = [
 ];
 
 // Accomodation data
-export const accomodationData = [
+export const accommodationData = [
   { id: 0, label: "Select Accomodation", value: "" },
   { id: 1, label: "Yes", value: true },
   { id: 2, label: "No", value: false },
