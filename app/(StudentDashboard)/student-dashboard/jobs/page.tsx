@@ -16,7 +16,7 @@ export default async function HomePage() {
     redirect("/login");
   }
   return (
-    <main className="min-h-screen p-6 pt-24 lg:p-12 xl:p-20 lg:pt-24 xl:pt-24 font-sans text-md">
+    <main className="min-h-screen p-6 pt-24 lg:p-12 xl:p-20 lg:pt-24 xl:pt-32 font-sans text-md">
       <JobHome />
     </main>
   );

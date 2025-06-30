@@ -1,4 +1,4 @@
-import JobHome from "@/app/components/job-listings/JobHome";
+import JobHome from "@/app/components/company-components/JobHome";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { auth } from "@/auth";
