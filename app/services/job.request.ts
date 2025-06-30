@@ -14,7 +14,6 @@ export const CreateJobRequest = async (body: any, token: string) => {
       }
     );
     const data = response.data;
-    console.log(data, "data is here");
     if (!data) return;
     return data;
   } catch (error) {
@@ -85,7 +84,6 @@ export const updateJobRequest = async (
       }
     );
     const data = response.data;
-    console.log(data);
     if (!data) return;
     return data;
   } catch (error) {
