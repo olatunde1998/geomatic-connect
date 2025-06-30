@@ -70,11 +70,11 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
   };
 
   const hasApplied = jobData?.data?.applicants?.some(
-    (applicant: any) => applicant.user._id === userId
+    (applicant: any) => applicant?.user?._id === userId
   );
 
   return (
-    <div className="max-w-4xl mx-aut p-4 overflow-hidden border border-slate-300 rounded-lg">
+    <div className="max-w-3xl p-4 overflow-hidden border border-slate-300 rounded-lg">
       <header className="mt-8 border-b border-slate-300 pb-8">
         <h3 className="font-bold text-xl md:text-3xl">
           {jobData?.data?.jobTitle}

@@ -30,7 +30,7 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
     queryKey: ["getJobApi"],
     queryFn: () => getJobRequest(token, jobId),
   });
-console.log(jobData, "this is jobData here===");
+
   // Publish Job handler
   const updateJobHandler = async () => {
     try {
