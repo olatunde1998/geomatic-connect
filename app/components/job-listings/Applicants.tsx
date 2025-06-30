@@ -2,20 +2,25 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Skeleton } from "@/app/components/skeletons/Skeleton";
 import { createColumnHelper } from "@tanstack/react-table";
-import { applicantsData } from "@/utils/ApplicantsData";
 import { ArrowDown, File, Filter } from "lucide-react";
 import { Table } from "@/app/components/tables/Table";
 import { formatDate } from "@/utils/utils";
 import { useDebounce } from "use-debounce";
 
-interface ApplicantsData {
+interface Applicant {
   _id: string;
-  fullName?: string;
-  email: string;
-  state: string;
-  createdAt?: any;
-  role?: string;
+  user: {
+    fullName: string;
+    email: string;
+    state: string;
+  };
+  createdAt: string;
   meta?: string[];
+  appliedAt: string;
+}
+
+interface ApplicantsProps {
+  applicantsData: Applicant[];
 }
 
 interface IndeterminateCheckboxProps {
@@ -25,7 +30,7 @@ interface IndeterminateCheckboxProps {
 }
 
 interface RowType {
-  original: any; // Replace with the correct type if available
+  original: any;
   getToggleSelectedHandler: () => (
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
@@ -41,7 +46,7 @@ interface TableType {
   getPreSelectedRowModel: () => { rows: RowType[] };
 }
 
-export default function Applicants() {
+export default function Applicants({ applicantsData }: ApplicantsProps) {
   const [selectedRows, setSelectedRows] = useState<RowType[]>([]);
   const [search, setSearch] = useState("");
   const [debouncedSearch] = useDebounce(search, 500);
@@ -94,7 +99,7 @@ export default function Applicants() {
   );
 
   // create columnHelper
-  const columnHelper = createColumnHelper<ApplicantsData>();
+  const columnHelper = createColumnHelper<Applicant>();
   // Table columns
   const columns = [
     columnHelper.accessor("_id", {
@@ -122,14 +127,15 @@ export default function Applicants() {
         </div>
       ),
     }),
-    columnHelper.accessor("fullName", {
+    columnHelper.accessor((row) => row?.user?.fullName, {
+      id: "fullName",
       cell: (info) => (
         <span className="flex items-center gap-2">
           <span className="w-fit h-fit p-2 rounded-full bg-slate-200 flex items-center justify-center">
             <File size={14} />
           </span>
           <span className="whitespace-normal break-words overflow-hidden text-ellipsis max-w-[130px]">
-            {info?.row?.original?.fullName}
+            {info.getValue()}
           </span>
         </span>
       ),
@@ -140,7 +146,7 @@ export default function Applicants() {
       ),
     }),
     columnHelper.accessor("createdAt", {
-      cell: (info) => <span>{formatDate(info?.row?.original?.createdAt)}</span>,
+      cell: (info) => <span>{formatDate(info?.row?.original?.appliedAt)}</span>,
       header: () => (
         <span className="flex items-center text-[#101828] dark:text-accent-foreground">
           Applied On
@@ -148,16 +154,18 @@ export default function Applicants() {
         </span>
       ),
     }),
-    columnHelper.accessor("state", {
-      cell: (info) => <span>{info?.row?.original?.state}</span>,
+    columnHelper.accessor((row) => row?.user?.state, {
+      id: "state",
+      cell: (info) => <span>{info.getValue()}</span>,
       header: () => (
         <span className="text-[#101828] dark:text-accent-foreground">
           Location
         </span>
       ),
     }),
-    columnHelper.accessor("email", {
-      cell: (info) => <span>{info?.row?.original?.email}</span>,
+    columnHelper.accessor((row) => row?.user?.email, {
+      id: "email",
+      cell: (info) => <span>{info.getValue()}</span>,
       header: () => (
         <span className="text-[#101828] dark:text-accent-foreground">
           Email
@@ -167,15 +175,15 @@ export default function Applicants() {
   ];
 
   // Pagination Logic Implementation
-  const handleNextPage = () => {
-    if (
-      setCurrentPage &&
-      currentPage !== undefined &&
-      applicantsData?.meta?.hasNextPage
-    ) {
-      setCurrentPage((prev) => prev + 1);
-    }
-  };
+  // const handleNextPage = () => {
+  //   if (
+  //     setCurrentPage &&
+  //     currentPage !== undefined &&
+  //     applicantsData?.meta?.hasNextPage
+  //   ) {
+  //     setCurrentPage((prev) => prev + 1);
+  //   }
+  // };
 
   const handlePreviousPage = () => {
     if (setCurrentPage && currentPage !== undefined && currentPage > 1) {
@@ -217,21 +225,19 @@ export default function Applicants() {
           <div className="mt-6 ">
             <Skeleton />
           </div>
-        ) : applicantsData?.data?.length === 0 && debouncedSearch ? (
+        ) : applicantsData?.length === 0 && debouncedSearch ? (
           <div className="text-base text-center border-t-[1.3px] border-slate-200 mt-10 pt-20 md:pt-32 max-w- bg-white rounded-lg p-6">
-            No User Found, Please check back later.
+            No Applicant Found, Please check back later.
           </div>
         ) : (
           <div className="mt-3 pt-6 h-auto border-t-[1.3px] border-slate-200 dark:border-t-muted rounded-tr-[8px] bg-white dark:bg-background max-w-[760px] md:max-w-none">
             <Table
-              data={applicantsData ? applicantsData?.data : []}
+              data={applicantsData ? applicantsData : []}
               columns={columns}
               limit={limit}
               currentPage={currentPage}
-              totalItems={applicantsData?.meta?.totalItems}
-              handleNextPage={handleNextPage}
               handlePreviousPage={handlePreviousPage}
-              endCursor={applicantsData?.meta?.endCursor}
+              // handleNextPage={handleNextPage}
             />
           </div>
         )}

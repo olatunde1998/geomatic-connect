@@ -23,7 +23,6 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
   const [showEditJob, setShowEditJob] = useState(false);
 
   const { data: session } = useSession();
-  const companyId = session?.user?._id as string;
   const token = session?.user?.token as string;
   const queryClient = useQueryClient();
 
@@ -125,13 +124,12 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
         </div>
       </section>
       <section>
-        <Applicants />
+        <Applicants applicantsData={jobData?.data?.applicants ?? []} />
       </section>
       <Modal show={showEditJob} onClose={() => setShowEditJob(false)}>
         <EditJob
           jobData={jobData}
           jobId={jobId}
-          companyId={companyId}
           token={token}
           setShowEditJob={setShowEditJob}
         />
