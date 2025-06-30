@@ -22,6 +22,7 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
   const pathname = usePathname();
   const { data: session } = useSession();
   const token = session?.user?.token as string;
+  const userId = session?.user?._id as string;
   const queryClient = useQueryClient();
 
   const { data: jobData, isLoading } = useQuery({
@@ -62,11 +63,15 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
       queryClient.invalidateQueries({ queryKey: ["getJobsApi"] });
       queryClient.invalidateQueries({ queryKey: ["getJobApi"] });
     } catch (error: any) {
-      toast.error(error?.response?.message);
+      toast.error(error?.response?.data?.message);
     } finally {
       setIsApplying(false);
     }
   };
+
+  const hasApplied = jobData?.data?.applicants?.some(
+    (applicant: any) => applicant.user._id === userId
+  );
 
   return (
     <div className="max-w-4xl mx-aut p-4 overflow-hidden border border-slate-300 rounded-lg">
@@ -138,10 +143,18 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
             </button>
             <button
               onClick={applyToJobHandler}
-              disabled={isApplying}
-              className="w-full md:w-fit px-3.5 py-2 font-normal text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] rounded-sm"
+              disabled={hasApplied || isApplying}
+              className={`${
+                hasApplied
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+              } w-full md:w-fit px-3.5 py-2 font-normal text-white shadow-sm  rounded-sm`}
             >
-              {isApplying ? "Submitting..." : "Apply Now"}
+              {hasApplied
+                ? "Applied"
+                : isApplying
+                  ? "Applying..."
+                  : "Apply Now"}
             </button>
           </div>
         </div>
