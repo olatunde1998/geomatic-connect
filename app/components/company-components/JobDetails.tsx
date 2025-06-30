@@ -59,6 +59,7 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
       toast.error(error?.message);
     }
   };
+
   return (
     <>
       <section>
@@ -97,7 +98,7 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
                 className="cursor-pointer bg-green-500 text-white h-fit py-1.5 px-4 rounded-lg text-xs flex items-center gap-2"
               >
                 <Rss className="size-4" />
-                {jobData?.data?.active ? "Publish" : "UnPublish"}
+                {jobData?.data?.active ? "UnPublish" : "Publish"}
               </p>
               <p
                 onClick={() => setShowConfirmDelete(true)}
