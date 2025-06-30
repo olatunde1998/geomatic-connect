@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import ReactSelect from "../inputs/ReactSelect";
-import { accomodationData } from "@/utils/FilterData";
+import { accommodationData } from "@/utils/FilterData";
 
 interface UsersDetailsProps {
   token: string;
@@ -442,7 +442,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                       } mt-2 rounded-md cursor-pointer  w-full`}
                     >
                       <ReactSelect
-                        options={accomodationData}
+                        options={accommodationData}
                         placeholder="Your Accomodation"
                         padding={"4px"}
                         borderRadius={"5px"}
@@ -452,7 +452,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                         backgroundColor={
                           errors.accomodation ? "#FEF3F2" : "#ffffff"
                         }
-                        value={accomodationData.find(
+                        value={accommodationData.find(
                           (option) => option.value === accomodationValue
                         )}
                         onChange={(option: any) => {

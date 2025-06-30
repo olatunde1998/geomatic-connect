@@ -59,7 +59,11 @@ export default function JobHome() {
           </div>
         ))}
       <Modal show={showCreateJob} onClose={() => setShowCreateJob(false)}>
-        <CreateJob userId={userId} token={token} />
+        <CreateJob
+          userId={userId}
+          token={token}
+          setShowCreateJob={setShowCreateJob}
+        />
       </Modal>
     </>
   );

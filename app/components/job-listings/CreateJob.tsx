@@ -1,13 +1,13 @@
 "use client";
-import { useQueryClient } from "@tanstack/react-query";
 import { CreateJobRequest } from "@/app/services/job.request";
 import {
-  accomodationData,
+  accommodationData,
   experienceData,
   jobTypeData,
   stateData,
 } from "@/utils/FilterData";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
+import { useQueryClient } from "@tanstack/react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useRef, useState } from "react";
 import { formats, modules } from "@/utils/utils";
@@ -25,15 +25,23 @@ const schema = yup.object().shape({
     .min(3, "Job Title must be greater than 3 letters"),
   location: yup.string().required("Location is required"),
   experienceLevel: yup.string().required("Experience Level is required"),
-  accomodation: yup.string().required("Accomodation  is required"),
+  accommodation: yup
+    .mixed<true | false>()
+    .oneOf([true, false], "Accommodation is required")
+    .required("Accommodation is required"),
   jobType: yup.string().required("Job Type is required"),
 });
 
 interface CreateJobProps {
   userId?: string;
   token: string;
+  setShowCreateJob?: any;
 }
-export default function CreateJob({ userId, token }: CreateJobProps) {
+export default function CreateJob({
+  userId,
+  token,
+  setShowCreateJob,
+}: CreateJobProps) {
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const queryClient = useQueryClient();
 
@@ -46,9 +54,8 @@ export default function CreateJob({ userId, token }: CreateJobProps) {
     watch,
     trigger,
   } = useForm({ resolver: yupResolver(schema) });
-  const locationValue = watch("location");
   const experienceLevelValue = watch("experienceLevel");
-  const accommodationValue = watch("accomodation");
+  const locationValue = watch("location");
   const jobTypeValue = watch("jobType");
 
   const editorRef = useRef<HTMLDivElement>(null);
@@ -66,9 +73,6 @@ export default function CreateJob({ userId, token }: CreateJobProps) {
         },
         formats: formats,
       });
-      quillInstance.current.on("text-change", () => {
-        // Update content logic here
-      });
     }
   }, []);
 
@@ -76,22 +80,21 @@ export default function CreateJob({ userId, token }: CreateJobProps) {
   const onSubmitHandler = async (data: any) => {
     setIsCreating(true);
     const jobDescription = quillInstance.current.root.innerHTML;
-    console.log(jobDescription, "this is jobDescription here====");
-
     try {
       const payload = {
-        companyId: userId,
-        jobTitle: data?.jobTitle,
         experienceLevel: data?.experienceLevel,
         accommodation: data?.accommodation,
+        jobTitle: data?.jobTitle,
         location: data?.location,
         jobType: data?.jobType,
+        companyId: userId,
         jobDescription,
       };
 
       const response = await CreateJobRequest(payload, token);
       toast.success(response.message || "Job created successfully");
       queryClient.invalidateQueries({ queryKey: ["getJobsApi"] });
+      setShowCreateJob(false);
     } catch (error: any) {
       toast.error(error?.response?.message);
     } finally {
@@ -103,7 +106,7 @@ export default function CreateJob({ userId, token }: CreateJobProps) {
     <div className="max-w-md md:min-w-[600px] lg:min-w-[700px] mx-auto p-5 bg-white border border-gray-200 rounded-lg mb-4">
       <h1 className="text-2xl font-bold mb-2">Create Job</h1>
       <p className="text-muted-foreground mb-6">
-        This form allows you to create or edit a job listing.
+        This form allows you to create a job listing.
       </p>
       {/* Job listing form content will go here */}
       <form onSubmit={handleSubmit(onSubmitHandler)}>
@@ -119,7 +122,7 @@ export default function CreateJob({ userId, token }: CreateJobProps) {
                   {...register("jobTitle")}
                   className={`${
                     errors.jobTitle && "border-[1.3px] border-red-500"
-                  } w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm`}
+                  } w-full border border-slate p-3 py-5 focus:outline-none text-sm`}
                 />
               </label>
             </div>
@@ -147,36 +150,12 @@ export default function CreateJob({ userId, token }: CreateJobProps) {
                     )}
                     onChange={(option: any) => {
                       setValue("experienceLevel", option?.value || "");
-                      trigger("experienceLevel"); // Trigger validation
+                      trigger("experienceLevel");
                     }}
                   />
                 </div>
               </div>
             </section>
-
-            {/* === Accommodation Dropdown Input === */}
-            <div className="mt-3">
-              <label htmlFor="accomodation" className="text-sm font-medium">
-                Accommodation
-              </label>
-              <div
-                className={`${
-                  errors.accomodation ? "border-[1.3px] border-red-500" : ""
-                } flex flex-col w-full`}
-              >
-                <ReactSelect
-                  options={accomodationData}
-                  placeholder="Select Accommodation"
-                  value={accomodationData.find(
-                    (option) => option.value === accommodationValue
-                  )}
-                  onChange={(option: any) => {
-                    setValue("accomodation", option?.value || "");
-                    trigger("accomodation"); // Trigger validation
-                  }}
-                />
-              </div>
-            </div>
           </div>
           <div>
             {/* === Location Requirement Input === */}
@@ -197,7 +176,7 @@ export default function CreateJob({ userId, token }: CreateJobProps) {
                   )}
                   onChange={(option: any) => {
                     setValue("location", option?.value || "");
-                    trigger("location"); // Trigger validation
+                    trigger("location");
                   }}
                 />
               </div>
@@ -222,7 +201,7 @@ export default function CreateJob({ userId, token }: CreateJobProps) {
                     )}
                     onChange={(option: any) => {
                       setValue("jobType", option?.value || "");
-                      trigger("jobType"); // Trigger validation
+                      trigger("jobType");
                     }}
                   />
                 </div>
@@ -230,6 +209,27 @@ export default function CreateJob({ userId, token }: CreateJobProps) {
             </section>
           </div>
         </div>
+        {/* === Accommodation Dropdown Input === */}
+        <div className="mt-3 mb-5">
+          <label htmlFor="accomodation" className="text-sm font-medium">
+            Accommodation
+          </label>
+          <div
+            className={`${
+              errors.accommodation ? "border-[1.3px] border-red-500" : ""
+            } flex flex-col w-full`}
+          >
+            <ReactSelect
+              options={accommodationData}
+              placeholder="Select Accommodation"
+              onChange={(option: any) => {
+                setValue("accommodation", option?.value);
+                trigger("accommodation");
+              }}
+            />
+          </div>
+        </div>
+
         {/* ====== Description ===== */}
         <div className="sm:col-span-2">
           <label
@@ -244,7 +244,7 @@ export default function CreateJob({ userId, token }: CreateJobProps) {
         <div>
           <button
             disabled={isCreating}
-            className="w-full mt-6 rounded-md  px-3.5 py-2 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer"
+            className="w-full mt-6 rounded-md flex items-center justify-center  px-3.5 py-2 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer"
           >
             {isCreating ? (
               <span className="flex space-x-4 gap-3">

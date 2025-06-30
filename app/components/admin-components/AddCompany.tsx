@@ -1,5 +1,5 @@
 "use client";
-import { accomodationData, stateData } from "@/utils/FilterData";
+import { accommodationData, stateData } from "@/utils/FilterData";
 import { RegisterRequest } from "@/app/services/auth.request";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
 import { useQueryClient } from "@tanstack/react-query";
@@ -302,7 +302,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
                 } mt-2 rounded-md cursor-pointer  w-full`}
               >
                 <ReactSelect
-                  options={accomodationData}
+                  options={accommodationData}
                   placeholder="Your Accomodation"
                   padding={"4px"}
                   borderRadius={"5px"}
