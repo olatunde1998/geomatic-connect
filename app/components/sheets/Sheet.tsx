@@ -22,7 +22,7 @@ export const Sheet: React.FC<SheetProps> = ({ show, onClose, children }) => {
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 z-[1005] transition-all duration-[350ms] ease-in-out cursor-pointer ">
+        <div className="fixed inset-0 z-[1005] transition-all duration-&lsqb;350ms&rsqb; ease-in-out cursor-pointer ">
           <div
             style={{ backdropFilter: "blur(4px)" }}
             className="fixed inset-0 bg-[#575D7299]"
