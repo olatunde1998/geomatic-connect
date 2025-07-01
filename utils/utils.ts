@@ -65,6 +65,14 @@ export function getShortTitle(title: string) {
   return words.slice(0, 5).join(" "); // Fallback: first 5 words
 }
 
+// Truncating of a String
+export const truncateString = (str: string, num: number) => {
+  if (str?.length <= num) {
+    return str;
+  }
+  return str?.slice(0, num) + "...";
+};
+
 // REACT QUILL Functions
 export const modules = {
   toolbar: [
