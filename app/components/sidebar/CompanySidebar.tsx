@@ -13,8 +13,8 @@ export function CompanySidebar({ session }: { session: any }) {
   const userId = session?.user?._id;
   const token = session?.user?.token;
   const [showSignOutProfile, setShowSignOutProfile] = useState(false);
-  const [showLogOut, setShowLogOut] = useState(false);
   const pathname = usePathname();
+  const activeSegment = pathname.split("/")[2];
   const addSignOutProfileRef = useRef(null);
   console.log(pathname);
 
@@ -34,9 +34,7 @@ export function CompanySidebar({ session }: { session: any }) {
         setShowSignOutProfile(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -46,21 +44,24 @@ export function CompanySidebar({ session }: { session: any }) {
     <>
       <div className="flex flex-col justify-between min-h-screen">
         <nav className="grid items-start gap-2">
-          {companyNavItems.map((item, index) => (
-            <Link key={index} href={item.href}>
-              <span
-                className={cn(
-                  "group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#F9FAFB] dark:hover:bg-muted",
-                  pathname === item.href
-                    ? "bg-[#ECF1F7] dark:bg-muted"
-                    : "bg-transparent"
-                )}
-              >
-                <item.icon className="mr-2 h-4 w-4 text-[#33A852]" />
-                <span className="font-medium">{item.name}</span>
-              </span>
-            </Link>
-          ))}
+          {companyNavItems.map((item, index) => {
+            const itemSegment = item.href.split("/")[2];
+            return (
+              <Link key={index} href={item.href}>
+                <span
+                  className={cn(
+                    "group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#F9FAFB] dark:hover:bg-muted",
+                    activeSegment === itemSegment
+                      ? "bg-[#ECF1F7] dark:bg-muted"
+                      : "bg-transparent"
+                  )}
+                >
+                  <item.icon className="mr-2 h-4 w-4 text-[#33A852]" />
+                  <span className="font-medium">{item.name}</span>
+                </span>
+              </Link>
+            );
+          })}
         </nav>
 
         {/* ============ Settings dropdown & Log out ========== */}

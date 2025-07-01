@@ -1,13 +1,13 @@
 "use client";
-import { studentNavItems } from "@/utils/sidebarLinks";
-import { cn } from "@/utils/utils";
-import { useQuery } from "@tanstack/react-query";
-import { ChevronRight, LogOut, Settings } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
 import { GetUserByIdRequest } from "@/app/services/request.request";
+import { ChevronRight, LogOut, Settings } from "lucide-react";
+import { studentNavItems } from "@/utils/sidebarLinks";
+import { useEffect, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { cn } from "@/utils/utils";
+import Link from "next/link";
 
 export function StudentSidebar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -15,6 +15,8 @@ export function StudentSidebar({ session }: { session: any }) {
   const [showSignOutProfile, setShowSignOutProfile] = useState(false);
   const pathname = usePathname();
   const addSignOutProfileRef = useRef(null);
+  const activeSegment = pathname.split("/")[2];
+
   console.log(pathname);
 
   const { data: userData } = useQuery({
@@ -33,9 +35,7 @@ export function StudentSidebar({ session }: { session: any }) {
         setShowSignOutProfile(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -45,21 +45,24 @@ export function StudentSidebar({ session }: { session: any }) {
     <>
       <div className="flex flex-col justify-between min-h-screen">
         <nav className="grid items-start gap-2">
-          {studentNavItems.map((item, index) => (
-            <Link key={index} href={item.href}>
-              <span
-                className={cn(
-                  "group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#F9FAFB] dark:hover:bg-muted",
-                  pathname === item.href
-                    ? "bg-[#ECF1F7] dark:bg-muted"
-                    : "bg-transparent"
-                )}
-              >
-                <item.icon className="mr-2 h-4 w-4 text-[#33A852]" />
-                <span className="font-medium">{item.name}</span>
-              </span>
-            </Link>
-          ))}
+          {studentNavItems.map((item, index) => {
+            const itemSegment = item.href.split("/")[2];
+            return (
+              <Link key={index} href={item.href}>
+                <span
+                  className={cn(
+                    "group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#F9FAFB] dark:hover:bg-muted",
+                    activeSegment === itemSegment
+                      ? "bg-[#ECF1F7] dark:bg-muted"
+                      : "bg-transparent"
+                  )}
+                >
+                  <item.icon className="mr-2 h-4 w-4 text-[#33A852]" />
+                  <span className="font-medium">{item.name}</span>
+                </span>
+              </Link>
+            );
+          })}
         </nav>
         {/* ============ Settings dropdown & Log out ========== */}
         <div>
