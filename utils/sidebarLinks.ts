@@ -175,12 +175,6 @@ export const bottomRouteLinks = [
     key: "blog",
     icon: PencilLine,
   },
-  // {
-  //   name: "Billing",
-  //   href: "/billing",
-  //   key: "billing",
-  //   icon: MdOutlinePayment,
-  // },
   {
     name: "Overview",
     href: "/overview",
@@ -188,11 +182,17 @@ export const bottomRouteLinks = [
     icon: ChartNoAxesCombined,
   },
   {
-    name: "Settings",
-    href: "/settings",
-    key: "settings",
-    icon: User,
+    name: "Jobs",
+    href: "/jobs",
+    key: "jobs",
+    icon: MdOutlinePayment,
   },
+  // {
+  //   name: "Settings",
+  //   href: "/settings",
+  //   key: "settings",
+  //   icon: User,
+  // },
 ];
 
 // Bottom Navbar Route Links
