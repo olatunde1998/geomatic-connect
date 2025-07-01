@@ -42,15 +42,15 @@ export default function JobListingCard({
               className="w-[70px] h-[70px] border-[1.3px] border-slate-200 items-center justify-center flex rounded-full object-cover"
             />
             <div>
-              <p className="font-semibold ">{title}</p>
-              <p className="text-gray-500">{companyName}</p>
+              <p className="font-semibold  truncate">{title}</p>
+              <p className="text-gray-500 truncate">{companyName}</p>
             </div>
           </div>
           <p className="bg-slate-400 text-white h-fit py-1 px-4 rounded-lg text-xs">
             {dayjs(createdTime).format("MMM D, YYYY")}
           </p>
         </section>
-        <section className="flex gap-4 items-center mt-3">
+        <section className="flex flex-wrap gap-4 items-center mt-3">
           <span className="border border-slate-300 px-4 py-1 rounded-lg text-sm">
             Featured
           </span>
