@@ -42,8 +42,8 @@ export default function JobListingCard({
               className="w-[70px] h-[70px] border-[1.3px] border-slate-200 items-center justify-center flex rounded-full object-cover"
             />
             <div>
-              <p className="font-semibold  truncate">{title}</p>
-              <p className="text-gray-500 truncate">{companyName}</p>
+              <p className="font-semibold  truncate text-wrap">{title}</p>
+              <p className="text-gray-500 truncate text-wrap">{companyName}</p>
             </div>
           </div>
           <p className="bg-slate-400 text-white h-fit py-1 px-4 rounded-lg text-xs">

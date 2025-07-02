@@ -81,7 +81,7 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
           <LoaderCircle className="size-12 animate-spin duration-500 mx-auto mt-8" />
         </div>
       ) : (
-        <div className="max-w-3xl p-4 overflow-hidden border border-slate-300 rounded-lg">
+        <div className="max-w-3xl min-h-[100vh] p-4 overflow-hidden border border-slate-300 rounded-lg">
           <header className="border-b border-slate-300 pb-8">
             {jobData?.data?.companyId?.avatarImage ? (
               <Image
