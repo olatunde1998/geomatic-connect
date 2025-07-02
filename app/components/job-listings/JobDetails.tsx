@@ -1,8 +1,8 @@
 "use client";
 import { applyToJobRequest, getJobRequest } from "@/app/services/job.request";
 import { Facebook, Linkedin, LoaderCircle, Share2 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
 import { RiTwitterXFill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { getShortTitle } from "@/utils/utils";
