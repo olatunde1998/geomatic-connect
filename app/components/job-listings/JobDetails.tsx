@@ -1,6 +1,6 @@
 "use client";
 import { applyToJobRequest, getJobRequest } from "@/app/services/job.request";
-import { Facebook, Linkedin, Share2 } from "lucide-react";
+import { Facebook, Linkedin, LoaderCircle, Share2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { RiTwitterXFill } from "react-icons/ri";
@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react";
 import { IoIosLink } from "react-icons/io";
 import parse from "html-react-parser";
 import { toast } from "sonner";
+import Image from "next/image";
 import Link from "next/link";
 
 interface JobDetailsProps {
@@ -74,98 +75,121 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
   );
 
   return (
-    <div className="max-w-3xl p-4 overflow-hidden border border-slate-300 rounded-lg">
-      <header className="mt-8 border-b border-slate-300 pb-8">
-        <h3 className="font-bold text-xl md:text-3xl">
-          {jobData?.data?.jobTitle}
-        </h3>
-        <span className="text-base">at</span>
-        <span className="text-muted-foreground ml-2 text-base">
-          {jobData?.data?.companyId?.companyName}
-        </span>
-        <p className="flex items-center flex-wrap gap-2 mt-2 text-base text-muted-foreground">
-          <span className="font-semibold text-black/80">
-            {jobData?.data?.jobType}
-          </span>
-          <span>. {jobData?.data?.location}</span>
-          <span>. {jobData?.data?.experienceLevel}</span>
-        </p>
-        <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center justify-between">
-          <p className="text-sm text-muted-foreground">Posted 4 days ago</p>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setShowActions((prevState) => !prevState)}
-              className="relative cursor-pointer w-full md:w-fit"
-            >
-              <span className="px-3.5 py-2 flex items-center justify-center cursor-pointer gap-2 border text-sm border-slate-300 bg-white rounded-sm">
-                <Share2 className="size-4" />
-                Share
-              </span>
-              <span
-                ref={shareRef}
-                className={`${
-                  showActions ? "block" : "hidden"
-                } bg-white py-3 px-2 shadow-md rounded-lg text-sm border border-[#213f7d0f] w-[200px] space-y-2 absolute right-[-1px] lg:right-[-18px] z-[1] top-[50px]`}
-              >
-                <Link
-                  href={`https://twitter.com/intent/tweet?text=${shareText}&url=${encodedUrl}`}
-                  className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3  w-full"
-                >
-                  <RiTwitterXFill size={18} />
-                  Share on X
-                </Link>
-                <Link
-                  href={`https://www.linkedin.com/feed/?shareActive=true&shareUrl=${encodedUrl}`}
-                  className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
-                >
-                  <Linkedin size={18} />
-                  Share on LinkedIn
-                </Link>
-                <Link
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
-                  className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
-                >
-                  <Facebook size={18} />
-                  Share on Facebook
-                </Link>
-                <span
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigator.clipboard.writeText(decodeURIComponent(fullUrl));
-                    toast.success("Link copied to clipboard!");
-                  }}
-                  className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
-                >
-                  <IoIosLink size={18} />
-                  Copy Link
-                </span>
-              </span>
-            </button>
-            <button
-              onClick={applyToJobHandler}
-              disabled={hasApplied || isApplying}
-              className={`${
-                hasApplied
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
-              } w-full md:w-fit px-3.5 py-2 font-normal text-white shadow-sm  rounded-sm`}
-            >
-              {hasApplied
-                ? "Applied"
-                : isApplying
-                  ? "Applying..."
-                  : "Apply Now"}
-            </button>
-          </div>
+    <>
+      {isLoading ? (
+        <div className="pt-[80px] pb-[150px]">
+          <LoaderCircle className="size-12 animate-spin duration-500 mx-auto mt-8" />
         </div>
-      </header>
-      <section className="mt-8 sm:col-span-full">
-        {typeof jobData?.data?.jobDescription === "string" ? (
-          parse(jobData?.data?.jobDescription)
-        ) : (
-          <p>No content available</p>
-        )}
-      </section>
-    </div>
+      ) : (
+        <div className="max-w-3xl p-4 overflow-hidden border border-slate-300 rounded-lg">
+          <header className="border-b border-slate-300 pb-8">
+            {jobData?.data?.companyId?.avatarImage ? (
+              <Image
+                src={jobData.data.companyId.avatarImage}
+                alt="company brand logo"
+                width={100}
+                height={100}
+                className="w-[70px] h-[70px] border-[1.3px] border-slate-200 items-center justify-center flex rounded-lg object-cover"
+              />
+            ) : (
+              <div className="w-[70px] h-[70px] border-[1.3px] border-slate-200 items-center justify-center flex rounded-lg bg-gray-100 text-sm text-gray-500">
+                No Image
+              </div>
+            )}
+            <h3 className="font-bold text-xl md:text-3xl">
+              {jobData?.data?.jobTitle}
+            </h3>
+            <span className="text-base">at</span>
+            <span className="text-muted-foreground ml-2 text-base">
+              {jobData?.data?.companyId?.companyName}
+            </span>
+            <p className="flex items-center flex-wrap gap-2 mt-2 text-base text-muted-foreground">
+              <span className="font-semibold text-black/80">
+                {jobData?.data?.jobType}
+              </span>
+              <span>. {jobData?.data?.location}</span>
+              <span>. {jobData?.data?.experienceLevel}</span>
+            </p>
+            <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center justify-between">
+              <p className="text-sm text-muted-foreground">Posted 4 days ago</p>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setShowActions((prevState) => !prevState)}
+                  className="relative cursor-pointer w-full md:w-fit"
+                >
+                  <span className="px-3.5 py-2 flex items-center justify-center cursor-pointer gap-2 border text-sm border-slate-300 bg-white rounded-sm">
+                    <Share2 className="size-4" />
+                    Share
+                  </span>
+                  <span
+                    ref={shareRef}
+                    className={`${
+                      showActions ? "block" : "hidden"
+                    } bg-white py-3 px-2 shadow-md rounded-lg text-sm border border-[#213f7d0f] w-[200px] space-y-2 absolute right-[-1px] lg:right-[-18px] z-[1] top-[50px]`}
+                  >
+                    <Link
+                      href={`https://twitter.com/intent/tweet?text=${shareText}&url=${encodedUrl}`}
+                      className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3  w-full"
+                    >
+                      <RiTwitterXFill size={18} />
+                      Share on X
+                    </Link>
+                    <Link
+                      href={`https://www.linkedin.com/feed/?shareActive=true&shareUrl=${encodedUrl}`}
+                      className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
+                    >
+                      <Linkedin size={18} />
+                      Share on LinkedIn
+                    </Link>
+                    <Link
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+                      className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
+                    >
+                      <Facebook size={18} />
+                      Share on Facebook
+                    </Link>
+                    <span
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigator.clipboard.writeText(
+                          decodeURIComponent(fullUrl)
+                        );
+                        toast.success("Link copied to clipboard!");
+                      }}
+                      className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
+                    >
+                      <IoIosLink size={18} />
+                      Copy Link
+                    </span>
+                  </span>
+                </button>
+                <button
+                  onClick={applyToJobHandler}
+                  disabled={hasApplied || isApplying}
+                  className={`${
+                    hasApplied
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                  } w-full md:w-fit px-3.5 py-2 font-normal text-white shadow-sm  rounded-sm`}
+                >
+                  {hasApplied
+                    ? "Applied"
+                    : isApplying
+                      ? "Applying..."
+                      : "Apply Now"}
+                </button>
+              </div>
+            </div>
+          </header>
+          <section className="mt-8 sm:col-span-full">
+            {typeof jobData?.data?.jobDescription === "string" ? (
+              parse(jobData?.data?.jobDescription)
+            ) : (
+              <p>No content available</p>
+            )}
+          </section>
+        </div>
+      )}
+    </>
   );
 }
