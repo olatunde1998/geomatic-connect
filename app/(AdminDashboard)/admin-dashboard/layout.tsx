@@ -1,8 +1,7 @@
 import { AdminSidebar } from "@/app/components/sidebar/AdminSidebar";
 import BottomNavBar from "@/app/components/navbar/BottomNavBar";
 import AdminNavBar from "@/app/components/navbar/AdminNavBar";
-import TawkChat from "@/app/components/chatbot/TawkChat";
-// import { Analytics } from "@vercel/analytics/next";
+// import TawkChat from "@/app/components/chatbot/TawkChat";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { auth } from "@/auth";
@@ -84,7 +83,6 @@ export default async function AdminLayout({
               {children}
             </main>
             <BottomNavBar />
-            <TawkChat />
             {/* <Analytics /> */}
           </div>
         </div>
