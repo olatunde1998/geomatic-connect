@@ -8,10 +8,12 @@ import { usePathname } from "next/navigation";
 import { getShortTitle } from "@/utils/utils";
 import { useSession } from "next-auth/react";
 import { IoIosLink } from "react-icons/io";
-import parse from "html-react-parser";
+// import parse from "html-react-parser";
 import { toast } from "sonner";
 import Image from "next/image";
 import Link from "next/link";
+import Quill from "quill";
+import "quill/dist/quill.snow.css";
 
 interface JobDetailsProps {
   jobId: string;
@@ -30,6 +32,28 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
     queryKey: ["getJobApi"],
     queryFn: () => getJobRequest(token, jobId),
   });
+
+  const editorRef = useRef<HTMLDivElement>(null);
+  const quillInstance = useRef<any>(null);
+
+  // Initialize Quill
+  useEffect(() => {
+    if (editorRef.current && !quillInstance.current) {
+      quillInstance.current = new Quill(editorRef.current, {
+        readOnly: true,
+        theme: "bubble",
+      });
+      // Disable editing
+      quillInstance.current.enable(false);
+    }
+  }, []);
+
+  // Set content once jobData and quill are ready
+  useEffect(() => {
+    if (quillInstance.current && jobData?.data?.jobDescription) {
+      quillInstance.current.root.innerHTML = jobData.data.jobDescription;
+    }
+  }, [quillInstance.current, jobData]);
 
   // Share dropdown Handler
   useEffect(() => {
@@ -125,7 +149,7 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
                     ref={shareRef}
                     className={`${
                       showActions ? "block" : "hidden"
-                    } bg-white py-3 px-2 shadow-md rounded-lg text-sm border border-[#213f7d0f] w-[200px] space-y-2 absolute right-[-1px] lg:right-[-18px] z-[1] top-[50px]`}
+                    } bg-white py-3 px-2 shadow-md rounded-lg text-sm border border-[#213f7d0f] w-[200px] space-y-2 absolute -right-16 lg:right-[-18px] z-[1] top-[50px]`}
                   >
                     <Link
                       href={`https://twitter.com/intent/tweet?text=${shareText}&url=${encodedUrl}`}
@@ -181,13 +205,18 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
               </div>
             </div>
           </header>
-          <section className="mt-8 sm:col-span-full">
+
+          {/* <section className="mt-8 sm:col-span-full">
             {typeof jobData?.data?.jobDescription === "string" ? (
               parse(jobData?.data?.jobDescription)
             ) : (
               <p>No content available</p>
             )}
-          </section>
+          </section> */}
+          <div
+            className="prose prose-base dark:prose-invert min-w-full"
+            ref={editorRef}
+          />
         </div>
       )}
     </>
