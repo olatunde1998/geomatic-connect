@@ -1,8 +1,7 @@
 // import BottomNav from "@/app/components/navbar/BottomNav";
-import TawkChat from "@/app/components/chatbot/TawkChat";
+// import TawkChat from "@/app/components/chatbot/TawkChat";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/app/components/navbar/Navbar";
-// import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 
 const geistSans = Geist({
@@ -21,26 +20,13 @@ export const metadata: Metadata = {
     template: "%s",
     default: "Geomatic Connect",
   },
-  description:
-    "Geomatic Connect  is a platform that enables higher institution students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also helps companies find and recruit qualified candidates with ease.",
+  description: "Explore latest articles about geomatics",
   viewport: {
     width: "device-width",
     height: "device-height",
     initialScale: 1,
   },
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_APP_URL}`),
-  twitter: {
-    card: "summary_large_image",
-    site: `${process.env.NEXT_PUBLIC_APP_URL}`,
-    creator: "Geomatic Connect Teams",
-    title: "Geomatic Connect",
-    description:
-      "Geomatic Connect  is a platform that enables higher institution students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also helps companies find and recruit qualified candidates with ease.",
-    images: ["/images/opengraph-image.png"],
-  },
-  openGraph: {
-    images: ["/images/opengraph-image.png"],
-  },
 };
 
 export default async function BlogLayout({
@@ -57,9 +43,7 @@ export default async function BlogLayout({
           <Navbar />
         </div>
         {children}
-        <TawkChat />
         {/* <BottomNav /> */}
-        {/* <Analytics /> */}
       </div>
     </>
   );
