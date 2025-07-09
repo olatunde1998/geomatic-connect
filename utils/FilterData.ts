@@ -44,8 +44,8 @@ export const stateData = [
 export const institutionData = [
   {
     id: 1,
-    label: "Abubakar Tafawa Balewa University, Bauchi",
-    value: "Abubakar Tafawa Balewa University, Bauchi",
+    label: "Abia State Polytechnic, Aba",
+    value: "Abia State Polytechnic, Aba",
   },
   {
     id: 2,
@@ -54,161 +54,308 @@ export const institutionData = [
   },
   {
     id: 3,
+    label: "Abubakar Tafawa Balewa University, Bauchi",
+    value: "Abubakar Tafawa Balewa University, Bauchi",
+  },
+  {
+    id: 4,
+    label: "Adamawa State Poly, Yola",
+    value: "Adamawa State Poly, Yola",
+  },
+  {
+    id: 5,
     label: "Adekunle Ajasin University, Akungba-Akoko",
     value: "Adekunle Ajasin University, Akungba-Akoko",
   },
   {
-    id: 4,
+    id: 6,
     label: "Ahmadu Bello University, Zaria",
     value: "Ahmadu Bello University, Zaria",
   },
   {
-    id: 5,
+    id: 7,
     label: "Ajayi Crowther University, Oyo",
     value: "Ajayi Crowther University, Oyo",
   },
   {
-    id: 6,
+    id: 8,
+    label: "Akanu Ibiam Federal Polytechnic, Unwana, Afikpo",
+    value: "Akanu Ibiam Federal Polytechnic, Unwana, Afikpo",
+  },
+  {
+    id: 9,
+    label: "Akwa-Ibom State Polytechnic, Ikot-Osurua",
+    value: "Akwa-Ibom State Polytechnic, Ikot-Osurua",
+  },
+  {
+    id: 10,
     label: "Alex Ekwueme Federal University, Ndufu-Alike",
     value: "Alex Ekwueme Federal University, Ndufu-Alike",
   },
   {
-    id: 7,
-    label: "Baze University, Abuja",
-    value: "Baze University, Abuja",
+    id: 11,
+    label: "Auchi Polytechnic, Auchi- Benue State Poly, Ugbokolo",
+    value: "Auchi Polytechnic, Auchi- Benue State Poly, Ugbokolo",
   },
+  { id: 12, label: "Baze University, Abuja", value: "Baze University, Abuja" },
+  { id: 13, label: "Bowen University, Iwo", value: "Bowen University, Iwo" },
   {
-    id: 8,
-    label: "Bowen University, Iwo",
-    value: "Bowen University, Iwo",
-  },
-  {
-    id: 9,
+    id: 14,
     label: "Delta State University of Science and Technology, Ozoro",
     value: "Delta State University of Science and Technology, Ozoro",
   },
   {
-    id: 10,
+    id: 15,
     label: "Dennis Osadebay University, Asaba",
     value: "Dennis Osadebay University, Asaba",
   },
   {
-    id: 11,
+    id: 16,
+    label: "Edo State Institute Of Technology And Management, Usen",
+    value: "Edo State Institute Of Technology And Management, Usen",
+  },
+  {
+    id: 17,
+    label: "Elechi Amadi Polytechnic, Port Harcourt",
+    value: "Elechi Amadi Polytechnic, Port Harcourt",
+  },
+  {
+    id: 18,
     label: "Enugu State University of Science and Technology, Enugu",
     value: "Enugu State University of Science and Technology, Enugu",
   },
   {
-    id: 12,
+    id: 19,
+    label: "Federal College Of Land Resources Technology, Kuru, Jos",
+    value: "Federal College Of Land Resources Technology, Kuru, Jos",
+  },
+  {
+    id: 20,
+    label: "Federal College Of Land Resources Technology, Owerri",
+    value: "Federal College Of Land Resources Technology, Owerri",
+  },
+  {
+    id: 21,
+    label: "Federal Polytechnic Offa ",
+    value: "Federal Polytechnic Offa ",
+  },
+  {
+    id: 22,
+    label: "Federal Polytechnic, Ado-Ekiti- Federal Polytechnic, Uka",
+    value: "Federal Polytechnic, Ado-Ekiti- Federal Polytechnic, Uka",
+  },
+  {
+    id: 23,
+    label: "Federal Polytechnic, Bauchi",
+    value: "Federal Polytechnic, Bauchi",
+  },
+  {
+    id: 24,
+    label: "Federal Polytechnic, Bida",
+    value: "Federal Polytechnic, Bida",
+  },
+  {
+    id: 25,
+    label: "Federal Polytechnic, Damaturu",
+    value: "Federal Polytechnic, Damaturu",
+  },
+  {
+    id: 26,
+    label: "Federal Polytechnic, Ede",
+    value: "Federal Polytechnic, Ede",
+  },
+  {
+    id: 27,
+    label: "Federal Polytechnic, Ida",
+    value: "Federal Polytechnic, Ida",
+  },
+  {
+    id: 28,
+    label: "Federal Polytechnic, Ilaro",
+    value: "Federal Polytechnic, Ilaro",
+  },
+  {
+    id: 29,
+    label: "Federal Polytechnic, Mubi",
+    value: "Federal Polytechnic, Mubi",
+  },
+  {
+    id: 30,
+    label: "Federal Polytechnic, Nassarawa- Federal Polytechnic, Nekede",
+    value: "Federal Polytechnic, Nassarawa- Federal Polytechnic, Nekede",
+  },
+  {
+    id: 31,
+    label: "Federal Polytechnic, Oko",
+    value: "Federal Polytechnic, Oko",
+  },
+  {
+    id: 32,
     label: "Federal School of Surveying, Oyo",
     value: "Federal School of Surveying, Oyo",
   },
   {
-    id: 13,
+    id: 33,
     label: "Federal University of Tech, Akure",
     value: "Federal University of Tech, Akure",
   },
   {
-    id: 14,
+    id: 34,
     label: "Federal University of Tech, Minna",
     value: "Federal University of Tech, Minna",
   },
   {
-    id: 15,
+    id: 35,
     label: "Federal University of Tech, Owerri",
     value: "Federal University of Tech, Owerri",
   },
   {
-    id: 16,
+    id: 36,
     label: "Federal University, Oye-Ekiti",
     value: "Federal University, Oye-Ekiti",
   },
   {
-    id: 17,
+    id: 37,
     label: "First Technical University, Ibadan",
     value: "First Technical University, Ibadan",
   },
   {
-    id: 18,
+    id: 38,
     label: "Gregory University, Uturu",
     value: "Gregory University, Uturu",
   },
   {
-    id: 19,
+    id: 39,
     label: "Imo State University, Owerri",
     value: "Imo State University, Owerri",
   },
   {
-    id: 20,
+    id: 40,
+    label: "Kaduna Polytechnic, Kaduna",
+    value: "Kaduna Polytechnic, Kaduna",
+  },
+  {
+    id: 41,
+    label: "Kogi State Polytechnic, Lokoja",
+    value: "Kogi State Polytechnic, Lokoja",
+  },
+  {
+    id: 42,
+    label: "Kwara State Polytechnic, Ilorin, Kwara State",
+    value: "Kwara State Polytechnic, Ilorin, Kwara State",
+  },
+  {
+    id: 43,
     label: "Ladoke Akintola University of Technology, Ogbomoso",
     value: "Ladoke Akintola University of Technology, Ogbomoso",
   },
-
   {
-    id: 21,
+    id: 44,
     label: "Lead City University, Ibadan",
     value: "Lead City University, Ibadan",
   },
   {
-    id: 22,
+    id: 45,
     label: "Margaret Lawrence University, Galilee",
     value: "Margaret Lawrence University, Galilee",
   },
   {
-    id: 23,
+    id: 46,
     label: "Modibbo Adama University, Yola",
     value: "Modibbo Adama University, Yola",
   },
   {
-    id: 24,
+    id: 47,
+    label: "Moshood Abiola Poly, Abeokuta",
+    value: "Moshood Abiola Poly, Abeokuta",
+  },
+  {
+    id: 48,
+    label: "Nigeria Army School Of Military Engineering, Makurdi",
+    value: "Nigeria Army School Of Military Engineering, Makurdi",
+  },
+  {
+    id: 49,
     label: "Nigerian Army University, Biu",
     value: "Nigerian Army University, Biu",
   },
   {
-    id: 25,
+    id: 50,
     label: "Nnamdi Azikiwe University, Awka",
     value: "Nnamdi Azikiwe University, Awka",
   },
   {
-    id: 26,
+    id: 51,
     label: "Obafemi Awolowo University, Ile Ife",
     value: "Obafemi Awolowo University, Ile Ife",
   },
   {
-    id: 27,
+    id: 52,
+    label: "Ramat Polytechnic, Maiduguri",
+    value: "Ramat Polytechnic, Maiduguri",
+  },
+  {
+    id: 53,
+    label: "Rivers State Poly, Bori",
+    value: "Rivers State Poly, Bori",
+  },
+  {
+    id: 54,
+    label: "Rufus Giwa Polytechnic, Owo",
+    value: "Rufus Giwa Polytechnic, Owo",
+  },
+  {
+    id: 55,
+    label: "The Bells University of Tech, Ota",
+    value: "The Bells University of Tech, Ota",
+  },
+  {
+    id: 56,
+    label: "The Polytechnic, Ibadan",
+    value: "The Polytechnic, Ibadan",
+  },
+  {
+    id: 57,
     label: "University of Benin, Benin City",
     value: "University of Benin, Benin City",
   },
   {
-    id: 28,
+    id: 58,
     label: "University of Calabar, Calabar",
     value: "University of Calabar, Calabar",
   },
   {
-    id: 29,
+    id: 59,
     label: "University of Ilorin, Ilorin",
     value: "University of Ilorin, Ilorin",
   },
   {
-    id: 30,
+    id: 60,
     label: "University of Lagos, Akoka, Lagos",
     value: "University of Lagos, Akoka, Lagos",
   },
   {
-    id: 31,
+    id: 61,
     label: "University of Nigeria, Nsukka, Enugu",
     value: "University of Nigeria, Nsukka, Enugu",
   },
   {
-    id: 32,
+    id: 62,
     label: "University of Uyo, Akwa Ibom",
     value: "University of Uyo, Akwa Ibom",
   },
   {
-    id: 33,
-    label: "The Bells University of Tech, Ota",
-    value: "The Bells University of Tech, Ota",
+    id: 63,
+    label: "Waziri Umaru Federal Polytechnic, Birnin Kebbi",
+    value: "Waziri Umaru Federal Polytechnic, Birnin Kebbi",
+  },
+  {
+    id: 64,
+    label: "Yaba College Of Technology, Yaba",
+    value: "Yaba College Of Technology, Yaba",
   },
 ];
+
 
 // Track Period data
 export const trackPeriodData = [
