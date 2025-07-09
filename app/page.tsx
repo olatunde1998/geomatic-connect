@@ -1,20 +1,19 @@
-import type { Metadata } from "next";
-import Navbar from "@/app/components/navbar/Navbar";
-import Hero from "@/app/components/landing-page-components/Hero";
-import HowItWorks from "@/app/components/landing-page-components/HowItWorks";
-import WhoWeAre from "@/app/components/landing-page-components/WhoWeAre";
 import Testimonial from "@/app/components/landing-page-components/Testimonial";
-import Pricing from "@/app/components/landing-page-components/Pricing";
-import Faq from "@/app/components/landing-page-components/Faq";
+import HowItWorks from "@/app/components/landing-page-components/HowItWorks";
 import ContactUs from "@/app/components/landing-page-components/ContactUs";
 import { Footer } from "@/app/components/landing-page-components/Footer";
-import TawkChat from "@/app/components/chatbot/TawkChat";
+import Pricing from "@/app/components/landing-page-components/Pricing";
+import Hero from "@/app/components/landing-page-components/Hero";
+import Faq from "@/app/components/landing-page-components/Faq";
+import Navbar from "@/app/components/navbar/Navbar";
+import type { Metadata } from "next";
+// import TawkChat from "@/app/components/chatbot/TawkChat";
 // import BottomNav from "@/app/components/navbar/BottomNav";
 
 export const metadata: Metadata = {
   title: "Home | Geomatic Connect",
   description:
-    "Geomatic Connect  is a platform that enables higher institution students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also helps companies find and recruit qualified candidates with ease.",
+    "Register, Make Request and got accepted into your desired company!",
 };
 
 export default function Home() {
@@ -29,14 +28,6 @@ export default function Home() {
               <Hero />
             </div>
           </div>
-          {/* === WHO WE ARE SECTION === */}
-          <div
-            id="whoWeAre-id"
-            className="w-full text-sm  max-w-[1200px] mx-auto px-6 pb-24 md:px-10 md:pt-16 lg:py-20"
-          >
-            <WhoWeAre />
-          </div>
-
           {/* === HOW IT WORKS SECTION === */}
           <div
             id="about-id"
@@ -74,7 +65,7 @@ export default function Home() {
             </div>
           </div>
           {/* === FOOTER SECTION === */}
-          <div className="bg-[#014751] pb-24 md:pb-0  w-full text-sm lg:flex flex-col items-center relative">
+          <div className="bg-[#014751] pb-10 md:pb-0  w-full text-sm lg:flex flex-col items-center relative">
             {/* === Background Image === */}
             <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe-refine.png)] "></div>
             {/* ===Overlay with color and opacity=== */}
@@ -85,7 +76,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <TawkChat />
+      {/* <TawkChat /> */}
       {/* <BottomNav /> */}
     </>
   );
