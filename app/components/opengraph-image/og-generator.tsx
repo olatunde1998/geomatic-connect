@@ -71,14 +71,14 @@ export default async function generateOgImage(type: OGImageType, props: any) {
             maxWidth: "90%",
           }}
         >
-          <h1
+          {/* <h1
             style={{ fontSize: titleSize, fontWeight: 600, marginBottom: 20 }}
           >
             {props.title}
           </h1>
           <p style={{ fontSize: descSize, opacity: 0.8, fontWeight: 300 }}>
             {props.description}
-          </p>
+          </p> */}
         </div>
       </div>
     ),
