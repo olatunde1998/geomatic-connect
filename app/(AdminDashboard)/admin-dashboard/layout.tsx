@@ -6,7 +6,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { auth } from "@/auth";
 
-const imageUrl = `${process.env.NEXT_PUBLIC_APP_URL}/images/opengraph-image.png`;
+// const imageUrl = `${process.env.NEXT_PUBLIC_APP_URL}/images/opengraph-image.png`;
 const APP_NAME = "Geomatic Connect";
 const APP_DEFAULT_TITLE = "Geomatic Connect | Admin";
 const APP_TITLE_TEMPLATE = "%s - Geomatic Connect";
@@ -35,30 +35,10 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: APP_DEFAULT_TITLE,
-    // startUpImage: [],
   },
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_APP_URL}`),
   formatDetection: {
     telephone: false,
-  },
-  openGraph: {
-    type: "website",
-    siteName: APP_NAME,
-    title: {
-      default: APP_DEFAULT_TITLE,
-      template: APP_TITLE_TEMPLATE,
-    },
-    description: APP_DESCRIPTION,
-    images: [imageUrl],
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: `${process.env.NEXT_PUBLIC_APP_URL}`,
-    creator: "Geomatic Connect Teams",
-    title: APP_DEFAULT_TITLE,
-    description:
-      "Register, Make Request and got accepted into your desired company!",
-    images: [imageUrl],
   },
 };
 

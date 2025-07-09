@@ -7,7 +7,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Dashboard | Geomatic Connect",
   description:
-    "Geomatic Connect  is a platform that enables higher institution students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also helps companies find and recruit qualified candidates with ease.",
+    "Register, Make Request and got accepted into your desired company!",
 };
 export default async function Home() {
   const session = await auth();

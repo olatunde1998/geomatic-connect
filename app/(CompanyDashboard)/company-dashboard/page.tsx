@@ -1,5 +1,5 @@
 import CompanyHome from "@/app/components/company-components/CompanyHome";
-import TawkChat from "@/app/components/chatbot/TawkChat";
+// import TawkChat from "@/app/components/chatbot/TawkChat";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import Link from "next/link";
@@ -22,7 +22,7 @@ export default async function Home() {
         </Link>
       </p>
       <CompanyHome session={session} />
-      <TawkChat />
+      {/* <TawkChat /> */}
     </main>
   );
 }
