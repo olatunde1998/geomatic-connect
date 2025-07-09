@@ -64,7 +64,7 @@ export const PWAInstallPrompt = () => {
         <span className="hidden lg:flex lg:flex-col items-start">
           <span className="block text-sm">Install Geomatic Connect </span>
           <span className="text-xs block">
-            Quick access to IT/SIWES placements
+            Quick access to Placements
           </span>
         </span>
         <span className="bg-[#014751] w-fit py-1.5 rounded-md px-2.5 text-white hidden lg:block">
