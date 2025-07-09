@@ -33,22 +33,3 @@ export const whoWeAreData = [
       "At Geomatic Connect, we create solutions to boost geomatic student placements and contribute to national growth.",
   },
 ];
-
-//WhoWeAre Analytics data
-export const whoWeAreAnalyticsData = [
-  {
-    id: 1,
-    totalCount: "10+",
-    title: "Project",
-  },
-  {
-    id: 2,
-    totalCount: "50+",
-    title: "Company",
-  },
-  {
-    id: 3,
-    totalCount: "60+",
-    title: "Students",
-  },
-];
