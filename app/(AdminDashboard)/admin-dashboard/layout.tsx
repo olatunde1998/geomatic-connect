@@ -11,7 +11,7 @@ const APP_NAME = "Geomatic Connect";
 const APP_DEFAULT_TITLE = "Geomatic Connect | Admin";
 const APP_TITLE_TEMPLATE = "%s - Geomatic Connect";
 const APP_DESCRIPTION =
-  "Geomatic Connect  is a job platform that enables higher institution students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also helps companies find and recruit qualified candidates with ease.";
+  "Register, Make Request and got accepted into your desired company!";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
