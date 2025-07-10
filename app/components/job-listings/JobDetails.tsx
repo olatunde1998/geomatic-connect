@@ -8,12 +8,9 @@ import { usePathname } from "next/navigation";
 import { getShortTitle } from "@/utils/utils";
 import { useSession } from "next-auth/react";
 import { IoIosLink } from "react-icons/io";
-// import parse from "html-react-parser";
 import { toast } from "sonner";
 import Image from "next/image";
 import Link from "next/link";
-import Quill from "quill";
-import "quill/dist/quill.snow.css";
 
 interface JobDetailsProps {
   jobId: string;
@@ -29,31 +26,9 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
   const queryClient = useQueryClient();
 
   const { data: jobData, isLoading } = useQuery({
-    queryKey: ["getJobApi"],
+    queryKey: ["getJobApi", jobId],
     queryFn: () => getJobRequest(token, jobId),
-  });
-
-  const editorRef = useRef<HTMLDivElement>(null);
-  const quillInstance = useRef<any>(null);
-
-  // Initialize Quill
-  useEffect(() => {
-    if (editorRef.current && !quillInstance.current) {
-      quillInstance.current = new Quill(editorRef.current, {
-        readOnly: true,
-        theme: "bubble",
-      });
-      // Disable editing
-      quillInstance.current.enable(false);
-    }
-  }, []);
-
-  // Set content once jobData and quill are ready
-  useEffect(() => {
-    if (quillInstance.current && jobData?.data?.jobDescription) {
-      quillInstance.current.root.innerHTML = jobData.data.jobDescription;
-    }
-  }, [quillInstance.current, jobData]);
+  });  
 
   // Share dropdown Handler
   useEffect(() => {
@@ -205,17 +180,12 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
               </div>
             </div>
           </header>
-
-          {/* <section className="mt-8 sm:col-span-full">
-            {typeof jobData?.data?.jobDescription === "string" ? (
-              parse(jobData?.data?.jobDescription)
-            ) : (
-              <p>No content available</p>
-            )}
-          </section> */}
           <div
-            className="prose prose-base dark:prose-invert min-w-full"
-            ref={editorRef}
+            className="pt-10 prose prose-base dark:prose-invert min-w-full"
+            dangerouslySetInnerHTML={{
+              __html:
+                jobData?.data?.jobDescription || "<p>No content available</p>",
+            }}
           />
         </div>
       )}

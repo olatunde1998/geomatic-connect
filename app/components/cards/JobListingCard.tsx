@@ -30,7 +30,7 @@ export default function JobListingCard({
     <>
       <Link
         href={`${pathname}/${itemId}`}
-        className="border border-slate-300 p-4 rounded-xl mb-5 block"
+        className="border border-slate-300 p-4 rounded-xl mb-5 block hover:bg-slate-100"
       >
         <section className="flex items-start justify-between">
           <div className="flex gap-3 items-center">
