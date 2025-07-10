@@ -3,17 +3,20 @@ import {
   CompanyDeclineStudentRequest,
   GetStudentsByCompanyRequest,
 } from "@/app/services/request.request";
-import { useQuery } from "@tanstack/react-query";
-import { GraduationCap, MapPin } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
-import { toast } from "sonner";
 import { Modal } from "@/app/components/modals/Modal";
 import { CardSkeleton } from "@/app/components/skeletons/CardSkeleton";
 import ApproveMessage from "@/app/components/company-components/ApproveMessage";
 import DeclineMessage from "@/app/components/company-components/DeclineMessage";
+import { Eye, GraduationCap, MapPin } from "lucide-react";
 import UserAvatar from "@/public/images/profile-pic.png";
+import { Document, Page, pdfjs } from "react-pdf";
+import { useQuery } from "@tanstack/react-query";
 import Trash from "@/app/components/trash/Trash";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
+import { useState } from "react";
+import { toast } from "sonner";
+import Image from "next/image";
 
 interface StudentCardProps {
   token: string;
@@ -22,27 +25,38 @@ interface StudentCardProps {
   search: string;
 }
 
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
+
 export default function StudentCard({
   token,
   companyId,
   selectedState,
   search,
 }: StudentCardProps) {
-  const [isApproving, setIsApproving] = useState(false);
-  const [isDeclining, setIsDeclining] = useState(false);
+  const [selectedPdfUrl, setSelectedPdfUrl] = useState<string | null>(null);
   const [selectedRequestId, setSelectedRequestId] = useState();
   const [showConfirmApprove, setShowConfirmApprove] = useState(false);
   const [showConfirmDecline, setShowConfirmDecline] = useState(false);
+  const [showStudentFile, setShowStudentFile] = useState(false);
+  const [numPages, setNumPages] = useState<number>();
+  const [pageWidth, setPageWidth] = useState<number>();
 
   const { data: studentsData, isLoading } = useQuery({
     queryKey: ["getStudentsApi", selectedState, search],
     queryFn: () =>
       GetStudentsByCompanyRequest(companyId, token, selectedState, search),
   });
+  console.log(studentsData, "this is studentsData here====");
+
+  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
+    setNumPages(numPages);
+  }
 
   // Send Approved Request to Admin Logic
   const handleApprovedRequest = async (requestId: any) => {
-    setIsApproving(true);
     const body = {
       requestId: requestId,
     };
@@ -50,16 +64,12 @@ export default function StudentCard({
       await CompanyApproveStudentRequest(body, token);
       toast.success("Request Approved Successfully");
     } catch (error: any) {
-      toast.error(error?.response?.data?.message);
-      toast.error(error?.response?.message);
-    } finally {
-      setIsApproving(false);
+      toast.error(error?.response?.message || error?.response?.data?.message);
     }
   };
 
   // Send Decline Request to Admin Logic
   const handleDeclinedRequest = async (requestId: any) => {
-    setIsDeclining(true);
     const body = {
       requestId: requestId,
     };
@@ -67,12 +77,10 @@ export default function StudentCard({
       const response = await CompanyDeclineStudentRequest(body, token);
       toast.success(response.message);
     } catch (error: any) {
-      toast.error(error?.response?.data?.message);
-      toast.error(error?.response?.message);
-    } finally {
-      setIsDeclining(false);
+      toast.error(error?.response?.message || error?.response?.data?.message);
     }
   };
+
   return (
     <>
       {isLoading ? (
@@ -93,12 +101,15 @@ export default function StudentCard({
         <div className="space-y-8 md:gap-6 md:grid md:grid-cols-2 xl:grid-cols-3 md:space-y-0">
           {studentsData?.data?.map((item: any) => (
             <div key={item._id}>
-              <div className="max-w-[400px] p-6 border border-slate-300 dark:border-muted bg-white dark:bg-muted">
-                <div className="p-6 border-b-[1.3px] border-slate-200 dark:border-muted text-black flex flex-col items-center">
+              <div className="max-w-[400px] pt-0 pb-6 border border-slate-300 dark:border-muted bg-white dark:bg-muted">
+                <p className="text-sm text-center justify-end flex flex-row font-normal text-white dark:text-accent-foreground">
+                  <span className="bg-red-300 p-2 px-1.5">{item?.source}</span>
+                </p>
+                <div className="p-6 mx-4 border-b-[1.3px] border-slate-200 dark:border-muted text-black flex flex-col items-center">
                   <div>
-                    {item?.studentId?.avatarImage ? (
+                    {item?.user?.avatarImage ? (
                       <Image
-                        src={item?.studentId?.avatarImage}
+                        src={item?.user?.avatarImage}
                         alt="profile image"
                         width={100}
                         height={100}
@@ -116,49 +127,65 @@ export default function StudentCard({
                     )}
                   </div>
                   <p className="text-xl font-medium dark:text-accent-foreground">
-                    <span>{item?.studentId?.fullName}</span>
+                    {item?.user?.fullName}
                   </p>
                   <p className="font-light text-sm dark:text-accent-foreground">
-                    {item?.studentId?.institutionName}
+                    {item?.user?.institutionName}
                   </p>
                 </div>
-
-                <p className="font-medium my-3">About</p>
-                <p className="font-light text-sm text-ellipsis  line-clamp-2">
-                  {item?.studentId?.aboutMe}
-                </p>
-                <div className="space-y-2 my-3 font-light text-sm">
-                  <div className="flex items-center gap-2">
-                    <GraduationCap size={24} />
-                    <span>
-                      Graduate/Student of {item?.studentId?.institutionName}
-                    </span>
+                <div className="px-6">
+                  <p className="font-medium my-3">About</p>
+                  <p className="font-light text-sm text-ellipsis  line-clamp-2">
+                    {item?.user?.aboutMe}
+                  </p>
+                  <div className="space-y-2 my-3 font-light text-sm">
+                    <div className="flex items-center gap-2">
+                      <GraduationCap size={24} />
+                      <span>
+                        Graduate/Student of {item?.user?.institutionName}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <MapPin size={24} />
+                        <span>Resides in {item?.user?.state}</span>
+                      </div>
+                      <div
+                        onClick={() => {
+                          if (!item?.user?.documentFile) {
+                            toast.error("No file added");
+                          } else {
+                            setSelectedPdfUrl(item?.user?.documentFile || null);
+                            setShowStudentFile(true);
+                          }
+                        }}
+                        className="flex items-center gap-1.5 cursor-pointer"
+                      >
+                        <Eye /> View File
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin size={24} />
-                    <span>Resides in {item?.studentId?.state}</span>
+                  <p className="font-medium">Experience</p>
+                  <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+                    <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                      Engineering
+                    </p>
+                    <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                      Cadastral
+                    </p>
+                    <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                      GIS/Remote
+                    </p>
+                    <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                      Drone Piloting
+                    </p>
+                    <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                      Topographical
+                    </p>
+                    <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                      Hydrographical
+                    </p>
                   </div>
-                </div>
-                <p className="font-medium">Experience</p>
-                <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
-                    Engineering
-                  </p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
-                    Cadastral
-                  </p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
-                    GIS/Remote
-                  </p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
-                    Drone Piloting
-                  </p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
-                    Topographical
-                  </p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
-                    Hydrographical
-                  </p>
                 </div>
                 {/* === PROFILE BUTTON === */}
                 <div className="flex gap-3 justify-between">
@@ -187,6 +214,30 @@ export default function StudentCard({
           ))}
         </div>
       )}
+
+      {/* ===== PDF Viewer ==== */}
+      <Modal show={showStudentFile} onClose={() => setShowStudentFile(false)}>
+        <div className="w-full h-[90vh] overflow-auto">
+          {selectedPdfUrl && (
+            <Document
+              file={selectedPdfUrl}
+              onLoadSuccess={onDocumentLoadSuccess}
+              loading={<p className="text-center mt-10">Loading PDF...</p>}
+              error={
+                <p className="text-center text-red-500">Failed to load PDF</p>
+              }
+            >
+              {Array.from(new Array(numPages), (el, index) => (
+                <Page
+                  key={`page_${index + 1}`}
+                  pageNumber={index + 1}
+                  width={pageWidth}
+                />
+              ))}
+            </Document>
+          )}
+        </div>
+      </Modal>
 
       <Modal
         show={showConfirmApprove}
