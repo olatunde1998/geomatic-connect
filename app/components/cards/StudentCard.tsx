@@ -42,14 +42,12 @@ export default function StudentCard({
   const [showConfirmDecline, setShowConfirmDecline] = useState(false);
   const [showStudentFile, setShowStudentFile] = useState(false);
   const [numPages, setNumPages] = useState<number>();
-  const [pageWidth, setPageWidth] = useState<number>();
 
   const { data: studentsData, isLoading } = useQuery({
     queryKey: ["getStudentsApi", selectedState, search],
     queryFn: () =>
       GetStudentsByCompanyRequest(companyId, token, selectedState, search),
   });
-  console.log(studentsData, "this is studentsData here====");
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
@@ -231,7 +229,6 @@ export default function StudentCard({
                 <Page
                   key={`page_${index + 1}`}
                   pageNumber={index + 1}
-                  width={pageWidth}
                 />
               ))}
             </Document>
