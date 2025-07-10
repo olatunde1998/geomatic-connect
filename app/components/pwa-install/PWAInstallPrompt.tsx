@@ -60,7 +60,7 @@ export const PWAInstallPrompt = () => {
         title="Install Geomatic Connect as PWA"
         aria-label="Install Geomatic Connect as PWA"
       >
-        <Download className="text-[#014751]" />
+        <Download className="text-white" />
         <span className="hidden lg:flex lg:flex-col items-start">
           <span className="block text-sm">Install Geomatic Connect </span>
           <span className="text-xs block">
