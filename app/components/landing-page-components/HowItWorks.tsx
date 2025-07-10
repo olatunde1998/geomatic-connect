@@ -2,7 +2,6 @@
 import { howItWorksData } from "@/utils/HowItWorksData";
 import ReactPlayer from "react-player";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
 import Link from "next/link";
 
 export default function HowItWorks() {
@@ -36,7 +35,7 @@ export default function HowItWorks() {
               key={index}
               className="mt-4 flex items-center font-normal gap-2 md:text-left text-sm md:text-base text-[#F0F0F0] lg:w-[500px]"
             >
-              <Check color="#6CB92B" className="size-5 font-bold" />
+              <span className="text-20 text-xl">&#128640;</span>
               {item.content}
             </motion.p>
           ))}
@@ -49,7 +48,7 @@ export default function HowItWorks() {
             >
               <Link
                 href="/signup"
-                className="border-[#6CB92B] border-[1.3px] shadow-xl bg-[#FFFFFF] p-4 items-center flex justify-center font-bold text-[#014751] rounded-md w-fit text-xs"
+                className="border-[#FFC957] border-[1.3px] shadow-xl bg-[#FFFFFF] p-4 items-center flex justify-center font-bold text-[#014751] rounded-md w-fit text-xs"
               >
                 {button}
               </Link>
