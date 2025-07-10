@@ -218,7 +218,6 @@ export const CompanyDeclineStudentRequest = async (body: any, token: any) => {
       }
     );
     const data = response.data;
-    console.log(data, "data is here");
     if (!data) return;
     return data;
   } catch (error) {
@@ -272,11 +271,6 @@ export const GetStudentsByCompanyRequest = async (
     const data = await response.data;
     return data;
   } catch (error: any) {
-    // Handle the error appropriately
-    console.error(
-      `Error fetching students for company with ID ${companyId}:`,
-      error.message || error
-    );
     throw new Error(
       error.response?.data?.message ||
         `Failed to fetch students for company with ID ${companyId}.`
