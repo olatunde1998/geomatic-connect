@@ -16,11 +16,11 @@ const routes = [
     href: "faq-id",
     icon: FaQ,
   },
-  {
-    name: "How it Works",
-    href: "about-id",
-    icon: Bookmark,
-  },
+  // {
+  //   name: "How it Works",
+  //   href: "about-id",
+  //   icon: Bookmark,
+  // },
 ];
 
 const mobileRoutes = [
@@ -68,7 +68,7 @@ export default function Navbar() {
 
           {/* ===== LINKS (about, FAQs, Contact-US) ===== */}
           <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto"
+            className="items-center justify-between hidden w-full lg:flex lg:w-auto"
             id="navbar-sticky"
           >
             <ul
@@ -121,7 +121,7 @@ export default function Navbar() {
           </div>
 
           {/* ======= Menu button ======*/}
-          <div className="flex md:hidden bg-[#F2F6F6] border border-slate-200 p-2 rounded-lg">
+          <div className="flex lg:hidden bg-[#F2F6F6] border border-slate-200 p-2 rounded-lg">
             {!dropNav && (
               <HiMenu
                 className="text-lg transition text-[#014751]"
@@ -135,7 +135,7 @@ export default function Navbar() {
         </div>
 
         {/*====== Mobile Side view ======*/}
-        <section className="md:hidden text-black">
+        <section className="lg:hidden text-black">
           <AnimatePresence>
             {dropNav && (
               <motion.div
