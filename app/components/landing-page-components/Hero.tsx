@@ -17,29 +17,16 @@ export default function Hero() {
         transition={{ type: "spring", duration: 3 }}
         className="leading-normal pt-16"
       >
-        <div className="text-center px-4">
-          <h2 className="text-[40px] md:text-[42px] lg:text-[58px] font-bold text-[#000000] dark:text-accent-foreground">
-            Build real-world skills <br />
-            <span className="text-[#F51767] inline-block animate-fadeSpring1 text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
-              Get hired.
-            </span>
-            <span className="text-[#F51767] inline-block animate-fadeSpring2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
-              Gain real experience.
-            </span>
-            <span className="text-[#F51767] inline-block animate-fadeSpring3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
-              Shape your future.
-            </span>
-            <span className="text-[#F51767] inline-block animate-fadeSpring4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
-              Fulfill your dreams.
-            </span>
+        <div className="md:text-center px-4">
+          <h2 className="text-[36px] md:text-[42px] px-3 md:px-0 lg:text-[58px]  font-bold text-[#F51767] text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
+            Start landing offers.
           </h2>
-
-          <p className="text-base font-semibold px-3 md:text-lg leading-8  my-9 md:max-w-[500px] lg:max-w-[600px] mx-auto text-[#56616e] dark:text-muted-foreground">
+          <p className="text-lg font-semibold px-3 md:text-lg leading-8 my-5 md:my-9 md:max-w-[500px] lg:max-w-[600px] md:mx-auto text-[#56616e] dark:text-muted-foreground">
             The most efficient and supportive way for you to get connected,
             build real-world skills and advance your career.
           </p>
         </div>
-        <div className="flex flex-col items-center justify-center md:flex-row gap-4">
+        <div className="flex flex-col items-center justify-center md:flex-row gap-4 mt-12 md:mt-0">
           <motion.div
             whileHover={{
               scale: 1.03,
