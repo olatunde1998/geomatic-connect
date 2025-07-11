@@ -51,7 +51,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed w-full z-20 top-0 left-0 dark:bg-primary-foreground py-2 md:py-2.5 border-b-[0.5px] bg-white/50 backdrop-blur-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+      <nav className="fixed w-full z-20 top-0 left-0 dark:bg-primary-foreground py-2 md:py-2.5 border-b-[0.5px] bg-white shadow-[inset_-12px_-8px_40px_#46464620]">
         <div className="max-w-[1200px] mx-auto p-2 pr-4 md:px-2 flex justify-between items-center">
           {/* =======Company LOGO ==== */}
           <Link href="/" className="flex items-center">
