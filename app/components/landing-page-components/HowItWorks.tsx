@@ -2,14 +2,14 @@
 import { howItWorksData } from "@/utils/HowItWorksData";
 import ReactPlayer from "react-player";
 import { motion } from "framer-motion";
-import Link from "next/link";
+// import Link from "next/link";
 
 export default function HowItWorks() {
-  const { name, content, data, button } = howItWorksData.howItWork;
+  const { name, content, data } = howItWorksData.howItWork;
 
   return (
     <>
-      <main className="w-full md:grid md:grid-cols-2 md:gap-32">
+      <main className="w-full md:grid lg:grid-cols-2 lg:gap-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ export default function HowItWorks() {
               {item.content}
             </motion.p>
           ))}
-          <div className="mt-10 flex space-x-6 mb-8">
+          {/* <div className="mt-10 flex space-x-6 mb-8">
             <motion.div
               whileHover={{
                 scale: 1.03,
@@ -53,10 +53,10 @@ export default function HowItWorks() {
                 {button}
               </Link>
             </motion.div>
-          </div>
+          </div> */}
         </motion.div>
 
-        <div className="w-full h-fit md:h-[350px] lg:w-[400px] xl:w-[550px] xl:h-[350px] mt-12 lg:mt-16">
+        <div className="w-full h-fit md:h-[350px] lg:w-[400px] xl:w-[550px] xl:h-[350px] mt-12 lg:my-16">
           <ReactPlayer
             width="100%"
             height="100%"
