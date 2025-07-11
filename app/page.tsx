@@ -22,7 +22,7 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between pt-16 bg-[#F6F8FD]">
         <div className="w-full  flex-col items-center text-sm lg:flex">
           {/* === HERO SECTION === */}
-          <div className="bg-primary-foreground lg:pt-8 w-full text-sm h-full  bg-[linear-gradient(to_top_left,#F2F6F6_0%,transparent_100%),linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:24rem_18rem]">
+          <div className="bg-primary-foreground lg:pt-8 w-full text-sm h-full bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
             <div className="max-w-[1300px] mx-auto text-sm md:px-6">
               <Navbar />
               <Hero />
