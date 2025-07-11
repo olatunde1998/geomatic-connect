@@ -1,9 +1,10 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import HeroImage from "@/public/images/prototype.png";
 import { companionData } from "@/utils/CompanionData";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Hero() {
   const duplicatedData = [...companionData, ...companionData, ...companionData];
@@ -15,42 +16,60 @@ export default function Hero() {
         viewport={{ once: false, amount: 0.2 }}
         animate={{ x: 0 }}
         transition={{ type: "spring", duration: 3 }}
-        className="leading-normal pt-16"
+        className="leading-snug pt-16"
       >
-        <div className="md:text-center px-4">
-          <h2 className="text-[36px] md:text-[42px] px-3 md:px-0 lg:text-[58px]  font-bold text-[#F51767] text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
+        <div className="relative mx-auto flex max-w-2xl flex-col items-center">
+          <div className="mb- flex">
+            <a href="/blog" rel="noopener noreferrer" className="inline-flex">
+              <span className="relative inline-block overflow-hidden rounded-full p-[1px]">
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a9a9a9_0%,#0c0c0c_50%,#a9a9a9_100%)] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#171717_0%,#737373_50%,#171717_100%)]" />
+                <div className="inline-flex h-full w-full cursor-pointer justify-center rounded-full bg-white px-3 py-1 text-xs font-medium leading-5 text-slate-600 backdrop-blur-xl dark:bg-black dark:text-slate-200">
+                  New snippets ⚡️
+                  <span className="inline-flex items-center pl-2 text-black dark:text-white">
+                    Read more{" "}
+                    <ArrowRight
+                      className="pl-0.5 text-black dark:text-white"
+                      size={16}
+                    />
+                  </span>
+                </div>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div className="text-center px-4">
+          <h2 className="text-[48px] md:text-[64px] px-3 md:px-0 font-semibold md:font-bold text-[#F51767] text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
             Start landing offers.
           </h2>
-          <p className="text-lg font-semibold px-3 md:text-lg leading-8 my-5 md:my-9 md:max-w-[500px] lg:max-w-[600px] md:mx-auto text-[#56616e] dark:text-muted-foreground">
+          <p className="text-lg font-medium md:font-semibold px-3 mt-3.5 md:max-w-[500px] lg:max-w-[600px] md:mx-auto text-[#56616e] dark:text-muted-foreground">
             The most efficient and supportive way for you to get connected,
             build real-world skills and advance your career.
           </p>
         </div>
-        <div className="flex flex-col items-center justify-center md:flex-row gap-4 mt-12 md:mt-0">
+        <div className="flex items-center justify-center gap-4 mt-8 md:mt-8">
           <motion.div
             whileHover={{
               scale: 1.03,
             }}
             className="w-fit"
           >
-            <Link
-              href="/signup"
-              className="bg-[#014751] hover:bg-[#014751]/90 text-white font-bold uppercase w-[250px] p-5 cursor-pointer mx-auto md:mx-0 rounded-full text-center flex items-center justify-center"
-            >
-              Create free account
-            </Link>
+            <Button variant="secondary" className="p-5">
+              <span>Create free account</span>
+              <ArrowRight className="size-4" />
+            </Button>
           </motion.div>
+
           <motion.div
             whileHover={{
               scale: 1.03,
             }}
           >
-            <Link
-              href="/blog"
-              className="uppercase w-[250px] p-4 mx-auto cursor-pointer text-[#014751] font-bold md:mx-0 rounded-full text-center flex items-center justify-center"
+            <Button
+              variant="outline"
+              className="p-5 hidden md:bloc md:flex items-center"
             >
-              Or Explore career tips
-            </Link>
+              Explore career tips
+            </Button>
           </motion.div>
         </div>
       </motion.section>
