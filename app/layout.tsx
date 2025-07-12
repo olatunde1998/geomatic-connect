@@ -1,10 +1,10 @@
 import { PWAInstallPrompt } from "@/app/components/pwa-install/PWAInstallPrompt";
 import SessionProviderPage from "@/app/providers/session-providers";
+import { ThemeProvider } from "@/app/providers/theme-provider";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import "./globals.css";
-// import { ThemeProvider } from "@/app/providers/theme-provider";
 
 // const imageUrl = `${process.env.NEXT_PUBLIC_APP_URL}/images/opengraph-image.png`;
 const APP_NAME = "Geomatic Connect";
@@ -57,14 +57,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProviderPage>
-          {/* <ThemeProvider
+          <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
-          > */}
-          {children}
-          {/* </ThemeProvider> */}
+          >
+            {children}
+          </ThemeProvider>
         </SessionProviderPage>
         <Toaster position="top-center" richColors={true} />
         <PWAInstallPrompt />
