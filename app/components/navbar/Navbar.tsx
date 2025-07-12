@@ -1,14 +1,14 @@
 "use client";
 import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
+import { ThemeToggle } from "@/app/components/theme-toggle/ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bookmark, PencilLine } from "lucide-react";
+import { PencilLine } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { HiMenu, HiX } from "react-icons/hi";
 import { FaQ } from "react-icons/fa6";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-// import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
 
 const routes = [
   {
@@ -51,7 +51,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed w-full z-20 top-0 left-0 dark:bg-primary-foreground py-2 md:py-2.5 border-b-[0.5px] bg-white shadow-[inset_-12px_-8px_40px_#46464620]">
+      <nav className="fixed w-full z-20 top-0 left-0 dark:bg-background/95 dark:backdrop-blur  py-2 md:py-2.5 border-b-[0.5px] bg-white shadow-[inset_-12px_-8px_40px_#46464620]">
         <div className="max-w-[1200px] mx-auto p-2 pr-4 md:px-2 flex justify-between items-center">
           {/* =======Company LOGO ==== */}
           <Link href="/" className="flex items-center">
@@ -62,7 +62,7 @@ export default function Navbar() {
               height={100}
               priority
               quality={100}
-              className="w-[109px] h-[46px] object-cover"
+              className="w-[109px] h-[46px] object-cover dark:invert"
             />
           </Link>
 
@@ -76,10 +76,11 @@ export default function Navbar() {
             >
               <Link
                 href="/blog"
-                className="flex items-center gap-2 hover:bg-white w-fit px-2.5 py-1.5 rounded-lg"
+                className="relative flex items-center gap-2 w-fit px-2.5 py-1.5 group rounded-lg"
               >
                 <PencilLine className="size-4" />
-                Blog
+                <span>Blog</span>
+                <span className="absolute left-0 -bottom-0.5 h-0.5 w-full scale-x-0 bg-muted-foreground origin-left transition-transform duration-200 group-hover:scale-x-100" />
               </Link>
               {pathname !== "/blog" &&
                 routes.map((route, index) => {
@@ -87,26 +88,28 @@ export default function Navbar() {
                   return (
                     <li
                       key={index}
-                      className="flex items-center gap-2 hover:bg-white w-fit px-2.5 py-1.5 rounded-lg"
+                      className="relative flex items-center gap-2 w-fit px-2.5 py-1.5 rounded-lg group cursor-pointer"
                       onClick={() => handleSmoothScroll(`${route.href}`)}
                     >
-                      <Icon className="size-4 text-gray-600" />
+                      <Icon className="size-4" />
                       <span className="cursor-pointer">{route.name}</span>
+                      <span className="absolute left-0 -bottom-0.5 h-0.5 w-full scale-x-0 bg-muted-foreground origin-left transition-transform duration-200 group-hover:scale-x-100" />
                     </li>
                   );
                 })}
             </ul>
-
+            <div className="ml-12">
+              <ThemeToggle />
+            </div>
             <Link
               href="/login"
-              className="p-3 font-medium rounded-md mx-4 hover:text-[#014751]"
+              className="p-3 font-medium rounded-md mx-2 hover:text-[#014751]"
             >
               Login
             </Link>
             <motion.div
               whileHover={{
                 scale: 1.03,
-                boxShadow: "0px 0px 8px rgb(255, 255, 255)",
               }}
               className="w-fit"
             >
@@ -117,21 +120,24 @@ export default function Navbar() {
                 Create free account
               </Link>
             </motion.div>
-            <div className="ml-4">{/* <ModeToggle /> */}</div>
           </div>
 
           {/* ======= Menu button ======*/}
-          <div className="flex lg:hidden bg-[#F2F6F6] border border-slate-200 p-2 rounded-lg">
-            {!dropNav && (
-              <HiMenu
-                className="text-lg transition text-[#014751]"
-                size={32}
-                onClick={() => {
-                  setDropNav(true);
-                }}
-              />
-            )}
-          </div>
+
+          {!dropNav && (
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+              <div className="flex lg:hidden bg-[#F2F6F6] dark:invert border border-slate-200 p-2 rounded-lg">
+                <HiMenu
+                  className="text-lg transition text-[#014751]"
+                  size={32}
+                  onClick={() => {
+                    setDropNav(true);
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         {/*====== Mobile Side view ======*/}
