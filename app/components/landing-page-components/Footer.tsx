@@ -72,12 +72,12 @@ export const Footer = () => {
         </div>
       </section>
       <section>
-        <div className="cursor-pointer lg:flex justify-between items-center border-t-[.23px] border-white pt-8">
+        <div className="cursor-pointer lg:flex justify-between items-center border-t-[.23px] border-white dark:border-t-[1.5px] dark:border-muted pt-8">
           <div className="flex gap-2">
             {socialMedia.map((item, index) => (
               <span
                 key={index}
-                className="w-[40px] h-[40px] rounded-full border-2 border-white flex items-center justify-center md:w-[40px] md:h-[40px]"
+                className="w-[40px] h-[40px] rounded-full border-2 border-white  flex items-center justify-center md:w-[40px] md:h-[40px]"
               >
                 <item.iconUrl size={20} />
               </span>

@@ -89,13 +89,13 @@ export default function Hero() {
             alt="application prototype picture"
             fill
             priority
-            className="rounded-lg border-[0.5px] border-slate-300 object-contain"
+            className="rounded-lg border-[0.5px] border-slate-300 object-contain dark:object-fill dark:invert"
           />
         </motion.div>
       </div>
 
       {/* ===Hiring Companies=== */}
-      <div className="mt-10 md:mt-20 mb-10">
+      <div className="mt-10 md:mt-20 lg:mb-8 md:pb-16 lg:pb-0">
         <section>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -109,9 +109,9 @@ export default function Hero() {
               Our students are getting hired by top companies. We can help you
               too.
             </h2>
-            <div className="h-[80px] mx-auto md:h-[80px]">
-              <div className="w-full relative overflow-hidden pt-10">
-                <div className="relative flex items-center justify-center animate md:relative left-0 ">
+            <div className="mx-auto md:h-[80px]">
+              <div className="w-full relative overflow-hidden pt-6 md:pt-10">
+                <div className="relative flex items-center justify-center animate md:relative left-0">
                   <div className="w-[150%] flex items-center justify-around">
                     {duplicatedData.map((item, index) => (
                       <motion.div
@@ -119,15 +119,15 @@ export default function Hero() {
                           scale: 1.3,
                         }}
                         key={index}
-                        className="w-[50px] h-[50px] md:w-[80px] md:h-[80px] mx-6 py-4 cursor-pointer"
+                        className="w-[50px] h-[50px] md:w-[80px] md:h-[90px] lg:h-[120px] mx-6 py-4 cursor-pointer"
                       >
                         <Image
                           src={item?.imageUrl}
                           width={70}
                           height={70}
                           priority
-                          alt="FSS logo"
-                          className="w-auto h-auto"
+                          alt="Company brand logo"
+                          className="w-auto h-auto dark:invert"
                           quality={100}
                         />
                       </motion.div>

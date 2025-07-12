@@ -2,7 +2,6 @@
 import { howItWorksData } from "@/utils/HowItWorksData";
 import ReactPlayer from "react-player";
 import { motion } from "framer-motion";
-// import Link from "next/link";
 
 export default function HowItWorks() {
   const { name, content, data } = howItWorksData.howItWork;
@@ -39,21 +38,6 @@ export default function HowItWorks() {
               {item.content}
             </motion.p>
           ))}
-          {/* <div className="mt-10 flex space-x-6 mb-8">
-            <motion.div
-              whileHover={{
-                scale: 1.03,
-              }}
-              className="w-fit"
-            >
-              <Link
-                href="/signup"
-                className="border-[#FFC957] border-[1.3px] shadow-xl bg-[#FFFFFF] p-4 items-center flex justify-center font-bold text-[#014751] rounded-md w-fit text-xs"
-              >
-                {button}
-              </Link>
-            </motion.div>
-          </div> */}
         </motion.div>
 
         <div className="w-full h-fit md:h-[350px] lg:w-[400px] xl:w-[550px] xl:h-[350px] mt-12 lg:my-16">

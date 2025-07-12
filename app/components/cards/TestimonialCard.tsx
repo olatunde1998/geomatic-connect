@@ -17,7 +17,7 @@ export default function TestimonialCard({
   return (
     <>
       <div>
-        <div className="w-[280px] md:w-[400px] lg:w-[430px] px-6 py-8 md:py-12 md:px-12 border border-slate-300 bg-[#F2F6F6] rounded-xl">
+        <div className="w-[280px] md:w-[400px] lg:w-[430px] px-6 py-8 md:py-12 md:px-12 border border-slate-300 bg-[#F2F6F6] opacity-95 dark:border-muted dark:bg-slate-950  rounded-xl">
           <div className="flex gap-3 ">
             <div>
               <Image
@@ -30,10 +30,8 @@ export default function TestimonialCard({
               />
             </div>
             <div className="mt-2">
-              <p className="font-extrabold dark:text-primary-foreground text-base md:text-xl">
-                {fullName}
-              </p>
-              <p className="text-sm md:text-base text-gray-700 font-light mt-1">
+              <p className="font-extrabold text-base md:text-xl">{fullName}</p>
+              <p className="text-sm md:text-base text-muted-foreground font-light mt-1">
                 {location}
               </p>
 
@@ -47,7 +45,7 @@ export default function TestimonialCard({
             </div>
           </div>
 
-          <p className="mt-10 text-base md:text-lg text-gray-500 font-light leading-[28px]">
+          <p className="mt-10 text-base md:text-lg text-muted-foreground font-light leading-[28px]">
             {testimonial}
           </p>
         </div>

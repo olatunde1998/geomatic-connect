@@ -12,7 +12,7 @@ export default function Faq() {
         {/* ===== Background Image ===== */}
         <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe-refine.png)] "></div>
         {/* =====Overlay with color and opacity==== */}
-        <div className="absolute inset-0 bg-[#014751] dark:bg-primary-foreground dark:opacity-100 opacity-95 rounded-tl-[32px] rounded-br-[32px]"></div>
+        <div className="absolute inset-0 bg-[#014751] dark:border-muted dark:bg-slate-950 dark:border dark:opacity-100 opacity-95 rounded-tl-[32px] rounded-br-[32px]"></div>
         {/* ====Section One (CONTENT)==== */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,11 +20,11 @@ export default function Faq() {
           viewport={{ once: false, amount: 0.2 }}
           className="relative"
         >
-          <p className="text-center text-xl uppercase  font-extrabold md:text-3xl xl:text-4xl text-[#FFFFFF]">
+          <p className="text-center text-4xl uppercase  font-extrabold md:text-3xl text-white xl:text-4xl dark:text-[#F51767] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r from-cyan-800 to-pink-500">
             faq<span className="lowercase">s</span>
           </p>
-          <p className="text-center text-md lg:text-lg mt-3 text-[#FFFFFF]">
-            Frequently Asked Questions About Us!
+          <p className="text-center text-md lg:text-lg xl:text-xl mt-3 text-[#FFFFFF]">
+            Frequently Asked Questions
           </p>
           {faqData.map((faq: any, index) => (
             <motion.div
@@ -36,8 +36,8 @@ export default function Faq() {
               onClick={() => setActiveFaq(activeFaq === faq.id ? null : faq.id)}
               className={`${
                 activeFaq === faq.id
-                  ? "bg-[#FFFFFF] mt-10 text-[#014751]  p-4 md:p-8 lg:p-10 rounded-tl-[32px] rounded-br-[32px]"
-                  : "text-[#FFFFFF] mt-10  p-4 md:p-8 lg:px-10 lg:py-4 border-b-[0.3px] border-slate-200 dark:border-b-[2px] dark:border-border"
+                  ? "bg-[#FFFFFF] dark:bg-muted-foreground mt-10 text-[#014751]  p-4 md:p-8 lg:p-10 rounded-tl-[32px] rounded-br-[32px]"
+                  : "text-[#FFFFFF] mt-10  p-4 md:p-8 lg:px-10 lg:py-4 border-b-[0.3px] border-slate-200 dark:border-b dark:border-muted"
               } flex justify-between  max-w-[1100px] mx-auto cursor-pointer`}
             >
               <div>
@@ -56,7 +56,7 @@ export default function Faq() {
                       : { height: 0, opacity: 0 }
                   }
                   transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="text-sm lg:text-base mt-4"
+                  className="text-sm lg:text-base mt-4 dark:text-secondary"
                 >
                   {faq.answer}
                 </motion.p>
