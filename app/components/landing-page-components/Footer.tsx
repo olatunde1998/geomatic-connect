@@ -34,7 +34,7 @@ export const Footer = () => {
             className="w-[130px] h-[46px] -ml-4 md:h-[70px] md:w-[150px] object-cover md:ml-0"
           />
         </div>
-        <div className="text-[20px] md:flex md:justify-end md:gap-32 md:w-2/3 lg:w-1/2">
+        <div className="text-[20px] flex justify-between md:justify-end md:gap-32 md:w-2/3 lg:w-1/2">
           <div>
             <p className="font-bold mb-8">{quickLinksTitle}</p>
             <ul className="cursor-pointer space-y-4 font-light text-base lg:text-lg">
@@ -52,7 +52,7 @@ export const Footer = () => {
               ))}
             </ul>
           </div>
-          <div className="my-10 md:my-0">
+          <div>
             <p className="font-bold mb-8">{servicesTitle}</p>
             <ul className="cursor-pointer space-y-4 font-light text-base lg:text-lg">
               {services.map((link) => (
