@@ -22,7 +22,7 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between pt-16 bg-[#F6F8FD]">
         <div className="w-full  flex-col items-center text-sm lg:flex">
           {/* === HERO SECTION === */}
-          <div className="bg-primary-foreground pt-10 md:pt-12 w-full text-sm h-full bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]    dark:bg-slate-950 dark:bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] dark:bg-[size:6px_100px]">
+          <div className="bg-primary-foreground pt-10 md:pt-12 w-full text-sm h-full bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]    dark:bg-slate-950 dark:bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] dark:bg-[size:1500px_100px]">
             <div className="max-w-[1300px] mx-auto text-sm md:px-6">
               <Navbar />
               <Hero />
@@ -40,7 +40,7 @@ export default function Home() {
           {/* === Testimonial === */}
           <div
             id="testimonial-id"
-            className="w-full  flex-col items-center text-sm lg:flex bg-primary-foreground bg-neutral-950 bg-[radial-gradient(ellipse_120%_120%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]  dark:bg-slate-950 dark:bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] dark:bg-[size:6px_135px]"
+            className="w-full  flex-col items-center text-sm lg:flex bg-primary-foreground bg-neutral-950 bg-[radial-gradient(ellipse_120%_120%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]  dark:bg-slate-950 dark:bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] dark:bg-[size:100px_135px]"
           >
             <div className="w-full max-w-[1200px] text-sm ">
               <Testimonial />
