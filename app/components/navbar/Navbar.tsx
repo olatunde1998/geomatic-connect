@@ -125,7 +125,7 @@ export default function Navbar() {
           {/* ======= Menu button ======*/}
 
           {!dropNav && (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 lg:hidden">
               <ThemeToggle />
               <div className="flex lg:hidden bg-[#F2F6F6] dark:invert border border-slate-200 p-2 rounded-lg">
                 <HiMenu
