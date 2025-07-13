@@ -1,23 +1,22 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-
-import { Modal } from "@/app/components/modals/Modal";
-import Logout from "@/app/components/auth-components/Logout";
+import SubscribeModal from "@/app/components/student-components/SubscribeModal";
+import GeomaticLogoWhite from "@/public/images/Geomatic-Connect-Logo2w.png";
+import { GetUserNotifications } from "@/app/services/notifications.request";
+import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
+import { ThemeToggle } from "@/app/components/theme-toggle/ThemeToggle";
 import { GetUserProfileRequest } from "@/app/services/users.request";
+import { Bell, LogOut, PencilLine, Settings } from "lucide-react";
+import Logout from "@/app/components/auth-components/Logout";
+import { studentMobileRoutes } from "@/utils/sidebarLinks";
+import { motion, AnimatePresence } from "framer-motion";
+import { Modal } from "@/app/components/modals/Modal";
+import { MdOutlinePriceChange } from "react-icons/md";
+import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
-import { Bell, LogOut, PencilLine, Settings } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
-import GeomaticLogoWhite from "@/public/images/Geomatic-Connect-Logo2w.png";
 import { useRouter } from "next/navigation";
-import { studentMobileRoutes } from "@/utils/sidebarLinks";
-import SubscribeModal from "@/app/components/student-components/SubscribeModal";
-import { GetUserNotifications } from "@/app/services/notifications.request";
-import { MdOutlinePriceChange } from "react-icons/md";
-// import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function StudentNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -126,13 +125,7 @@ export default function StudentNavBar({ session }: { session: any }) {
                     )}
                   </div>
                 </Link>
-                <Link
-                  href={`/student-dashboard/settings`}
-                  className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
-                >
-                  <Settings size={18} />
-                </Link>
-
+                <ThemeToggle />
                 <div
                   onClick={() => setShowActions((prevState) => !prevState)}
                   className="flex justify-start"
@@ -186,7 +179,7 @@ export default function StudentNavBar({ session }: { session: any }) {
           </div>
           {/* ======= Menu button (Hamburger button) ======*/}
           <div className="lg:hidden flex space-x-3">
-            {/* <ModeToggle /> */}
+            <ThemeToggle />
             <Link
               href={`/student-dashboard/notifications`}
               className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
