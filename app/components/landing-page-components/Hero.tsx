@@ -5,6 +5,7 @@ import { companionData } from "@/utils/CompanionData";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   const duplicatedData = [...companionData, ...companionData, ...companionData];
@@ -53,9 +54,11 @@ export default function Hero() {
             }}
             className="w-fit"
           >
-            <Button variant="secondary" className="p-5">
-              <span>Create free account</span>
-              <ArrowRight className="size-4" />
+            <Button asChild variant="secondary" className="p-5 relative group">
+              <Link href="/signup" className="relative">
+                <span>Create free account</span>
+                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
             </Button>
           </motion.div>
 
@@ -65,10 +68,11 @@ export default function Hero() {
             }}
           >
             <Button
+              asChild
               variant="outline"
               className="p-5 hidden md:bloc md:flex items-center"
             >
-              Explore career tips
+              <Link href="/blog">Explore career tips</Link>
             </Button>
           </motion.div>
         </div>

@@ -33,7 +33,7 @@ export default function Testimonial() {
           <p className="text-4xl font-bold md:text-4xl lg:text-5xl text-[#F51767] text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
             Testimonials
           </p>
-          <p className="text-base md:text-base text-[#747578] lg:text-lg w-[250px] lg:w-[300px] mx-auto mt-3">
+          <p className="text-base md:text-base text-[#747578] dark:text-muted-foreground lg:text-lg w-[250px] lg:w-[300px] mx-auto mt-3">
             What Do Happy Clients Say About Working With Us?
           </p>
         </motion.div>

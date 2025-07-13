@@ -21,7 +21,7 @@ export default function HowItWorks() {
             {name}
           </p>
           <div className="w-24 h-1 bg-[#FFC957]" />
-          <p className="mt-4 md:text-left  text-sm md:text-base font-normal text-[#F0F0F0] lg:w-[500px] my-10 !leading-8">
+          <p className="mt-4 md:text-left  text-sm md:text-base font-normal text-[#F0F0F0] dark:text-muted-foreground lg:w-[500px] my-10 !leading-8">
             {content}
           </p>
           {data.map((item, index) => (
@@ -32,9 +32,9 @@ export default function HowItWorks() {
               animate={{ x: 0 }}
               transition={{ type: "spring", duration: 3 }}
               key={index}
-              className="mt-4 flex items-center font-normal gap-2 md:text-left text-sm md:text-base text-[#F0F0F0] lg:w-[500px]"
+              className="mt-4 flex items-center font-normal gap-2 md:text-left text-sm md:text-base text-card  dark:text-muted-foreground lg:w-[500px]"
             >
-              <span className="text-20 text-xl">&#128640;</span>
+              <span className="text-20 text-xl ">&#128640;</span>
               {item.content}
             </motion.p>
           ))}

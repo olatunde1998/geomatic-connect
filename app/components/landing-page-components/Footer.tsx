@@ -34,7 +34,7 @@ export const Footer = () => {
             className="w-[130px] h-[46px] -ml-4 md:h-[70px] md:w-[150px] object-cover md:ml-0"
           />
         </div>
-        <div className="text-[20px] flex justify-between md:justify-end md:gap-32 md:w-2/3 lg:w-1/2">
+        <div className="text-[20px] flex md:justify-end gap-32 md:w-2/3 lg:w-1/2">
           <div>
             <p className="font-bold mb-8">{quickLinksTitle}</p>
             <ul className="cursor-pointer space-y-4 font-light text-base lg:text-lg">
@@ -83,7 +83,7 @@ export const Footer = () => {
               </span>
             ))}
           </div>
-          <div className="mt-6 lg:flex gap-2">
+          <div className="mt-6 lg:flex gap-2 dark:text-muted-foreground">
             <div className="flex gap-4">
               <p>Privacy</p>
               <p>Terms</p>
