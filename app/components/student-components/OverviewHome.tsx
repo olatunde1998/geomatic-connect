@@ -104,7 +104,7 @@ export default function OverviewHome({ token, userId }: OverviewHomeProps) {
                           className={`px-2 py-1.5 rounded-lg cursor-pointer transition-colors duration-200 ${
                             selected === option
                               ? "bg-green-600 text-white hover:bg-green-600/80"
-                              : "hover:bg-slate-200"
+                              : "hover:bg-slate-200 dark:hover:bg-muted"
                           }`}
                         >
                           {option}
@@ -122,11 +122,11 @@ export default function OverviewHome({ token, userId }: OverviewHomeProps) {
                       {analyticData?.recentActivities.map(
                         (activity: any, index: number) => (
                           <div key={index} className="flex gap-4 text-sm">
-                            <div className="bg-green-100 p-2 rounded-full w-10 h-9 flex items-center justify-center">
-                              <Gift className="size-4 text-green-600" />
+                            <div className="bg-green-100 dark:bg-muted-foreground p-2 rounded-full w-10 h-9 flex items-center justify-center">
+                              <Gift className="size-4 text-green-600 dark:text-muted" />
                             </div>
                             <div>
-                              <p className="text-sm md:text-base text-gray-500 w-full">
+                              <p className="text-sm md:text-base text-gray-500 dark:text-muted-foreground w-full">
                                 {activity.message}
                               </p>
                               <p className="text-xs md:text-sm text-gray-500 font-normal">
@@ -144,7 +144,7 @@ export default function OverviewHome({ token, userId }: OverviewHomeProps) {
                   <div>
                     <p className="font-bold text-lg">Account Details</p>
                     <div className="mt-6">
-                      <div className="text-sm bg-slate-100 p-6 rounded-xl">
+                      <div className="text-sm bg-slate-100 dark:bg-slate-950 dark:border dark:border-muted p-6 rounded-xl">
                         <div className="flex gap-3 items-center font-bold">
                           <Zap className="size-6 text-green-600" />
                           <span className="text-base">Free Plan</span>

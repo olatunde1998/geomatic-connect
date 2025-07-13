@@ -12,7 +12,7 @@ import {
 export default function LineTrendChart({ data }: { data: any[] }) {
   return (
     <div
-      className="my-6"
+      className="my-6 dark:invert"
       style={{
         width: "100%",
         height: 300,

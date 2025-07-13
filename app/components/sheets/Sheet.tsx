@@ -30,7 +30,7 @@ export const Sheet: React.FC<SheetProps> = ({ show, onClose, children }) => {
           ></div>
           <div
             ref={modalRef}
-            className="p-3 px-8 py-10 md:py-1 md:pb-10 z-50 md:w-[50%] lg:w-[40%] xl:w-[30%] overflow-y-auto h-full relative bg-white ml-auto  scrollbar-hide"
+            className="p-3 px-8 py-10 md:py-1 md:pb-10 z-50 md:w-[50%] lg:w-[40%] xl:w-[30%] overflow-y-auto h-full relative bg-white ml-auto  scrollbar-hide dark:bg-background"
           >
             {children}
           </div>

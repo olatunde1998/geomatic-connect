@@ -28,7 +28,7 @@ export function OverviewCard({ title, value }: StatisticsCardProps) {
       <div className="border border-slate dark:border-muted p-3 rounded-lg max-h-28 md:h-28 flex flex-col items-start justify-center">
         <div className="flex items-center space-x-1.5 mb-2 ">
           <ChartNoAxesColumn className="text-green-600 size-6" />
-          <p className="text-sm lg:text-xs xl:text-sm font-sans text-[#575D72] dark:text-accent-foreground">
+          <p className="text-sm lg:text-xs xl:text-sm font-sans text-[#575D72] dark:text-muted-foreground">
             {title}
           </p>
         </div>

@@ -80,18 +80,18 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
           <LoaderCircle className="size-12 animate-spin duration-500 mx-auto mt-8" />
         </div>
       ) : (
-        <div className="max-w-3xl min-h-[100vh] p-4 overflow-hidden border border-slate-300 rounded-lg">
-          <header className="border-b border-slate-300 pb-8">
+        <div className="max-w-3xl min-h-[100vh] p-4 overflow-hidden border border-slate-300 dark:border-muted rounded-lg">
+          <header className="border-b border-slate-300 dark:border-muted pb-8">
             {jobData?.data?.companyId?.avatarImage ? (
               <Image
                 src={jobData.data.companyId.avatarImage}
                 alt="company brand logo"
                 width={100}
                 height={100}
-                className="w-[70px] h-[70px] border-[1.3px] border-slate-200 items-center justify-center flex rounded-lg object-cover"
+                className="w-[70px] h-[70px] border-[1.3px] border-slate-200 dark:border-muted items-center justify-center flex rounded-lg object-cover"
               />
             ) : (
-              <div className="w-[70px] h-[70px] border-[1.3px] border-slate-200 items-center justify-center flex rounded-lg bg-gray-100 text-sm text-gray-500">
+              <div className="w-[70px] h-[70px] border-[1.3px] border-slate-200 dark:border-muted items-center justify-center flex rounded-lg bg-gray-100 dark:text-muted-foreground text-sm text-gray-500">
                 No Image
               </div>
             )}
@@ -103,7 +103,7 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
               {jobData?.data?.companyId?.companyName}
             </span>
             <p className="flex items-center flex-wrap gap-2 mt-2 text-base text-muted-foreground">
-              <span className="font-semibold text-black/80">
+              <span className="font-semibold text-black/80 dark:text-muted-foreground">
                 {jobData?.data?.jobType}
               </span>
               <span>. {jobData?.data?.location}</span>
@@ -116,7 +116,7 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
                   onClick={() => setShowActions((prevState) => !prevState)}
                   className="relative cursor-pointer w-full md:w-fit"
                 >
-                  <span className="px-3.5 py-2 flex items-center justify-center cursor-pointer gap-2 border text-sm border-slate-300 bg-white rounded-sm">
+                  <span className="px-3.5 py-2 flex items-center justify-center cursor-pointer gap-2 border text-sm border-slate-300 dark:border-muted bg-white dark:bg-muted rounded-sm">
                     <Share2 className="size-4" />
                     Share
                   </span>
@@ -124,25 +124,25 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
                     ref={shareRef}
                     className={`${
                       showActions ? "block" : "hidden"
-                    } bg-white py-3 px-2 shadow-md rounded-lg text-sm border border-[#213f7d0f] w-[200px] space-y-2 absolute -right-16 lg:right-[-18px] z-[1] top-[50px]`}
+                    } bg-white dark:bg-background py-3 px-2 shadow-md rounded-lg text-sm border border-[#213f7d0f] dark:border-muted w-[200px] space-y-2 absolute -right-16 lg:right-[-18px] z-[1] top-[50px]`}
                   >
                     <Link
                       href={`https://twitter.com/intent/tweet?text=${shareText}&url=${encodedUrl}`}
-                      className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3  w-full"
+                      className="rounded-xl hover:bg-gray-100 dark:hover:bg-accent hover:text-[#014751] text-gray-600 dark:text-muted-foreground flex items-center gap-x-2 cursor-pointer p-2 pl-3  w-full"
                     >
                       <RiTwitterXFill size={18} />
                       Share on X
                     </Link>
                     <Link
                       href={`https://www.linkedin.com/feed/?shareActive=true&shareUrl=${encodedUrl}`}
-                      className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
+                      className="rounded-xl hover:bg-gray-100 dark:hover:bg-accent hover:text-[#014751] text-gray-600 dark:text-muted-foreground flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
                     >
                       <Linkedin size={18} />
                       Share on LinkedIn
                     </Link>
                     <Link
                       href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
-                      className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
+                      className="rounded-xl hover:bg-gray-100 dark:hover:bg-accent hover:text-[#014751] text-gray-600 dark:text-muted-foreground flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
                     >
                       <Facebook size={18} />
                       Share on Facebook
@@ -155,7 +155,7 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
                         );
                         toast.success("Link copied to clipboard!");
                       }}
-                      className="rounded-xl hover:bg-gray-100 hover:text-[#014751] text-gray-600 flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
+                      className="rounded-xl hover:bg-gray-100 dark:hover:bg-accent hover:text-[#014751] text-gray-600 dark:text-muted-foreground flex items-center gap-x-2 cursor-pointer p-2 pl-3 w-full"
                     >
                       <IoIosLink size={18} />
                       Copy Link
@@ -169,7 +169,7 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
                     hasApplied
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
-                  } w-full md:w-fit px-3.5 py-2 font-normal text-white shadow-sm  rounded-sm`}
+                  } w-full md:w-fit px-3.5 py-2 font-normal text-white shadow-sm rounded-sm`}
                 >
                   {hasApplied
                     ? "Applied"
@@ -181,7 +181,7 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
             </div>
           </header>
           <div
-            className="pt-10 prose prose-base dark:prose-invert min-w-full"
+            className="pt-10 prose prose-base dark:prose-inver dark:text-muted-foreground min-w-full"
             dangerouslySetInnerHTML={{
               __html:
                 jobData?.data?.jobDescription || "<p>No content available</p>",

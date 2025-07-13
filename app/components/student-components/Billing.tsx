@@ -146,7 +146,7 @@ export default function Billing({ token, userId }: BillingProps) {
             </span>
           </p>
           <div className="mt-6 md:mt-0 flex items-center gap-5">
-            <div className="border-[1.3px] border-slate-200 flex justify-between items-center text-xs md:text-sm p-1 rounded-3xl w-[200px]">
+            <div className="border-[1.3px] border-slate-200 dark:border-muted-foreground flex justify-between items-center text-xs md:text-sm p-1 rounded-3xl w-[200px]">
               <p
                 onClick={() => setSelectedBillingCycleTab("Monthly")}
                 className={`${

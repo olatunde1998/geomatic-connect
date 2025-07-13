@@ -7,8 +7,7 @@ import { Modal } from "@/app/components/modals/Modal";
 import { CardSkeleton } from "@/app/components/skeletons/CardSkeleton";
 import ApproveMessage from "@/app/components/company-components/ApproveMessage";
 import DeclineMessage from "@/app/components/company-components/DeclineMessage";
-import { Eye, GraduationCap, MapPin } from "lucide-react";
-import UserAvatar from "@/public/images/profile-pic.png";
+import { CircleUserRound, Eye, GraduationCap, MapPin } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useQuery } from "@tanstack/react-query";
 import Trash from "@/app/components/trash/Trash";
@@ -115,13 +114,7 @@ export default function StudentCard({
                         className="w-[100px] h-[100px] rounded-full object-cover border-[1.3px] border-slate-200"
                       />
                     ) : (
-                      <Image
-                        src={UserAvatar}
-                        width={100}
-                        height={100}
-                        className="w-[100px] h-[100px] rounded-full object-cover"
-                        alt="avatar picture"
-                      />
+                      <CircleUserRound className="size-28 dark:text-muted-foreground" />
                     )}
                   </div>
                   <p className="text-xl font-medium dark:text-accent-foreground">
@@ -226,10 +219,7 @@ export default function StudentCard({
               }
             >
               {Array.from(new Array(numPages), (el, index) => (
-                <Page
-                  key={`page_${index + 1}`}
-                  pageNumber={index + 1}
-                />
+                <Page key={`page_${index + 1}`} pageNumber={index + 1} />
               ))}
             </Document>
           )}

@@ -8,7 +8,7 @@ import { GetUserByIdRequest } from "@/app/services/request.request";
 import { useQuery } from "@tanstack/react-query";
 
 import { GetUserProfileRequest } from "@/app/services/users.request";
-import { ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface StudentDetailsProps {
@@ -54,9 +54,12 @@ export default function StudentDetails({
         <div>
           <p
             onClick={() => setShowSendRequest(true)}
-            className="cursor-pointer rounded-md border p-3 w-[140px] md:w-[150px]  text-center text-white bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+            className="relative group cursor-pointer rounded-md border p-3 w-[170px] text-center text-white bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted-foreground dark:to-muted"
           >
-            Send Request
+            <span className="flex items-center gap-4 justify-center relative">
+              Send Request
+              <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </span>
           </p>
         </div>
       </div>
@@ -74,11 +77,21 @@ export default function StudentDetails({
                     <p className="text-lg font-bold mb-2">
                       Specialized Field:{" "}
                     </p>
-                    <p>Cadastral Surveying</p>
-                    <p>Topographical Surveying</p>
-                    <p>Drone Surveying</p>
-                    <p>Hydrograhical Surveying</p>
-                    <p>GIS & Remote Sensing</p>
+                    <p className="dark:text-muted-foreground">
+                      Cadastral Surveying
+                    </p>
+                    <p className="dark:text-muted-foreground">
+                      Topographical Surveying
+                    </p>
+                    <p className="dark:text-muted-foreground">
+                      Drone Surveying
+                    </p>
+                    <p className="dark:text-muted-foreground">
+                      Hydrograhical Surveying
+                    </p>
+                    <p className="dark:text-muted-foreground">
+                      GIS & Remote Sensing
+                    </p>
                   </div>
                   <div className="mb-4 ">
                     <p className="text-lg font-bold mb-2">Rating: </p>
@@ -93,7 +106,7 @@ export default function StudentDetails({
                       <p className="flex">
                         <MdOutlineStar size={24} className="text-yellow-400" />
                         <MdOutlineStar size={24} className="text-yellow-400" />
-                        <MdOutlineStar size={24} className="text-slate-400" />
+                        <MdOutlineStar size={24} className="text-yellow-400" />
                         <MdOutlineStar size={24} className="text-slate-400" />
                       </p>
                       <p className="flex">
@@ -114,28 +127,28 @@ export default function StudentDetails({
 
                 <div className="mt-4 font-sans text-md">
                   <p className="text-lg font-bold">Goals:</p>
-                  <p className="leading-8 font-light">
+                  <p className="leading-8 font-light dark:text-muted-foreground">
                     {userData?.data?.aboutMe}
                   </p>
                 </div>
 
                 <div className="mt-4 font-sans text-md">
                   <p className="text-lg font-bold">Address: </p>
-                  <p className="leading-8 font-light">
+                  <p className="leading-8 font-light dark:text-muted-foreground">
                     {userData?.data?.companyAddress}
                   </p>
                 </div>
 
                 <div className="mt-8 font-sans text-md flex gap-4 items-center">
                   <p className="text-lg font-bold">Accomodation: </p>
-                  <p className="leading-8 font-light">
+                  <p className="leading-8 font-light dark:text-muted-foreground">
                     {userData?.data?.accomodation === true ? "Yes" : "No"}
                   </p>
                 </div>
 
                 <div className="mt-8 font-sans text-md">
                   <p className="text-lg font-bold">Achievement: </p>
-                  <p className="leading-8 font-light">
+                  <p className="leading-8 font-light dark:text-muted-foreground">
                     13 Olaide Tomori St, Ikeja, 101233, Lagos
                   </p>
                 </div>
@@ -143,9 +156,12 @@ export default function StudentDetails({
                 <div className="mt-6 mb-10">
                   <p
                     onClick={() => setShowSendRequest(true)}
-                    className="cursor-pointer rounded-md border p-3 w-[140px] md:w-[150px]  text-center text-white bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                    className="relative group cursor-pointer rounded-md border p-3 w-[170px]  text-center text-white bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted-foreground dark:to-muted"
                   >
-                    Send Request
+                    <span className="flex items-center gap-4 justify-center relative">
+                      Send Request
+                      <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
                   </p>
                 </div>
               </div>

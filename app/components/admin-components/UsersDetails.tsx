@@ -1,21 +1,25 @@
 "use client";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import Image from "next/image";
-import UserAvatar from "@/public/images/profile-pic.png";
 import { GetUserByIdRequest } from "@/app/services/request.request";
-import { ChevronRight, LoaderCircle, Upload } from "lucide-react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  ChevronRight,
+  CircleUserRound,
+  LoaderCircle,
+  Upload,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   DeleteUserRequest,
   UpdateUserProfileRequest,
 } from "@/app/services/users.request";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import ReactSelect from "../inputs/ReactSelect";
 import { accommodationData } from "@/utils/FilterData";
+import ReactSelect from "../inputs/ReactSelect";
+import Image from "next/image";
+import { toast } from "sonner";
+import * as yup from "yup";
 
 interface UsersDetailsProps {
   token: string;
@@ -254,13 +258,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                     </div>
                   ) : (
                     <div className="mb-4  mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[100px] md:mb-0 md:mr-6">
-                      <Image
-                        src={UserAvatar}
-                        width={100}
-                        height={100}
-                        className="w-full h-full"
-                        alt="avatar picture"
-                      />
+                      <CircleUserRound className="size-28 dark:text-muted-foreground" />
                       <Upload className="relative left-20 bottom-10 bg-white rounded-full w-[32px] h-[32px] p-2" />
                     </div>
                   )}

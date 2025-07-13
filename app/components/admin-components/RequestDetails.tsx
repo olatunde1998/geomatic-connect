@@ -1,11 +1,10 @@
-import { X } from "lucide-react";
+import { AdminSendRequestToCompany } from "@/app/services/request.request";
+import SuccessMessage from "../company-components/SuccessMessage";
 import { useQueryClient } from "@tanstack/react-query";
+import { CircleUserRound, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import SuccessMessage from "../company-components/SuccessMessage";
-import { AdminSendRequestToCompany } from "@/app/services/request.request";
 import Image from "next/image";
-import UserAvatar from "@/public/images/profile-pic.png";
 
 interface RequestDetailsProps {
   token?: any;
@@ -90,13 +89,7 @@ export default function RequestDetails({
                   </div>
                 ) : (
                   <div className="mb-4  mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[100px] md:mb-0 md:mr-6">
-                    <Image
-                      src={UserAvatar}
-                      width={100}
-                      height={100}
-                      className="w-full h-full"
-                      alt="avatar picture"
-                    />
+                    <CircleUserRound className="size-28 dark:text-muted-foreground" />
                   </div>
                 )}
               </div>

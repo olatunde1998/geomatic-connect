@@ -48,7 +48,7 @@ export default function ReactSelect({
   padding = "10px",
   backgroundColor = "#ffffff",
   borderRadius = "none",
-  border = "1px solid #cbd5e1 ",
+  border = "1px solid #cbd5e1",
   isDisabled = false,
 }: any) {
   return (

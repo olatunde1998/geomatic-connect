@@ -1,7 +1,7 @@
 import { StudentSendRequestToAdmin } from "@/app/services/request.request";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -107,8 +107,7 @@ export default function SendRequest({
       toast.success(response?.message);
       setShowSuccessMessage(true);
     } catch (error: any) {
-      toast.error(error?.response?.data?.message);
-      toast.error(error?.response?.message);
+      toast.error(error?.response?.message || error?.response?.data?.message);
     } finally {
       setIsSaving(false);
       setTimeout(() => {
@@ -122,13 +121,15 @@ export default function SendRequest({
       {showSuccessMessage === false ? (
         <div className="w-full pt-1 md:pt-10 md:pb-20">
           <div>
-            <div className="text-primary mb-8  flex items-center justify-between border-b border-slate-300 pb-8">
-              <p className="text-xl text-[#33A852]">Make a Request</p>
+            <div className="text-primary mb-8  flex items-center justify-between border-b border-slate-300 dark:border-muted pb-8">
+              <p className="text-xl text-[#33A852] dark:text-secondary-foreground">
+                Make a Request
+              </p>
               <button
                 onClick={() => setShowSendRequest(false)}
-                className="rounded-md gap-6 hover:bg-slate-100 p-2 cursor-pointer"
+                className="rounded-md gap-6 hover:bg-slate-100 dark:hover:bg-muted p-2 cursor-pointer"
               >
-                <X color="#33A852" />
+                <X className="text-[#33A852] dark:text-secondary-foreground" />
               </button>
             </div>
           </div>
@@ -140,7 +141,7 @@ export default function SendRequest({
               <div>
                 <label
                   htmlFor="email"
-                  className="text-sm text-gray-500 font-normal"
+                  className="text-sm text-gray-500 dark:text-muted-foreground font-normal"
                 >
                   Email Address
                 </label>
@@ -148,11 +149,11 @@ export default function SendRequest({
                   className={`${
                     errors.email
                       ? "border-[1.3px] border-red-500"
-                      : "border-[1.3px] border-slate-300"
-                  } flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100`}
+                      : "border-[1.3px] border-slate-300 dark:border dark:border-muted-foreground"
+                  } flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100 dark:bg-muted`}
                 >
                   <input
-                    className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black cursor-not-allowed"
+                    className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black dark:text-muted-foreground cursor-not-allowed"
                     type="email"
                     readOnly={true}
                     placeholder="Email Address"
@@ -166,7 +167,7 @@ export default function SendRequest({
               <div>
                 <label
                   htmlFor="institutionName"
-                  className="text-sm text-gray-500 font-normal"
+                  className="text-sm text-gray-500 dark:text-muted-foreground font-normal"
                 >
                   Institution
                 </label>
@@ -195,7 +196,7 @@ export default function SendRequest({
               <div>
                 <label
                   htmlFor="trackPeriod"
-                  className="text-sm text-gray-500 font-normal"
+                  className="text-sm text-gray-500 dark:text-muted-foreground font-normal"
                 >
                   Tracking Period
                 </label>
@@ -218,7 +219,7 @@ export default function SendRequest({
               <div>
                 <label
                   htmlFor="requestPurpose"
-                  className="text-sm text-gray-500 font-normal"
+                  className="text-sm text-gray-500 dark:text-muted-foreground font-normal"
                 >
                   Purpose of Request
                 </label>
@@ -241,7 +242,7 @@ export default function SendRequest({
               <div>
                 <label
                   htmlFor="backgroundHistory"
-                  className="text-sm text-gray-500 font-normal"
+                  className="text-sm text-gray-500 dark:text-muted-foreground font-normal"
                 >
                   Cover Letter
                 </label>
@@ -249,8 +250,8 @@ export default function SendRequest({
                   className={`${
                     errors.backgroundHistory
                       ? "border-[1.3px] border-red-500"
-                      : "border-[1.3px] border-slate-300"
-                  } flex flex-col w-full pt-2 px-4 pb-1`}
+                      : "border-[1.3px] border-slate-300 dark:border dark:border-muted-foreground"
+                  } flex flex-col w-full pt-2 px-4 pb-1 dark:bg-muted`}
                 >
                   <textarea
                     className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
@@ -266,10 +267,11 @@ export default function SendRequest({
             {/* === Submit Button === */}
             <button
               disabled={isSaving}
-              className="w-full mt-10  px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+              className="relative group cursor-pointer w-full mt-10 px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted dark:to-muted"
             >
-              <span className="text-base">
+              <span className="text-base flex items-center gap-4 justify-center relative">
                 {isSaving ? "Submitting...." : "Submit Request"}
+                <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </button>
           </form>

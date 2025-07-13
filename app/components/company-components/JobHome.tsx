@@ -11,7 +11,6 @@ import { useState } from "react";
 
 export default function JobHome() {
   const [showCreateJob, setShowCreateJob] = useState(false);
-  const skeletonArray = [1, 2, 3, 4, 5];
   const { data: session } = useSession();
   const token = session?.user?.token as string;
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,26 +40,26 @@ export default function JobHome() {
           <Plus className="w-4 h-4 md:w-5 md:h-5" />
         </div>
       </div>
-      {isLoading
-        ? skeletonArray.map((item, index) => (
-            <div key={index}>
-              <JobSkeleton />
-            </div>
-          ))
-        : jobsData?.data?.map((item: any, index: number) => (
-            <div key={index}>
-              <JobListingCard
-                itemId={item._id}
-                imageUrl={item?.companyId?.avatarImage}
-                title={item.jobTitle}
-                companyName={item.companyId.companyName}
-                createdTime={item.createdAt}
-                level={item.experienceLevel}
-                jobType={item.jobType}
-                location={item.location}
-              />
-            </div>
-          ))}
+      {isLoading ? (
+        <div>
+          <JobSkeleton />
+        </div>
+      ) : (
+        jobsData?.data?.map((item: any, index: number) => (
+          <div key={index}>
+            <JobListingCard
+              itemId={item._id}
+              imageUrl={item?.companyId?.avatarImage}
+              title={item.jobTitle}
+              companyName={item.companyId.companyName}
+              createdTime={item.createdAt}
+              level={item.experienceLevel}
+              jobType={item.jobType}
+              location={item.location}
+            />
+          </div>
+        ))
+      )}
       <Modal show={showCreateJob} onClose={() => setShowCreateJob(false)}>
         <CreateJob token={token} setShowCreateJob={setShowCreateJob} />
       </Modal>

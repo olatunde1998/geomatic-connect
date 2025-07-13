@@ -1,14 +1,14 @@
 "use client";
 import { GetCompaniesRequest } from "@/app/services/request.request";
-import { Sheet } from "@/app/components/sheets/Sheet";
-import { useQuery } from "@tanstack/react-query";
-import { GraduationCap, MapPin, Send } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { CircleUserRound, GraduationCap, MapPin, Send } from "lucide-react";
 import SendRequest from "@/app/components/student-components/SendRequest";
 import { CardSkeleton } from "@/app/components/skeletons/CardSkeleton";
-import UserAvatar from "@/public/images/profile-pic.png";
+import { Sheet } from "@/app/components/sheets/Sheet";
+import { useQuery } from "@tanstack/react-query";
 import Trash from "@/app/components/trash/Trash";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 interface CompanyCardProps {
   token: string;
@@ -56,7 +56,17 @@ export default function CompanyCard({
       ) : (
         <div className="space-y-8 md:gap-6 md:grid md:grid-cols-2 xl:grid-cols-3 md:space-y-0">
           {companiesData?.data?.map((item: any) => (
-            <div key={item._id}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              // whileHover={{
+              //   scale: 1.05,
+              // }}
+              animate={{ x: 0 }}
+              transition={{ type: "spring", duration: 3 }}
+              key={item._id}
+            >
               <div className="max-w-[400px] p-6 border border-slate-300 dark:border-muted bg-white dark:bg-muted">
                 <div className="flex justify-end">
                   <input
@@ -70,10 +80,10 @@ export default function CompanyCard({
                       }
                     }}
                     checked={selectedCompanyId === item._id}
-                    className=" accent-[#33A852] w-4 h-4 border-2 border-red-800 cursor-pointer"
+                    className=" accent-[#33A852] dark:accent-muted-foreground w-4 h-4 cursor-pointer"
                   />
                 </div>
-                <div className="p-6 border-b-[1.3px] border-slate-200 text-black flex flex-col items-center">
+                <div className="p-6 border-b-[1.3px] border-slate-200 dark:border-muted-foreground text-black flex flex-col items-center">
                   <div>
                     {item?.avatarImage ? (
                       <Image
@@ -85,56 +95,55 @@ export default function CompanyCard({
                         className="w-[100px] h-[100px] rounded-full object-cover border-[1.3px] border-slate-200"
                       />
                     ) : (
-                      <Image
-                        src={UserAvatar}
-                        width={100}
-                        height={100}
-                        className="w-[100px] h-[100px] rounded-full object-cover"
-                        alt="avatar picture"
-                      />
+                      <CircleUserRound className="size-28 dark:text-muted-foreground" />
                     )}
                   </div>
 
                   <p className="text-xl font-medium text-center dark:text-accent-foreground">
                     <span>{item?.companyName} </span>
                   </p>
-                  <p className="font-light text-sm dark:text-accent-foreground">
+                  <p className="font-light text-sm dark:text-muted-foreground">
                     Registered Company
                   </p>
                 </div>
 
                 <p className="font-medium my-3">About</p>
-                <p className="font-light text-sm text-ellipsis  line-clamp-2">
+                <p className="font-light text-sm text-ellipsis line-clamp-2 dark:text-muted-foreground">
                   {item?.aboutMe}
                 </p>
                 <div className="space-y-2 my-3 font-light text-sm">
                   <div className="flex items-center gap-2">
                     <GraduationCap size={24} />
-                    <span> Accredited by SURCON</span>
+                    <span className="dark:text-muted-foreground">
+                      {" "}
+                      Accredited by SURCON
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin size={24} />
-                    <span>Resides in {item?.state}</span>
+                    <span className="dark:text-muted-foreground">
+                      Resides in {item?.state}
+                    </span>
                   </div>
                 </div>
                 <p className="font-medium">Expertise</p>
                 <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                  <p className="bg-[#E6E9EB] dark:bg-muted-foreground p-2 dark:text-primary-foreground">
                     Engineering
                   </p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                  <p className="bg-[#E6E9EB] dark:bg-muted-foreground p-2 dark:text-primary-foreground">
                     Cadastral
                   </p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                  <p className="bg-[#E6E9EB] dark:bg-muted-foreground p-2 dark:text-primary-foreground">
                     GIS/Remote
                   </p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                  <p className="bg-[#E6E9EB] dark:bg-muted-foreground p-2 dark:text-primary-foreground">
                     Drone Piloting
                   </p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                  <p className="bg-[#E6E9EB] dark:bg-muted-foreground p-2 dark:text-primary-foreground">
                     Topographical
                   </p>
-                  <p className="bg-[#E6E9EB] p-2 dark:text-primary-foreground">
+                  <p className="bg-[#E6E9EB] dark:bg-muted-foreground p-2 dark:text-primary-foreground">
                     Hydrographical
                   </p>
                 </div>
@@ -158,7 +167,7 @@ export default function CompanyCard({
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       )}
