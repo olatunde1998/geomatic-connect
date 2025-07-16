@@ -31,7 +31,7 @@ export default function Home() {
           {/* === HOW IT WORKS SECTION === */}
           <div
             id="about-id"
-            className="w-full text-sm bg-[#014751] opacity-95 dark:bg-slate-950 dark:bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:0px_0px]"
+            className="w-full text-sm bg-[#F2F6F6] opacity-95 dark:bg-slate-950 dark:bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:0px_0px]"
           >
             <div className="max-w-[1200px] mx-auto text-sm px-6 md:px-10 py-10">
               <HowItWorks />
