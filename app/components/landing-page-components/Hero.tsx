@@ -20,7 +20,6 @@ export default function Hero() {
         className="leading-snug pt-16"
       >
         <div className="relative mx-auto flex max-w-2xl flex-col items-center">
-          <div className="mb- flex">
             <a href="/blog" rel="noopener noreferrer" className="inline-flex">
               <span className="relative inline-block overflow-hidden rounded-full p-[1px]">
                 <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a9a9a9_0%,#0c0c0c_50%,#a9a9a9_100%)] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#171717_0%,#737373_50%,#171717_100%)]" />
@@ -36,7 +35,6 @@ export default function Hero() {
                 </div>
               </span>
             </a>
-          </div>
         </div>
         <div className="text-center px-4">
           <h2 className="text-[48px] md:text-[64px] px-3 md:px-0 font-semibold md:font-bold text-[#F51767] text-transparent bg-clip-text bg-gradient-to-r from-cyan-800 to-pink-500">
