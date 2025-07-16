@@ -76,7 +76,7 @@ export default function Home() {
           {/* === FOOTER SECTION === */}
           <div className="bg-[#014751] dark:bg-slate-950 dark:bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] dark:bg-[size:6px_135px] dark:opacity-100 dark:rounded-none pb-10 md:pb-0  w-full text-sm lg:flex flex-col items-center relative">
             {/* === Background Image === */}
-            <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe-refine.png)] "></div>
+            <div className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-[url(/images/globe-refine.png)] dark:hidden"></div>
             {/* ===Overlay with color and opacity=== */}
             <div className="absolute inset-0 bg-[#014751] dark:bg-slate-950 dark:bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] dark:bg-[size:6px_135px] opacity-80 dark:rounded-none rounded-tl-[32px] rounded-br-[32px]"></div>
             <div className="relative w-full max-w-[1200px] text-sm">
