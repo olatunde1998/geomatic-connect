@@ -19,7 +19,7 @@ export default function BlogHome() {
 
   return (
     <div className="px-6 pb-20">
-      <p className="w-full py-6 border-b border-slate-200">
+      <p className="w-full py-6 border-b border-slate-200 dark:border-b dark:border-muted">
         <span className="text-3xl">./</span>{" "}
         <span className="text-2xl">Blog</span> Insights for your job search
         journey
@@ -47,7 +47,7 @@ export default function BlogHome() {
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mt-8 py-8 px-6 rounded-2xl bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mt-8 py-8 px-6 rounded-2xl bg-white dark:bg-muted">
           {blogsData?.data
             ?.filter((item: any) => item.active)
             .map((item: any, index: number) => (
