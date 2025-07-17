@@ -24,14 +24,14 @@ interface BlogDetailsProps {
 }
 
 export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
-  const router = useRouter();
   const [showActions, setShowActions] = useState(false);
   const [showEditBlog, setShowEditBlog] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-
+  
   const shareRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   const { data: blogDetailData, isLoading } = useQuery({
     queryKey: ["getSingleBlogApi"],
@@ -82,10 +82,10 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
 
   return (
     <>
-      <div className="rounded-lg mt-20 mb-10 md:mt-24 lg:mt-20 xl:my-10 items-center justify-between bg-[#ECF1F7] flex p-2 px-6 gap-3">
+      <div className="rounded-lg mt-20 mb-10 md:mt-24 lg:mt-20 xl:my-10 items-center justify-between bg-[#ECF1F7] dark:bg-muted flex p-2 px-6 gap-3">
         <div
           onClick={() => router.back()}
-          className="cursor-pointer hover:text-[#014751] hover:border-[#014751] hover:border rounded-2xl flex items-center gap-2 border border-slate-300 w-fit p-1.5 px-3 text-sm"
+          className="cursor-pointer hover:text-[#014751] hover:border-[#014751] hover:border rounded-2xl flex items-center gap-2 border border-slate-300 dark:border-muted-foreground w-fit p-1.5 px-3 text-sm"
         >
           <ArrowLeft size={14} />
           Back to Blog
@@ -107,9 +107,9 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
           ) : (
             <>
               {/*========Blog View======= */}
-              <div className="w-full max-w-3xl p-7 bg-white border border-gray-200 rounded-lg">
-                <div className="flex justify-between items-center border-b border-gray-400 pb-2 mb-5">
-                  <h2 className="text-xl font-bold ">Geomatic Blog</h2>
+              <div className="w-full max-w-3xl p-7 bg-white dark:bg-muted border border-gray-200 dark:border-muted-foreground rounded-lg">
+                <div className="flex justify-between items-center border-b border-gray-400 dark:border-muted-foreground pb-2 mb-5">
+                  <h2 className="text-xl font-bold ">Geomatic Connect</h2>
                   {pathname.includes("/admin-dashboard") && (
                     <p
                       onClick={() => setShowEditBlog((prev) => !prev)}
@@ -122,7 +122,7 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2 text-sm">
                     <p>{formatDateShort(blogDetailData?.data?.createdAt)}</p>
-                    <div className="text-base w-1 h-1 rounded-full bg-slate-300" />
+                    <div className="text-base w-1 h-1 rounded-full bg-slate-300 dark:bg-muted-foreground" />
                     <Link href="#" className="underline text-blue-400">
                       {blogDetailData?.data?.authorName}
                     </Link>
@@ -131,7 +131,7 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
                     onClick={() => setShowActions((prevState) => !prevState)}
                     className="relative cursor-pointer"
                   >
-                    <p className="flex items-center cursor-pointer gap-2 border text-sm border-slate-200 bg-white rounded-2xl px-3 py-1">
+                    <p className="flex items-center cursor-pointer gap-2 border text-sm border-slate-200 dark:border-background bg-white dark:bg-muted-foreground rounded-2xl px-3 py-1">
                       <Share2 className="size-4" />
                       Share
                     </p>

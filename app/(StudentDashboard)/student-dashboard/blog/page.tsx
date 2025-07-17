@@ -4,8 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Blog | Geomatic Connect",
-  description:
-    "Geomatic Connect  is a platform that enables higher institution students to connect with companies offering internships, SIWES, SWEP placements, and other practical training opportunities. It also helps companies find and recruit qualified candidates with ease.",
+  description: "Explore latest articles about geomatics",
 };
 export default async function BlogHomePage() {
   return (
