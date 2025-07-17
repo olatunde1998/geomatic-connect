@@ -85,7 +85,7 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
       <div className="rounded-lg mt-20 mb-10 md:mt-24 lg:mt-20 xl:my-10 items-center justify-between bg-[#ECF1F7] dark:bg-muted flex p-2 px-6 gap-3">
         <div
           onClick={() => router.back()}
-          className="cursor-pointer hover:text-[#014751] hover:border-[#014751] hover:border rounded-2xl flex items-center gap-2 border border-slate-300 dark:border-muted-foreground w-fit p-1.5 px-3 text-sm"
+          className="cursor-pointer hover:text-[#014751] dark:hover:text-muted-foreground hover:border-[#014751]  hover:border rounded-2xl flex items-center gap-2 border border-slate-300 dark:border-muted-foreground dark:border-[0.1px] w-fit p-1.5 px-3 text-sm"
         >
           <ArrowLeft size={14} />
           Back to Blog
@@ -107,7 +107,7 @@ export default function BlogDetails({ blogSlug, token }: BlogDetailsProps) {
           ) : (
             <>
               {/*========Blog View======= */}
-              <div className="w-full max-w-3xl p-7 bg-white dark:bg-muted border border-gray-200 dark:border-muted-foreground rounded-lg">
+              <div className="w-full max-w-3xl p-7 bg-white dark:bg-muted dark:border-[0.1px] border border-gray-200 dark:border-muted-foreground rounded-lg">
                 <div className="flex justify-between items-center border-b border-gray-400 dark:border-muted-foreground pb-2 mb-5">
                   <h2 className="text-xl font-bold ">Geomatic Connect</h2>
                   {pathname.includes("/admin-dashboard") && (
