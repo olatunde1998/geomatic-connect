@@ -91,23 +91,26 @@ export default function StudentNavBar({ session }: { session: any }) {
             <div className="hidden lg:flex items-center gap-x-2 text-sm md:text-base cursor-pointer font-light w-fit">
               <Link
                 href={`/student-dashboard/blog`}
-                className="text-[#33A852] flex items-center gap-2"
+                className="relative group text-[#33A852] flex items-center gap-2"
               >
                 <PencilLine className="size-4" />
-                Blog
+                <span>Blog</span>
+                <span className="absolute left-0 -bottom-0.5 h-0.5 w-full scale-x-0 bg-muted-foreground origin-left transition-transform duration-200 group-hover:scale-x-100" />
               </Link>
               <Link
                 href={`/student-dashboard/billing`}
-                className="text-[#33A852] mx-6 flex items-center gap-2"
+                className="relative group text-[#33A852] mx-6 flex items-center gap-2"
               >
                 <MdOutlinePriceChange className="size-5" />
-                Billing
+                <span>Billing</span>
+                <span className="absolute left-0 -bottom-0.5 h-0.5 w-full scale-x-0 bg-muted-foreground origin-left transition-transform duration-200 group-hover:scale-x-100" />
               </Link>
               <Link
                 href={`/student-dashboard/notifications`}
-                className="text-[#33A852]"
+                className="relative group text-[#33A852]"
               >
-                Notifications
+                <span>Notifications</span>
+                <span className="absolute left-0 -bottom-0.5 h-0.5 w-full scale-x-0 bg-muted-foreground origin-left transition-transform duration-200 group-hover:scale-x-100" />
               </Link>
 
               <div className="flex items-center space-x-3 ml-4">
