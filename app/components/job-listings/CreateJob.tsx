@@ -7,11 +7,11 @@ import {
   stateData,
 } from "@/utils/FilterData";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
+import { ArrowRight, LoaderCircle, X } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useRef, useState } from "react";
 import { formats, modules } from "@/utils/utils";
-import { LoaderCircle, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as yup from "yup";
@@ -97,7 +97,7 @@ export default function CreateJob({ token, setShowCreateJob }: CreateJobProps) {
   };
 
   return (
-    <div className="max-w-md md:min-w-[600px] lg:min-w-[700px] mx-auto p-6 md:p-8 bg-white border border-gray-200 rounded-lg mb-4">
+    <div className="max-w-md md:min-w-[600px] lg:min-w-[700px] mx-auto p-6 md:p-8 bg-white dark:bg-background border border-gray-200 dark:border-muted rounded-lg mb-4">
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold mb-2">Create Job</h1>
@@ -107,7 +107,7 @@ export default function CreateJob({ token, setShowCreateJob }: CreateJobProps) {
         </div>
         <button
           onClick={() => setShowCreateJob(false)}
-          className="self-start rounded-md gap-6 text-gray-500 hover:text-gray-500 hover:bg-slate-100 p-2 m-2 cursor-pointer"
+          className="self-start rounded-md gap-6 text-gray-500 hover:text-gray-500 hover:bg-slate-100 dark:hover:bg-muted p-2 m-2 cursor-pointer"
         >
           <X className="size-5" />
         </button>
@@ -249,14 +249,17 @@ export default function CreateJob({ token, setShowCreateJob }: CreateJobProps) {
         <div>
           <button
             disabled={isCreating}
-            className="w-full mt-6 rounded-md flex items-center justify-center  px-3.5 py-2 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer"
+            className="relative group w-full mt-6 rounded-md flex items-center justify-center  px-3.5 py-2 font-light text-white shadow-sm cursor-pointer bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted-foreground dark:to-muted"
           >
             {isCreating ? (
               <span className="flex space-x-4 gap-3">
                 <LoaderCircle className="animate-spin" /> Creating...
               </span>
             ) : (
-              "Save Now"
+              <span className="flex items-center gap-4 justify-center relative">
+                Save Now
+                <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </span>
             )}
           </button>
         </div>

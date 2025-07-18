@@ -254,7 +254,7 @@ export default function SendRequest({
                   } flex flex-col w-full pt-2 px-4 pb-1 dark:bg-muted`}
                 >
                   <textarea
-                    className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
+                    className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-gray-900 dark:text-white"
                     placeholder="Description...."
                     {...register("backgroundHistory")}
                     rows={4}
