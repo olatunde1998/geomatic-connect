@@ -22,8 +22,6 @@ interface JobDetailsProps {
 export default function JobDetails({ jobId }: JobDetailsProps) {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [showEditJob, setShowEditJob] = useState(false);
-  const skeletonArray = [1, 2, 3, 4, 5];
-
   const { data: session } = useSession();
   const token = session?.user?.token as string;
   const queryClient = useQueryClient();
@@ -65,15 +63,13 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
     <>
       <main>
         {isLoading ? (
-          skeletonArray.map((item, index) => (
-            <div key={index}>
-              <JobSkeleton />
-            </div>
-          ))
+          <div>
+            <JobSkeleton />
+          </div>
         ) : (
           <div>
             <section>
-              <div className="border border-slate-300 p-4 rounded-xl mb-5 block">
+              <div className="border border-slate-300 dark:border-muted p-4 rounded-xl mb-5 block">
                 <section className="flex items-start justify-between">
                   <div className="flex gap-3 items-center">
                     {jobData?.data?.companyId?.avatarImage ? (
@@ -121,16 +117,16 @@ export default function JobDetails({ jobId }: JobDetailsProps) {
                   </div>
                 </section>
                 <section className="flex flex-wrap gap-4 items-center mt-3">
-                  <span className="border border-slate-300 px-4 py-1 rounded-lg text-sm">
+                  <span className="border border-slate-300 dark:border-muted-foreground dark:text-muted-foreground px-4 py-1 rounded-lg text-sm">
                     Featured
                   </span>
-                  <span className="border border-slate-300 px-4 py-1 rounded-lg text-sm">
+                  <span className="border border-slate-300 dark:border-muted-foreground dark:text-muted-foreground px-4 py-1 rounded-lg text-sm">
                     {jobData?.data?.experienceLevel}
                   </span>
-                  <span className="border border-slate-300 px-4 py-1 rounded-lg text-sm">
+                  <span className="border border-slate-300 dark:border-muted-foreground dark:text-muted-foreground px-4 py-1 rounded-lg text-sm">
                     {jobData?.data?.jobType}
                   </span>
-                  <span className="border border-slate-300 px-4 py-1 rounded-lg text-sm">
+                  <span className="border border-slate-300 dark:border-muted-foreground dark:text-muted-foreground px-4 py-1 rounded-lg text-sm">
                     {jobData?.data?.location}
                   </span>
                 </section>

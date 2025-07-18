@@ -114,7 +114,6 @@ export default function StudentNavBar({ session }: { session: any }) {
               </Link>
 
               <div className="flex items-center space-x-3 ml-4">
-                {/* <ModeToggle /> */}
                 <Link
                   href={`/student-dashboard/notifications`}
                   className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
