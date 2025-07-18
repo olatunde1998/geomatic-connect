@@ -183,7 +183,7 @@ export default function StudentCard({
                   <p
                     onClick={() => {
                       setShowConfirmApprove(true);
-                      setSelectedRequestId(item?._id);
+                      setSelectedRequestId(item?.requestId);
                     }}
                     className="bg-[#33A852] text-xs md:text-md w-[120px] md:w-[150px] text-center text-white p-2 mt-12 mx-auto cursor-pointer flex items-center justify-center"
                   >
@@ -193,7 +193,7 @@ export default function StudentCard({
                   <p
                     onClick={() => {
                       setShowConfirmDecline(true);
-                      setSelectedRequestId(item?._id);
+                      setSelectedRequestId(item?.requestId);
                     }}
                     className="bg-[#D92D20] text-xs md:text-md  w-[120px] md:w-[150px] text-center text-white p-3 mt-12 mx-auto cursor-pointer flex items-center justify-center"
                   >
