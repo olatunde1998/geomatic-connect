@@ -49,7 +49,6 @@ export default function StudentHome({ session }: StudentHomeProps) {
               <ReactSelect
                 options={stateData}
                 placeholder="All State"
-                border="#16a34a"
                 onChange={(option: any) => {
                   setSelectedState(option?.value || "");
                 }}

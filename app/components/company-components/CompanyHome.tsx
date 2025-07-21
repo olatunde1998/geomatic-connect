@@ -44,7 +44,6 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
               <ReactSelect
                 options={stateData}
                 placeholder="State"
-                border="#16a34a"
                 onChange={(option: any) => {
                   setSelectedState(option?.value || "");
                 }}
