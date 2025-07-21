@@ -100,7 +100,9 @@ export default function StudentCard({
             <div key={item._id}>
               <div className="max-w-[400px] pt-0 pb-6 border border-slate-300 dark:border-muted bg-white dark:bg-muted">
                 <p className="text-sm text-center justify-end flex flex-row font-normal text-white dark:text-accent-foreground">
-                  <span className="bg-red-300 p-2 px-1.5">{item?.source}</span>
+                  <span className="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-100 p-2 px-1.5 text-xs font-medium">
+                    {item?.source}
+                  </span>
                 </p>
                 <div className="p-6 mx-4 border-b-[1.3px] border-slate-200 dark:border-muted text-black flex flex-col items-center">
                   <div>
@@ -133,7 +135,7 @@ export default function StudentCard({
                     <div className="flex items-center gap-2">
                       <GraduationCap size={24} />
                       <span>
-                        Graduate/Student of {item?.user?.institutionName}
+                        Product of {item?.user?.institutionName}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
