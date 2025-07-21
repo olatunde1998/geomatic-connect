@@ -40,9 +40,13 @@ export function CompanySidebar({ session }: { session: any }) {
     };
   }, [addSignOutProfileRef]);
 
+  const isSubscribed = true;
+
   return (
     <>
-      <div className="flex flex-col justify-between min-h-screen">
+      <div
+        className={`${!isSubscribed ? "pt-0" : "pt-4"} flex flex-col justify-between min-h-screen`}
+      >
         <nav className="grid items-start gap-2">
           {companyNavItems.map((item, index) => {
             const itemSegment = item.href.split("/")[2];
