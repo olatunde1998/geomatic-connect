@@ -10,7 +10,7 @@ import SuccessMessage from "./SuccessMessage";
 import {
   institutionData,
   purposeOfRequestData,
-  trackPeriodData,
+  educationLevelData,
 } from "@/utils/FilterData";
 import { useRouter } from "next/navigation";
 import ReactConfetti from "react-confetti";
@@ -150,7 +150,7 @@ export default function SendRequest({
                     errors.email
                       ? "border-[1.3px] border-red-500"
                       : "border-[1.3px] border-slate-300 dark:border dark:border-muted-foreground"
-                  } flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100 dark:bg-muted`}
+                  } flex flex-col w-full pt-2 px-4 pb-1 bg-gray-100 dark:bg-background`}
                 >
                   <input
                     className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black dark:text-muted-foreground cursor-not-allowed"
@@ -192,13 +192,13 @@ export default function SendRequest({
                   />
                 </div>
               </div>
-              {/* === Request Track (time) === */}
+              {/* === Level of Education === */}
               <div>
                 <label
                   htmlFor="trackPeriod"
                   className="text-sm text-gray-500 dark:text-muted-foreground font-normal"
                 >
-                  Tracking Period
+                  Level of Education
                 </label>
                 <div
                   className={`${
@@ -206,7 +206,7 @@ export default function SendRequest({
                   } flex flex-col w-full`}
                 >
                   <ReactSelect
-                    options={trackPeriodData}
+                    options={educationLevelData}
                     placeholder="Track Period"
                     onChange={(option: any) => {
                       setValue("trackPeriod", option?.value || "");
@@ -251,7 +251,7 @@ export default function SendRequest({
                     errors.backgroundHistory
                       ? "border-[1.3px] border-red-500"
                       : "border-[1.3px] border-slate-300 dark:border dark:border-muted-foreground"
-                  } flex flex-col w-full pt-2 px-4 pb-1 dark:bg-muted`}
+                  } flex flex-col w-full pt-2 px-4 pb-1 dark:bg-background`}
                 >
                   <textarea
                     className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-gray-900 dark:text-white"
