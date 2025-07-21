@@ -158,14 +158,14 @@ export default function RequestDetails({
                 </div>
               </div>
 
-              {/* === Request Track (time) === */}
+              {/* === Level of Education === */}
               <div>
                 <span className="text-sm text-gray-500 font-normal">
-                  Tracking Period
+                  Level of Education
                 </span>
                 <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
                   <p className="py-2 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
-                    {notification?.trackPeriod}
+                    {notification?.educationLevel}
                   </p>
                 </div>
               </div>

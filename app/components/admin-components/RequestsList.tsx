@@ -28,7 +28,7 @@ interface notificationsData {
   _id: string;
   studentId: { fullName: string } | null;
   companyId: { companyName: string } | null;
-  trackPeriod: string;
+  educationLevel: string;
   institutionName: string;
   status: string;
   action: string;
@@ -262,11 +262,11 @@ RequestsListProps) {
         </span>
       ),
     }),
-    columnHelper.accessor("trackPeriod", {
-      cell: (info) => <span> {info?.row?.original?.trackPeriod}</span>,
+    columnHelper.accessor("educationLevel", {
+      cell: (info) => <span> {info?.row?.original?.educationLevel}</span>,
       header: () => (
         <span className="flex items-center text-[#101828] dark:text-accent-foreground">
-          Track Period
+          Education Level
           <ArrowDown size={18} className="ml-2" />
         </span>
       ),

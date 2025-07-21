@@ -25,7 +25,7 @@ interface SendRequestProps {
 
 // Validation Schema
 const schema = yup.object().shape({
-  trackPeriod: yup
+  educationLevel: yup
     .string()
     .required("Track Period is required")
     .min(3, "Track Period must be greater than 3 letters"),
@@ -97,7 +97,7 @@ export default function SendRequest({
       companyId: companyId ? companyId : selectedCompanyId,
       email: data?.email,
       institutionName: data?.institutionName,
-      trackPeriod: data?.trackPeriod,
+      educationLevel: data?.educationLevel,
       requestPurpose: data?.requestPurpose,
       backgroundHistory: data?.backgroundHistory,
     };
@@ -195,22 +195,22 @@ export default function SendRequest({
               {/* === Level of Education === */}
               <div>
                 <label
-                  htmlFor="trackPeriod"
+                  htmlFor="educationLevel"
                   className="text-sm text-gray-500 dark:text-muted-foreground font-normal"
                 >
                   Level of Education
                 </label>
                 <div
                   className={`${
-                    errors.trackPeriod ? "border-[1.3px] border-red-500" : ""
+                    errors.educationLevel ? "border-[1.3px] border-red-500" : ""
                   } flex flex-col w-full`}
                 >
                   <ReactSelect
                     options={educationLevelData}
                     placeholder="Track Period"
                     onChange={(option: any) => {
-                      setValue("trackPeriod", option?.value || "");
-                      trigger("trackPeriod"); // Trigger validation
+                      setValue("educationLevel", option?.value || "");
+                      trigger("educationLevel"); // Trigger validation
                     }}
                   />
                 </div>
