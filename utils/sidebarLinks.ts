@@ -41,9 +41,9 @@ export const companyNavItems = [
     icon: BriefcaseBusiness,
   },
   {
-    name: "Notifications",
-    href: "/company-dashboard/notifications",
-    icon: RiMessage2Line,
+    name: "Overview",
+    href: "/company-dashboard/overview",
+    icon: ChartNoAxesCombined,
   },
   {
     name: "Subscribe",
