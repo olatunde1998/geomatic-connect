@@ -152,17 +152,17 @@ export default function CompanyNavBar({ session }: { session: any }) {
                       ref={dropdownRef}
                       className={`${
                         showActions === true ? "block" : "hidden"
-                      } bg-white py-3 shadow-md rounded-lg text-sm border border-[#213f7d0f]  space-y-2 absolute right-[-1px] lg:right-[-18px] z-[1] top-[50px]`}
+                      } bg-white dark:bg-background py-3 shadow-md rounded-lg text-sm border border-[#213f7d0f] dark:border-muted  space-y-2 absolute right-[-1px] lg:right-[-18px] z-[1] top-[50px]`}
                     >
                       <Link
                         href={`/company-dashboard/settings`}
-                        className="hover:bg-gray-100 dark:text-primary-foreground flex items-center gap-x-2 cursor-pointer p-2 pr-10 pl-4"
+                        className="hover:bg-gray-100 dark:hover:bg-accent dark:text-accent-foreground flex items-center gap-x-2 cursor-pointer p-2 pr-10 pl-4"
                       >
                         <Settings size={18} className="text-gray-600" />
                         Settings
                       </Link>
                       <div
-                        className="hover:bg-gray-100 flex items-center gap-x-2 cursor-pointer text-red-600 p-2 pr-20 pl-4"
+                        className="hover:bg-gray-100 dark:hover:bg-accent flex items-center gap-x-2 cursor-pointer text-red-600 p-2 pr-20 pl-4"
                         onClick={() => {
                           setShowActions(false);
                           setShowLogOut(true);
