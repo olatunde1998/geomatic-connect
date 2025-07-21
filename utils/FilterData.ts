@@ -356,13 +356,12 @@ export const institutionData = [
   },
 ];
 
-
-// Track Period data
-export const trackPeriodData = [
-  { id: 1, label: "Fast Track (3 days)", value: "3 days" },
-  { id: 2, label: "Standard Track (7 days)", value: "7 days" },
-  { id: 3, label: "Moderate Track (2 weeks)", value: "2 weeks" },
-  { id: 4, label: "Extended Track (3 weeks)", value: "3 weeks" },
+// Education Level data
+export const educationLevelData = [
+  { id: 1, label: "National Diploma", value: "National Diploma" },
+  { id: 2, label: "Higher National Diploma", value: "Higher National Diploma" },
+  { id: 3, label: "Bachelor of Technology", value: "Bachelor of Technology" },
+  { id: 4, label: "Master of Science", value: "Master of Science" },
 ];
 
 // Purpose of Request data
