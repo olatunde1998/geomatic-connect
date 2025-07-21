@@ -74,7 +74,7 @@ export default function StudentNavBar({ session }: { session: any }) {
           className="inline-block"
         >
           Unlock More Opportunities: Upgrade now to unlock exclusive access to
-          more students and exciting opportunities.
+          more companies and exciting opportunities.
           <Link
             href="/student-dashboard/billing"
             className="font-bold text-sm underline ml-1.5"
