@@ -1,5 +1,8 @@
 "use client";
+import ApproveMessage from "@/app/components/company-components/ApproveMessage";
+import DeclineMessage from "@/app/components/company-components/DeclineMessage";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { Skeleton } from "@/app/components/skeletons/Skeleton";
 import {
   BookCheck,
   CircleOff,
@@ -9,20 +12,17 @@ import {
 } from "lucide-react";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useQueryClient } from "@tanstack/react-query";
+import { Modal } from "@/app/components/modals/Modal";
 import { Table } from "@/app/components/tables/Table";
-import { Skeleton } from "@/app/components/skeletons/Skeleton";
 import { ArrowDown, File } from "lucide-react";
+import SendRequest from "./RequestDetails";
 import {
   AdminApproveStudentRequest,
   AdminDeclineStudentRequest,
 } from "@/app/services/request.request";
 import { toast } from "sonner";
 
-import SendRequest from "./RequestDetails";
-import ApproveMessage from "@/app/components/company-components/ApproveMessage";
-import DeclineMessage from "@/app/components/company-components/DeclineMessage";
 
-import { Modal } from "@/app/components/modals/Modal";
 
 interface notificationsData {
   _id: string;
