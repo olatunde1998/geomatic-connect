@@ -10,7 +10,7 @@ export type OGImageType = "home" | "blog" | "blog-detail";
 // Main Function
 export default async function generateOgImage(type: OGImageType, props: any) {
   const interSemiBold = await readFile(
-    join(process.cwd(), "fonts/Inter-SemiBold.ttf")
+    join(process.cwd(), "public/fonts/Inter-SemiBold.ttf")
   );
 
   // Read the background image file
