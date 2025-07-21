@@ -61,16 +61,27 @@ export default function StudentNavBar({ session }: { session: any }) {
   return (
     <>
       <p
-        className={`${!isSubscribed && "hidden"} hidden lg:block mb-6 p-2 bg-[#FEF3F2] text-red-500 text-center text-sm fixed z-[1001] w-full`}
+        className={`${!isSubscribed && "hidden"} hidden lg:block mb-6 p-2 bg-[#FEF3F2] text-red-500 text-center text-sm fixed z-[1001] w-full overflow-hidden whitespace-nowrap`}
       >
-        Unlock More Opportunities: Upgrade now to unlock exclusive access to
-        more students and exciting opportunities.
-        <Link
-          href="/student-dashboard/billing"
-          className="font-bold text-sm underline ml-1.5"
+        <motion.span
+          initial={{ x: "100%" }}
+          animate={{ x: "-100%" }}
+          transition={{
+            repeat: Infinity,
+            duration: 15,
+            ease: "linear",
+          }}
+          className="inline-block"
         >
-          Upgrade now!
-        </Link>
+          Unlock More Opportunities: Upgrade now to unlock exclusive access to
+          more students and exciting opportunities.
+          <Link
+            href="/student-dashboard/billing"
+            className="font-bold text-sm underline ml-1.5"
+          >
+            Upgrade now!
+          </Link>
+        </motion.span>
       </p>
       <nav
         className={`${isSubscribed && "lg:top-6"} bg-white dark:bg-background fixed px-6 z-[1000] lg:px-12 xl:px-20 py-[20px] top-0 left-0 right-0 border-b border-accent`}
