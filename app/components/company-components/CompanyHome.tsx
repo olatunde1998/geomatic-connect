@@ -1,10 +1,9 @@
 "use client";
 import { GetUserByIdRequest } from "@/app/services/request.request";
-import StudentCard from "@/app/components/cards/StudentCard";
 import ReactSelect from "@/app/components/inputs/ReactSelect";
-import { stateData } from "@/utils/FilterData";
+import StudentCard from "@/app/components/cards/StudentCard";
 import { useQuery } from "@tanstack/react-query";
-
+import { stateData } from "@/utils/FilterData";
 import { useDebounce } from "use-debounce";
 import { useState } from "react";
 
@@ -27,7 +26,7 @@ export default function CompanyHome({ session }: CompanyHomeProps) {
   return (
     <>
       {/* ====== Filter & Search Goes here ====== */}
-      <div className="mb-10 items-center justify-between bg-[#ECF1F7] dark:bg-muted lg:flex p-4 lg:mb-20 xl:mb-10">
+      <div className="mb-10 lg:mt-12 xl:mt-6  items-center justify-between bg-[#ECF1F7] dark:bg-muted lg:flex p-4 xl:mb-10">
         <div className="md:flex items-center">
           <p>Filter By:</p>
           <div className="md:flex space-y-2 mt-3 md:mt-0 md:space-y-0 md:ml-3 md:space-x-3">
