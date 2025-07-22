@@ -1,8 +1,8 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { getSession } from "next-auth/react";
-import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 export default function Redirect() {
   const router = useRouter();
@@ -43,10 +43,14 @@ export default function Redirect() {
 
   return (
     <div className="flex justify-center items-cente h-screen bg-[#011727]">
-      <p className="animate-pulse text-lg text-center font-medium text-[#ffffff] pt-36 px-6">
-        Just a moment while we get things ready for you...
-        {/* Verifying your credentials. Redirecting you shortly... */}
-      </p>
+      <div>
+        <p className="animate-pulse text-lg lg:text-2xl lg:font-semibold text-center font-medium text-[#ffffff] pt-36 px-6">
+          Just a moment while we get things ready for you...
+        </p>
+        <p className="text-base text-[#ffffff] text-center mt-2 animate-pulse">
+          Hang tight, you&apos;r almost there!
+        </p>
+      </div>
     </div>
   );
 }
