@@ -61,7 +61,9 @@ export default function StudentNavBar({ session }: { session: any }) {
   return (
     <>
       <p
-        className={`${!isSubscribed && "hidden"} hidden lg:block mb-6 p-2 bg-[#FEF3F2] text-red-500 text-center text-sm fixed z-[1001] w-full overflow-hidden whitespace-nowrap`}
+        className={`${!isSubscribed && "hidden"} hidden lg:block mb-6 p-2 text-center text-sm fixed z-[1001] w-full overflow-hidden whitespace-nowrap
+        bg-gradient-to-r from-[#fef3f2] via-[#fbcfe8] via-[#fef9c3] via-[#ccfbf1] to-[#f3e8ff]
+        dark:from-[#1e1b4b] dark:via-[#312e81] dark:to-[#0f172a] text-black dark:text-white`}
       >
         <motion.span
           initial={{ x: "100%" }}
