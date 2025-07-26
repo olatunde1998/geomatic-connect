@@ -3,7 +3,8 @@ import GeomaticLogoWhite from "@/public/images/Geomatic-Connect-Logo2w.png";
 import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
 import { ThemeToggle } from "@/app/components/theme-toggle/ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
-import { PencilLine } from "lucide-react";
+import { Modal } from "@/app/components/modals/Modal";
+import { Loader2, PencilLine } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { HiMenu, HiX } from "react-icons/hi";
 import { FaQ } from "react-icons/fa6";
@@ -40,6 +41,8 @@ const mobileRoutes = [
 ];
 
 export default function Navbar() {
+  const [isIframeLoading, setIsIframeLoading] = useState(true);
+  const [showFormModal, setShowFormModal] = useState(false);
   const [dropNav, setDropNav] = useState(false);
   const pathname = usePathname();
 
@@ -118,7 +121,8 @@ export default function Navbar() {
               Login
               <span className="absolute left-0 -bottom-0.5 h-0.5 w-full scale-x-0 bg-muted-foreground origin-left transition-transform duration-200 group-hover:scale-x-100" />
             </Link>
-            <motion.div
+            {/* ======== Sign Up ====== */}
+            {/* <motion.div
               whileHover={{
                 scale: 1.03,
               }}
@@ -130,6 +134,23 @@ export default function Navbar() {
               >
                 Create free account
               </Link>
+            </motion.div> */}
+            {/* ======== Waitlist ====== */}
+            <motion.div
+              whileHover={{
+                scale: 1.03,
+              }}
+              className="w-fit cursor-pointer"
+            >
+              <div
+                onClick={() => {
+                  setShowFormModal(true);
+                  setIsIframeLoading(true);
+                }}
+                className="bg-[#014751] hover:bg-[#014751]/90 dark:bg-muted dark:border px-3 py-2 text-sm font-normal text-[#FFFFFF] rounded-md cursor-pointer"
+              >
+                Join Waitlist
+              </div>
             </motion.div>
           </div>
 
@@ -207,6 +228,25 @@ export default function Navbar() {
           </AnimatePresence>
         </section>
       </nav>
+      <Modal show={showFormModal} onClose={() => setShowFormModal(false)}>
+        <div className="rounded-md shadow-lg p-2 md:p-4 max-w-[90vw] w-[750px] h-[100vh]">
+          {isIframeLoading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white/80 dark:bg-background/80 z-10">
+              <Loader2 className="animate-spin text-[#014751] w-8 h-8" />
+              <span className="ml-2 text-sm font-medium">Loading form...</span>
+            </div>
+          )}
+          <iframe
+            src="https://forms.gle/HPsbX955swM6Gpp49"
+            width="100%"
+            height="100%"
+            allowFullScreen
+            onLoad={() => setIsIframeLoading(false)}
+            loading="lazy"
+            className="rounded-md border-0"
+          ></iframe>
+        </div>
+      </Modal>
     </>
   );
 }
