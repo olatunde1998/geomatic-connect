@@ -79,21 +79,21 @@ export default function AdminNavBar({ session }: { session: any }) {
             <div className="hidden lg:flex items-center gap-x-2 text-sm md:text-base cursor-pointer font-light w-fit">
               <Link
                 href={`/admin-dashboard/blog`}
-                className="text-[#33A852] flex items-center gap-2"
+                className="text-[#33A852] dark:text-[#00FFAB] flex items-center gap-2"
               >
                 <PencilLine className="size-4" />
                 Blog
               </Link>
               <Link
                 href={`/admin-dashboard/billing`}
-                className="text-[#33A852] mx-4 flex items-center gap-2"
+                className="text-[#33A852] dark:text-[#00FFAB] mx-4 flex items-center gap-2"
               >
                 <CreditCard className="size-4" />
                 Billings
               </Link>
               <Link
                 href={`/admin-dashboard/requests`}
-                className="text-[#33A852]"
+                className="text-[#33A852] dark:text-[#00FFAB]"
               >
                 Requests
               </Link>

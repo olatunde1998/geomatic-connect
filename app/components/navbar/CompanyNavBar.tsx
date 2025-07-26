@@ -121,7 +121,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
             <div className="hidden lg:flex items-center gap-x-2 text-sm md:text-base cursor-pointer font-light w-fit">
               <Link
                 href={`/company-dashboard/blog`}
-                className="relative group text-[#33A852] flex items-center gap-2"
+                className="relative group text-[#33A852] dark:text-[#00FFAB] flex items-center gap-2"
               >
                 <PencilLine className="size-4" />
                 <span>Blog</span>
@@ -129,7 +129,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
               </Link>
               <Link
                 href={`/company-dashboard/subscribe`}
-                className="relative group text-[#33A852] mx-6 flex items-center gap-2"
+                className="relative group text-[#33A852] dark:text-[#00FFAB] mx-6 flex items-center gap-2"
               >
                 <MdOutlinePriceChange className="size-5" />
                 <span>Subscribe</span>
@@ -137,7 +137,7 @@ export default function CompanyNavBar({ session }: { session: any }) {
               </Link>
               <Link
                 href={`/company-dashboard/notifications`}
-                className="relative group text-[#33A852]"
+                className="relative group text-[#33A852] dark:text-[#00FFAB]"
               >
                 <span>Notifications</span>
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-full scale-x-0 bg-muted-foreground origin-left transition-transform duration-200 group-hover:scale-x-100" />
