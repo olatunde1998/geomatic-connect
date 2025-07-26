@@ -243,7 +243,7 @@ export default function StudentNavBar({ session }: { session: any }) {
                 initial={{ x: "90vw" }}
                 animate={{ x: 0 }}
                 exit={{ x: "90vw" }}
-                transition={{ type: "spring", duration: 3 }}
+                transition={{ type: "tween", duration: 1 }}
                 className="fixed top-0 right-0 w-[80%] min-h-screen bg-[#F6F8FD] z-30 pl-4 dark:bg-slate-950 dark:bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:0px_0px]"
               >
                 <div className="flex justify-between p-3 pr-6">
