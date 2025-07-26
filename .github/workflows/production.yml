@@ -1,58 +1,40 @@
-name: Deploy to AWS Amplify (main)
+name: Deploy to Production (main)
 
 on:
   push:
-    branches: [main] # Change this to the branch you use for main
+    branches: [main]
 
 jobs:
-  deploy:
-    name: Trigger Amplify Deployment
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout Source
         uses: actions/checkout@v3
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Install Dependencies
+        run: npm install
 
-      - name: Trigger Amplify Deployment
-        id: deploy
-        run: |
-          APP_ID=${{ secrets.AWS_APP_ID }}
-          BRANCH_NAME="main"  # Update as needed
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-          JOB_ID=$(aws amplify start-deployment \
-            --app-id "$APP_ID" \
-            --branch-name "$BRANCH_NAME" \
-            --query 'jobSummary.jobId' \
-            --output text)
+      - name: Build Docker Image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/geomaticconnectprod:latest .
 
-          echo "Triggered Amplify deployment with Job ID: $JOB_ID"
+      - name: Publish image to Docker Hub
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/geomaticconnectprod:latest 
+        
+      - name: ✅ Build and Push Successful
+        run: echo "Docker image built and pushed successfully."
 
-          # Monitor the job status
-          while true; do
-            STATUS=$(aws amplify get-job \
-              --app-id "$APP_ID" \
-              --branch-name "$BRANCH_NAME" \
-              --job-id "$JOB_ID" \
-              --query 'job.summary.status' \
-              --output text)
+  # deploy: 
+  #   needs: build
+  #   runs-on: aws-ec2
+  #   steps:
+  #     - name: Pull image from Docker Hub
+  #       run: docker pull devferanmi/user-end:latest 
+      
+  #     - name: Delete Old Container
+  #       run: docker rm -f reactContainer
 
-            echo "Current Status: $STATUS"
-
-            if [[ "$STATUS" == "SUCCEED" ]]; then
-              echo "✅ Deployment succeeded."
-              break
-            elif [[ "$STATUS" == "FAILED" || "$STATUS" == "CANCELLED" ]]; then
-              echo "❌ Deployment failed."
-              exit 1
-            else
-              echo "⏳ Deployment in progress..."
-              sleep 10
-            fi
-          done
+  #     - name: Run Docker Container
+  #       run: docker run -d -p 3000:80 --name reactContainer devferanmi/user-end
