@@ -61,7 +61,7 @@ export function StudentSidebar({ session }: { session: any }) {
                       : "bg-transparent"
                   )}
                 >
-                  <item.icon className="mr-2 h-4 w-4 text-[#33A852]" />
+                  <item.icon className="mr-2 h-4 w-4 text-[#33A852] dark:text-[#00FFAB]" />
                   <span className="font-medium">{item.name}</span>
                 </span>
               </Link>
@@ -75,7 +75,7 @@ export function StudentSidebar({ session }: { session: any }) {
             className="pb-40 hidden md:block"
           >
             <div className="flex items-center gap-2  cursor-pointer">
-              <p className="bg-green-600 p-1 xl:p-2 rounded-md text-sm text-[#FFFFFF]">
+              <p className="bg-green-600  p-1 xl:p-2 rounded-md text-sm text-[#FFFFFF]">
                 GC
               </p>
               <div className="flex items-center justify-between space-x-4 w-full">

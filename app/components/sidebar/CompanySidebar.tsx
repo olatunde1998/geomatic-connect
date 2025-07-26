@@ -60,7 +60,7 @@ export function CompanySidebar({ session }: { session: any }) {
                       : "bg-transparent"
                   )}
                 >
-                  <item.icon className="mr-2 h-4 w-4 text-[#33A852]" />
+                  <item.icon className="mr-2 h-4 w-4 text-[#33A852] dark:text-[#00FFAB]" />
                   <span className="font-medium">{item.name}</span>
                 </span>
               </Link>
