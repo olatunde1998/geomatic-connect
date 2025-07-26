@@ -18,21 +18,35 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
       - name: Build Docker Image
-        run: docker build -f Dockerfile.prod -t ${{ secrets.DOCKER_USERNAME }}/geomaticconnectprod:latest .
+        run: docker build -f Dockerfile.prod \
+          --build-arg NEXT_PUBLIC_BASEURL=${{ secrets.NEXT_PUBLIC_BASEURL }} \
+          --build-arg NEXT_PUBLIC_APP_URL=${{ secrets.NEXT_PUBLIC_APP_URL }} \
+          --build-arg NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} \
+          --build-arg NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} \
+          --build-arg OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
+          --build-arg RESEND_API_KEY=${{ secrets.RESEND_API_KEY }} \
+          --build-arg NEXT_PUBLIC_RESEND_API_KEY=${{ secrets.NEXT_PUBLIC_RESEND_API_KEY }} \
+          --build-arg NEXT_PUBLIC_TAWK_TO_SCRIPT_URL=${{ secrets.NEXT_PUBLIC_TAWK_TO_SCRIPT_URL }} \
+          --build-arg NEXT_PUBLIC_CLOUDINARY_NAME=${{ secrets.NEXT_PUBLIC_CLOUDINARY_NAME }} \
+          --build-arg GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} \
+          --build-arg GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} \
+          --build-arg NEXT_GITHUB_CLIENT_ID=${{ secrets.NEXT_GITHUB_CLIENT_ID }} \
+          --build-arg NEXT_GITHUB_CLIENT_SECRET=${{ secrets.NEXT_GITHUB_CLIENT_SECRET }} \
+          -t ${{ secrets.DOCKER_USERNAME }}/geomaticconnectprod:latest .
 
       - name: Publish image to Docker Hub
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/geomaticconnectprod:latest 
-        
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/geomaticconnectprod:latest
+
       - name: ✅ Build and Push Successful
         run: echo "Docker image built and pushed successfully."
 
-  # deploy: 
+  # deploy:
   #   needs: build
   #   runs-on: aws-ec2
   #   steps:
   #     - name: Pull image from Docker Hub
-  #       run: docker pull devferanmi/user-end:latest 
-      
+  #       run: docker pull devferanmi/user-end:latest
+
   #     - name: Delete Old Container
   #       run: docker rm -f reactContainer
 
