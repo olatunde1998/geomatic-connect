@@ -18,6 +18,9 @@ COPY . .
 # Build the Next.js application
 RUN npm run build
 
+ENV PORT=4000
+
+EXPOSE 4000
 
 ###   ======== Stage 2:  Production Stage =======
 FROM build AS production
