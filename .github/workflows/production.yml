@@ -41,15 +41,17 @@ jobs:
       - name: ✅ Build and Push Successful
         run: echo "Docker image built and pushed successfully."
 
-  # deploy:
-  #   needs: build
-  #   runs-on: aws-ec2
-  #   steps:
-  #     - name: Pull image from Docker Hub
-  #       run: docker pull devferanmi/user-end:latest
-
-  #     - name: Delete Old Container
-  #       run: docker rm -f reactContainer
-
-  #     - name: Run Docker Container
-  #       run: docker run -d -p 3000:80 --name reactContainer devferanmi/user-end
+      # - name: Deploy to EC2 via SSH
+      #   uses: appleboy/ssh-action@v1.0.0
+      #   with:
+      #     host: ${{ secrets.EC2_HOST }}
+      #     username: ${{ secrets.EC2_USER }}
+      #     key: ${{ secrets.EC2_SSH_KEY }}
+      #     script: |
+      #       docker pull ${{ secrets.DOCKER_USERNAME }}/geomaticconnectprod:latest
+      #       docker stop geomaticconnect-prod || true && docker rm geomaticconnect-prod || true
+      #       docker run -d --name geomaticconnect-prod -p 4000:4000 ${{ secrets.DOCKER_USERNAME }}/geomaticconnectprod:latest
+      #       echo "Deployment to EC2 completed successfully."
+      #       echo "Application is running on port 4000."
+      #       echo "Visit http://${{ secrets.EC2_HOST }}:4000 to access the application."
+      #       echo "Deployment completed successfully."
