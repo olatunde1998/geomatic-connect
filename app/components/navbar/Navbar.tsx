@@ -114,14 +114,15 @@ export default function Navbar() {
             <div className="ml-12">
               <ThemeToggle />
             </div>
-            <Link
+            {/* ======== Login & Sign Up ====== */}
+            {/* <Link
               href="/login"
               className="relative group p-3 font-medium rounded-md mx-2 hover:text-[#014751] dark:hover:text-secondary-foreground"
             >
               Login
               <span className="absolute left-0 -bottom-0.5 h-0.5 w-full scale-x-0 bg-muted-foreground origin-left transition-transform duration-200 group-hover:scale-x-100" />
-            </Link>
-            {/* ======== Sign Up ====== */}
+            </Link> */}
+
             {/* <motion.div
               whileHover={{
                 scale: 1.03,
@@ -136,6 +137,16 @@ export default function Navbar() {
               </Link>
             </motion.div> */}
             {/* ======== Waitlist ====== */}
+            <div
+              onClick={() => {
+                setShowFormModal(true);
+                setIsIframeLoading(true);
+              }}
+              className="relative group p-3 font-medium cursor-pointer rounded-md mx-2 hover:text-[#014751] dark:hover:text-secondary-foreground"
+            >
+              Login
+              <span className="absolute left-0 -bottom-0.5 h-0.5 w-full scale-x-0 bg-muted-foreground origin-left transition-transform duration-200 group-hover:scale-x-100" />
+            </div>
             <motion.div
               whileHover={{
                 scale: 1.03,
