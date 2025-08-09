@@ -3,10 +3,10 @@ import GeomaticLogoWhite from "@/public/images/Geomatic-Connect-Logo2w.png";
 import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
 import { ThemeToggle } from "@/app/components/theme-toggle/ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
-import { Modal } from "@/app/components/modals/Modal";
-import { Loader2, PencilLine } from "lucide-react";
+// import { Modal } from "@/app/components/modals/Modal";
 import { usePathname } from "next/navigation";
 import { HiMenu, HiX } from "react-icons/hi";
+import { PencilLine } from "lucide-react";
 import { FaQ } from "react-icons/fa6";
 import { useState } from "react";
 import Image from "next/image";
@@ -18,11 +18,6 @@ const routes = [
     href: "faq-id",
     icon: FaQ,
   },
-  // {
-  //   name: "How it Works",
-  //   href: "about-id",
-  //   icon: Bookmark,
-  // },
 ];
 
 const mobileRoutes = [
@@ -41,8 +36,8 @@ const mobileRoutes = [
 ];
 
 export default function Navbar() {
-  const [isIframeLoading, setIsIframeLoading] = useState(true);
-  const [showFormModal, setShowFormModal] = useState(false);
+  // const [isIframeLoading, setIsIframeLoading] = useState(true);
+  // const [showFormModal, setShowFormModal] = useState(false);
   const [dropNav, setDropNav] = useState(false);
   const pathname = usePathname();
 
@@ -115,15 +110,15 @@ export default function Navbar() {
               <ThemeToggle />
             </div>
             {/* ======== Login & Sign Up ====== */}
-            {/* <Link
+            <Link
               href="/login"
               className="relative group p-3 font-medium rounded-md mx-2 hover:text-[#014751] dark:hover:text-secondary-foreground"
             >
               Login
               <span className="absolute left-0 -bottom-0.5 h-0.5 w-full scale-x-0 bg-muted-foreground origin-left transition-transform duration-200 group-hover:scale-x-100" />
-            </Link> */}
+            </Link>
 
-            {/* <motion.div
+            <motion.div
               whileHover={{
                 scale: 1.03,
               }}
@@ -135,9 +130,9 @@ export default function Navbar() {
               >
                 Create free account
               </Link>
-            </motion.div> */}
+            </motion.div>
             {/* ======== Waitlist ====== */}
-            <div
+            {/* <div
               onClick={() => {
                 setShowFormModal(true);
                 setIsIframeLoading(true);
@@ -146,8 +141,8 @@ export default function Navbar() {
             >
               Login
               <span className="absolute left-0 -bottom-0.5 h-0.5 w-full scale-x-0 bg-muted-foreground origin-left transition-transform duration-200 group-hover:scale-x-100" />
-            </div>
-            <motion.div
+            </div> */}
+            {/* <motion.div
               whileHover={{
                 scale: 1.03,
               }}
@@ -162,7 +157,7 @@ export default function Navbar() {
               >
                 Join Waitlist
               </div>
-            </motion.div>
+            </motion.div> */}
           </div>
 
           {/* ======= Menu button ======*/}
@@ -239,7 +234,7 @@ export default function Navbar() {
           </AnimatePresence>
         </section>
       </nav>
-      <Modal show={showFormModal} onClose={() => setShowFormModal(false)}>
+      {/* <Modal show={showFormModal} onClose={() => setShowFormModal(false)}>
         <div className="rounded-md shadow-lg p-2 md:p-4 max-w-[90vw] w-[750px] h-[100vh]">
           {isIframeLoading && (
             <div className="absolute inset-0 flex items-center justify-center bg-white/80 dark:bg-background/80 z-10">
@@ -257,7 +252,7 @@ export default function Navbar() {
             className="rounded-md border-0"
           ></iframe>
         </div>
-      </Modal>
+      </Modal> */}
     </>
   );
 }
