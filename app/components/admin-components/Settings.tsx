@@ -122,7 +122,7 @@ export default function Settings({ token, userId }: SettingsProps) {
         </div>
         <div
           onClick={() => setShowAddTeamMate(true)}
-          className="my-4 flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-full md:w-[200px] lg:w-[200px] cursor-pointer  px-3.5 py-4 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+          className="my-4 flex p-2 md:p-3 justify-center items-center gap-[8px] rounded-[8px] text-white w-full md:w-[200px] lg:w-[200px] cursor-pointer  px-3.5 py-4 font-light shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted dark:to-muted-foreground"
         >
           <p className="text-[#FFFFFF] text-sm md:text-md">Invite Team Mate</p>
           <Plus className="w-4 h-4 md:w-5 md:h-5" />
@@ -220,7 +220,7 @@ export default function Settings({ token, userId }: SettingsProps) {
           <div className="">
             <button
               disabled={isUpdating}
-              className=" mt-6 rounded-md  px-3.5 py-2 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]  cursor-pointer"
+              className=" mt-6 rounded-md cursor-pointer px-3.5 py-2 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted dark:to-muted-foreground"
             >
               {isUpdating ? (
                 <span className="flex space-x-4 gap-3">

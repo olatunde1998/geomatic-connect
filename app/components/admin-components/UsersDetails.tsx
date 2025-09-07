@@ -206,9 +206,9 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <div className="bg-[#FFFFFF] w-full pt-20 md:pb-10 max-w-3xl">
+        <div className="bg-[#FFFFFF] dark:bg-background w-full pt-20 md:pb-10 max-w-3xl">
           <div>
-            <div className="flex items-center justify-between border-b border-slate-300 pb-6">
+            <div className="flex items-center justify-between border-b border-slate-300 dark:border-muted pb-6">
               <div className="flex items-center">
                 <p
                   onClick={() => router.back()}
@@ -224,7 +224,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
             </div>
           </div>
 
-          <div className="my-10 rounded-md px-6 py-6 bg-gray-100 flex justify-between">
+          <div className="my-10 rounded-md px-6 py-6 bg-gray-100 dark:bg-muted flex justify-between">
             <div>
               <p className="font-bold text-left">
                 {userProfileData?.data?.fullName ||
@@ -254,10 +254,10 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                           className="rounded-full"
                         />
                       </div>
-                      <Upload className="relative left-28 bottom-4 bg-white rounded-full w-[32px] h-[32px] p-2" />
+                      <Upload className="relative left-28 bottom-4 bg-white dark:bg-muted rounded-full w-[32px] h-[32px] p-2" />
                     </div>
                   ) : (
-                    <div className="mb-4  mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[100px] md:mb-0 md:mr-6">
+                    <div className="mb-4 mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[100px] md:mb-0 md:mr-6">
                       <CircleUserRound className="size-28 dark:text-muted-foreground" />
                       <Upload className="relative left-20 bottom-10 bg-white rounded-full w-[32px] h-[32px] p-2" />
                     </div>
@@ -283,7 +283,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                 </a>
                 <button
                   disabled={isUpdating}
-                  className="w-[100px] md:w-[150px] px-1.5 py-1.5 md:px-3 md:py-3 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] rounded-sm"
+                  className="w-[100px] md:w-[150px] px-1.5 py-1.5 md:px-3 md:py-3 font-light text-white rounded-sm shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted dark:to-muted-foreground"
                 >
                   {isUpdating ? (
                     <span className="flex space-x-4 gap-3">
@@ -305,9 +305,11 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
             <section className="md:grid md:grid-cols-2 gap-3 space-y-6 md:space-y-0">
               {/* === Name === */}
               <div>
-                <span className="text-sm text-gray-500 font-normal">Name</span>
-                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
-                  <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                <span className="text-sm text-gray-500 font-normal dark:text-muted-foreground">
+                  Name
+                </span>
+                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 dark:bg-background border-[1.3px] border-slate-300">
+                  <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black dark:text-muted-foreground">
                     {userProfileData?.data?.fullName && (
                       <input
                         type="text"
@@ -315,7 +317,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                         {...register("fullName")}
                         className={`${
                           errors.fullName && "border-[1.3px] border-red-500"
-                        } w-full border border-slate rounded-sm p-3 focus:outline-none text-sm`}
+                        } w-full border border-slate rounded-sm p-3 focus:outline-none text-sm dark:bg-background`}
                       />
                     )}{" "}
                     {userProfileData?.data?.companyName && (
@@ -325,7 +327,7 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                         {...register("companyName")}
                         className={`${
                           errors.companyName && "border-[1.3px] border-red-500"
-                        } w-full border border-slate rounded-sm p-3 focus:outline-none text-sm`}
+                        } w-full border border-slate rounded-sm p-3 focus:outline-none text-sm dark:bg-background`}
                       />
                     )}
                   </div>
@@ -334,15 +336,15 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
               {/* === Email Address === */}
               <div>
                 <span className="text-sm text-gray-500 font-normal">Email</span>
-                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
-                  <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 dark:bg-background border-[1.3px] border-slate-300">
+                  <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black dark:text-muted-foreground">
                     <input
                       type="email"
                       placeholder="Email"
                       {...register("email")}
                       className={`${
                         errors.email && "border-[1.3px] border-red-500"
-                      } w-full border border-slate rounded-sm p-3 focus:outline-none  text-sm`}
+                      } w-full border border-slate rounded-sm p-3 focus:outline-none text-sm dark:bg-background`}
                     />
                   </div>
                 </div>
@@ -355,13 +357,13 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                 <span className="text-sm text-gray-500 font-normal">
                   Contact Number
                 </span>
-                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
-                  <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 dark:bg-background border-[1.3px] border-slate-300">
+                  <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black dark:text-muted-foreground">
                     <input
                       type="number"
                       {...register("mobileNumber")}
                       placeholder="(+234) 81 3364 ****"
-                      className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm"
+                      className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm dark:bg-background"
                     />
                   </div>
                 </div>
@@ -370,16 +372,16 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
               {/* ===  Company Address or Students Institution === */}
               {userProfileData?.data?.companyAddress && (
                 <div>
-                  <span className="text-sm text-gray-500 font-normal">
+                  <span className="text-sm text-gray-500 font-normal dark:text-muted-foreground">
                     Company Address
                   </span>
-                  <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
-                    <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                  <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 dark:bg-background border-[1.3px] border-slate-300">
+                    <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black dark:text-muted-foreground">
                       <input
                         type="text"
                         {...register("companyAddress")}
                         placeholder="Address"
-                        className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm"
+                        className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm dark:bg-background"
                       />
                     </div>
                   </div>
@@ -387,16 +389,16 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
               )}
               {userProfileData?.data?.institutionName && (
                 <div>
-                  <span className="text-sm text-gray-500 font-normal">
+                  <span className="text-sm text-gray-500 font-normal dark:text-muted-foreground">
                     Institution Attended
                   </span>
-                  <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
-                    <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                  <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 dark:bg-background border-[1.3px] border-slate-300">
+                    <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black dark:text-muted-foreground">
                       <input
                         type="text"
                         {...register("institutionName")}
                         placeholder="Institution"
-                        className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm"
+                        className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm dark:bg-background"
                       />
                     </div>
                   </div>
@@ -408,15 +410,17 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
             >
               {/* ===  State   === */}
               <div>
-                <span className="text-sm text-gray-500 font-normal">State</span>
-                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
-                  <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black">
+                <span className="text-sm text-gray-500 font-normal dark:text-muted-foreground">
+                  State
+                </span>
+                <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 dark:bg-background border-[1.3px] border-slate-300">
+                  <div className="py-0.5 focus:outline-none placeholder:text-sm custom-placeholder bg-transparent text-black dark:text-muted-foreground">
                     <input
                       type="text"
                       {...register("state")}
                       disabled
                       placeholder="State"
-                      className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm cursor-not-allowed"
+                      className="w-full border border-slate rounded-sm p-3 focus:outline-none mt-1 text-sm cursor-not-allowed dark:bg-background"
                     />
                   </div>
                 </div>
@@ -427,11 +431,11 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
                 <div>
                   <label
                     htmlFor="accomodation"
-                    className="text-sm text-gray-500 font-normal"
+                    className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
                   >
                     Accomodation Avalability
                   </label>
-                  <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 border-[1.3px] border-slate-300">
+                  <div className="flex flex-col w-full pt-2 px-4 pb-1 rounded-md bg-gray-100 dark:bg-background border-[1.3px] border-slate-300">
                     <div
                       className={`${
                         errors.accomodation
@@ -466,10 +470,12 @@ export default function UsersDetails({ token, userId }: UsersDetailsProps) {
 
             {/* === Description  === */}
             <div>
-              <span className="text-sm text-gray-500 font-normal">About</span>
-              <div className="bg-gray-100 flex flex-col w-full pt-2 px-4 pb-1 rounded-md border-[1.3px] border-slate-300">
+              <span className="text-sm text-gray-500 font-normal dark:text-muted-foreground">
+                About
+              </span>
+              <div className="bg-gray-100 dark:bg-background flex flex-col w-full pt-2 px-4 pb-1 rounded-md border-[1.3px] border-slate-300">
                 <textarea
-                  className="p-3 focus:outline-none text-sm placeholder:text-sm cursor-text custom-placeholder text-black"
+                  className="p-3 focus:outline-none text-sm placeholder:text-sm cursor-text custom-placeholder text-black dark:text-muted-foreground dark:bg-background"
                   placeholder="Description"
                   rows={8}
                   cols={60}

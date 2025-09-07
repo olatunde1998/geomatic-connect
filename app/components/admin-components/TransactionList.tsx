@@ -269,7 +269,7 @@ export default function TransactionList({
               <input
                 type="text"
                 onChange={(e: any) => setSearch(e.target.value)}
-                className="border border-[#cbd5e1] w-full p-2 mt-4 md:mt-0 rounded-md cursor-text placeholder:text-xs focus:border-green-600 focus:ring-0 focus:outline-none"
+                className="border border-[#cbd5e1] dark:border-muted dark:bg-background w-full p-2 mt-4 md:mt-0 rounded-md cursor-text placeholder:text-xs focus:border-green-600 focus:ring-0 focus:outline-none"
                 placeholder="Search... ✍️"
               />
             </div>

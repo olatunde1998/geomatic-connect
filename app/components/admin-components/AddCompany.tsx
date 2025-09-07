@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { useForm } from "react-hook-form";
-import { Upload, X } from "lucide-react";
+import { ArrowRight, Upload, X } from "lucide-react";
 import React, { useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
@@ -115,12 +115,14 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
       <div className="w-full md:pb-20 text-[#1F4D36]">
         <div>
           <div className="mb-8 md:mt-6 flex items-center justify-between text-[#33A852]">
-            <p>Add New Company</p>
+            <p className="text-xl text-[#33A852] dark:text-secondary-foreground">
+              Add New Company
+            </p>
             <button
               onClick={() => setShowAddCompany(false)}
-              className="rounded-md gap-6 hover:bg-slate-100 p-2"
+              className="rounded-md gap-6 hover:bg-slate-100 dark:hover:bg-muted p-2 cursor-pointer"
             >
-              <X className="size-5" />
+              <X className="text-[#33A852] dark:text-secondary-foreground" />
             </button>
           </div>
         </div>
@@ -132,7 +134,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
             <div>
               <label
                 htmlFor="companyName"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 Company Name
               </label>
@@ -140,13 +142,13 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
                 className={`${
                   errors.companyName
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                    : "border-[1.3px] border-[#6C748B]"
-                } mt-2 flex flex-col w-full pt-2 px-4 pb-1  rounded-md`}
+                    : "border-[1.3px] border-[#6C748B] dark:border dark:border-muted-foreground"
+                } mt-2 flex flex-col w-full pt-2 px-4 pb-1 rounded-md dark:bg-background`}
               >
                 <input
                   className={`${
-                    errors.companyName ? "bg-[#FEF3F2]" : ""
-                  } dark:bg-[#FFFFFF] py-1 focus:outline-none cursor-text placeholder:text-sm`}
+                    errors.companyName ? "bg-[#FEF3F2]" : "dark:bg-background"
+                  }  py-1 focus:outline-none cursor-text placeholder:text-sm dark:text-muted-foreground`}
                   type="text"
                   placeholder="NIS"
                   {...register("companyName")}
@@ -159,7 +161,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
             <div>
               <label
                 htmlFor="companyAddress"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 Company Address
               </label>
@@ -173,8 +175,10 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
               >
                 <input
                   className={`${
-                    errors.companyAddress ? "bg-[#FEF3F2]" : ""
-                  } dark:bg-[#FFFFFF] py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm`}
+                    errors.companyAddress
+                      ? "bg-[#FEF3F2]"
+                      : "dark:bg-background"
+                  } py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm dark:text-muted-foreground`}
                   type="text"
                   placeholder="Company Address *"
                   {...register("companyAddress")}
@@ -186,7 +190,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
             <div>
               <label
                 htmlFor="companyAddress"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 Company Email
               </label>
@@ -199,8 +203,8 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
               >
                 <input
                   className={`${
-                    errors.email ? "bg-[#FEF3F2]" : ""
-                  } dark:bg-[#FFFFFF] py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm`}
+                    errors.email ? "bg-[#FEF3F2]" : "dark:bg-background"
+                  } py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm dark:text-muted-foreground`}
                   type="email"
                   placeholder="Company Email *"
                   {...register("email")}
@@ -213,7 +217,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
             <div>
               <label
                 htmlFor="state"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 State
               </label>
@@ -243,7 +247,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
             <div className="mt-4">
               <label
                 htmlFor="professionalId"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 Professional ID
               </label>
@@ -256,7 +260,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
                   errors.professionalId
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                     : "border-[1.3px] border-[#6C748B] rounded-md"
-                }  dark:bg-[#FFFFFF] mt-2 px-3 py-2.5 focus:outline-none cursor-text flex justify-between rounded-lg w-full placeholder:text-sm`}
+                }  dark:bg-background mt-2 px-3 py-2.5 focus:outline-none cursor-text flex justify-between rounded-lg w-full placeholder:text-sm dark:text-muted-foreground`}
               />
             </div>
 
@@ -264,7 +268,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
             <div className="mt-4 ">
               <label
                 htmlFor="mobileNumber"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 Contact Number
               </label>
@@ -281,8 +285,8 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
                 className={`${
                   errors.mobileNumber
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                    : "border-[1.3px] border-[#6C748B] rounded-md"
-                } mt-2 phone-input input-phone-number bg-[#FFFFFF]`}
+                    : "border-[1.3px] border-[#6C748B] rounded-md dark:bg-background"
+                } mt-2 phone-input input-phone-number bg-[#FFFFFF] dark:bg-background`}
               />
             </div>
 
@@ -290,7 +294,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
             <div>
               <label
                 htmlFor="accomodation"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 Accomodation Avalability
               </label>
@@ -317,7 +321,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
             </div>
 
             <div className="mt-3">
-              <span className="text-sm text-gray-500 font-normal">
+              <span className="text-sm text-gray-500 font-normal dark:text-muted-foreground">
                 About Company
               </span>
               <div
@@ -328,7 +332,7 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
                 }  flex flex-col w-full pt-2 px-4 pb-1 mt-1`}
               >
                 <textarea
-                  className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
+                  className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black dark:text-muted-foreground"
                   placeholder="Description"
                   rows={8}
                   cols={60}
@@ -338,8 +342,10 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
             </div>
             {/* =======  Company Logo ======== */}
             <div>
-              <div className="border-[1.3px] border-[#6C748B] px-4 pt-3 pb-6 md:px-6 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
-                <p className="text-sm font-medium">Company Logo</p>
+              <div className="border-[1.3px] border-[#6C748B] px-4 pt-3 pb-6 md:px-6 md:pt-6 md:pb-6 rounded-xl bg-white dark:bg-background max-w-[540px] mt-6">
+                <p className="text-sm font-medium dark:text-muted-foreground">
+                  Company Logo
+                </p>
                 <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[1.3px] border-dashed border-[#6C748B] mt-4 cursor-pointer">
                   <label
                     htmlFor="companyInput"
@@ -384,10 +390,11 @@ export default function AddCompany({ setShowAddCompany }: AddUserProps) {
           {/* === Submit Button === */}
           <button
             disabled={isSaving}
-            className="w-full mt-10  px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] rounded-sm"
+            className="relative group cursor-pointer w-full mt-10 px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted dark:to-muted"
           >
-            <span className="text-base">
+            <span className="text-base flex items-center gap-4 justify-center relative">
               {isSaving ? "Creating...." : "Create Company"}
+              <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </button>
         </form>
