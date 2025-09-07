@@ -22,13 +22,12 @@ import {
 } from "@/app/services/request.request";
 import { toast } from "sonner";
 
-
-
 interface notificationsData {
   _id: string;
   studentId: { fullName: string } | null;
   companyId: { companyName: string } | null;
   educationLevel: string;
+  trackPeriod: string;
   institutionName: string;
   status: string;
   action: string;
@@ -92,7 +91,7 @@ RequestsListProps) {
 
   // React TanStank Query Invalidate Logic
   const queryClient = useQueryClient();
-
+  console.log(notificationsData, "this is notificationsData here=====");
   // Revalidation of checkbox
   const handleDeleteInvoiceRevalidate = async () => {
     const selectedRowsIds = selectedRows?.map((row) => row?.id);
@@ -263,7 +262,12 @@ RequestsListProps) {
       ),
     }),
     columnHelper.accessor("educationLevel", {
-      cell: (info) => <span> {info?.row?.original?.educationLevel}</span>,
+      cell: (info) => (
+        <span>
+          {info?.row?.original?.educationLevel ||
+            info?.row?.original?.trackPeriod}
+        </span>
+      ),
       header: () => (
         <span className="flex items-center text-[#101828] dark:text-accent-foreground">
           Education Level
