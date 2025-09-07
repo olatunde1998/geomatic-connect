@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useQueryClient } from "@tanstack/react-query";
-import { Upload, X } from "lucide-react";
+import { ArrowRight, Upload, X } from "lucide-react";
 import { RegisterRequest } from "@/app/services/auth.request";
 import { toast } from "sonner";
 import "react-phone-number-input/style.css";
@@ -110,12 +110,14 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
       <div className="w-full md:pb-20 text-[#1F4D36]">
         <div>
           <div className="mb-8 md:mt-6 flex items-center justify-between text-[#33A852]">
-            <p>Add Team Mate</p>
+            <p className="text-xl text-[#33A852] dark:text-secondary-foreground">
+              Add Team Mate
+            </p>
             <button
               onClick={() => setShowAddTeamMate(false)}
-              className="rounded-md gap-6 hover:bg-slate-100 p-2"
+              className="rounded-md gap-6 hover:bg-slate-100 dark:hover:bg-muted p-2 cursor-pointer"
             >
-              <X className="size-5" />
+              <X className="text-[#33A852] dark:text-secondary-foreground" />
             </button>
           </div>
         </div>
@@ -127,7 +129,7 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
             <div>
               <label
                 htmlFor="companyName"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 Team Mate Name
               </label>
@@ -135,13 +137,13 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
                 className={`${
                   errors.companyName
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                    : "border-[1.3px] border-[#6C748B]"
-                } mt-2 flex flex-col w-full pt-2 px-4 pb-1 rounded-md`}
+                    : "border-[1.3px] border-[#6C748B] dark:border dark:border-muted-foreground"
+                } mt-2 flex flex-col w-full pt-2 px-4 pb-1 rounded-md dark:bg-background`}
               >
                 <input
                   className={`${
-                    errors.companyName ? "bg-[#FEF3F2]" : ""
-                  } dark:bg-[#FFFFFF] py-1 focus:outline-none placeholder:text-sm cursor-not-allowed`}
+                    errors.companyName ? "bg-[#FEF3F2]" : "dark:bg-background"
+                  } py-1 focus:outline-none placeholder:text-sm dark:text-muted-foreground`}
                   type="text"
                   placeholder="Geomatic Connect"
                   {...register("companyName")}
@@ -154,7 +156,7 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
             <div>
               <label
                 htmlFor="companyAddress"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 Team Mate Address
               </label>
@@ -168,8 +170,10 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
               >
                 <input
                   className={`${
-                    errors.companyAddress ? "bg-[#FEF3F2]" : ""
-                  } dark:bg-[#FFFFFF] py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm`}
+                    errors.companyAddress
+                      ? "bg-[#FEF3F2]"
+                      : "dark:bg-background"
+                  } py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm dark:text-muted-foreground`}
                   type="text"
                   placeholder="Address *"
                   {...register("companyAddress")}
@@ -181,7 +185,7 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
             <div>
               <label
                 htmlFor="companyAddress"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 Email Address
               </label>
@@ -194,8 +198,8 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
               >
                 <input
                   className={`${
-                    errors.email ? "bg-[#FEF3F2]" : ""
-                  } dark:bg-[#FFFFFF] py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm`}
+                    errors.email ? "bg-[#FEF3F2]" : "dark:bg-background"
+                  } py-1 focus:outline-none cursor-text custom-placeholder placeholder:text-sm dark:text-muted-foreground`}
                   type="email"
                   placeholder="team@company.work*"
                   {...register("email")}
@@ -208,7 +212,7 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
             <div>
               <label
                 htmlFor="state"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 State
               </label>
@@ -238,7 +242,7 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
             <div className="mt-4">
               <label
                 htmlFor="professionalId"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 Team Mate ID
               </label>
@@ -250,8 +254,8 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
                 className={`${
                   errors.professionalId
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                    : "border-[1.3px] border-[#6C748B] rounded-md"
-                }  dark:bg-[#FFFFFF] mt-2 px-3 py-2.5 focus:outline-none cursor-text flex justify-between rounded-lg w-full placeholder:text-sm`}
+                    : "border-[1.3px] border-[#6C748B] rounded-md dark:bg-background"
+                } mt-2 px-3 py-2.5 focus:outline-none cursor-text flex justify-between rounded-lg w-full placeholder:text-sm dark:text-muted-foreground`}
               />
             </div>
 
@@ -259,7 +263,7 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
             <div className="mt-4 ">
               <label
                 htmlFor="mobileNumber"
-                className="text-sm text-gray-500 font-normal"
+                className="text-sm text-gray-500 font-normal dark:text-muted-foreground"
               >
                 Contact Number
               </label>
@@ -277,12 +281,12 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
                   errors.mobileNumber
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                     : "border-[1.3px] border-[#6C748B] rounded-md"
-                } mt-2 phone-input input-phone-number bg-[#FFFFFF]`}
+                } mt-2 phone-input input-phone-number bg-[#FFFFFF] dark:bg-background`}
               />
             </div>
 
             <div className="mt-3">
-              <span className="text-sm text-gray-500 font-normal">
+              <span className="text-sm text-gray-500 font-normal dark:text-muted-foreground">
                 About Me
               </span>
               <div
@@ -293,7 +297,7 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
                 }  flex flex-col w-full pt-2 px-4 pb-1 mt-1`}
               >
                 <textarea
-                  className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black"
+                  className="py-2 focus:outline-none placeholder:text-sm cursor-text custom-placeholder bg-transparent text-black dark:text-muted-foreground"
                   placeholder="Description"
                   rows={8}
                   cols={60}
@@ -303,8 +307,10 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
             </div>
             {/* =======  Team Mate Avatar ======== */}
             <div>
-              <div className="border-[1.3px] border-[#6C748B] px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white max-w-[540px] mt-6">
-                <p className="text-sm font-medium">Team Mate Avatar</p>
+              <div className="border-[1.3px] border-[#6C748B] px-4 pt-3 pb-6 md:px-10 md:pt-6 md:pb-6 rounded-xl bg-white dark:bg-background max-w-[540px] mt-6">
+                <p className="text-sm font-medium dark:text-muted-foreground">
+                  Team Mate Avatar
+                </p>
                 <div className="flex items-center justify-center space-x-2 md:space-x-6 bg-white rounded-2xl  border-[1.3px] border-dashed border-[#6C748B] mt-4 cursor-pointer">
                   <label
                     htmlFor="teamMateAvatarInput"
@@ -349,10 +355,11 @@ export default function AddTeamMate({ setShowAddTeamMate }: AddTeamMateProps) {
           {/* === Submit Button === */}
           <button
             disabled={isSaving}
-            className="w-full mt-10  px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] rounded-sm"
+            className="relative group cursor-pointer w-full mt-10 px-3.5 py-4 font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted dark:to-muted"
           >
-            <span className="text-base">
+            <span className="text-base flex items-center gap-4 justify-center relative">
               {isSaving ? "Creating...." : "Add Team Mate"}
+              <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </button>
         </form>

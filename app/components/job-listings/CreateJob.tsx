@@ -127,7 +127,7 @@ export default function CreateJob({ token, setShowCreateJob }: CreateJobProps) {
                   {...register("jobTitle")}
                   className={`${
                     errors.jobTitle && "border-[1.3px] border-red-500"
-                  } w-full border border-slate p-3 py-5 focus:outline-none text-sm`}
+                  } w-full border border-slate p-3 py-5 focus:outline-none text-sm dark:border dark:border-slate-200 dark:bg-background`}
                 />
               </label>
             </div>
@@ -249,7 +249,7 @@ export default function CreateJob({ token, setShowCreateJob }: CreateJobProps) {
         <div>
           <button
             disabled={isCreating}
-            className="relative group w-full mt-6 rounded-md flex items-center justify-center  px-3.5 py-2 font-light text-white shadow-sm cursor-pointer bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted-foreground dark:to-muted"
+            className="relative group w-full mt-6 rounded-md flex items-center justify-center px-3.5 py-3 font-light text-white shadow-sm cursor-pointer bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted-foreground dark:to-muted"
           >
             {isCreating ? (
               <span className="flex space-x-4 gap-3">

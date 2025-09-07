@@ -70,7 +70,7 @@ export default function Navbar() {
               height={100}
               priority
               quality={100}
-              className="w-[109px] h-[46px] object-cover hidden dark:block"
+              className="w-[109px] h-[46px] object-cover hidden dark:block "
             />
           </Link>
 

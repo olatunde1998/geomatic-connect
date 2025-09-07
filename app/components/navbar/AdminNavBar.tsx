@@ -1,19 +1,19 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-
 import { Bell, CreditCard, LogOut, PencilLine, Settings } from "lucide-react";
+import GeomaticLogoWhite from "@/public/images/Geomatic-Connect-Logo2w.png";
 import GeomaticLogo from "@/public/images/Geomatic-Connect-Logo2b.png";
+import { ThemeToggle } from "@/app/components/theme-toggle/ThemeToggle";
 import { GetUserProfileRequest } from "@/app/services/users.request";
 import Logout from "@/app/components/auth-components/Logout";
 import { adminMobileRoutes } from "@/utils/sidebarLinks";
 import { motion, AnimatePresence } from "framer-motion";
 import { Modal } from "@/app/components/modals/Modal";
+import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useRouter } from "next/navigation";
-// import { ModeToggle } from "@/app/components/modeToggle/ModeToggle";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function AdminNavBar({ session }: { session: any }) {
   const userId = session?.user?._id;
@@ -62,7 +62,15 @@ export default function AdminNavBar({ session }: { session: any }) {
                   height={100}
                   priority
                   quality={100}
-                  className="w-[109px] h-[46px] md:w-[150px] md:h-[56px] lg:w-[138px] xl:w-[150px] object-cover"
+                  className="dark:hidden w-[109px] h-[46px] md:w-[150px] md:h-[56px] lg:w-[138px] xl:w-[150px] object-cover"
+                />
+                <Image
+                  src={GeomaticLogoWhite}
+                  alt="Geomatic brand logo"
+                  width={200}
+                  height={100}
+                  priority
+                  className="hidden dark:block w-[109px] h-[46px] md:w-[150px] md:h-[56px] lg:w-[138px] xl:w-[150px] object-cover"
                 />
               </div>
 
@@ -99,19 +107,13 @@ export default function AdminNavBar({ session }: { session: any }) {
               </Link>
 
               <div className="flex items-center space-x-3 ml-4">
-                {/* <ModeToggle /> */}
                 <Link
                   href={`/admin-dashboard/requests`}
                   className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
                 >
                   <Bell size={18} />
                 </Link>
-                <Link
-                  href={`/admin-dashboard/settings`}
-                  className="bg-slate-300 dark:border-muted dark:border-[0.3px] dark:bg-background dark:hover:bg-muted p-2 rounded-lg flex items-center justify-center"
-                >
-                  <Settings size={18} />
-                </Link>
+                <ThemeToggle />
                 <div
                   onClick={() => setShowActions((prevState) => !prevState)}
                   className="flex justify-start"
@@ -135,17 +137,20 @@ export default function AdminNavBar({ session }: { session: any }) {
                       ref={dropdownRef}
                       className={`${
                         showActions === true ? "block" : "hidden"
-                      } bg-white py-3 shadow-md rounded-lg text-sm border border-[#213f7d0f]  space-y-2 absolute right-[-1px] lg:right-[-18px] z-[1] top-[50px]`}
+                      } bg-white dark:bg-background py-3 shadow-md rounded-lg text-sm border border-[#213f7d0f] dark:border-muted  space-y-2 absolute right-[-1px] lg:right-[-18px] z-[1] top-[50px]`}
                     >
                       <Link
                         href={`/admin-dashboard/settings`}
-                        className="hover:bg-gray-100 dark:text-primary-foreground flex items-center gap-x-2 cursor-pointer p-2 pr-10 pl-4"
+                        className="hover:bg-gray-100 dark:hover:bg-accent dark:text-accent-foreground flex items-center gap-x-2 cursor-pointer p-2 pr-10 pl-4"
                       >
-                        <Settings size={18} className="text-gray-600" />
+                        <Settings
+                          size={18}
+                          className="text-gray-600 dark:text-accent-foreground"
+                        />
                         Settings
                       </Link>
                       <div
-                        className="hover:bg-gray-100 flex items-center gap-x-2 cursor-pointer text-red-600 p-2 pr-20 pl-4"
+                        className="hover:bg-gray-100 dark:hover:bg-accent flex items-center gap-x-2 cursor-pointer text-red-600 p-2 pr-20 pl-4"
                         onClick={() => {
                           setShowActions(false);
                           setShowLogOut(true);
@@ -186,7 +191,7 @@ export default function AdminNavBar({ session }: { session: any }) {
                 animate={{ x: 0 }}
                 exit={{ x: "90vw" }}
                 transition={{ type: "tween", duration: 1 }}
-                className="fixed top-0 right-0 w-[80%] min-h-screen bg-[#F6F8FD] dark:bg-muted z-30 pl-4"
+                className="fixed top-0 right-0 w-[80%] min-h-screen bg-[#F6F8FD] z-30 pl-4 dark:bg-slate-950 dark:bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:0px_0px]"
               >
                 <div className="flex justify-between p-3 pr-6">
                   <a href="#" className="flex items-center">
@@ -196,7 +201,16 @@ export default function AdminNavBar({ session }: { session: any }) {
                       width={80}
                       height={80}
                       priority
-                      className="w-[109px] h-[46px] object-cover"
+                      className="w-[109px] h-[46px] object-cover dark:hidden"
+                    />
+                    <Image
+                      src={GeomaticLogoWhite}
+                      alt="Geomatic brand logo"
+                      width={80}
+                      height={80}
+                      priority
+                      quality={100}
+                      className="w-[109px] h-[46px] object-cover hidden dark:block"
                     />
                   </a>
                   <HiX
@@ -211,7 +225,7 @@ export default function AdminNavBar({ session }: { session: any }) {
                   {adminMobileRoutes.map((route, index) => (
                     <li
                       key={index}
-                      className="block py-2 pl-1.5 mx-2 pr-3 border-b border-slate-200 dark:text-accent-foreground"
+                      className="block py-2 pl-1.5 mx-2 pr-3 border-b border-slate-200 dark:border-muted dark:text-accent-foreground"
                     >
                       <Link
                         onClick={() => {
@@ -228,7 +242,7 @@ export default function AdminNavBar({ session }: { session: any }) {
 
                 <div
                   onClick={() => setShowLogOut(true)}
-                  className="mt-10 ml-3 text-sm flex items-center space-x-4 hover:bg-[#EDEDF1] p-2 pr-3  cursor-pointer bg-[#524A4C] rounded-lg w-fit font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045]"
+                  className="mt-10 ml-3 text-sm flex items-center space-x-4 hover:bg-[#EDEDF1] p-2 pr-3  cursor-pointer bg-[#524A4C] rounded-lg w-fit font-light text-white shadow-sm bg-gradient-to-r from-[#49AD51] to-[#B1D045] dark:bg-muted dark:bg-gradient-to-r dark:from-muted dark:to-muted-foreground"
                 >
                   <LogOut size={16} />
                   <p>Log out</p>
