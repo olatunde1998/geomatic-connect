@@ -207,7 +207,7 @@ export default function SendRequest({
                 >
                   <ReactSelect
                     options={educationLevelData}
-                    placeholder="Track Period"
+                    placeholder="Edu. Level"
                     onChange={(option: any) => {
                       setValue("educationLevel", option?.value || "");
                       trigger("educationLevel"); // Trigger validation
