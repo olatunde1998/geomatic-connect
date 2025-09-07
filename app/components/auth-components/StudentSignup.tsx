@@ -96,8 +96,8 @@ export default function StudentSignup() {
                 className={`${
                   errors.fullName
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                    : ""
-                } dark:bg-[#FFFFFF] px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+                    : "bg-[#FFFFFF]"
+                } px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
               />
             </div>
 
@@ -106,7 +106,7 @@ export default function StudentSignup() {
               className={`${
                 errors.institutionName
                   ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                  : ""
+                  : "bg-[#FFFFFF]"
               } mt-4 rounded-lg cursor-pointer  w-full`}
             >
               <ReactSelect
@@ -126,7 +126,9 @@ export default function StudentSignup() {
             {/* ======= State ===== */}
             <div
               className={`${
-                errors.state ? "border-[1.3px] border-red-500 bg-[#FEF3F2]" : ""
+                errors.state
+                  ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
+                  : "bg-[#FFFFFF]"
               } mt-4 rounded-lg cursor-pointer  w-full`}
             >
               <ReactSelect
@@ -159,7 +161,7 @@ export default function StudentSignup() {
                   errors.mobileNumber
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
                     : "bg-[#FFFFFF]"
-                } phone-input input-phone-number bg-[#FFFFFF] border border-[#FFFFFF] text-[#000000]`}
+                } phone-input input-phone-number border border-[#FFFFFF] text-[#000000]`}
               />
             </div>
 
@@ -173,8 +175,8 @@ export default function StudentSignup() {
                 className={`${
                   errors.email
                     ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                    : ""
-                } dark:bg-[#FFFFFF] px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
+                    : "bg-[#FFFFFF]"
+                }  px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full`}
               />
             </div>
 
@@ -189,8 +191,8 @@ export default function StudentSignup() {
                   className={`${
                     errors.password
                       ? "border-[1.3px] border-red-500 bg-[#FEF3F2]"
-                      : ""
-                  } dark:bg-[#FFFFFF] pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full text-[#000000]`}
+                      : "bg-[#FFFFFF]"
+                  }  pr-12 pl-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg w-full text-[#000000]`}
                 />
               </div>
               <span
